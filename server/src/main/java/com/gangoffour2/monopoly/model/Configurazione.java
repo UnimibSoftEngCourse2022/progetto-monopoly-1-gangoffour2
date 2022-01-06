@@ -2,6 +2,8 @@ package com.gangoffour2.monopoly.model;
 
 import lombok.Builder;
 import lombok.AllArgsConstructor;
+import lombok.Data;
+
 
 
 enum Difficoltà{
@@ -10,6 +12,7 @@ enum Difficoltà{
     hard
 }
 
+@Data
 @Builder
 @AllArgsConstructor
 public class Configurazione {

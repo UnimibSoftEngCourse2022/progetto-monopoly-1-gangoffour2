@@ -8,7 +8,9 @@ import com.gangoffour2.monopoly.model.Giocatore;
 import com.gangoffour2.monopoly.model.Tabellone;
 import lombok.Builder;
 import lombok.AllArgsConstructor;
+import lombok.Data;
 
+@Data
 @Builder
 @AllArgsConstructor
 public class Partita {
