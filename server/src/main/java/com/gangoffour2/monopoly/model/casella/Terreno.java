@@ -1,9 +1,7 @@
 package com.gangoffour2.monopoly.model.casella;
 
-
-import com.gangoffour2.monopoly.model.Giocatore;
-import lombok.Builder;
 import lombok.Data;
+import lombok.experimental.SuperBuilder;
 
 import java.util.ArrayList;
 
@@ -19,21 +17,23 @@ enum Colore{
 }
 
 @Data
-@Builder
-public class Terreno extends Proprietà{
+@SuperBuilder
+public class Terreno extends Proprieta {
     private ArrayList<Integer> affitti;
     private Colore colore;
     private int costoCasa;
     private int costoAlbergo;
 
+    private Terreno(){
+    }
 
     @Override
-    public void arrivo(Giocatore g) {
+    public void arrivo() {
 
     }
 
     @Override
-    public void passaggio(Giocatore g) {
+    public void passaggio() {
 
     }
 
