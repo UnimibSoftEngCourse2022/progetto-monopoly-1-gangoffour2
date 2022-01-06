@@ -1,11 +1,16 @@
-package com.gangoffour2.monopoly.model;
+package com.gangoffour2.monopoly.stati.partita;
 
 import java.util.ArrayList;
 import java.util.Random;
 
+import com.gangoffour2.monopoly.model.Configurazione;
+import com.gangoffour2.monopoly.model.Giocatore;
+import com.gangoffour2.monopoly.model.Tabellone;
 import lombok.Builder;
 import lombok.AllArgsConstructor;
+import lombok.Data;
 
+@Data
 @Builder
 @AllArgsConstructor
 public class Partita {
@@ -16,20 +21,19 @@ public class Partita {
     private Configurazione config;
 
     public int tiraDadi(){
-        return new Random().nextInt(11) + 2;
+        return new Random().nextInt(Configurazione.MAX_DADI_FACCE) + 1;
     }
+
     public boolean aggiungiGiocatore(Giocatore g){
-        if(giocatori.size() == 8)
+        if(giocatori.size() == Configurazione.MAX_PLAYERS)
             //Oppure aggiungere eccezioni da throware?
             return false;
         giocatori.add(g);
         return true;
     }
     public boolean rimuoviGiocatore(Giocatore g){
-        if(giocatori.remove(g))
-            return true;
+        return giocatori.remove(g);
         //Oppure aggiungere eccezioni da throware?
-        return false;
     }
     public void cambiaTurno(){
         //logica per cambiare turno???
