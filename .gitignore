@@ -1,0 +1,3 @@
+*.vpp.bak*
+.DS_Store
+.*.vpp.lck
