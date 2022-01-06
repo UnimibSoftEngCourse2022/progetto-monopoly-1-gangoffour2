@@ -23,7 +23,7 @@ public class Partita {
     public int tiraDadi(){
         return new Random().nextInt(Configurazione.MAX_DADI_FACCE) + 1;
     }
-    
+
     public boolean aggiungiGiocatore(Giocatore g){
         if(giocatori.size() == Configurazione.MAX_PLAYERS)
             //Oppure aggiungere eccezioni da throware?
