@@ -1,4 +1,4 @@
-package com.gangoffour2.monopoly.model;
+package com.gangoffour2.monopoly.stati.partita;
 
 import java.util.ArrayList;
 import java.util.Random;
