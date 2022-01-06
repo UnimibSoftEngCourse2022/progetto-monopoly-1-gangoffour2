@@ -5,9 +5,9 @@ import lombok.experimental.SuperBuilder;
 
 @Data
 @SuperBuilder
-public class Stazione extends Proprieta {
-
-    private Stazione() {
+public class Societa extends Proprieta {
+    //manca img
+    private Societa() {
     }
 
     @Override

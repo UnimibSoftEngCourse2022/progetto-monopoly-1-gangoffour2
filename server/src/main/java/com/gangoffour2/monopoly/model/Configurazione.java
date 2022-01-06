@@ -6,7 +6,8 @@ import lombok.Data;
 
 
 
-enum Difficoltà{
+
+enum Difficolta{
     easy,
     medium,
     hard
@@ -16,15 +17,18 @@ enum Difficoltà{
 @Builder
 @AllArgsConstructor
 public class Configurazione {
+    public static final int MAX_PLAYERS = 8;
+    public static final int MAX_DADI_FACCE = 6;
+
     private boolean randomCaselle;
     private boolean randomEconomia;
     private int soldiIniziali;
-    private Difficoltà difficoltà;
+    private Difficolta difficolta;
 
     Configurazione(){
         randomCaselle = false;
         randomEconomia = false;
         soldiIniziali = 1500;
-        difficoltà = Difficoltà.easy;
+        difficolta = Difficolta.easy;
     }
 }

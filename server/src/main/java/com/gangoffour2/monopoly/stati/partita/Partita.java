@@ -21,20 +21,19 @@ public class Partita {
     private Configurazione config;
 
     public int tiraDadi(){
-        return new Random().nextInt(11) + 2;
+        return new Random().nextInt(Configurazione.MAX_DADI_FACCE) + 1;
     }
+    
     public boolean aggiungiGiocatore(Giocatore g){
-        if(giocatori.size() == 8)
+        if(giocatori.size() == Configurazione.MAX_PLAYERS)
             //Oppure aggiungere eccezioni da throware?
             return false;
         giocatori.add(g);
         return true;
     }
     public boolean rimuoviGiocatore(Giocatore g){
-        if(giocatori.remove(g))
-            return true;
+        return giocatori.remove(g);
         //Oppure aggiungere eccezioni da throware?
-        return false;
     }
     public void cambiaTurno(){
         //logica per cambiare turno???
