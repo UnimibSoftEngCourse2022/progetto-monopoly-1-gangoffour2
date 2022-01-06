@@ -1,8 +1,11 @@
-package com.gangoffour2.monopoly.model;
+package com.gangoffour2.monopoly.stati.partita;
 
 import java.util.ArrayList;
 import java.util.Random;
 
+import com.gangoffour2.monopoly.model.Configurazione;
+import com.gangoffour2.monopoly.model.Giocatore;
+import com.gangoffour2.monopoly.model.Tabellone;
 import lombok.Builder;
 import lombok.AllArgsConstructor;
 

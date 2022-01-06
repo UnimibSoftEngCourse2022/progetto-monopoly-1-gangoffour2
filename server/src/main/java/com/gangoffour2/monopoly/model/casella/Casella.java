@@ -1,5 +1,6 @@
-package com.gangoffour2.monopoly.model;
+package com.gangoffour2.monopoly.model.casella;
 
+import com.gangoffour2.monopoly.model.Giocatore;
 import lombok.Builder;
 import lombok.AllArgsConstructor;
 
