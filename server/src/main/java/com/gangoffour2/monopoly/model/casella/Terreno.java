@@ -24,7 +24,7 @@ public class Terreno extends Proprieta {
     private int costoCasa;
     private int costoAlbergo;
 
-    private Terreno(){
+    protected Terreno(){
     }
 
     @Override
