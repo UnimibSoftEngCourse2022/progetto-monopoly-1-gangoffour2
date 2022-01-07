@@ -4,13 +4,10 @@ import lombok.Builder;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
-
-
-
 enum Difficolta{
-    easy,
-    medium,
-    hard
+    EASY,
+    MEDIUM,
+    HARD
 }
 
 @Data
@@ -29,6 +26,6 @@ public class Configurazione {
         randomCaselle = false;
         randomEconomia = false;
         soldiIniziali = 1500;
-        difficolta = Difficolta.easy;
+        difficolta = Difficolta.EASY;
     }
 }
