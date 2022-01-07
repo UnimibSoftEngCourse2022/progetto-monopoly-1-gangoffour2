@@ -2,6 +2,8 @@ package com.gangoffour2.monopoly.model;
 
 import java.util.ArrayList;
 import java.security.SecureRandom;
+
+import com.gangoffour2.monopoly.azioni.casella.AzioneCasella;
 import lombok.Builder;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,7 +11,7 @@ import lombok.Data;
 @Data
 @Builder
 @AllArgsConstructor
-public class Partita {
+public class Partita implements PartitaObserver {
     private int id;
     private ArrayList<Giocatore> giocatori;
     private Tabellone tabellone;
@@ -39,5 +41,10 @@ public class Partita {
     }
     public void broadcast(){
         //Broadcast sync per tutti i player stato partita
+    }
+
+    @Override
+    public void notifica(AzioneCasella azione) {
+
     }
 }
