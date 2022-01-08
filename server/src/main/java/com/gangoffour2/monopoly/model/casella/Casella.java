@@ -19,6 +19,12 @@ public abstract class Casella implements  SubjectStatoPartita, EventoCasella{
     protected Casella(){
     }
 
+    /**
+     * Da overrideare per i comportamenti diversi
+     */
+    public void inizioTurno() {
+    }
+
     @Override
     public void notificaTutti(AzioneCasella azione){
 
@@ -38,6 +44,7 @@ public abstract class Casella implements  SubjectStatoPartita, EventoCasella{
     public void onAzioneGiocatore(AcquistaProprieta acquistaProprieta){
 
     }
+
 
 
 }
