@@ -6,6 +6,7 @@ import java.security.SecureRandom;
 import com.gangoffour2.monopoly.azioni.casella.AzioneCasella;
 import com.gangoffour2.monopoly.eccezioni.NoPlayerException;
 import com.gangoffour2.monopoly.eccezioni.PartitaPienaException;
+import com.gangoffour2.monopoly.stati.partita.StatoPartita;
 import lombok.Builder;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -19,6 +20,7 @@ public class Partita implements PartitaObserver {
     private Tabellone tabellone;
     private Giocatore turnoGiocatore;
     private Configurazione config;
+    private StatoPartita stato;
 
     public int tiraDado(){
         return new SecureRandom().nextInt(Configurazione.MAX_DADI_FACCE) +1;
