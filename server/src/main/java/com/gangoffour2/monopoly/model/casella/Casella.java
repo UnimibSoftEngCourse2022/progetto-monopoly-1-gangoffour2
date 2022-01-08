@@ -1,7 +1,7 @@
 package com.gangoffour2.monopoly.model.casella;
 
 import com.gangoffour2.monopoly.azioni.casella.AzioneCasella;
-import com.gangoffour2.monopoly.model.Giocatore;
+import com.gangoffour2.monopoly.azioni.giocatore.AcquistaProprieta;
 import com.gangoffour2.monopoly.model.PartitaObserver;
 import com.gangoffour2.monopoly.stati.casella.EventoCasella;
 import lombok.Data;
@@ -12,20 +12,9 @@ import java.util.ArrayList;
 
 @Data
 @SuperBuilder
-public abstract class Casella implements  SubjectStatoPartita{
+public abstract class Casella implements  SubjectStatoPartita, EventoCasella{
     protected ArrayList<PartitaObserver> subscribers;
-    protected EventoCasella statoCorrente;
     protected String nome;
-
-    public void arrivo(){
-        statoCorrente.arrivo();
-    }
-    public void passaggio(){
-        statoCorrente.passaggio();
-    }
-    public void fineGiro(){
-        statoCorrente.fineGiro();
-    }
 
     protected Casella(){
     }
@@ -44,5 +33,11 @@ public abstract class Casella implements  SubjectStatoPartita{
     public void rimuovi(PartitaObserver observer){
 
     }
+
+    @Override
+    public void onAzioneGiocatore(AcquistaProprieta acquistaProprieta){
+
+    }
+
 
 }
