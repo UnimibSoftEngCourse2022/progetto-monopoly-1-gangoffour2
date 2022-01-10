@@ -1,14 +1,26 @@
 package com.gangoffour2.monopoly.controller;
 
-import org.springframework.web.socket.TextMessage;
-import org.springframework.web.socket.WebSocketSession;
-import org.springframework.web.socket.handler.TextWebSocketHandler;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.messaging.handler.annotation.Payload;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
+import org.springframework.stereotype.Controller;
 
 
-public class EventiController extends TextWebSocketHandler {
+@Controller
+public class EventiController {
 
-    @Override
-    public void handleTextMessage(WebSocketSession session, TextMessage message) {
 
+
+    @MessageMapping("/partita/{id}")
+    public void processMessageFromClient(@Payload String message) {
+
+    }
+
+    @Autowired
+    public EventiController(SimpMessagingTemplate template) {
+        MessageBrokerSingleton.setInstance(MessageBrokerSingleton.builder()
+                .template(template)
+                .build());
     }
 }
