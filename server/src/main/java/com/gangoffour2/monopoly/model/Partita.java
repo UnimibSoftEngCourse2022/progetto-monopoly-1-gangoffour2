@@ -2,8 +2,10 @@ package com.gangoffour2.monopoly.model;
 
 import java.util.ArrayList;
 import java.security.SecureRandom;
+import java.util.LinkedList;
 
 import com.gangoffour2.monopoly.azioni.casella.AzioneCasella;
+import com.gangoffour2.monopoly.azioni.giocatore.AzioneGiocatore;
 import com.gangoffour2.monopoly.eccezioni.NoPlayerException;
 import com.gangoffour2.monopoly.eccezioni.PartitaPienaException;
 import com.gangoffour2.monopoly.stati.partita.StatoPartita;
@@ -22,8 +24,11 @@ public class Partita implements PartitaObserver {
     private Configurazione config;
     private StatoPartita stato;
 
+    private LinkedList<AzioneGiocatore> codaAzioniGiocatore;
+    private AzioneGiocatore azioneRicevuta; // Contiene l'azione da eseguire in quel momento
+
     public int tiraDado(){
-        return new SecureRandom().nextInt(Configurazione.MAX_DADI_FACCE) +1;
+        return new SecureRandom().nextInt(Configurazione.MAX_DADI_FACCE) + 1;
     }
 
     public void aggiungiGiocatore(Giocatore g) throws PartitaPienaException{
@@ -35,6 +40,7 @@ public class Partita implements PartitaObserver {
         if(!this.getGiocatori().remove(g))
             throw new NoPlayerException();
     }
+
     public void cambiaTurno(){
         Giocatore curr = this.getTurnoGiocatore();
         Giocatore next = this.getGiocatori().indexOf(curr) == this.getGiocatori().size()-1 ?
@@ -52,6 +58,26 @@ public class Partita implements PartitaObserver {
 
     @Override
     public void notifica(AzioneCasella azione) {
-
+        azione.accept(stato);
     }
+
+
+    public synchronized void onAzioneGiocatore(AzioneGiocatore azione){
+        codaAzioniGiocatore.addLast(azioneRicevuta);
+        azioneRicevuta = azione;
+        notifyAll();
+    }
+
+    public synchronized void attendiAzione() throws InterruptedException {
+        azioneRicevuta = null;
+        while (azioneRicevuta == null){
+            wait();
+        }
+        azioneRicevuta.accept(stato);
+        // Se non è più in wait, allora si può rimuovere dalla lista l'evento.
+        codaAzioniGiocatore.removeLast();
+    }
+
+
+
 }

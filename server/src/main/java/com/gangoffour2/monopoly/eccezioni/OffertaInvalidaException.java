@@ -5,6 +5,6 @@ import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
 public class OffertaInvalidaException extends RuntimeException{
-    private Giocatore giocatore;
+    private final Giocatore giocatore;
 
 }

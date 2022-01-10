@@ -11,21 +11,11 @@ public class AttesaAcquisto extends StatoPartita{
 
     @Override
     void esegui(RichiediAcquisto richiediAcquisto) throws InterruptedException {
-        attendiAzioneGiocatore();
-        // Ora l'attributo azioneRicevuta contiene la richiesta ricevuta
-        // e si può gestire.
+        partita.attendiAzione();
     }
 
     @Override
-    synchronized void onAzioneGiocatore(AcquistaProprieta acquistaProprieta){
-        azioneRivecuta = (AzioneGiocatore) acquistaProprieta;
-        notifyAll();
+    public synchronized void onAzioneGiocatore(AcquistaProprieta acquistaProprieta){
+        // Chiama sulla casella interessata l'evento generato dal giocatore.
     }
-
-    @Override
-    synchronized void onAzioneGiocatore(Ipoteca ipoteca) {
-
-    }
-
-
 }
