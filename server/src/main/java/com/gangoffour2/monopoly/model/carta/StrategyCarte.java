@@ -1,6 +1,8 @@
 package com.gangoffour2.monopoly.model.carta;
 
-public interface StrategyCarte {
+import java.io.Serializable;
+
+public interface StrategyCarte extends Serializable {
     void esegui();
     void effetto();
 }

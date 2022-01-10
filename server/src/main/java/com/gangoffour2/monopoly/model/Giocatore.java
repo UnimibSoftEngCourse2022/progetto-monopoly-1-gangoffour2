@@ -8,13 +8,14 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Giocatore  {
+public class Giocatore implements Serializable {
     private String nick;
     private int conto;
     private ArrayList<Probabilita> probabilita;
