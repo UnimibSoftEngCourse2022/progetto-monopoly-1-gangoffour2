@@ -1,6 +1,14 @@
 package com.gangoffour2.monopoly.stati.casella;
 
-public class StatoImprevisto implements EventoImprevisto {
+import com.gangoffour2.monopoly.model.carta.Imprevisto;
+import lombok.Data;
+import lombok.experimental.SuperBuilder;
+
+@Data
+@SuperBuilder
+public class StatoImprevisto extends EventoCasella {
+
+    private Imprevisto imprevisto;
 
     @Override
     public void arrivo() {

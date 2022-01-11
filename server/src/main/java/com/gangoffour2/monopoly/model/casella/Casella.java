@@ -14,13 +14,15 @@ import java.util.ArrayList;
 
 @Data
 @SuperBuilder
-public abstract class Casella implements  SubjectStatoPartita, EventoCasella, Serializable {
+public abstract class Casella extends EventoCasella implements SubjectStatoPartita, Serializable {
 
     @Builder.Default
     protected ArrayList<PartitaObserver> subscribers = new ArrayList<>();
     protected String nome;
+    protected EventoCasella evento;
 
     protected Casella(){
+
     }
 
     /**
@@ -48,7 +50,4 @@ public abstract class Casella implements  SubjectStatoPartita, EventoCasella, Se
     public void onAzioneGiocatore(AcquistaProprieta acquistaProprieta){
 
     }
-
-
-
 }
