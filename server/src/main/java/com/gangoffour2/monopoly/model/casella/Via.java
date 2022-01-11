@@ -5,6 +5,7 @@ import lombok.experimental.SuperBuilder;
 @Data
 @SuperBuilder
 public class Via extends Casella{
+
     private Via(){
 
     }

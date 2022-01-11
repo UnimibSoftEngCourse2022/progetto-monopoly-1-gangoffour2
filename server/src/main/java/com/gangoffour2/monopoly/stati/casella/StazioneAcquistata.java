@@ -1,6 +1,11 @@
 package com.gangoffour2.monopoly.stati.casella;
 
-public class StazioneAcquistata implements EventoStazione {
+import lombok.Data;
+import lombok.experimental.SuperBuilder;
+
+@Data
+@SuperBuilder
+public class StazioneAcquistata extends EventoStazione {
     @Override
     public void arrivo() {
 

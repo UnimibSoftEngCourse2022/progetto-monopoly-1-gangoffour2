@@ -1,6 +1,14 @@
 package com.gangoffour2.monopoly.stati.casella;
 
-public class StatoPrigione implements EventoPrigione {
+import com.gangoffour2.monopoly.model.casella.Prigione;
+import lombok.Data;
+import lombok.experimental.SuperBuilder;
+
+@Data
+@SuperBuilder
+public class StatoPrigione extends EventoCasella {
+
+    private Prigione prigione;
 
     @Override
     public void arrivo() {
