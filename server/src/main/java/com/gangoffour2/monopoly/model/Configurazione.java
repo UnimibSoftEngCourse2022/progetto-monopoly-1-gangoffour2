@@ -4,16 +4,17 @@ import lombok.Builder;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
-enum Difficolta{
-    EASY,
-    MEDIUM,
-    HARD
-}
+
 
 @Data
 @Builder
 @AllArgsConstructor
 public class Configurazione {
+    public enum Difficolta{
+        EASY,
+        MEDIUM,
+        HARD
+    }
     public static final int MAX_PLAYERS = 8;
     public static final int MAX_DADI_FACCE = 6;
 
