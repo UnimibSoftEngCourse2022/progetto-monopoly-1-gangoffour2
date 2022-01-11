@@ -18,6 +18,7 @@ public class Terreno extends Proprieta {
     private Colore colore;
     private int costoCasa;
     private int costoAlbergo;
+
     @Getter
     private EventoTerreno statoCorrente;
 

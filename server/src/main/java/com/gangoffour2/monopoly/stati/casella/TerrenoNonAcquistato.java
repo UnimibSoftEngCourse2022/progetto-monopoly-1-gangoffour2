@@ -7,11 +7,7 @@ import lombok.experimental.SuperBuilder;
 
 @Data
 @SuperBuilder
-public class TerrenoNonAcquistato extends EventoTerreno{
-
-    private TerrenoNonAcquistato(){
-
-    }
+public class TerrenoNonAcquistato extends EventoTerreno {
 
     @Override
     public void arrivo() {

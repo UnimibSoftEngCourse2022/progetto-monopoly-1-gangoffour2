@@ -1,6 +1,11 @@
 package com.gangoffour2.monopoly.stati.casella;
 
-public class SocietaNonAcquistata implements EventoSocieta {
+import lombok.Data;
+import lombok.experimental.SuperBuilder;
+
+@Data
+@SuperBuilder
+public class SocietaNonAcquistata extends EventoSocieta {
 
     @Override
     public void arrivo() {
