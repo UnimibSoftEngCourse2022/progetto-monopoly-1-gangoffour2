@@ -3,18 +3,26 @@ package com.gangoffour2.monopoly.stati.casella;
 
 import com.gangoffour2.monopoly.azioni.giocatore.AcquistaProprieta;
 import com.gangoffour2.monopoly.azioni.giocatore.Ipoteca;
+import lombok.Data;
+import lombok.experimental.SuperBuilder;
 
-public interface EventoCasella {
-    void arrivo();
-    void passaggio();
-    void fineGiro();
+@Data
+@SuperBuilder
+public abstract class EventoCasella {
 
-
-    default void onAzioneGiocatore(AcquistaProprieta acquistaProprieta){
+    protected EventoCasella() {
 
     }
 
-    default void onAzioneGiocatore(Ipoteca ipoteca){
+    public abstract void arrivo();
+    public abstract void passaggio();
+    public abstract void fineGiro();
+
+    public void onAzioneGiocatore(AcquistaProprieta acquistaProprieta){
+
+    }
+
+    public void onAzioneGiocatore(Ipoteca ipoteca){
 
     }
 }
