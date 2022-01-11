@@ -6,8 +6,8 @@ import com.gangoffour2.monopoly.model.Tabellone;
 import com.gangoffour2.monopoly.model.casella.*;
 import com.gangoffour2.monopoly.stati.casella.TerrenoNonAcquistato;
 import com.gangoffour2.monopoly.stati.partita.InizioTurno;
-import com.gangoffour2.monopoly.stati.partita.StatoPartita;
 
+import java.security.SecureRandom;
 import java.util.ArrayList;
 
 public class FactoryPartita {
@@ -21,15 +21,15 @@ public class FactoryPartita {
     }
 
     int creaPrezzoRandom(Configurazione.Difficolta difficolta) {
-       return (int)Math.random() * 100;
+       return new SecureRandom().nextInt(100);
     }
 
     int creaId(){
-       return (int)Math.random() * 10000;
+       return new SecureRandom().nextInt(10000);
     }
 
     ArrayList<Integer> creaAffitti(Configurazione.Difficolta difficolta) {
-        ArrayList<Integer> affitti = new ArrayList<Integer>();
+        ArrayList<Integer> affitti = new ArrayList<>();
 
         for(int i = 0; i < 4; i++){
             int affitto = creaPrezzoRandom(difficolta);
@@ -70,13 +70,12 @@ public class FactoryPartita {
         terreno.setState(TerrenoNonAcquistato.builder().build());
         terreno.getStatoCorrente().setTerreno(terreno);
 
-        System.out.println( terreno.getSubscribers().size() );
 
         return terreno;
     }
 
     ArrayList<Casella> creaCaselle(Configurazione.Difficolta difficolta) {
-        ArrayList<Casella> caselle = new ArrayList<Casella>();
+        ArrayList<Casella> caselle = new ArrayList<>();
 
         Via via = Via.builder().nome("Via").build();
         Prigione prigione = Prigione.builder().nome("Prigione").build();
@@ -110,8 +109,7 @@ public class FactoryPartita {
     }
 
     Tabellone creaTabellone(Configurazione.Difficolta difficolta){
-        Tabellone tabellone = Tabellone.builder().caselle(creaCaselle(difficolta)).build();
-        return tabellone;
+        return Tabellone.builder().caselle(creaCaselle(difficolta)).build();
     }
 
 
@@ -127,9 +125,7 @@ public class FactoryPartita {
 
         ArrayList<Casella> caselle = partita.getTabellone().getCaselle();
 
-        caselle.forEach(casella -> {
-            System.out.println(casella.getNome());
-            casella.aggiungi(partita); });
+        caselle.forEach(casella -> casella.aggiungi(partita));
 
         InizioTurno inizio = new InizioTurno();
 
