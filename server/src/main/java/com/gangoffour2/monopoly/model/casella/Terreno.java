@@ -9,16 +9,7 @@ import lombok.experimental.SuperBuilder;
 
 import java.util.ArrayList;
 
-enum Colore{
-    ROSSO,
-    BLU,
-    AZZURRO,
-    GIALLO,
-    ARANCIONE,
-    MARRONE,
-    VIOLA,
-    VERDE
-}
+
 
 @Data
 @SuperBuilder
@@ -29,6 +20,17 @@ public class Terreno extends Proprieta {
     private int costoAlbergo;
     @Getter
     private EventoTerreno statoCorrente;
+
+    public enum Colore{
+        ROSSO,
+        BLU,
+        AZZURRO,
+        GIALLO,
+        ARANCIONE,
+        MARRONE,
+        VIOLA,
+        VERDE
+    }
 
     protected Terreno(){
     }

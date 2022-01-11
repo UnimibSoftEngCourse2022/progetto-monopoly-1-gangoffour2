@@ -3,6 +3,7 @@ package com.gangoffour2.monopoly;
 import com.gangoffour2.monopoly.azioni.giocatore.*;
 import com.gangoffour2.monopoly.model.*;
 import com.gangoffour2.monopoly.model.casella.*;
+import com.gangoffour2.monopoly.services.FactoryPartita;
 import com.gangoffour2.monopoly.stati.casella.*;
 import com.gangoffour2.monopoly.stati.partita.*;
 import org.junit.jupiter.api.Test;
@@ -46,7 +47,7 @@ class MonopolyApplicationTests {
 		Partita partita = creaPartita();
 		Giocatore g = partita.getTurnoGiocatore();
 		partita.getTabellone().muoviGiocatore(g, 9);
-		assertEquals("Terreno", g.getCasellaCorrente().getNome());
+		assertEquals("Garda Lake1", g.getCasellaCorrente().getNome());
 
 		g.getCasellaCorrente().arrivo();
 		assertTrue(partita.getStato() instanceof AttesaAcquisto);
@@ -63,31 +64,11 @@ class MonopolyApplicationTests {
 				.randomEconomia(true)
 				.build();
 
-		ArrayList<Casella> caselle = new ArrayList<>();
-		caselle.add(Via.builder().nome("Via").build());
-		caselle.add(Prigione.builder().nome("Prigione").build());
-		caselle.add(Tassa.builder().nome("Tassa").build());
-		caselle.add(Stazione.builder().nome("Stazione").build());
-		Terreno t = Terreno.builder()
-				.nome("Terreno")
-				.statoCorrente(TerrenoNonAcquistato
-						.builder()
-						.build())
-				.build();
-		t.getStatoCorrente().setTerreno(t);
-		caselle.add(t);
-
-		Partita partita = Partita.builder()
-				.stato(new InizioTurno())
-				.config(conf)
-				.tabellone(tabellone)
-				.build();
+		Partita partita = FactoryPartita.getInstance().creaPartita(conf);
 
 		partita.getStato().setPartita(partita);
 
-		caselle.forEach(casella -> casella.aggiungi(partita));
-
-		tabellone.setCaselle(caselle);
+		ArrayList<Casella> caselle = partita.getTabellone().getCaselle();
 
 		Giocatore g = Giocatore.builder()
 				.nick("CancaroMan")
