@@ -17,6 +17,8 @@ public class Configurazione {
     }
     public static final int MAX_PLAYERS = 8;
     public static final int MAX_DADI_FACCE = 6;
+    public static final int MAX_CASE_VENDIBILI = 32;
+    public static final int MAX_ALBERGHI_VENDIBILI = 12;
 
     private boolean randomCaselle;
     private boolean randomEconomia;

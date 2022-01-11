@@ -19,7 +19,13 @@ import lombok.Data;
 public class Partita implements PartitaObserver {
     private int id;
     @Builder.Default
-    private ArrayList<Giocatore> giocatori = new ArrayList<>();
+    private ArrayList<Giocatore> giocatori = new ArrayList<>(Configurazione.MAX_PLAYERS);
+    @Builder.Default
+    private ArrayList<Casa> listaCase = new ArrayList<>(Configurazione.MAX_CASE_VENDIBILI);
+    @Builder.Default
+    private ArrayList<Albergo> alberghi = new ArrayList<>(Configurazione.MAX_ALBERGHI_VENDIBILI);
+
+
     private Tabellone tabellone;
     private Giocatore turnoGiocatore;
     private Configurazione config;
