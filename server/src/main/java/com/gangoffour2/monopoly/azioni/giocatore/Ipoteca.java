@@ -5,7 +5,12 @@ import com.gangoffour2.monopoly.stati.partita.StatoPartita;
 import lombok.Builder;
 
 @Builder
-public class Ipoteca implements AzioneGiocatore{
+public class Ipoteca extends AzioneGiocatore{
+
+    protected Ipoteca(){
+
+    }
+
     @Override
     public void accept(Casella casella) {
         casella.onAzioneGiocatore(this);

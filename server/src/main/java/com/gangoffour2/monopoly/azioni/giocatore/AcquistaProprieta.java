@@ -5,7 +5,7 @@ import com.gangoffour2.monopoly.stati.partita.StatoPartita;
 import lombok.Builder;
 
 @Builder
-public class AcquistaProprieta implements AzioneGiocatore {
+public class AcquistaProprieta extends AzioneGiocatore {
 
     @Override
     public void accept(Casella casella) {
