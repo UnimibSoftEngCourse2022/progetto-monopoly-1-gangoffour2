@@ -44,10 +44,7 @@ public class Partita implements PartitaObserver {
 
     public void cambiaTurno(){
         Giocatore curr = this.getTurnoGiocatore();
-        Giocatore next = this.getGiocatori().indexOf(curr) == this.getGiocatori().size()-1 ?
-                this.getGiocatori().get(0) :
-                this.getGiocatori().get(this.getGiocatori().indexOf(curr)+1);
-        this.setTurnoGiocatore(next);
+        setTurnoGiocatore(giocatori.get((giocatori.indexOf(curr) + 1) % giocatori.size()));
         //Eventi cambiaTurno, broadcast sync
     }
     public void fineGiro(){
