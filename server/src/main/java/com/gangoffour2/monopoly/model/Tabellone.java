@@ -17,4 +17,10 @@ public class Tabellone{
     private ArrayList<Probabilita> probabilita;
     private ArrayList<Imprevisto> imprevisti;
 
+
+    public void muoviGiocatore(Giocatore giocatore, int quantita){
+        Casella corrente = giocatore.getCasellaCorrente();
+        giocatore.setCasellaCorrente(caselle.get((caselle.indexOf(corrente) + quantita) % caselle.size()));
+    }
+
 }

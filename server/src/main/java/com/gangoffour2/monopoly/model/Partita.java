@@ -18,7 +18,8 @@ import lombok.Data;
 @AllArgsConstructor
 public class Partita implements PartitaObserver {
     private int id;
-    private ArrayList<Giocatore> giocatori;
+    @Builder.Default
+    private ArrayList<Giocatore> giocatori = new ArrayList<>();
     private Tabellone tabellone;
     private Giocatore turnoGiocatore;
     private Configurazione config;
@@ -79,5 +80,8 @@ public class Partita implements PartitaObserver {
     }
 
 
-
+    public void setStato(StatoPartita nuovoStato){
+        stato = nuovoStato;
+        stato.setPartita(this);
+    }
 }

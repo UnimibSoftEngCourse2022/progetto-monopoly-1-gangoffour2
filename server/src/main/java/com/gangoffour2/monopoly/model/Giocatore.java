@@ -3,6 +3,7 @@ package com.gangoffour2.monopoly.model;
 import com.gangoffour2.monopoly.eccezioni.ModificaDenaroException;
 import com.gangoffour2.monopoly.model.carta.Imprevisto;
 import com.gangoffour2.monopoly.model.carta.Probabilita;
+import com.gangoffour2.monopoly.model.casella.Casella;
 import lombok.Builder;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -20,6 +21,7 @@ public class Giocatore implements Serializable {
     private int conto;
     private ArrayList<Probabilita> probabilita;
     private ArrayList<Imprevisto> imprevisti;
+    private Casella casellaCorrente;
 
     public void modificaDenaro(int importo) throws ModificaDenaroException{
         if(this.getConto() + importo < 0)

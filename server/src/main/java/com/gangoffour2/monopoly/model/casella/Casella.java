@@ -4,16 +4,20 @@ import com.gangoffour2.monopoly.azioni.casella.AzioneCasella;
 import com.gangoffour2.monopoly.azioni.giocatore.AcquistaProprieta;
 import com.gangoffour2.monopoly.model.PartitaObserver;
 import com.gangoffour2.monopoly.stati.casella.EventoCasella;
+import lombok.Builder;
 import lombok.Data;
 import lombok.experimental.SuperBuilder;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 
 @Data
 @SuperBuilder
-public abstract class Casella implements  SubjectStatoPartita, EventoCasella{
-    protected ArrayList<PartitaObserver> subscribers;
+public abstract class Casella implements  SubjectStatoPartita, EventoCasella, Serializable {
+
+    @Builder.Default
+    protected ArrayList<PartitaObserver> subscribers = new ArrayList<>();
     protected String nome;
 
     protected Casella(){
@@ -27,17 +31,17 @@ public abstract class Casella implements  SubjectStatoPartita, EventoCasella{
 
     @Override
     public void notificaTutti(AzioneCasella azione){
-
+        subscribers.forEach(subscriber -> subscriber.notifica(azione));
     }
 
     @Override
     public void aggiungi(PartitaObserver observer){
-
+        subscribers.add(observer);
     }
 
     @Override
     public void rimuovi(PartitaObserver observer){
-
+        subscribers.remove(observer);
     }
 
     @Override
