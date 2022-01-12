@@ -5,9 +5,11 @@ import com.gangoffour2.monopoly.azioni.giocatore.*;
 import lombok.Data;
 import lombok.experimental.SuperBuilder;
 
+import java.io.Serializable;
+
 @Data
 @SuperBuilder
-public abstract class EventoCasella {
+public abstract class EventoCasella implements Serializable {
 
     protected EventoCasella() {
 

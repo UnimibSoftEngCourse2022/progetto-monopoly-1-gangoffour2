@@ -6,10 +6,12 @@ import com.gangoffour2.monopoly.model.Partita;
 import lombok.Data;
 import lombok.experimental.SuperBuilder;
 
+import java.io.Serializable;
+
 
 @Data
 @SuperBuilder
-public abstract class StatoPartita {
+public abstract class StatoPartita implements Serializable {
     Partita partita;
 
     protected StatoPartita(){

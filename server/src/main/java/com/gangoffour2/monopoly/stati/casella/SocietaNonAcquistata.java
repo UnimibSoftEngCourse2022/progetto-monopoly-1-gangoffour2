@@ -8,7 +8,7 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 public class SocietaNonAcquistata extends EventoSocieta {
 
-
+    @Override
     public void onAzioneGiocatore(AcquistaProprieta acquistaProprieta){
         societa.setProprietario(acquistaProprieta.getGiocatore());
         societa.setEvento(SocietaAcquistata.builder()

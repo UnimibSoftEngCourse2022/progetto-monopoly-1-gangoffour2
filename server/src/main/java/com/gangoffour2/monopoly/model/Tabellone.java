@@ -1,5 +1,6 @@
 package com.gangoffour2.monopoly.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import com.gangoffour2.monopoly.model.carta.Imprevisto;
@@ -12,7 +13,7 @@ import lombok.Data;
 @Data
 @Builder
 @AllArgsConstructor
-public class Tabellone{
+public class Tabellone implements Serializable {
     private ArrayList<Casella> caselle;
     private ArrayList<Probabilita> probabilita;
     private ArrayList<Imprevisto> imprevisti;

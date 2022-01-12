@@ -1,5 +1,7 @@
 package com.gangoffour2.monopoly.model;
 
-public class Albergo extends Edificio {
+import java.io.Serializable;
+
+public class Albergo extends Edificio implements Serializable {
 
 }
