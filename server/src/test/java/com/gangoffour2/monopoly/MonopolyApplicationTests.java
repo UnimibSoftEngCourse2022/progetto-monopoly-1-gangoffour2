@@ -16,20 +16,6 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 class MonopolyApplicationTests {
 
-	@Test
-	void cambioStatiTerreno(){
-
-		Terreno t = Terreno.builder().build();
-
-		t.setState(TerrenoNonAcquistato.builder().build());
-		t.getStatoCorrente().setTerreno(t);
-
-		t.onAzioneGiocatore(AcquistaProprieta.builder().build());
-		assertTrue(t.getStatoCorrente() instanceof TerrenoAcquistato);
-
-		t.onAzioneGiocatore(Ipoteca.builder().build());
-		assertTrue(t.getStatoCorrente() instanceof TerrenoIpotecato);
-	}
 
 
 	@Test
