@@ -23,7 +23,4 @@ public abstract class Proprieta extends Casella {
     protected Proprieta() {
     }
 
-    public void rimuoviIpoteca(){
-
-    }
 }
