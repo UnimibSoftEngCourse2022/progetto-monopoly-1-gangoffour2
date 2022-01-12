@@ -10,18 +10,5 @@ public class StatoParcheggio extends EventoCasella {
 
     private Parcheggio parcheggio;
 
-    @Override
-    public void arrivo() {
 
-    }
-
-    @Override
-    public void passaggio() {
-
-    }
-
-    @Override
-    public void fineGiro() {
-
-    }
 }

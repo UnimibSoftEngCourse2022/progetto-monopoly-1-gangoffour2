@@ -10,18 +10,5 @@ public class StatoProbabilita extends EventoCasella {
 
     private Probabilita probabilita;
 
-    @Override
-    public void arrivo() {
 
-    }
-
-    @Override
-    public void passaggio() {
-
-    }
-
-    @Override
-    public void fineGiro() {
-
-    }
 }

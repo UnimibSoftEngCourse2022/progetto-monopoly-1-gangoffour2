@@ -4,7 +4,7 @@ import com.gangoffour2.monopoly.model.Configurazione;
 import com.gangoffour2.monopoly.model.Partita;
 import com.gangoffour2.monopoly.model.Tabellone;
 import com.gangoffour2.monopoly.model.casella.*;
-import com.gangoffour2.monopoly.stati.casella.TerrenoNonAcquistato;
+import com.gangoffour2.monopoly.stati.casella.*;
 import com.gangoffour2.monopoly.stati.partita.InizioTurno;
 
 import java.security.SecureRandom;
@@ -67,8 +67,8 @@ public class FactoryPartita {
                 .proprietario(null)
                 .build();
 
-        terreno.setState(TerrenoNonAcquistato.builder().build());
-        terreno.getStatoCorrente().setTerreno(terreno);
+        terreno.setEvento(TerrenoNonAcquistato.builder().build());
+        ((EventoTerreno)terreno.getEvento()).setTerreno(terreno);
 
 
         return terreno;

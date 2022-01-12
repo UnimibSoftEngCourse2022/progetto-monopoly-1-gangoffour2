@@ -9,18 +9,5 @@ import lombok.experimental.SuperBuilder;
 public class StatoTassa extends EventoCasella {
     private Tassa tassa;
 
-    @Override
-    public void arrivo() {
 
-    }
-
-    @Override
-    public void passaggio() {
-
-    }
-
-    @Override
-    public void fineGiro() {
-
-    }
 }

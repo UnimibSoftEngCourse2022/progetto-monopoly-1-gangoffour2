@@ -19,9 +19,6 @@ public class Terreno extends Proprieta {
     private int costoCasa;
     private int costoAlbergo;
 
-    @Getter
-    private EventoTerreno statoCorrente;
-
     public enum Colore{
         ROSSO,
         BLU,
@@ -38,31 +35,16 @@ public class Terreno extends Proprieta {
 
     @Override
     public void arrivo() {
-        statoCorrente.arrivo();
+        evento.arrivo();
     }
 
     @Override
     public void passaggio() {
-        statoCorrente.passaggio();
+        evento.passaggio();
     }
 
     @Override
     public void fineGiro() {
-        statoCorrente.fineGiro();
-    }
-
-    @Override
-    public void onAzioneGiocatore(AcquistaProprieta acquistaProprieta){
-        statoCorrente.onAzioneGiocatore(acquistaProprieta);
-    }
-
-
-    @Override
-    public void onAzioneGiocatore(Ipoteca ipoteca){
-        statoCorrente.onAzioneGiocatore(ipoteca);
-    }
-
-    public void setState(EventoTerreno nuovoStato){
-        statoCorrente = nuovoStato;
+        evento.fineGiro();
     }
 }

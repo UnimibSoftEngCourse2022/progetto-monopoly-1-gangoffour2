@@ -7,18 +7,5 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 public class SocietaIpotecata extends EventoSocieta {
 
-    @Override
-    public void arrivo() {
 
-    }
-
-    @Override
-    public void passaggio() {
-
-    }
-
-    @Override
-    public void fineGiro() {
-
-    }
 }

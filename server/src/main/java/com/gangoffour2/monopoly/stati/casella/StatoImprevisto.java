@@ -10,18 +10,5 @@ public class StatoImprevisto extends EventoCasella {
 
     private Imprevisto imprevisto;
 
-    @Override
-    public void arrivo() {
 
-    }
-
-    @Override
-    public void passaggio() {
-
-    }
-
-    @Override
-    public void fineGiro() {
-
-    }
 }

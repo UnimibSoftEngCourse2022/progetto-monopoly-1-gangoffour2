@@ -7,18 +7,5 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 public class TerrenoIpotecato extends EventoTerreno{
 
-    @Override
-    public void arrivo() {
 
-    }
-
-    @Override
-    public void passaggio() {
-
-    }
-
-    @Override
-    public void fineGiro() {
-
-    }
 }
