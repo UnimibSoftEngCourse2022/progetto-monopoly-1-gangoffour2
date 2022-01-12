@@ -1,23 +1,18 @@
 package com.gangoffour2.monopoly.stati.casella;
 
+import com.gangoffour2.monopoly.azioni.giocatore.Ipoteca;
 import lombok.Data;
 import lombok.experimental.SuperBuilder;
 
 @Data
 @SuperBuilder
 public class StazioneAcquistata extends EventoStazione {
-    @Override
-    public void arrivo() {
 
-    }
 
     @Override
-    public void passaggio() {
-
-    }
-
-    @Override
-    public void fineGiro() {
-
+    public void onAzioneGiocatore(Ipoteca ipoteca){
+        stazione.setEvento(StazioneIpotecata.builder()
+                .stazione(stazione)
+                .build());
     }
 }

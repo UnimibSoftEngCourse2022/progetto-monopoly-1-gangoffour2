@@ -8,23 +8,10 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 public class TerrenoAcquistato extends EventoTerreno{
 
-    @Override
-    public void arrivo() {
-    }
-
-    @Override
-    public void passaggio() {
-
-    }
-
-    @Override
-    public void fineGiro() {
-
-    }
 
     @Override
     public void onAzioneGiocatore(Ipoteca ipoteca){
-        terreno.setState(
+        terreno.setEvento(
                 TerrenoIpotecato
                 .builder()
                         .terreno(terreno)

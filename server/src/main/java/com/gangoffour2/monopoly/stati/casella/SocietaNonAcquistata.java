@@ -1,5 +1,6 @@
 package com.gangoffour2.monopoly.stati.casella;
 
+import com.gangoffour2.monopoly.azioni.giocatore.AcquistaProprieta;
 import lombok.Data;
 import lombok.experimental.SuperBuilder;
 
@@ -7,18 +8,12 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 public class SocietaNonAcquistata extends EventoSocieta {
 
-    @Override
-    public void arrivo() {
 
-    }
-
-    @Override
-    public void passaggio() {
-
-    }
-
-    @Override
-    public void fineGiro() {
+    public void onAzioneGiocatore(AcquistaProprieta acquistaProprieta){
+        societa.setProprietario(acquistaProprieta.getGiocatore());
+        societa.setEvento(SocietaAcquistata.builder()
+                .societa(societa)
+                .build());
 
     }
 }

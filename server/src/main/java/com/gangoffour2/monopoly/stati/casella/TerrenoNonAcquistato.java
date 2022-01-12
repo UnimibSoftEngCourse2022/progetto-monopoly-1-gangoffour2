@@ -14,19 +14,11 @@ public class TerrenoNonAcquistato extends EventoTerreno {
         terreno.notificaTutti(RichiediAcquisto.builder().build());
     }
 
-    @Override
-    public void passaggio(){
-
-    }
-
-    @Override
-    public void fineGiro() {
-
-    }
 
     @Override
     public void onAzioneGiocatore(AcquistaProprieta acquistaProprieta){
-        terreno.setState(
+        terreno.setProprietario(acquistaProprieta.getGiocatore());
+        terreno.setEvento(
                 TerrenoAcquistato.builder()
                 .terreno(terreno)
                 .build());
