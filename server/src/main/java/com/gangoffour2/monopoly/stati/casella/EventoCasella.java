@@ -52,4 +52,8 @@ public abstract class EventoCasella implements Serializable {
 
     public void onAzioneGiocatore(Offerta offerta) {
     }
+
+    public void onAzioneGiocatore(Paga paga) {
+
+    }
 }

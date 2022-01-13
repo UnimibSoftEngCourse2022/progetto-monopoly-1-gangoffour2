@@ -1,13 +1,13 @@
 package com.gangoffour2.monopoly.model;
 
 import java.util.ArrayList;
-import java.security.SecureRandom;
 import java.util.LinkedList;
 
 import com.gangoffour2.monopoly.azioni.casella.AzioneCasella;
 import com.gangoffour2.monopoly.azioni.giocatore.AzioneGiocatore;
 import com.gangoffour2.monopoly.eccezioni.NoPlayerException;
 import com.gangoffour2.monopoly.eccezioni.PartitaPienaException;
+import com.gangoffour2.monopoly.stati.partita.AttesaPrigione;
 import com.gangoffour2.monopoly.stati.partita.StatoPartita;
 import lombok.Builder;
 import lombok.AllArgsConstructor;
@@ -34,8 +34,25 @@ public class Partita implements PartitaObserver {
     private LinkedList<AzioneGiocatore> codaAzioniGiocatore;
     private AzioneGiocatore azioneRicevuta; // Contiene l'azione da eseguire in quel momento
 
-    public int tiraDado(){
-        return new SecureRandom().nextInt(Configurazione.MAX_DADI_FACCE) + 1;
+    public void start() {
+
+        turnoGiocatore.getCasellaCorrente().inizioTurno();
+
+        int dadiUguali = 0;
+
+        do {
+            int spostamento = tabellone.lanciaDadi();
+            tabellone.applicaEffetti(turnoGiocatore, spostamento);
+            tabellone.muoviGiocatore(turnoGiocatore, spostamento);
+
+            if(dadiUguali == Configurazione.MAX_DADI_UGUALI) {
+                setStato(AttesaPrigione.builder().build());
+
+            }
+
+            dadiUguali++;
+        } while(tabellone.isDadiUguali());
+
     }
 
     public void aggiungiGiocatore(Giocatore g) throws PartitaPienaException{
