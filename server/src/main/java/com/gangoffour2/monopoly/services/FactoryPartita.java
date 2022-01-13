@@ -1,6 +1,7 @@
 package com.gangoffour2.monopoly.services;
 
 import com.gangoffour2.monopoly.model.Configurazione;
+import com.gangoffour2.monopoly.model.Giocatore;
 import com.gangoffour2.monopoly.model.Partita;
 import com.gangoffour2.monopoly.model.Tabellone;
 import com.gangoffour2.monopoly.model.casella.*;
@@ -9,10 +10,20 @@ import com.gangoffour2.monopoly.stati.partita.InizioTurno;
 
 import java.security.SecureRandom;
 import java.util.ArrayList;
+import java.util.UUID;
 
 public class FactoryPartita {
 
     private static FactoryPartita instance;
+
+    public Giocatore playerFromNickname(String nickname, Partita partita) {
+        return Giocatore.builder()
+                .nick(nickname)
+                .casellaCorrente(partita.getTabellone().getCaselle().get(0))
+                .conto(partita.getConfig().getSoldiIniziali())
+                .build();
+    }
+
 
     public static synchronized FactoryPartita getInstance() {
         if(instance == null)
@@ -24,8 +35,12 @@ public class FactoryPartita {
        return new SecureRandom().nextInt(100);
     }
 
-    int creaId(){
-       return new SecureRandom().nextInt(10000);
+    String creaId(){
+        String idPartita = UUID.randomUUID().toString();
+        while(PartiteRespository.getInstance().getPartitaByid(idPartita) != null){
+            idPartita = UUID.randomUUID().toString();
+        }
+        return idPartita;
     }
 
     ArrayList<Integer> creaAffitti(Configurazione.Difficolta difficolta) {
@@ -127,7 +142,7 @@ public class FactoryPartita {
 
         caselle.forEach(casella -> casella.aggiungi(partita));
 
-        InizioTurno inizio = new InizioTurno();
+        InizioTurno inizio = InizioTurno.builder().build();
 
         partita.setStato(inizio);
 
