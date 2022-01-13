@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Objects;
 
 @Data
 @Builder
@@ -27,5 +28,18 @@ public class Giocatore implements Serializable {
         if(this.getConto() + importo < 0)
             throw new ModificaDenaroException();
         this.setConto(this.getConto() + importo);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Giocatore giocatore = (Giocatore) o;
+        return nick.equals(giocatore.nick);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(nick);
     }
 }
