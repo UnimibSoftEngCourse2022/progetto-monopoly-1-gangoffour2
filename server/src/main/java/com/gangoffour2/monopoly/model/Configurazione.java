@@ -27,6 +27,7 @@ public class Configurazione implements Serializable {
     private boolean randomEconomia;
     private int soldiIniziali;
     private Difficolta difficolta;
+    private int numeroGiocatori; // utile per impostazione lato client
 
     Configurazione(){
         randomCaselle = false;

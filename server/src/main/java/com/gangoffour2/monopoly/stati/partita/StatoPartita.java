@@ -105,4 +105,8 @@ public abstract class StatoPartita implements Serializable {
     public void onAzioneGiocatore(Paga paga) throws InterruptedException {
         partita.attendiAzione();
     }
+
+    public void onAzioneGiocatore(EntraInPartita entraInPartita) throws InterruptedException {
+
+    }
 }

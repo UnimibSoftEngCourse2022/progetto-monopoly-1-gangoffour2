@@ -1,7 +1,9 @@
 package com.gangoffour2.monopoly.stati.partita;
 
 import com.gangoffour2.monopoly.azioni.casella.AttesaLancioDadi;
+import lombok.Builder;
 
+@Builder
 public class InizioTurno extends StatoPartita {
     @Override
     public void onAzioneCasella(AttesaLancioDadi attesaLancioDadi){
