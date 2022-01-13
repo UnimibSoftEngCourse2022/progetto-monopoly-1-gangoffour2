@@ -32,6 +32,7 @@ class MonopolyApplicationTests {
 	void cambioStatiPartita(){
 		Partita partita = creaPartita();
 		Giocatore g = partita.getTurnoGiocatore();
+		partita.setStato(LancioDadi.builder().build());
 		partita.getTabellone().muoviGiocatore(g, 9);
 		assertEquals("Garda Lake1", g.getCasellaCorrente().getNome());
 
