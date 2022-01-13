@@ -33,4 +33,16 @@ public abstract class EventoCasella implements Serializable {
     public void onAzioneGiocatore(AcquistaProprieta acquistaProprieta){
 
     }
+
+    public void onAzioneGiocatore(UpgradaTerreno upgradaTerreno){
+
+    }
+
+    public void onAzioneGiocatore(DowngradaTerreno downgradaTerreno){
+
+    }
+
+    public void onAzioneGiocatore(VendiProprieta vendiProprieta){
+
+    }
 }

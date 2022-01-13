@@ -65,12 +65,24 @@ public abstract class StatoPartita implements Serializable {
     /**
      * Di default, gli eventi arrivati dall'esterno non sbloccano la partita.
      * Ogni stato ridefinirà il suo comportamento in base al tipo dell'azione.
+     * @param acquistaProprieta
      */
     public void onAzioneGiocatore(AcquistaProprieta acquistaProprieta) throws InterruptedException {
+        partita.attendiAzione();
+    }
+    public void onAzioneGiocatore(VendiProprieta vendiProprieta) throws InterruptedException {
         partita.attendiAzione();
     }
 
     public  void onAzioneGiocatore(Ipoteca ipoteca) throws InterruptedException {
         partita.attendiAzione();
     }
+
+    public void onAzioneGiocatore(UpgradaTerreno upgradaTerreno) throws InterruptedException {
+        partita.attendiAzione();
+    }
+    public void onAzioneGiocatore(DowngradaTerreno downgradaTerreno) throws InterruptedException {
+        partita.attendiAzione();
+    }
+
 }
