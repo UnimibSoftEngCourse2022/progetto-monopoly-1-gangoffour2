@@ -1,5 +1,6 @@
 package com.gangoffour2.monopoly.model.casella;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.gangoffour2.monopoly.azioni.casella.AzioneCasella;
 import com.gangoffour2.monopoly.azioni.giocatore.AzioneGiocatore;
 import com.gangoffour2.monopoly.model.PartitaObserver;
@@ -14,11 +15,12 @@ import java.util.ArrayList;
 
 @Data
 @SuperBuilder
+@JsonIgnoreProperties(value = {"evento", "subscribers"})
 public abstract class Casella implements SubjectStatoPartita, Serializable {
 
+    protected String nome;
     @Builder.Default
     protected ArrayList<PartitaObserver> subscribers = new ArrayList<>();
-    protected String nome;
     protected EventoCasella evento;
 
     public abstract void arrivo();

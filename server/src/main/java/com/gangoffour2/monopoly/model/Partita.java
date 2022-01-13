@@ -3,8 +3,10 @@ package com.gangoffour2.monopoly.model;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.gangoffour2.monopoly.azioni.casella.AzioneCasella;
 import com.gangoffour2.monopoly.azioni.giocatore.AzioneGiocatore;
+import com.gangoffour2.monopoly.eccezioni.GiocatoreEsistenteException;
 import com.gangoffour2.monopoly.eccezioni.NoPlayerException;
 import com.gangoffour2.monopoly.eccezioni.PartitaPienaException;
 import com.gangoffour2.monopoly.stati.partita.AttesaPrigione;
@@ -16,10 +18,11 @@ import lombok.Data;
 @Data
 @Builder
 @AllArgsConstructor
+@JsonIgnoreProperties(value = {"stato", "codaAzioniGiocatore", "azioneRicevuta"})
 public class Partita implements PartitaObserver {
-    private int id;
+    private String id;
     @Builder.Default
-    private ArrayList<Giocatore> giocatori = new ArrayList<>(Configurazione.MAX_PLAYERS);
+    private ArrayList<Giocatore> giocatori = new ArrayList<>();
     @Builder.Default
     private ArrayList<Casa> listaCase = new ArrayList<>(Configurazione.MAX_CASE_VENDIBILI);
     @Builder.Default
@@ -29,9 +32,11 @@ public class Partita implements PartitaObserver {
     private Tabellone tabellone;
     private Giocatore turnoGiocatore;
     private Configurazione config;
+
     private StatoPartita stato;
 
     private LinkedList<AzioneGiocatore> codaAzioniGiocatore;
+
     private AzioneGiocatore azioneRicevuta; // Contiene l'azione da eseguire in quel momento
 
     public void start() {
@@ -55,11 +60,20 @@ public class Partita implements PartitaObserver {
 
     }
 
-    public void aggiungiGiocatore(Giocatore g) throws PartitaPienaException{
-        if(this.getGiocatori().size() == Configurazione.MAX_PLAYERS)
+
+    public void aggiungiGiocatore(Giocatore g) throws PartitaPienaException, GiocatoreEsistenteException {
+        if(this.getGiocatori().size() == Configurazione.MAX_PLAYERS) {
             throw new PartitaPienaException();
-        this.getGiocatori().add(g);
+        }
+
+        if (giocatori.contains(g)){
+            throw new GiocatoreEsistenteException();
+        }
+
+        giocatori.add(g);
     }
+
+
     public void rimuoviGiocatore(Giocatore g) throws NoPlayerException {
         if(!this.getGiocatori().remove(g))
             throw new NoPlayerException();
