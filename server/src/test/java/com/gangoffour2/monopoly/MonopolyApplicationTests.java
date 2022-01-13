@@ -1,10 +1,9 @@
 package com.gangoffour2.monopoly;
 
-import com.gangoffour2.monopoly.azioni.giocatore.*;
+import com.gangoffour2.monopoly.eccezioni.GiocatoreEsistenteException;
 import com.gangoffour2.monopoly.model.*;
 import com.gangoffour2.monopoly.model.casella.*;
 import com.gangoffour2.monopoly.services.FactoryPartita;
-import com.gangoffour2.monopoly.stati.casella.*;
 import com.gangoffour2.monopoly.stati.partita.*;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -19,7 +18,7 @@ class MonopolyApplicationTests {
 
 
 	@Test
-	void creazionePartita(){
+	void creazionePartita() throws GiocatoreEsistenteException {
 		Partita p = creaPartita();
 		assertEquals("CancaroMan", p.getTurnoGiocatore().getNick());
 		assertNotNull(p.getStato());
@@ -29,7 +28,7 @@ class MonopolyApplicationTests {
 	}
 
 	@Test
-	void cambioStatiPartita(){
+	void cambioStatiPartita() throws GiocatoreEsistenteException {
 		Partita partita = creaPartita();
 		Giocatore g = partita.getTurnoGiocatore();
 		partita.setStato(LancioDadi.builder().build());
@@ -42,7 +41,7 @@ class MonopolyApplicationTests {
 	}
 
 
-	Partita creaPartita(){
+	Partita creaPartita() throws GiocatoreEsistenteException {
 		Tabellone tabellone = Tabellone.builder().build();
 		Configurazione conf = Configurazione.builder()
 				.difficolta(Configurazione.Difficolta.MEDIUM)
