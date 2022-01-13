@@ -23,6 +23,4 @@ public class TerrenoNonAcquistato extends EventoTerreno {
                 .terreno(terreno)
                 .build());
     }
-
-
 }

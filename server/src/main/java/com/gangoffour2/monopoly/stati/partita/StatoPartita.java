@@ -40,6 +40,10 @@ public abstract class StatoPartita implements Serializable {
 
     }
 
+    public void onAzioneCasella(AttesaLancioDadi attesaLancioDadi){
+
+    }
+
     /**
      * I metodi esegui vengono chiamati dalla partita sulla casella: ad esempio, prima di attendere il lancio dei dadi,
      * sarà necessario un cambio di stato attraverso onAzioneCasella; poi, il nuovo stato si potrà effettivamente
@@ -70,6 +74,7 @@ public abstract class StatoPartita implements Serializable {
     public void onAzioneGiocatore(AcquistaProprieta acquistaProprieta) throws InterruptedException {
         partita.attendiAzione();
     }
+
     public void onAzioneGiocatore(VendiProprieta vendiProprieta) throws InterruptedException {
         partita.attendiAzione();
     }
@@ -85,4 +90,19 @@ public abstract class StatoPartita implements Serializable {
         partita.attendiAzione();
     }
 
+    public void onAzioneGiocatore(LanciaDadi lanciaDadi) throws InterruptedException {
+        partita.attendiAzione();
+    }
+
+    public void onAzioneCasella(Offerta offerta) throws InterruptedException {
+        partita.attendiAzione();
+    }
+
+    public void onAzioneCasella(AttesaPrigione attesaPrigione) throws InterruptedException {
+        partita.attendiAzione();
+    }
+
+    public void onAzioneGiocatore(Paga paga) throws InterruptedException {
+        partita.attendiAzione();
+    }
 }
