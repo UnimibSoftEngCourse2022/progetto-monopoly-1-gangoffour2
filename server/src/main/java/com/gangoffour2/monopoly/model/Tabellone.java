@@ -18,8 +18,7 @@ public class Tabellone implements Serializable {
     private ArrayList<Casella> caselle;
     private ArrayList<Probabilita> probabilita;
     private ArrayList<Imprevisto> imprevisti;
-    private int dadiUguali;
-    private boolean isDadiUguali;
+    private ArrayList<Integer> lanci;
 
     private int tiraDado(){
         return new SecureRandom().nextInt(Configurazione.MAX_DADI_FACCE) + 1;
@@ -27,22 +26,15 @@ public class Tabellone implements Serializable {
 
     public int lanciaDadi(){
 
-        ArrayList<Integer> lanci = new ArrayList<Integer>();
-        lanci.add(tiraDado());
-
-        isDadiUguali = true;
-
-        for (int i = 1; i < Configurazione.MAX_DADI; i++) {
+        for (int i = 0; i < Configurazione.MAX_DADI; i++) {
             lanci.add(tiraDado());
-            if (lanci.get(i) != lanci.get(0))
-                isDadiUguali = false;
         }
 
-        if(isDadiUguali)
-            dadiUguali++;
+        return lanci.stream().reduce(0, Integer::sum);
+    }
 
-        return lanci.stream().reduce(0, (firstElement, secondElement) -> firstElement + secondElement);
-
+    public boolean isDadiUguali(){
+        return lanci.stream().distinct().count() <= 1;
     }
 
 

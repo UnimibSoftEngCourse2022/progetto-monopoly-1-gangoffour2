@@ -39,14 +39,19 @@ public class Partita implements PartitaObserver {
 
         turnoGiocatore.getCasellaCorrente().inizioTurno();
 
+        int dadiUguali = 0;
+
         do {
             int spostamento = tabellone.lanciaDadi();
             tabellone.applicaEffetti(turnoGiocatore, spostamento);
             tabellone.muoviGiocatore(turnoGiocatore, spostamento);
 
-            if(tabellone.getDadiUguali() == Configurazione.MAX_DADI_UGUALI)
+            if(dadiUguali == Configurazione.MAX_DADI_UGUALI) {
                 setStato(AttesaPrigione.builder().build());
 
+            }
+
+            dadiUguali++;
         } while(tabellone.isDadiUguali());
 
     }
