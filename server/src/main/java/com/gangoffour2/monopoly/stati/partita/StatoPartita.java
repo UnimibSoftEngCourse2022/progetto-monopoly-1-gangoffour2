@@ -84,5 +84,8 @@ public abstract class StatoPartita implements Serializable {
     public void onAzioneGiocatore(DowngradaTerreno downgradaTerreno) throws InterruptedException {
         partita.attendiAzione();
     }
+    public void onAzioneGiocatore(LanciaDadi lanciaDadi) throws InterruptedException{
+        partita.attendiAzione();
+    }
 
 }

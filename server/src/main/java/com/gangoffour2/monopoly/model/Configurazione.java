@@ -20,6 +20,8 @@ public class Configurazione implements Serializable {
     public static final int MAX_DADI_FACCE = 6;
     public static final int MAX_CASE_VENDIBILI = 32;
     public static final int MAX_ALBERGHI_VENDIBILI = 12;
+    public static final int MAX_DADI = 2;
+    public static final int MAX_DADI_UGUALI = 2;
 
     private boolean randomCaselle;
     private boolean randomEconomia;
