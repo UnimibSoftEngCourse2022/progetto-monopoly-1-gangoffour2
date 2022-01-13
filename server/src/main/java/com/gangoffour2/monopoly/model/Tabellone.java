@@ -16,9 +16,14 @@ import lombok.Data;
 @AllArgsConstructor
 public class Tabellone implements Serializable {
     private ArrayList<Casella> caselle;
-    private ArrayList<Probabilita> probabilita;
-    private ArrayList<Imprevisto> imprevisti;
-    private ArrayList<Integer> lanci;
+
+    @Builder.Default
+    private ArrayList<Probabilita> probabilita = new ArrayList<>();
+
+    @Builder.Default
+    private ArrayList<Imprevisto> imprevisti = new ArrayList<>();
+    @Builder.Default
+    private ArrayList<Integer> lanci = new ArrayList<>();
 
     private int tiraDado(){
         return new SecureRandom().nextInt(Configurazione.MAX_DADI_FACCE) + 1;
