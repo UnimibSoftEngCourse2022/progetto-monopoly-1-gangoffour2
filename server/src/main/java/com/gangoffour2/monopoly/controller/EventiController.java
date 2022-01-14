@@ -1,12 +1,9 @@
 package com.gangoffour2.monopoly.controller;
 
-import com.gangoffour2.monopoly.azioni.giocatore.AcquistaProprieta;
-import com.gangoffour2.monopoly.azioni.giocatore.Ipoteca;
-import com.gangoffour2.monopoly.azioni.giocatore.Offerta;
-import com.gangoffour2.monopoly.eccezioni.GiocatoreEsistenteException;
+import com.gangoffour2.monopoly.azioni.giocatore.*;
 import com.gangoffour2.monopoly.eccezioni.PartitaPienaException;
+import com.gangoffour2.monopoly.model.Giocatore;
 import com.gangoffour2.monopoly.model.Partita;
-import com.gangoffour2.monopoly.services.FactoryPartita;
 import com.gangoffour2.monopoly.services.PartiteRespository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.DestinationVariable;
@@ -27,44 +24,49 @@ public class EventiController {
         Partita partita = PartiteRespository.getInstance().getPartitaByid(id);
         if(partita != null){
             try{
-                partita.aggiungiGiocatore(FactoryPartita.getInstance().playerFromNickname(nick, partita));
+                EntraInPartita azione = EntraInPartita.builder()
+                        .giocatore(Giocatore.builder()
+                                .nick(nick)
+                                .build())
+                        .build();
+                partita.onAzioneGiocatore(azione);
             }catch(PartitaPienaException e){
                 Map<String, Object> headers = new HashMap<>();
                 headers.put("nickname", nick);
                 MessageBrokerSingleton.getInstance().getTemplate()
                         .convertAndSend("/topic/partite/" + id, "Partita piena", headers);
-            }catch(GiocatoreEsistenteException e){
-                Map<String, Object> headers = new HashMap<>();
-                headers.put("nickname", nick);
-                MessageBrokerSingleton.getInstance().getTemplate()
-                    .convertAndSend("/topic/partite/" + id,"Nome già esistente", headers);
             }
         }
     }
 
     @MessageMapping("/partite/{id}/esci")
-    public void esci(@Payload String giocatore){
-
+    public void esci(@Payload String giocatore, @DestinationVariable String id){
+        Partita partita = PartiteRespository.getInstance().getPartitaByid(id);
+        partita.rimuoviGiocatore(Giocatore.builder()
+                .nick(giocatore)
+                .build());
     }
 
     @MessageMapping("partite/{id}/acquista")
-    public void acquista(@Payload AcquistaProprieta azione){
+    public void acquista(@Payload AcquistaProprieta azione, @DestinationVariable String id){
 
     }
 
     @MessageMapping("/partite/{id}/lanciaDadi")
-    public void lanciaDadi(){
-
+    public void lanciaDadi(@Payload LanciaDadi lanciaDadi, @DestinationVariable String id){
+        Partita partita = PartiteRespository.getInstance().getPartitaByid(id);
+        if (partita != null){
+            partita.onAzioneGiocatore(lanciaDadi);
+        }
     }
 
     @MessageMapping("/partite/{id}/ipoteca")
-    public void ipoteca(@Payload Ipoteca ipoteca){
+    public void ipoteca(@Payload Ipoteca ipoteca, @DestinationVariable String id){
 
     }
 
     @MessageMapping("/partite/{id}/offri")
-    public void offri(@Payload Offerta offerta) {
-
+    public void offri(@Payload Offerta offerta, @DestinationVariable String id) {
     }
 
     @Autowired
