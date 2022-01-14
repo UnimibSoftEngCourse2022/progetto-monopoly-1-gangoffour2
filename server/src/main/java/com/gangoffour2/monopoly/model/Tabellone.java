@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.gangoffour2.monopoly.model.carta.Imprevisto;
 import com.gangoffour2.monopoly.model.carta.Probabilita;
 import com.gangoffour2.monopoly.model.casella.Casella;
@@ -15,6 +16,7 @@ import lombok.Data;
 @Builder
 @AllArgsConstructor
 public class Tabellone implements Serializable {
+    @JsonIgnore
     private Partita partita;
     private ArrayList<Casella> caselle;
 
