@@ -6,7 +6,7 @@ import com.gangoffour2.monopoly.model.Partita;
 import com.gangoffour2.monopoly.model.Tabellone;
 import com.gangoffour2.monopoly.model.casella.*;
 import com.gangoffour2.monopoly.stati.casella.*;
-import com.gangoffour2.monopoly.stati.partita.InizioTurno;
+import com.gangoffour2.monopoly.stati.partita.Lobby;
 
 import java.security.SecureRandom;
 import java.util.ArrayList;
@@ -144,9 +144,7 @@ public class FactoryPartita {
 
         caselle.forEach(casella -> casella.aggiungi(partita));
 
-        InizioTurno inizio = InizioTurno.builder().build();
-
-        partita.setStato(inizio);
+        partita.setStato(Lobby.builder().build());
 
         return partita;
     }
