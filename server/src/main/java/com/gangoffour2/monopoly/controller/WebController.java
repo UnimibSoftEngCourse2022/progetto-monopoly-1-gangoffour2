@@ -17,6 +17,7 @@ public class WebController {
     public String creaPartita(@RequestBody Configurazione configurazione) {
         Partita nuovaPartita = FactoryPartita.getInstance().creaPartita(configurazione);
         PartiteRespository.getInstance().addPartita(nuovaPartita);
+        nuovaPartita.inizializza();
         return nuovaPartita.getId();
     }
 

@@ -1,6 +1,7 @@
 package com.gangoffour2.monopoly.model.casella;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.gangoffour2.monopoly.azioni.casella.AttesaLancioDadi;
 import com.gangoffour2.monopoly.azioni.casella.AzioneCasella;
 import com.gangoffour2.monopoly.azioni.giocatore.AzioneGiocatore;
 import com.gangoffour2.monopoly.model.PartitaObserver;
@@ -35,11 +36,18 @@ public abstract class Casella implements SubjectStatoPartita, Serializable {
      * Da overrideare per i comportamenti diversi
      */
     public void inizioTurno() {
+        notificaTutti(AttesaLancioDadi.builder().build());
     }
 
     @Override
     public void notificaTutti(AzioneCasella azione){
-        subscribers.forEach(subscriber -> subscriber.notifica(azione));
+        subscribers.forEach(subscriber -> {
+            try {
+                subscriber.onAzioneCasella(azione);
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
+        });
     }
 
     @Override
