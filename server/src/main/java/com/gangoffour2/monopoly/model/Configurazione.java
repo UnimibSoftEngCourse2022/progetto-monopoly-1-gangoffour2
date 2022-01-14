@@ -16,23 +16,42 @@ public class Configurazione implements Serializable {
         MEDIUM,
         HARD
     }
-    public static final int MAX_PLAYERS = 8;
-    public static final int MAX_DADI_FACCE = 6;
-    public static final int MAX_CASE_VENDIBILI = 32;
-    public static final int MAX_ALBERGHI_VENDIBILI = 12;
-    public static final int MAX_DADI = 2;
-    public static final int MAX_DADI_UGUALI = 2;
+
 
     private boolean randomCaselle;
     private boolean randomEconomia;
     private int soldiIniziali;
     private Difficolta difficolta;
-    private int numeroGiocatori; // utile per impostazione lato client
+
+
+    /**
+     *  Questi attributi sono passati dall'utente
+     *  nel momento della richiesta di creazione della partitta.
+     */
+    @Builder.Default
+    private int numeroGiocatori = 4;
+
+    @Builder.Default
+    private int facceDadi = 6;
+
+    @Builder.Default
+    private int numeroDadi = 2;
+
+    @Builder.Default
+    private int triggerDadiUguali = 3;
+
+    @Builder.Default
+    private int caseVendibili = 32;
+
+    @Builder.Default
+    private int alberghiVendibili = 16;
 
     Configurazione(){
         randomCaselle = false;
         randomEconomia = false;
         soldiIniziali = 1500;
         difficolta = Difficolta.EASY;
+        numeroGiocatori = 8;
+        triggerDadiUguali = 2;
     }
 }

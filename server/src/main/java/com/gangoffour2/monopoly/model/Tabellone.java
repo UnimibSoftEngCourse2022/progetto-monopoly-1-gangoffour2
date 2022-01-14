@@ -15,6 +15,7 @@ import lombok.Data;
 @Builder
 @AllArgsConstructor
 public class Tabellone implements Serializable {
+    private Partita partita;
     private ArrayList<Casella> caselle;
 
     @Builder.Default
@@ -26,12 +27,12 @@ public class Tabellone implements Serializable {
     private ArrayList<Integer> lanci = new ArrayList<>();
 
     private int tiraDado(){
-        return new SecureRandom().nextInt(Configurazione.MAX_DADI_FACCE) + 1;
+        return new SecureRandom().nextInt(partita.getConfig().getFacceDadi()) + 1;
     }
 
     public int lanciaDadi(){
 
-        for (int i = 0; i < Configurazione.MAX_DADI; i++) {
+        for (int i = 0; i < partita.getConfig().getNumeroDadi(); i++) {
             lanci.add(tiraDado());
         }
 

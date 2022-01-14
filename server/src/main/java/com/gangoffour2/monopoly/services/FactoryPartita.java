@@ -138,6 +138,8 @@ public class FactoryPartita {
                 .config(config)
                 .build();
 
+        partita.getTabellone().setPartita(partita);
+
         ArrayList<Casella> caselle = partita.getTabellone().getCaselle();
 
         caselle.forEach(casella -> casella.aggiungi(partita));

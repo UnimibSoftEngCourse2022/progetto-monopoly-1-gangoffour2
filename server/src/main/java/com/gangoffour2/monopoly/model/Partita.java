@@ -23,15 +23,15 @@ public class Partita implements PartitaObserver {
     private String id;
     @Builder.Default
     private ArrayList<Giocatore> giocatori = new ArrayList<>();
+    private Configurazione config;
     @Builder.Default
-    private ArrayList<Casa> listaCase = new ArrayList<>(Configurazione.MAX_CASE_VENDIBILI);
+    private ArrayList<Casa> listaCase = new ArrayList<>();
     @Builder.Default
-    private ArrayList<Albergo> alberghi = new ArrayList<>(Configurazione.MAX_ALBERGHI_VENDIBILI);
+    private ArrayList<Albergo> alberghi = new ArrayList<>();
 
 
     private Tabellone tabellone;
     private Giocatore turnoGiocatore;
-    private Configurazione config;
 
     private StatoPartita stato;
 
@@ -50,7 +50,7 @@ public class Partita implements PartitaObserver {
             tabellone.applicaEffetti(turnoGiocatore, spostamento);
             tabellone.muoviGiocatore(turnoGiocatore, spostamento);
 
-            if(dadiUguali == Configurazione.MAX_DADI_UGUALI) {
+            if(dadiUguali >= config.getTriggerDadiUguali()) {
                 setStato(AttesaPrigione.builder().build());
 
             }
@@ -62,7 +62,7 @@ public class Partita implements PartitaObserver {
 
 
     public void aggiungiGiocatore(Giocatore g) throws PartitaPienaException, GiocatoreEsistenteException {
-        if(this.getGiocatori().size() == Configurazione.MAX_PLAYERS) {
+        if(giocatori.size() == config.getNumeroGiocatori()) {
             throw new PartitaPienaException();
         }
 
