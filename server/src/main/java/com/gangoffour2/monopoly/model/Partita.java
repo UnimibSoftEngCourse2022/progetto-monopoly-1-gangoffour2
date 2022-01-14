@@ -10,6 +10,7 @@ import com.gangoffour2.monopoly.azioni.giocatore.AzioneGiocatore;
 import com.gangoffour2.monopoly.eccezioni.GiocatoreEsistenteException;
 import com.gangoffour2.monopoly.eccezioni.NoPlayerException;
 import com.gangoffour2.monopoly.eccezioni.PartitaPienaException;
+import com.gangoffour2.monopoly.stati.partita.AttesaPrigione;
 import com.gangoffour2.monopoly.stati.partita.StatoPartita;
 import lombok.Builder;
 import lombok.AllArgsConstructor;
@@ -125,5 +126,20 @@ public class Partita implements PartitaObserver, Runnable {
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
         }
+    }
+
+    public void turnoNormale() {
+        int dadiUguali = 0;
+        do {
+            int spostamento = tabellone.lanciaDadi();
+            tabellone.applicaEffetti(turnoGiocatore, spostamento);
+            tabellone.muoviGiocatore(turnoGiocatore, spostamento);
+
+            if(dadiUguali >= config.getTriggerDadiUguali()) {
+                setStato(AttesaPrigione.builder().build());
+            }
+
+            dadiUguali++;
+        } while(tabellone.isDadiUguali());
     }
 }

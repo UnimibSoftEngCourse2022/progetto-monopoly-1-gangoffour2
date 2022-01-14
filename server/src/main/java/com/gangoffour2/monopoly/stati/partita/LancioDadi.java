@@ -19,20 +19,7 @@ public class LancioDadi extends StatoPartita {
     @Override
     public void onAzioneGiocatore(LanciaDadi lanciaDadi){
         partita.getCodaAzioniGiocatore().removeLast();
-        int dadiUguali = 0;
-
-        do {
-            int spostamento = partita.getTabellone().lanciaDadi();
-            partita.getTabellone().applicaEffetti(partita.getTurnoGiocatore(), spostamento);
-            partita.getTabellone().muoviGiocatore(partita.getTurnoGiocatore(), spostamento);
-
-            if(dadiUguali >= partita.getConfig().getTriggerDadiUguali()) {
-                partita.setStato(AttesaPrigione.builder().build());
-
-            }
-
-            dadiUguali++;
-        } while(partita.getTabellone().isDadiUguali());
+        partita.turnoNormale();
     }
 
 
