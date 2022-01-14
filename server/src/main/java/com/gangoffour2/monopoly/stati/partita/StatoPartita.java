@@ -36,11 +36,12 @@ public abstract class StatoPartita implements Serializable {
 
     }
 
+
     public void onAzioneCasella(RichiediAcquisto richiediAcquisto){
 
     }
 
-    public void onAzioneCasella(AttesaLancioDadi attesaLancioDadi){
+    public void onAzioneCasella(AttesaLancioDadi attesaLancioDadi) throws InterruptedException {
 
     }
 
@@ -49,22 +50,28 @@ public abstract class StatoPartita implements Serializable {
      * sarà necessario un cambio di stato attraverso onAzioneCasella; poi, il nuovo stato si potrà effettivamente
      * mettere in attesa del lancio dei dadi.
      */
-    void esegui(ArrestaGiocatore arrestaGiocatore){
+    public void esegui(AzioneCasella azione){
+
+    }
+    public void esegui(ArrestaGiocatore arrestaGiocatore){
 
     }
 
-    void esegui(PagaAffitto pagaAffitto){
+    public void esegui(PagaAffitto pagaAffitto){
 
     }
 
-    void esegui(PescaImprevisto pescaImprevisto){
+    public void esegui(PescaImprevisto pescaImprevisto){
 
     }
 
-    void esegui(RichiediAcquisto richiediAcquisto) throws InterruptedException {
+    public void esegui(RichiediAcquisto richiediAcquisto) throws InterruptedException {
 
     }
 
+    public void esegui(AttesaLancioDadi attesaLancioDadi) throws InterruptedException {
+
+    }
 
     /**
      * Di default, gli eventi arrivati dall'esterno non sbloccano la partita.
@@ -107,6 +114,7 @@ public abstract class StatoPartita implements Serializable {
     }
 
     public void onAzioneGiocatore(EntraInPartita entraInPartita) throws InterruptedException {
-
+        partita.attendiAzione();
     }
+
 }

@@ -10,7 +10,7 @@ import lombok.experimental.SuperBuilder;
 public class AttesaAcquisto extends StatoPartita{
 
     @Override
-    void esegui(RichiediAcquisto richiediAcquisto) throws InterruptedException {
+    public void esegui(RichiediAcquisto richiediAcquisto) throws InterruptedException {
         partita.attendiAzione();
     }
 
