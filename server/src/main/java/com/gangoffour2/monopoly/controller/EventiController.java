@@ -6,18 +6,36 @@ import com.gangoffour2.monopoly.model.Giocatore;
 import com.gangoffour2.monopoly.model.Partita;
 import com.gangoffour2.monopoly.services.PartiteRespository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.event.EventListener;
 import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
+import org.springframework.messaging.simp.SimpMessageHeaderAccessor;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Controller;
-
+import org.springframework.web.socket.messaging.SessionConnectEvent;
+import org.springframework.web.socket.messaging.SessionDisconnectEvent;
 import java.util.HashMap;
 import java.util.Map;
 
 
+
+
+
 @Controller
 public class EventiController {
+
+    @EventListener
+    public void onApplicationEvent(SessionConnectEvent applicationEvent) {
+        SimpMessageHeaderAccessor headers = SimpMessageHeaderAccessor
+                .wrap(applicationEvent.getMessage());
+        System.out.println("Utente connesso: " + headers.getSessionId());
+    }
+
+    @EventListener
+    public void onApplicationEvent(SessionDisconnectEvent applicationEvent) {
+        System.out.println("Utente disconnesso: " + applicationEvent.getSessionId());
+    }
 
     @MessageMapping("/partite/{id}/entra")
     public void entraInPartita(@Payload String nick, @DestinationVariable String id) {
