@@ -11,5 +11,5 @@ import java.io.Serializable;
  */
 
 public interface PartitaObserver extends Serializable {
-    void notifica(AzioneCasella azione);
+    void onAzioneCasella(AzioneCasella azione) throws InterruptedException;
 }
