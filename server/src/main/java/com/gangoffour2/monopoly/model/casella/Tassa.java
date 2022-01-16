@@ -8,18 +8,4 @@ import lombok.experimental.SuperBuilder;
 public class Tassa extends Casella{
     private int costo;
 
-    @Override
-    public void arrivo() {
-
-    }
-
-    @Override
-    public void passaggio() {
-
-    }
-
-    @Override
-    public void fineGiro() {
-
-    }
 }

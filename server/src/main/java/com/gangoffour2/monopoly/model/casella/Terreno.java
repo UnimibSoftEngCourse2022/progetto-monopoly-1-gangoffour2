@@ -29,18 +29,5 @@ public class Terreno extends Proprieta {
     protected Terreno(){
     }
 
-    @Override
-    public void arrivo() {
-        evento.arrivo();
-    }
 
-    @Override
-    public void passaggio() {
-        evento.passaggio();
-    }
-
-    @Override
-    public void fineGiro() {
-        evento.fineGiro();
-    }
 }

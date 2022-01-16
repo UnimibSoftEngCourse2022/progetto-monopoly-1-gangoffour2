@@ -7,18 +7,4 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 public class Imprevisto extends Casella {
 
-    @Override
-    public void arrivo() {
-
-    }
-
-    @Override
-    public void passaggio() {
-
-    }
-
-    @Override
-    public void fineGiro() {
-
-    }
 }

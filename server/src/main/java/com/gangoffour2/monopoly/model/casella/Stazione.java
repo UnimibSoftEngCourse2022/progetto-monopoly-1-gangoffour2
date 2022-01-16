@@ -10,15 +10,5 @@ public class Stazione extends Proprieta {
     private Stazione() {
     }
 
-    @Override
-    public void arrivo() {
-    }
 
-    @Override
-    public void passaggio() {
-    }
-
-    @Override
-    public void fineGiro() {
-    }
 }

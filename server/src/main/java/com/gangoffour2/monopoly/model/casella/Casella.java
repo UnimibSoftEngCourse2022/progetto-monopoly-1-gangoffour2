@@ -24,9 +24,16 @@ public abstract class Casella implements SubjectStatoPartita, Serializable {
     protected ArrayList<PartitaObserver> subscribers = new ArrayList<>();
     protected EventoCasella evento;
 
-    public abstract void arrivo();
-    public abstract void passaggio();
-    public abstract void fineGiro();
+    public void arrivo(){
+        evento.arrivo();
+    }
+    public void passaggio(){
+        notificaTutti(evento.passaggio());
+    }
+
+    public void fineGiro(){
+        evento.fineGiro();
+    }
 
     protected Casella(){
 

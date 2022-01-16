@@ -6,18 +6,5 @@ import lombok.experimental.SuperBuilder;
 @Data
 @SuperBuilder
 public class Prigione extends Casella{
-    @Override
-    public void arrivo() {
 
-    }
-
-    @Override
-    public void passaggio() {
-
-    }
-
-    @Override
-    public void fineGiro() {
-
-    }
 }

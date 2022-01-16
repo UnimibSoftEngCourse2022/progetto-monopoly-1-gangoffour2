@@ -10,15 +10,4 @@ public class Societa extends Proprieta {
     private Societa() {
     }
 
-    @Override
-    public void arrivo() {
-    }
-
-    @Override
-    public void passaggio() {
-    }
-
-    @Override
-    public void fineGiro() {
-    }
 }
