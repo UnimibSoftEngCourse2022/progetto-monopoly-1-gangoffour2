@@ -35,19 +35,29 @@ public class EventiController {
     @EventListener
     public void onApplicationEvent(SessionDisconnectEvent applicationEvent) {
         System.out.println("Utente disconnesso: " + applicationEvent.getSessionId());
+        Giocatore g = PartiteRespository.getInstance().getGiocatoreByIdSessione(applicationEvent.getSessionId());
+        if(g != null){
+            g.getPartita().rimuoviGiocatore(g);
+            PartiteRespository.getInstance().rimuoviGiocatoreById(applicationEvent.getSessionId());
+            System.out.println(g.getNick() + " ha abbandonato");
+        }
     }
 
     @MessageMapping("/partite/{id}/entra")
-    public void entraInPartita(@Payload String nick, @DestinationVariable String id) {
+    public void entraInPartita(@Payload String nick, @DestinationVariable String id,
+                               SimpMessageHeaderAccessor head) throws InterruptedException {
         Partita partita = PartiteRespository.getInstance().getPartitaByid(id);
         if(partita != null){
             try{
                 EntraInPartita azione = EntraInPartita.builder()
                         .giocatore(Giocatore.builder()
                                 .nick(nick)
+                                .idSessione(head.getSessionId())
                                 .build())
                         .build();
                 partita.onAzioneGiocatore(azione);
+                PartiteRespository.getInstance().registraGiocatore(head.getSessionId(), partita.getGiocatoreByNick(nick));
+                System.out.println(partita.getGiocatoreByNick(nick).getNick() + " è entrato in lobby");
             }catch(PartitaPienaException e){
                 Map<String, Object> headers = new HashMap<>();
                 headers.put("nickname", nick);
@@ -66,12 +76,15 @@ public class EventiController {
     }
 
     @MessageMapping("partite/{id}/acquista")
-    public void acquista(@Payload AcquistaProprieta azione, @DestinationVariable String id){
-
+    public void acquista(@Payload AcquistaProprieta azione, @DestinationVariable String id) throws InterruptedException {
+        Partita partita = PartiteRespository.getInstance().getPartitaByid(id);
+        if (partita != null){
+            partita.onAzioneGiocatore(azione);
+        }
     }
 
     @MessageMapping("/partite/{id}/lanciaDadi")
-    public void lanciaDadi(@Payload LanciaDadi lanciaDadi, @DestinationVariable String id){
+    public void lanciaDadi(@Payload LanciaDadi lanciaDadi, @DestinationVariable String id) throws InterruptedException {
         Partita partita = PartiteRespository.getInstance().getPartitaByid(id);
         if (partita != null){
             partita.onAzioneGiocatore(lanciaDadi);

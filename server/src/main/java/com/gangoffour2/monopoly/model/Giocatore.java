@@ -1,5 +1,6 @@
 package com.gangoffour2.monopoly.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.gangoffour2.monopoly.eccezioni.ModificaDenaroException;
 import com.gangoffour2.monopoly.model.carta.Imprevisto;
 import com.gangoffour2.monopoly.model.carta.Probabilita;
@@ -18,6 +19,10 @@ import java.util.Objects;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Giocatore implements Serializable {
+    @JsonIgnore
+    private Partita partita;
+    @JsonIgnore
+    private String idSessione;
     private String nick;
     private int conto;
     private ArrayList<Probabilita> probabilita;
