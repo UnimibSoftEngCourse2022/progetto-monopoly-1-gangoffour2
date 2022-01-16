@@ -8,13 +8,14 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 @Data
 public class EntraInPartita extends AzioneGiocatore{
+
     @Override
     public void accept(EventoCasella eventoCasella) {
         eventoCasella.onAzioneGiocatore(this);
     }
 
     @Override
-    public void accept(StatoPartita statoPartita) throws InterruptedException {
-        statoPartita.onAzioneGiocatore(this);
+    public synchronized boolean accept(StatoPartita statoPartita) throws InterruptedException {
+        return statoPartita.onAzioneGiocatore(this);
     }
 }

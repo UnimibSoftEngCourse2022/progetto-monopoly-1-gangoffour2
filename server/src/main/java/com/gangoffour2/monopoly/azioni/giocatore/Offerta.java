@@ -12,7 +12,9 @@ public class Offerta extends AzioneGiocatore {
     }
 
     @Override
-    public void accept(StatoPartita statoPartita) throws InterruptedException {
-        statoPartita.onAzioneCasella(this);
+    public boolean accept(StatoPartita statoPartita) throws InterruptedException {
+        return statoPartita.onAzioneGiocatore(this);
     }
+
+
 }

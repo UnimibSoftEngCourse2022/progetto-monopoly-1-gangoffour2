@@ -8,7 +8,7 @@ import lombok.Builder;
 @Builder
 public class Lobby extends StatoPartita {
     @Override
-    public void onAzioneGiocatore(EntraInPartita entraInPartita) throws InterruptedException {
+    public boolean onAzioneGiocatore(EntraInPartita entraInPartita) throws InterruptedException {
         // Aggiorna i client e poi si rimette in attesa se non è stato raggiunto il numero
         try {
             partita.aggiungiGiocatore(entraInPartita.getGiocatore());
@@ -18,14 +18,8 @@ public class Lobby extends StatoPartita {
         MessageBrokerSingleton.getInstance().getTemplate()
                 .convertAndSend("/topic/partite/" + partita.getId(), partita);
         if (partita.getGiocatori().size() == partita.getConfig().getNumeroGiocatori()){
-            partita.setStato(InizioTurno.builder().build());
             partita.inizioPartita();
         }
-        else {
-            partita.attendiAzione();
-        }
-
-        partita.getCodaAzioniGiocatore().removeLast();
+        return true;
     }
-
 }

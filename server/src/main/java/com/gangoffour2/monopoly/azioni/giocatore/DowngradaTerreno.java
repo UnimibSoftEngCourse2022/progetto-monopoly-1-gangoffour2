@@ -7,13 +7,14 @@ import lombok.Builder;
 @Builder
 public class DowngradaTerreno extends AzioneGiocatore {
 
+
     @Override
     public void accept(EventoCasella eventoCasella) {
         eventoCasella.onAzioneGiocatore(this);
     }
 
     @Override
-    public void accept(StatoPartita statoPartita) throws InterruptedException {
-        statoPartita.onAzioneGiocatore(this);
+    public boolean accept(StatoPartita statoPartita) throws InterruptedException {
+        return statoPartita.onAzioneGiocatore(this);
     }
 }

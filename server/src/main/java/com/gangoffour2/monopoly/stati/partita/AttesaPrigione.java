@@ -7,12 +7,12 @@ import lombok.Builder;
 @Builder
 public class AttesaPrigione extends StatoPartita {
     @Override
-    public void onAzioneGiocatore(LanciaDadi lanciaDadi){
-
+    public boolean onAzioneGiocatore(LanciaDadi lanciaDadi){
+        return true;
     }
 
     @Override
-    public void onAzioneGiocatore(Paga paga){
-
+    public boolean onAzioneGiocatore(Paga paga){
+        return true;
     }
 }

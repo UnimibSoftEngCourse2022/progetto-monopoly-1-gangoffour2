@@ -12,25 +12,26 @@ import lombok.Builder;
 public class LancioDadi extends StatoPartita {
 
     @Override
-    public void onAzioneGiocatore(Ipoteca ipoteca){
-        partita.getCodaAzioniGiocatore().removeLast();
+    public boolean onAzioneGiocatore(Ipoteca ipoteca){
+        return true;
     }
 
     @Override
-    public void onAzioneGiocatore(LanciaDadi lanciaDadi){
-        partita.getCodaAzioniGiocatore().removeLast();
-        partita.turnoNormale();
+    public boolean onAzioneGiocatore(LanciaDadi lanciaDadi){
+        partita.turnoStandard();
+        return true;
     }
 
 
     @Override
-    public void onAzioneCasella(AttesaLancioDadi attesaLancioDadi) throws InterruptedException {
+    public void onAzioneCasella(AttesaLancioDadi attesaLancioDadi) {
         partita.attendiAzione();
     }
 
     @Override
     public void onAzioneCasella(RichiediAcquisto richiediAcquisto){
         partita.setStato(AttesaAcquisto.builder().build());
+        partita.getStato().esegui(richiediAcquisto);
     }
 
     @Override
@@ -39,7 +40,7 @@ public class LancioDadi extends StatoPartita {
     }
 
     @Override
-    public void esegui(AttesaLancioDadi attesaLancioDadi) throws InterruptedException {
+    public void esegui(AttesaLancioDadi attesaLancioDadi)  {
         partita.attendiAzione();
     }
 

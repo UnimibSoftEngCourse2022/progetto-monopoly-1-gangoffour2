@@ -10,12 +10,14 @@ import lombok.experimental.SuperBuilder;
 public class AttesaAcquisto extends StatoPartita{
 
     @Override
-    public void esegui(RichiediAcquisto richiediAcquisto) throws InterruptedException {
+    public void esegui(RichiediAcquisto richiediAcquisto) {
         partita.attendiAzione();
     }
 
     @Override
-    public synchronized void onAzioneGiocatore(AcquistaProprieta acquistaProprieta){
-        // Chiama sulla casella interessata l'evento generato dal giocatore.
+    public boolean onAzioneGiocatore(AcquistaProprieta acquistaProprieta){
+        System.out.println("Acquisto della proprietà");
+        partita.turnoStandard();
+        return true;
     }
 }

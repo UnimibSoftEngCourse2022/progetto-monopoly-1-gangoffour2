@@ -12,7 +12,8 @@ public class LanciaDadi extends AzioneGiocatore{
     }
 
     @Override
-    public void accept(StatoPartita statoPartita) throws InterruptedException {
-        statoPartita.onAzioneGiocatore(this);
+    public boolean accept(StatoPartita statoPartita) throws InterruptedException {
+        return statoPartita.onAzioneGiocatore(this);
     }
+
 }
