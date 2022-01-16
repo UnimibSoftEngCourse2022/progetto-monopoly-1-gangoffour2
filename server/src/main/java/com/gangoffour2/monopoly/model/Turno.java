@@ -27,10 +27,10 @@ public class Turno implements Serializable {
     private ArrayList<Integer> valoreDadi = new ArrayList<>();
 
     @Builder.Default
-    private SecureRandom random = new SecureRandom("Ciao".getBytes(StandardCharsets.UTF_8));
+    private SecureRandom random = new SecureRandom();
 
     public void inizializzaDadi(){
-        if(valoreDadi == null || valoreDadi.size() == 0){
+        if(valoreDadi.size() == 0){
             for(int i = 0; i < partita.getConfig().getNumeroDadi(); ++i){
                 valoreDadi.add(-1);
             }
