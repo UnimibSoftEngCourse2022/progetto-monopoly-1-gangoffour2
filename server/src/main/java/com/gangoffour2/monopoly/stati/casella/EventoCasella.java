@@ -1,6 +1,8 @@
 package com.gangoffour2.monopoly.stati.casella;
 
 
+import com.gangoffour2.monopoly.azioni.casella.AzioneCasella;
+import com.gangoffour2.monopoly.azioni.casella.PassaggioVuoto;
 import com.gangoffour2.monopoly.azioni.giocatore.*;
 import lombok.Data;
 import lombok.experimental.SuperBuilder;
@@ -18,9 +20,11 @@ public abstract class EventoCasella implements Serializable {
     public void arrivo(){
 
     }
-    public void passaggio(){
 
+    public AzioneCasella passaggio(){
+        return PassaggioVuoto.builder().build();
     }
+
     public void fineGiro(){
 
     }
