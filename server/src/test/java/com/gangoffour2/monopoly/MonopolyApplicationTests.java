@@ -20,7 +20,7 @@ class MonopolyApplicationTests {
 	@Test
 	void creazionePartita() throws GiocatoreEsistenteException {
 		Partita p = creaPartita();
-		assertEquals("CancaroMan", p.getTurnoGiocatore().getNick());
+		assertEquals("CancaroMan", p.getTurnoCorrente().getGiocatore().getNick());
 		assertNotNull(p.getStato());
 		assertNotNull(p.getStato().getPartita());
 		assertNotNull(p.getTabellone());
@@ -30,7 +30,7 @@ class MonopolyApplicationTests {
 	@Test
 	void cambioStatiPartita() throws GiocatoreEsistenteException {
 		Partita partita = creaPartita();
-		Giocatore g = partita.getTurnoGiocatore();
+		Giocatore g = partita.getTurnoCorrente().getGiocatore();
 		partita.setStato(LancioDadi.builder().build());
 		partita.getTabellone().muoviGiocatore(g, 9);
 		assertEquals("Garda Lake1", g.getCasellaCorrente().getNome());
@@ -62,7 +62,7 @@ class MonopolyApplicationTests {
 				.casellaCorrente(caselle.get(0))
 				.build();
 		partita.aggiungiGiocatore(g);
-		partita.setTurnoGiocatore(g);
+		partita.setTurnoCorrente(Turno.builder().partita(partita).giocatore(g).build());
 
 		return partita;
 	}
