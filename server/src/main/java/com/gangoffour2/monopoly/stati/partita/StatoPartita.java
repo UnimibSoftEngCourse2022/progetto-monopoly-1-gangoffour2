@@ -45,6 +45,10 @@ public abstract class StatoPartita implements Serializable {
 
     }
 
+    public void onAzioneCasella(PassaggioVuoto passaggioVuoto){
+        partita.turnoStandard();
+    }
+
     /**
      * I metodi esegui vengono chiamati dalla partita sulla casella: ad esempio, prima di attendere il lancio dei dadi,
      * sarà necessario un cambio di stato attraverso onAzioneCasella; poi, il nuovo stato si potrà effettivamente
@@ -65,11 +69,12 @@ public abstract class StatoPartita implements Serializable {
 
     }
 
-    public void esegui(RichiediAcquisto richiediAcquisto) throws InterruptedException {
+    public void esegui(RichiediAcquisto attesaAcquisto){
 
     }
 
-    public void esegui(AttesaLancioDadi attesaLancioDadi) throws InterruptedException {
+
+    public void esegui(AttesaLancioDadi attesaLancioDadi){
 
     }
 
@@ -77,43 +82,59 @@ public abstract class StatoPartita implements Serializable {
      * Di default, gli eventi arrivati dall'esterno non sbloccano la partita.
      * Ogni stato ridefinirà il suo comportamento in base al tipo dell'azione.
      */
-    public void onAzioneGiocatore(AcquistaProprieta acquistaProprieta) throws InterruptedException {
-        partita.attendiAzione();
+    public boolean onAzioneGiocatore(AcquistaProprieta acquistaProprieta) throws InterruptedException {
+        return false;
     }
 
-    public void onAzioneGiocatore(VendiProprieta vendiProprieta) throws InterruptedException {
-        partita.attendiAzione();
+    public boolean onAzioneGiocatore(VendiProprieta vendiProprieta) throws InterruptedException {
+        return false;
     }
 
-    public  void onAzioneGiocatore(Ipoteca ipoteca) throws InterruptedException {
-        partita.attendiAzione();
+    public  boolean onAzioneGiocatore(Ipoteca ipoteca) throws InterruptedException {
+        return false;
     }
 
-    public void onAzioneGiocatore(UpgradaTerreno upgradaTerreno) throws InterruptedException {
-        partita.attendiAzione();
+    public boolean onAzioneGiocatore(UpgradaTerreno upgradaTerreno) throws InterruptedException {
+        return false;
     }
-    public void onAzioneGiocatore(DowngradaTerreno downgradaTerreno) throws InterruptedException {
-        partita.attendiAzione();
+    public boolean onAzioneGiocatore(DowngradaTerreno downgradaTerreno) throws InterruptedException {
+        return false;
     }
 
-    public void onAzioneGiocatore(LanciaDadi lanciaDadi) throws InterruptedException {
-        partita.attendiAzione();
+    public boolean onAzioneGiocatore(LanciaDadi lanciaDadi) throws InterruptedException {
+        return false;
     }
 
     public void onAzioneCasella(Offerta offerta) throws InterruptedException {
-        partita.attendiAzione();
     }
 
     public void onAzioneCasella(AttesaPrigione attesaPrigione) throws InterruptedException {
-        partita.attendiAzione();
     }
 
-    public void onAzioneGiocatore(Paga paga) throws InterruptedException {
-        partita.attendiAzione();
+    public boolean onAzioneGiocatore(Paga paga) throws InterruptedException {
+        return false;
     }
 
-    public void onAzioneGiocatore(EntraInPartita entraInPartita) throws InterruptedException {
-        partita.attendiAzione();
+    public boolean onAzioneGiocatore(EntraInPartita entraInPartita) throws InterruptedException {
+        return false;
     }
 
+
+    /**
+     * Metodo che deve essere eseguito se viene rilevato un timeout nell'attesa dell'input
+     */
+    public void onTimeout() {
+    }
+
+    public boolean onAzioneGiocatore(Offerta offerta) {
+        return false;
+    }
+
+    public void eseguiAzione(AzioneGiocatore azione){
+
+    }
+
+    public void eseguiAzione(LanciaDadi lanciaDadi){
+
+    }
 }

@@ -1,6 +1,7 @@
 package com.gangoffour2.monopoly.model;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.LinkedList;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -10,7 +11,8 @@ import com.gangoffour2.monopoly.azioni.giocatore.AzioneGiocatore;
 import com.gangoffour2.monopoly.eccezioni.GiocatoreEsistenteException;
 import com.gangoffour2.monopoly.eccezioni.NoPlayerException;
 import com.gangoffour2.monopoly.eccezioni.PartitaPienaException;
-import com.gangoffour2.monopoly.stati.partita.AttesaPrigione;
+import com.gangoffour2.monopoly.stati.partita.FineTurno;
+import com.gangoffour2.monopoly.stati.partita.InizioTurno;
 import com.gangoffour2.monopoly.stati.partita.StatoPartita;
 import lombok.Builder;
 import lombok.AllArgsConstructor;
@@ -20,7 +22,7 @@ import lombok.Data;
 @Builder
 @AllArgsConstructor
 @JsonIgnoreProperties(value = {"stato", "codaAzioniGiocatore", "azioneRicevuta"})
-public class Partita implements PartitaObserver, Runnable {
+public class Partita implements PartitaObserver {
     private String id;
     @Builder.Default
     private ArrayList<Giocatore> giocatori = new ArrayList<>();
@@ -30,32 +32,29 @@ public class Partita implements PartitaObserver, Runnable {
     @Builder.Default
     private ArrayList<Albergo> alberghi = new ArrayList<>();
 
-    @JsonIgnore
-    private Thread thread;
-
     private Tabellone tabellone;
-    private Giocatore turnoGiocatore;
+
+    private Turno turnoCorrente;
 
     private StatoPartita stato;
 
     @Builder.Default
     private LinkedList<AzioneGiocatore> codaAzioniGiocatore = new LinkedList<>();
+    private boolean azioneAttesaRicevuta;
 
-    private AzioneGiocatore azioneRicevuta; // Contiene l'azione da eseguire in quel momento
+    @JsonIgnore
+    private Thread listenerTimeoutEventi;
 
-
-    public void inizioPartita(){
-        turnoGiocatore = giocatori.get(0);
-        start();
+    public synchronized void inizioPartita(){
+        turnoCorrente = Turno.builder()
+                .giocatore(giocatori.get(0))
+                .partita(this)
+                .build();
+        cambiaTurno();
     }
 
-    public void start() {
-        turnoGiocatore.getCasellaCorrente().inizioTurno();
-    }
 
-
-
-    public void aggiungiGiocatore(Giocatore g) throws PartitaPienaException, GiocatoreEsistenteException {
+    public synchronized void aggiungiGiocatore(Giocatore g) throws PartitaPienaException, GiocatoreEsistenteException {
         if(giocatori.size() == config.getNumeroGiocatori()) {
             throw new PartitaPienaException();
         }
@@ -67,17 +66,26 @@ public class Partita implements PartitaObserver, Runnable {
         g.setCasellaCorrente(tabellone.getCaselle().get(0));
         g.setConto(config.getSoldiIniziali());
         giocatori.add(g);
+        g.setPartita(this);
     }
 
 
-    public void rimuoviGiocatore(Giocatore g) throws NoPlayerException {
+    public synchronized void rimuoviGiocatore(Giocatore g) throws NoPlayerException {
         if(!this.getGiocatori().remove(g))
             throw new NoPlayerException();
     }
 
-    public void cambiaTurno(){
-        Giocatore curr = this.getTurnoGiocatore();
-        setTurnoGiocatore(giocatori.get((giocatori.indexOf(curr) + 1) % giocatori.size()));
+    public synchronized void cambiaTurno(){
+        setStato(InizioTurno.builder().build());
+        Giocatore curr = turnoCorrente.getGiocatore();
+        setTurnoCorrente(Turno.builder()
+                .partita(this)
+                .giocatore(giocatori.get((giocatori.indexOf(curr) + 1) % giocatori.size()))
+                .build());
+
+        turnoCorrente.inizializzaDadi();
+        System.out.println(curr.getNick() + " -> " + turnoCorrente.getGiocatore().getNick());
+        turnoCorrente.getGiocatore().getCasellaCorrente().inizioTurno();
         //Eventi cambiaTurno, broadcast sync
     }
     public void fineGiro(){
@@ -88,58 +96,83 @@ public class Partita implements PartitaObserver, Runnable {
     }
 
     @Override
-    public void onAzioneCasella(AzioneCasella azione) throws InterruptedException {
+    public synchronized void onAzioneCasella(AzioneCasella azione) throws InterruptedException {
         azione.accept(stato);
         stato.esegui(azione);
     }
 
-    public synchronized void onAzioneGiocatore(AzioneGiocatore azione) {
-        codaAzioniGiocatore.addLast(azioneRicevuta);
-        azioneRicevuta = azione;
-        notifyAll();
-    }
-
-    public synchronized void attendiAzione() throws InterruptedException {
-        azioneRicevuta = null;
-        while (azioneRicevuta == null){
-            wait();
+    public synchronized void onAzioneGiocatore(AzioneGiocatore azione) throws InterruptedException {
+        if(turnoCorrente != null){
+            System.out.println("Ricevuto: " + azione.getClass().getSimpleName() + " nel turno di " + turnoCorrente
+                    .getGiocatore().getNick());
         }
-        azioneRicevuta.accept(stato);
-        azioneRicevuta = null;
+        codaAzioniGiocatore.addLast(azione);
+        azioneAttesaRicevuta = azione.accept(stato);
+        if(azioneAttesaRicevuta){
+            codaAzioniGiocatore.removeLast();
+        }
     }
 
 
-    public void setStato(StatoPartita nuovoStato){
+
+
+    public synchronized void setStato(StatoPartita nuovoStato){
         stato = nuovoStato;
         stato.setPartita(this);
+        System.out.println("Nuovo stato: " + nuovoStato.getClass().getSimpleName());
     }
 
-    public void inizializza(){
-        thread = new Thread(this);
-        thread.start();
-    }
-
-    @Override
-    public void run() {
-        try {
+    public synchronized void turnoStandard() {
+        if (turnoCorrente.inVisita()){
+            turnoCorrente.prossimoEffetto();
+        }
+        else if(turnoCorrente.getLanciConsecutivi() == 0 || turnoCorrente.dadiUguali()){
+            turnoCorrente.lancioDadi();
+            tabellone.muoviGiocatore(turnoCorrente.getGiocatore(), turnoCorrente.sommaDadi());
+            turnoCorrente.prossimoEffetto();
+        }
+        else {
+            setStato(FineTurno.builder().build());
             attendiAzione();
-        } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
         }
     }
 
-    public void turnoNormale() {
-        int dadiUguali = 0;
-        do {
-            int spostamento = tabellone.lanciaDadi();
-            tabellone.applicaEffetti(turnoGiocatore, spostamento);
-            tabellone.muoviGiocatore(turnoGiocatore, spostamento);
+    public synchronized Giocatore getGiocatoreByNick(String nick){
+        Iterator<Giocatore> iter = giocatori.iterator();
+        Giocatore res = null;
+        while (iter.hasNext() && (res == null || !res.getNick().equals(nick))){
+            res = iter.next();
+        }
+        return res;
+    }
 
-            if(dadiUguali >= config.getTriggerDadiUguali()) {
-                setStato(AttesaPrigione.builder().build());
+    public synchronized void inizializza(){
+        attendiAzione();
+    }
+
+    public synchronized void attendiAzione() {
+        System.out.println("Setto il timeout");
+        azioneAttesaRicevuta = false;
+        setTimeout(() -> {
+            System.out.println("Timeout");
+                stato.onTimeout();
+        }, 2000);
+    }
+
+    public synchronized void setTimeout(Runnable evento, int millisecondi){
+        if(listenerTimeoutEventi != null && listenerTimeoutEventi.isAlive()){
+            listenerTimeoutEventi.interrupt();
+            listenerTimeoutEventi = null;
+        }
+        listenerTimeoutEventi = new Thread(() -> {
+            try {
+                Thread.sleep(millisecondi);
+                System.out.println("sveglio");
+                evento.run();
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
             }
-
-            dadiUguali++;
-        } while(tabellone.isDadiUguali());
+        });
+        listenerTimeoutEventi.start();
     }
 }

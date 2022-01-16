@@ -1,7 +1,6 @@
 package com.gangoffour2.monopoly.model;
 
 import java.io.Serializable;
-import java.security.SecureRandom;
 import java.util.ArrayList;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -28,38 +27,22 @@ public class Tabellone implements Serializable {
     @Builder.Default
     private ArrayList<Integer> lanci = new ArrayList<>();
 
-    private int tiraDado(){
-        return new SecureRandom().nextInt(partita.getConfig().getFacceDadi()) + 1;
-    }
-
-    public int lanciaDadi(){
-
-        for (int i = 0; i < partita.getConfig().getNumeroDadi(); i++) {
-            lanci.add(tiraDado());
-        }
-
-        return lanci.stream().reduce(0, Integer::sum);
-    }
-
-    public boolean isDadiUguali(){
-        return lanci.stream().distinct().count() <= 1;
-    }
-
 
     public void muoviGiocatore(Giocatore giocatore, int quantita){
         Casella corrente = giocatore.getCasellaCorrente();
         giocatore.setCasellaCorrente(caselle.get((caselle.indexOf(corrente) + quantita) % caselle.size()));
     }
 
-    public void applicaEffetti(Giocatore giocatore, int quantita){
-        Casella casella = giocatore.getCasellaCorrente();
-        casella.passaggio();
-        while(quantita != 0){
-            casella = caselle.get((caselle.indexOf(casella) + 1) % caselle.size());
-            casella.passaggio();
-            quantita--;
+    public void applicaEffetto(Giocatore giocatore, int offset){
+        System.out.println(offset);
+        if(offset == 0){
+            System.out.println(giocatore.getCasellaCorrente().getClass().getSimpleName());
+            giocatore.getCasellaCorrente().arrivo();
         }
-        casella.arrivo();
+        else {
+            int posizioneCorrente = caselle.indexOf(giocatore.getCasellaCorrente());
+            caselle.get((posizioneCorrente - offset) % caselle.size()).passaggio();
+        }
     }
 
 }
