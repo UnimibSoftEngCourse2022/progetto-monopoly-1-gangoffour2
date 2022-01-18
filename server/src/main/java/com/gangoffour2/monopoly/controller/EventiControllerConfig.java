@@ -13,7 +13,7 @@ public class EventiControllerConfig implements WebSocketMessageBrokerConfigurer 
 
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
-        registry.addEndpoint("/stomp");
+        registry.addEndpoint("/stomp").setAllowedOriginPatterns("*");
     }
 
     @Override
