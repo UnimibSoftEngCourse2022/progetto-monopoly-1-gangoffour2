@@ -1,0 +1,288 @@
+[
+  {
+    "type": "Via",
+    "nome": "Via"
+  },
+  {
+    "type": "Terreno",
+    "nome" : "Vicolo Corto",
+    "costoBase": 60,
+    "costoCasa": 5,
+    "costoAlbergo": 5,
+    "colore": "MARRONE",
+    "affitti": [
+
+    ]
+  },
+  {
+    "type": "Probabilita",
+    "nome": "Probabilità"
+  },
+  {
+    "type": "Terreno",
+    "nome": "Vicolo Stretto",
+    "costoBase": 60,
+    "costoCasa": 5,
+    "costoAlbergo": 5,
+    "colore": "MARRONE",
+    "affitti": [
+
+    ]
+  },
+  {
+    "type": "Tassa",
+    "nome": "Tassa Partimoniale",
+    "costo": 200
+  },
+  {
+    "type": "Stazione",
+    "nome": "Stazione Sud",
+    "costoBase": 200
+  },
+  {
+    "type": "Terreno",
+    "nome": "Bastioni Gran Sasso",
+    "costoBase": 100,
+    "costoCasa": 5,
+    "costoAlbergo": 5,
+    "colore": "AZZURRO",
+    "affitti":[
+
+    ]
+  },
+  {
+    "type": "Imprevisto",
+    "nome": "Imprevisto"
+  },
+  {
+    "type": "Terreno",
+    "nome": "Viale Monterossa",
+    "costoBase": 100,
+    "costoCasa":  5,
+    "costoAlbergo": 5,
+    "colore": "AZZURRO",
+    "affitti": [
+
+    ]
+  },
+  {
+    "type": "Terreno",
+    "nome": "Viale Vesuvio",
+    "costoBase": 120,
+    "costoCasa": 5,
+    "costoAlbergo": 5,
+    "colore": "AZZURRO",
+    "affitti": [
+
+    ]
+  },
+  {
+    "type": "Prigione",
+    "nome": "Prigione"
+  },
+  {
+    "type": "Terreno",
+    "nome": "Via Accademia",
+    "costoBase": 140,
+    "costoCasa": 5,
+    "costoAlbergo": 5,
+    "colore": "VIOLA",
+    "affitti": [
+
+    ]
+  },
+  {
+    "type": "Societa",
+    "nome": "Società Elettrica",
+    "costoBase": 150
+  },
+  {
+    "type": "Terreno",
+    "nome": "Corso Ateneo",
+    "costoBase": 140,
+    "costoCasa": 5,
+    "costoAlbergo": 5,
+    "colore": "VIOLA",
+    "affitti": []
+  },
+  {
+    "type": "Terreno",
+    "nome": "Piazza Università",
+    "costoBase": 160,
+    "costoCasa": 5,
+    "costoAlbergo": 5,
+    "colore": "VIOLA",
+    "affitti": []
+  },
+  {
+    "type": "Stazione",
+    "nome": "Stazione Ovest",
+    "costoBase": 200
+  },
+  {
+    "type": "Terreno",
+    "nome": "Via Verdi",
+    "costoBase": 180,
+    "costoCasa": 5,
+    "costoAlbergo": 5,
+    "colore": "ARANCIONE",
+    "affitti": []
+  },
+  {
+    "type": "Probabilita",
+    "nome": "Probabilità"
+  },
+  {
+    "type": "Terreno",
+    "nome": "Corso Raffaello",
+    "costoBase": 180,
+    "costoCasa": 5,
+    "costoAlbergo": 5,
+    "colore": "ARANCIONE",
+    "affitti": []
+  },
+  {
+    "type": "Terreno",
+    "nome": "Piazza Dante",
+    "costoBase": 200,
+    "costoCasa": 5,
+    "costoAlbergo": 5,
+    "colore": "ARANCIONE",
+    "affitti": []
+  },
+  {
+    "type": "Parcheggio",
+    "nome": "Parcheggio gratuito"
+  },
+  {
+    "type": "Terreno",
+    "nome": "Via Marco Polo",
+    "costoBase": 220,
+    "costoCasa": 50,
+    "costoAlbergo": 70,
+    "colore": "ROSSO",
+    "affitti": []
+  },
+  {
+    "type": "Imprevisto",
+    "name": "Imprevisti"
+  },
+  {
+    "type": "Terreno",
+    "nome": "Corso Magellano",
+    "costoBase": 220,
+    "costoCasa": 50,
+    "costoAlbergo": 70,
+    "colore": "ROSSO",
+    "affitti": []
+  },
+  {
+    "type": "Terreno",
+    "nome": "Largo Colombo",
+    "costoBase": 240,
+    "costoCasa": 50,
+    "costoAlbergo": 70,
+    "colore": "ROSSO",
+    "affitti": []
+  },
+  {
+    "type": "Stazione",
+    "nome": "Stazione Nord",
+    "costoBase": 200
+  },
+  {
+    "type": "Terreno",
+    "nome": "Viale Costantino",
+    "costoBase": 260,
+    "costoCasa": 50,
+    "costoAlbergo": 70,
+    "colore": "GIALLO",
+    "affitti": []
+  },
+  {
+    "type": "Terreno",
+    "nome": "Viale Traiano",
+    "costoBase": 260,
+    "costoCasa": 50,
+    "costoAlbergo": 70,
+    "colore": "GIALLO",
+    "affitti": []
+  },
+  {
+    "type": "Societa",
+    "nome": "Fontane",
+    "costoBase": 150
+  },
+  {
+    "type": "Terreno",
+    "nome": "Piazza Giulio Cesare",
+    "costoBase": 280,
+    "costoCasa": 50,
+    "costoAlbergo": 70,
+    "colore": "GIALLO",
+    "affitti": []
+  },
+  {
+    "type": "Terreno",
+    "nome": "Via Roma",
+    "costoBase": 300,
+    "costoCasa": 50,
+    "costoAlbergo": 70,
+    "colore": "VERDE",
+    "affitti": []
+  },
+  {
+    "type": "Terreno",
+    "nome": "Corso Impero",
+    "costoBase": 300,
+    "costoCasa": 50,
+    "costoAlbergo": 70,
+    "colore": "VERDE",
+    "affitti": []
+  },
+  {
+    "type": "Probabilita",
+    "nome": "Probabilità"
+  },
+  {
+    "type": "Terreno",
+    "nome": "Largo Augusto",
+    "costoBase": 320,
+    "costoCasa": 50,
+    "costoAlbergo": 70,
+    "colore": "VERDE",
+    "affitti": []
+  },
+  {
+    "type": "Stazione",
+    "nome": "Stazione Est",
+    "costoBase": 200
+  },
+  {
+    "type": "Imprevisto",
+    "name": "Imprevisti"
+  },
+  {
+    "type": "Terreno",
+    "nome": "Viale dei Giardini",
+    "costoBase": 350,
+    "costoCasa": 50,
+    "costoAlbergo": 70,
+    "colore": "BLU",
+    "affitti": []
+  },
+  {
+    "type": "Tassa",
+    "nome": "Tassa di Lusso",
+    "costo": 100
+  },
+  {
+    "type": "Terreno",
+    "nome": "Parco della Vittoria",
+    "costoBase": 400,
+    "costoCasa": 50,
+    "costoAlbergo": 70,
+    "colore": "BLU",
+    "affitti": []
+  }
+]
