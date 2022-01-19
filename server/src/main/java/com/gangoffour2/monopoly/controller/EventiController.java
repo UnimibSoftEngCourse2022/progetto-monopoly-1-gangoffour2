@@ -27,19 +27,15 @@ public class EventiController {
 
     @EventListener
     public void onApplicationEvent(SessionConnectEvent applicationEvent) {
-        SimpMessageHeaderAccessor headers = SimpMessageHeaderAccessor
-                .wrap(applicationEvent.getMessage());
-        System.out.println("Utente connesso: " + headers.getSessionId());
+        // Eventuali operazioni al momento della connessione
     }
 
     @EventListener
     public void onApplicationEvent(SessionDisconnectEvent applicationEvent) {
-        System.out.println("Utente disconnesso: " + applicationEvent.getSessionId());
         Giocatore g = PartiteRespository.getInstance().getGiocatoreByIdSessione(applicationEvent.getSessionId());
         if(g != null){
             g.getPartita().rimuoviGiocatore(g);
             PartiteRespository.getInstance().rimuoviGiocatoreById(applicationEvent.getSessionId());
-            System.out.println(g.getNick() + " ha abbandonato");
         }
     }
 
@@ -57,7 +53,6 @@ public class EventiController {
                         .build();
                 partita.onAzioneGiocatore(azione);
                 PartiteRespository.getInstance().registraGiocatore(head.getSessionId(), partita.getGiocatoreByNick(nick));
-                System.out.println(partita.getGiocatoreByNick(nick).getNick() + " è entrato in lobby");
             }catch(PartitaPienaException e){
                 Map<String, Object> headers = new HashMap<>();
                 headers.put("nickname", nick);

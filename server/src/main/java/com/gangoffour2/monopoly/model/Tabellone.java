@@ -34,14 +34,12 @@ public class Tabellone implements Serializable {
     }
 
     public void applicaEffetto(Giocatore giocatore, int offset){
-        System.out.println(offset);
         if(offset == 0){
-            System.out.println(giocatore.getCasellaCorrente().getClass().getSimpleName());
             giocatore.getCasellaCorrente().arrivo();
         }
         else {
             int posizioneCorrente = caselle.indexOf(giocatore.getCasellaCorrente());
-            caselle.get((posizioneCorrente - offset) % caselle.size()).passaggio();
+            caselle.get((posizioneCorrente - offset + caselle.size()) % caselle.size()).passaggio();
         }
     }
 

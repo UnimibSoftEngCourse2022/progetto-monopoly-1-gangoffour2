@@ -43,7 +43,7 @@ public class Partita implements PartitaObserver {
     private boolean azioneAttesaRicevuta;
 
     @JsonIgnore
-    private Thread listenerTimeoutEventi;
+    private transient Thread listenerTimeoutEventi;
 
     public synchronized void inizioPartita(){
         turnoCorrente = Turno.builder()
@@ -84,7 +84,6 @@ public class Partita implements PartitaObserver {
                 .build());
 
         turnoCorrente.inizializzaDadi();
-        System.out.println(curr.getNick() + " -> " + turnoCorrente.getGiocatore().getNick());
         turnoCorrente.getGiocatore().getCasellaCorrente().inizioTurno();
         //Eventi cambiaTurno, broadcast sync
     }
@@ -102,10 +101,6 @@ public class Partita implements PartitaObserver {
     }
 
     public synchronized void onAzioneGiocatore(AzioneGiocatore azione) throws InterruptedException {
-        if(turnoCorrente != null){
-            System.out.println("Ricevuto: " + azione.getClass().getSimpleName() + " nel turno di " + turnoCorrente
-                    .getGiocatore().getNick());
-        }
         codaAzioniGiocatore.addLast(azione);
         azioneAttesaRicevuta = azione.accept(stato);
         if(azioneAttesaRicevuta){
@@ -119,7 +114,6 @@ public class Partita implements PartitaObserver {
     public synchronized void setStato(StatoPartita nuovoStato){
         stato = nuovoStato;
         stato.setPartita(this);
-        System.out.println("Nuovo stato: " + nuovoStato.getClass().getSimpleName());
     }
 
     public synchronized void turnoStandard() {
@@ -151,12 +145,8 @@ public class Partita implements PartitaObserver {
     }
 
     public synchronized void attendiAzione() {
-        System.out.println("Setto il timeout");
         azioneAttesaRicevuta = false;
-        setTimeout(() -> {
-            System.out.println("Timeout");
-                stato.onTimeout();
-        }, 2000);
+        setTimeout(() -> stato.onTimeout(), 2000);
     }
 
     public synchronized void setTimeout(Runnable evento, int millisecondi){
@@ -167,7 +157,6 @@ public class Partita implements PartitaObserver {
         listenerTimeoutEventi = new Thread(() -> {
             try {
                 Thread.sleep(millisecondi);
-                System.out.println("sveglio");
                 evento.run();
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();

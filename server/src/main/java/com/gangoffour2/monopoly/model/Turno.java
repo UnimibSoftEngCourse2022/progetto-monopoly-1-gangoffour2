@@ -5,7 +5,6 @@ import lombok.Builder;
 import lombok.Data;
 
 import java.io.Serializable;
-import java.nio.charset.StandardCharsets;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -30,7 +29,7 @@ public class Turno implements Serializable {
     private SecureRandom random = new SecureRandom();
 
     public void inizializzaDadi(){
-        if(valoreDadi.size() == 0){
+        if(valoreDadi.isEmpty()){
             for(int i = 0; i < partita.getConfig().getNumeroDadi(); ++i){
                 valoreDadi.add(-1);
             }
@@ -41,7 +40,7 @@ public class Turno implements Serializable {
         for(int i = 0; i < valoreDadi.size(); ++i){
             valoreDadi.set(i, random.nextInt(partita.getConfig().getFacceDadi()) + 1);
         }
-        System.out.println(valoreDadi);
+
         ++lanciConsecutivi;
         casellaDaVisitare = sommaDadi();
     }
