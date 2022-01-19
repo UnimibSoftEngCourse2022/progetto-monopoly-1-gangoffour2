@@ -11,7 +11,6 @@ import java.util.List;
 @RestController
 public class WebController {
 
-    @CrossOrigin
     @PostMapping(value = "/partite")
     public String creaPartita(@RequestBody Configurazione configurazione) {
         Partita nuovaPartita = FactoryPartita.getInstance().creaPartita(configurazione);
