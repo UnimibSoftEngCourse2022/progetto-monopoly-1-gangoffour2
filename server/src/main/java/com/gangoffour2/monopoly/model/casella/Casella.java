@@ -1,6 +1,9 @@
 package com.gangoffour2.monopoly.model.casella;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.gangoffour2.monopoly.azioni.casella.AttesaLancioDadi;
 import com.gangoffour2.monopoly.azioni.casella.AzioneCasella;
 import com.gangoffour2.monopoly.azioni.giocatore.AzioneGiocatore;
@@ -17,12 +20,29 @@ import java.util.ArrayList;
 @Data
 @SuperBuilder
 @JsonIgnoreProperties(value = {"evento", "subscribers"})
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.EXISTING_PROPERTY, property = "type")
+@JsonSubTypes({
+        @JsonSubTypes.Type(value = Terreno.class, name = "Terreno"),
+        @JsonSubTypes.Type(value = Societa.class, name = "Societa"),
+        @JsonSubTypes.Type(value = Stazione.class, name = "Stazione"),
+        @JsonSubTypes.Type(value = Via.class, name = "Via"),
+        @JsonSubTypes.Type(value = Imprevisto.class, name = "Imprevisto"),
+        @JsonSubTypes.Type(value = Probabilita.class, name = "Probabilita"),
+        @JsonSubTypes.Type(value = Prigione.class, name = "Prigione"),
+        @JsonSubTypes.Type(value = Parcheggio.class, name = "Parcheggio"),
+        @JsonSubTypes.Type(value = Tassa.class, name = "Tassa"),
+        @JsonSubTypes.Type(value = VaiInPrigione.class, name = "VaiInPrigione"),
+})
 public abstract class Casella implements SubjectStatoPartita, Serializable {
 
     protected String nome;
     @Builder.Default
     protected ArrayList<PartitaObserver> subscribers = new ArrayList<>();
     protected EventoCasella evento;
+
+
+    @JsonProperty("type")
+    public abstract String getTipo();
 
     public void arrivo(){
         evento.arrivo();
@@ -36,7 +56,7 @@ public abstract class Casella implements SubjectStatoPartita, Serializable {
     }
 
     protected Casella(){
-
+        subscribers = new ArrayList<>();
     }
 
     /**

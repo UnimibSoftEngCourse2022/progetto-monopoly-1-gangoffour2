@@ -1,38 +1,26 @@
 package com.gangoffour2.monopoly.services;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gangoffour2.monopoly.model.Configurazione;
-import com.gangoffour2.monopoly.model.Giocatore;
 import com.gangoffour2.monopoly.model.Partita;
 import com.gangoffour2.monopoly.model.Tabellone;
 import com.gangoffour2.monopoly.model.casella.*;
-import com.gangoffour2.monopoly.stati.casella.*;
 import com.gangoffour2.monopoly.stati.partita.Lobby;
 
-import java.security.SecureRandom;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 public class FactoryPartita {
 
     private static FactoryPartita instance;
 
-    public Giocatore playerFromNickname(String nickname, Partita partita) {
-        return Giocatore.builder()
-                .nick(nickname)
-                .casellaCorrente(partita.getTabellone().getCaselle().get(0))
-                .conto(partita.getConfig().getSoldiIniziali())
-                .build();
-    }
-
-
     public static synchronized FactoryPartita getInstance() {
         if(instance == null)
             instance = new FactoryPartita();
         return instance;
-    }
-
-    int creaPrezzoRandom(Configurazione.Difficolta difficolta) {
-       return new SecureRandom().nextInt(100);
     }
 
     String creaId(){
@@ -43,98 +31,24 @@ public class FactoryPartita {
         return idPartita;
     }
 
-    ArrayList<Integer> creaAffitti(Configurazione.Difficolta difficolta) {
-        ArrayList<Integer> affitti = new ArrayList<>();
+    ArrayList<Casella> creaCaselle() throws IOException {
+        ObjectMapper mapper = new ObjectMapper();
+        File jsonFile = new File(getClass().getClassLoader().getResource("caselle.json").getFile());
+        Casella[] arrayCaselle = mapper.readValue(jsonFile, Casella[].class);
 
-        for(int i = 0; i < 4; i++){
-            int affitto = creaPrezzoRandom(difficolta);
-            affitti.add(affitto);
-        }
-
-        return affitti;
+        return new ArrayList<>(List.of(arrayCaselle));
     }
 
-    Societa creaSocieta(String nome, Configurazione.Difficolta difficolta) {
-        return Societa.builder()
-                .nome(nome)
-                .costoBase(creaPrezzoRandom(difficolta))
-                .ipoteca(creaPrezzoRandom(difficolta))
-                .build();
-    }
-
-    Stazione creaStazione(String nome, Configurazione.Difficolta difficolta) {
-        return Stazione.builder()
-                .nome(nome)
-                .costoBase(creaPrezzoRandom(difficolta))
-                .ipoteca(creaPrezzoRandom(difficolta))
-                .build();
-    }
-
-    Terreno creaTerreno(String nome, Configurazione.Difficolta difficolta, Terreno.Colore colore){
-        Terreno terreno = Terreno.builder()
-                .nome(nome)
-                .colore(colore)
-                .affitti(creaAffitti(difficolta))
-                .costoCasa(creaPrezzoRandom(difficolta))
-                .costoAlbergo(creaPrezzoRandom(difficolta))
-                .costoBase(creaPrezzoRandom(difficolta))
-                .ipoteca(creaPrezzoRandom(difficolta))
-                .proprietario(null)
-                .build();
-
-        terreno.setEvento(TerrenoNonAcquistato.builder().build());
-        ((EventoTerreno)terreno.getEvento()).setTerreno(terreno);
-
-
-        return terreno;
-    }
-
-    ArrayList<Casella> creaCaselle(Configurazione.Difficolta difficolta) {
-        ArrayList<Casella> caselle = new ArrayList<>();
-
-        Via via = Via.builder().nome("Via").build();
-        Prigione prigione = Prigione.builder().nome("Prigione").build();
-        Probabilita probabilita = Probabilita.builder().nome("Probabilità").build();
-        Imprevisto imprevisto = Imprevisto.builder().nome("Imprevisto").build();
-        Tassa tassa = Tassa.builder().nome("Tassa").build();
-
-        for(int i = 0; i < 3; ++i) {
-            caselle.add(creaTerreno("Avenue park" + i, difficolta, Terreno.Colore.BLU));
-            caselle.add(creaTerreno("Garda Lake" + i, difficolta, Terreno.Colore.MARRONE));
-            caselle.add(creaTerreno("Plaza" + i, difficolta, Terreno.Colore.ROSSO));
-            caselle.add(creaTerreno("Laza" + i, difficolta, Terreno.Colore.AZZURRO));
-            caselle.add(creaTerreno("Aza" + i, difficolta, Terreno.Colore.GIALLO));
-            caselle.add(creaTerreno("Za" + i, difficolta, Terreno.Colore.VERDE));
-            caselle.add(creaTerreno("A" + i, difficolta, Terreno.Colore.VIOLA));
-            caselle.add(creaTerreno("Mountain" + i, difficolta, Terreno.Colore.ARANCIONE));
-        }
-
-        for(int i = 0; i < 4; ++i) {
-            caselle.add(creaSocieta("Società " + i, difficolta));
-            caselle.add(creaStazione("Stazione" + i, difficolta));
-        }
-
-        caselle.add(via);
-        caselle.add(prigione);
-        caselle.add(imprevisto);
-        caselle.add(probabilita);
-        caselle.add(tassa);
-
-        return caselle;
-    }
-
-    Tabellone creaTabellone(Configurazione.Difficolta difficolta){
-        return Tabellone.builder().caselle(creaCaselle(difficolta)).build();
+    Tabellone creaTabellone() throws IOException {
+        return Tabellone.builder().caselle(creaCaselle()).build();
     }
 
 
-    public Partita creaPartita(Configurazione config){
-
-        Configurazione.Difficolta difficolta = config.getDifficolta();
+    public Partita creaPartita(Configurazione config) throws IOException {
 
         Partita partita = Partita.builder()
                 .id(creaId())
-                .tabellone(creaTabellone(difficolta))
+                .tabellone(creaTabellone())
                 .config(config)
                 .build();
 
