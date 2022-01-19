@@ -8,6 +8,7 @@ import com.gangoffour2.monopoly.stati.partita.*;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -18,7 +19,7 @@ class MonopolyApplicationTests {
 
 
 	@Test
-	void creazionePartita() throws GiocatoreEsistenteException {
+	void creazionePartita() throws GiocatoreEsistenteException, IOException {
 		Partita p = creaPartita();
 		assertEquals("CancaroMan", p.getTurnoCorrente().getGiocatore().getNick());
 		assertNotNull(p.getStato());
@@ -28,12 +29,12 @@ class MonopolyApplicationTests {
 	}
 
 	@Test
-	void cambioStatiPartita() throws GiocatoreEsistenteException {
+	void cambioStatiPartita() throws GiocatoreEsistenteException, IOException {
 		Partita partita = creaPartita();
 		Giocatore g = partita.getTurnoCorrente().getGiocatore();
 		partita.setStato(LancioDadi.builder().build());
 		partita.getTabellone().muoviGiocatore(g, 9);
-		assertEquals("Garda Lake1", g.getCasellaCorrente().getNome());
+		assertEquals("Viale Vesuvio", g.getCasellaCorrente().getNome());
 
 		g.getCasellaCorrente().arrivo();
 		assertTrue(partita.getStato() instanceof AttesaAcquisto);
@@ -41,8 +42,7 @@ class MonopolyApplicationTests {
 	}
 
 
-	Partita creaPartita() throws GiocatoreEsistenteException {
-		Tabellone tabellone = Tabellone.builder().build();
+	Partita creaPartita() throws GiocatoreEsistenteException, IOException {
 		Configurazione conf = Configurazione.builder()
 				.difficolta(Configurazione.Difficolta.MEDIUM)
 				.randomCaselle(true)
