@@ -1,13 +1,15 @@
 import { Stomp } from "@stomp/stompjs";
 import websocket from "websocket"
+import IPartita from "../interfaces/IPartita";
+import IConfigurazione, {Difficolta} from "../interfaces/IConfigurazione";
 
 Object.assign(global, {WebSocket: websocket.w3cwebsocket})
 
 const URL = "http://localhost:8080";
 const WS_URL = "ws://localhost:8080";
 
-const defaultConfiguration = {
-    difficolta: "EASY",
+const defaultConfiguration: IConfigurazione = {
+    difficolta: Difficolta.EASY,
     randomCaselle: true,
     randomEconomia: true,
     soldiIniziali: 1000,
@@ -19,8 +21,8 @@ const defaultConfiguration = {
 
 export default class StompController {
 
-    static creaPartita() {
-        fetch(URL + "/partite", {
+    static creaPartita(): Promise<string> {
+        return fetch(URL + "/partite", {
             method: "POST",
             body: JSON.stringify(defaultConfiguration),
             headers: {
@@ -28,8 +30,20 @@ export default class StompController {
             }
         })
             .then((res) => {
+                console.log(res)
                 if(res.status === 200){
                     return res.text()
+                }
+                throw new Error("Impossibile creare una partita")
+            })
+    }
+
+    static getPartite(): Promise<IPartita[]> {
+        return fetch(URL + "/partite")
+            .then((res) => {
+                console.log(res)
+                if(res.status === 200){
+                    return res.json()
                 }
                 throw new Error("Impossibile creare una partita")
             })
