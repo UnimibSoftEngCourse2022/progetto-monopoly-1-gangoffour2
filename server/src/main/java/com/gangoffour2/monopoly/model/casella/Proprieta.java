@@ -15,12 +15,8 @@ public abstract class Proprieta extends Casella {
     protected int costoBase;
     protected int ipoteca;
     protected Giocatore proprietario;
-    @Builder.Default
-    protected ArrayList<Casa> listaCase = new ArrayList<>(4);
-    protected Albergo albergo = null;
 
 
     protected Proprieta() {
     }
-
 }
