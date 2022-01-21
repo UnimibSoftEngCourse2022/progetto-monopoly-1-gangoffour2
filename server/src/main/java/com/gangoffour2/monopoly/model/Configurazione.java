@@ -46,6 +46,9 @@ public class Configurazione implements Serializable {
     @Builder.Default
     private int alberghiVendibili = 16;
 
+    @Builder.Default
+    private int maxCasePerTerreno = 4;
+
     Configurazione(){
         randomCaselle = false;
         randomEconomia = false;

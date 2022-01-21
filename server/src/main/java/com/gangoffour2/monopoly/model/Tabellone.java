@@ -24,8 +24,6 @@ public class Tabellone implements Serializable {
 
     @Builder.Default
     private ArrayList<Imprevisto> imprevisti = new ArrayList<>();
-    @Builder.Default
-    private ArrayList<Integer> lanci = new ArrayList<>();
 
 
     public void muoviGiocatore(Giocatore giocatore, int quantita){

@@ -119,6 +119,9 @@ public abstract class StatoPartita implements Serializable {
         return false;
     }
 
+    public boolean onAzioneGiocatore(RimuoviIpoteca rimuoviIpoteca) {
+        return false;
+    }
 
     /**
      * Metodo che deve essere eseguito se viene rilevato un timeout nell'attesa dell'input
@@ -130,11 +133,8 @@ public abstract class StatoPartita implements Serializable {
         return false;
     }
 
-    public void eseguiAzione(AzioneGiocatore azione){
 
-    }
-
-    public void eseguiAzione(LanciaDadi lanciaDadi){
+    public void onAzioneCasella(ModificaDenaro modificaDenaro) {
 
     }
 }

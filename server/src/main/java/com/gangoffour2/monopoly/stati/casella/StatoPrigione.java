@@ -7,8 +7,5 @@ import lombok.experimental.SuperBuilder;
 @Data
 @SuperBuilder
 public class StatoPrigione extends EventoCasella {
-
     private Prigione prigione;
-
-
 }
