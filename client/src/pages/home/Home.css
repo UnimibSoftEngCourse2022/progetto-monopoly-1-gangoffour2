@@ -1,0 +1,15 @@
+.menu_selector {
+    display: flex;
+    justify-content: space-around;
+    border: 1px solid lightgrey;
+    border-radius: 10px;
+}
+
+.menu_selector div {
+    width: 100%;
+}
+
+.menu_selector div[aria-selected="true"]{
+    background-color: lightgrey;
+    border-radius: 10px;
+}
