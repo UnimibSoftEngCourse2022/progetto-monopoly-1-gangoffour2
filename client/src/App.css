@@ -28,6 +28,30 @@
   color: #61dafb;
 }
 
+.container {
+  width: 600px;
+  margin: 30px auto;
+  border: 1px solid gray;
+  border-radius: 10px;
+  padding: 10px 40px;
+}
+
+button {
+  padding: 10px 15px;
+  border-radius: 10px;
+  background-color: steelblue;
+  color: white;
+  font-weight: bolder;
+  border: 0px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px 0px black;
+  transition: 0.2s all;
+}
+
+button:hover {
+  box-shadow: 0px 0px 20px 0px black;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
