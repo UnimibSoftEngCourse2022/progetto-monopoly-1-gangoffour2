@@ -2,6 +2,7 @@ package com.gangoffour2.monopoly;
 
 import com.gangoffour2.monopoly.azioni.giocatore.AcquistaProprieta;
 import com.gangoffour2.monopoly.azioni.giocatore.Ipoteca;
+import com.gangoffour2.monopoly.model.Giocatore;
 import com.gangoffour2.monopoly.model.casella.Societa;
 import com.gangoffour2.monopoly.model.casella.Stazione;
 import com.gangoffour2.monopoly.model.casella.Terreno;
@@ -51,7 +52,7 @@ class TestEventiCaselle {
         societa.onAzioneGiocatore(AcquistaProprieta.builder().build());
         assertTrue(societa.getEvento() instanceof  SocietaAcquistata);
 
-        societa.onAzioneGiocatore(Ipoteca.builder().build());
+        societa.onAzioneGiocatore(Ipoteca.builder().giocatore(Giocatore.builder().nick("Ciao").build()).build());
         assertTrue(societa.getEvento() instanceof SocietaIpotecata);
     }
 }
