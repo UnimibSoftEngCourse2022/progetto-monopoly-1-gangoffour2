@@ -47,6 +47,18 @@ public class Terreno extends Proprieta {
         listaCase = new ArrayList<>();
     }
 
+    @Override
+    public int calcolaAffitto() {
+        if(albergo != null){
+            return affitti.get(affitti.size() - 1);
+        }
+        else if (listaCase.size() > affitti.size()) {
+            return affitti.get(affitti.size() - 2);
+        }
+
+        return affitti.get(listaCase.size() - 1);
+    }
+
     public void aggiungiEdificio(){
         if (listaCase.size() == maxCase){
             listaCase.add(Casa.builder().build());

@@ -2,6 +2,7 @@ package com.gangoffour2.monopoly.stati.partita;
 
 import com.gangoffour2.monopoly.azioni.casella.*;
 import com.gangoffour2.monopoly.azioni.giocatore.*;
+import com.gangoffour2.monopoly.azioni.giocatore.PagaAffittoAzione;
 import com.gangoffour2.monopoly.model.Partita;
 import lombok.Data;
 import lombok.experimental.SuperBuilder;
@@ -28,7 +29,7 @@ public abstract class StatoPartita implements Serializable {
     }
 
 
-    public void onAzioneCasella(PagaAffitto pagaAffitto){
+    public void onAzioneCasella(PagaAffittoAzione pagaAffittoAzione){
 
     }
 
@@ -73,6 +74,10 @@ public abstract class StatoPartita implements Serializable {
 
     }
 
+
+    public void onAzioneCasella(PagaAffitto pagaAffitto){
+
+    }
 
     public void esegui(AttesaLancioDadi attesaLancioDadi){
 
@@ -136,5 +141,9 @@ public abstract class StatoPartita implements Serializable {
 
     public void onAzioneCasella(ModificaDenaro modificaDenaro) {
 
+    }
+
+    public boolean onAzioneGiocatore(PagaAffittoAzione pagaAffittoAzione) {
+        return false;
     }
 }

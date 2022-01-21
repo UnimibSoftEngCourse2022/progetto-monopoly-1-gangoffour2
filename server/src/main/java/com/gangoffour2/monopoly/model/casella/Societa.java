@@ -19,4 +19,10 @@ public class Societa extends Proprieta {
         evento = SocietaNonAcquistata.builder().societa(this).build();
     }
 
+    @Override
+    public int calcolaAffitto() {
+        // Da rivedere come calcolare l'affitto per la società
+        return 200;
+    }
+
 }

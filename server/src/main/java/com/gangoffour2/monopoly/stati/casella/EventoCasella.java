@@ -69,4 +69,8 @@ public abstract class EventoCasella implements Serializable {
     public void onAzioneGiocatore(RimuoviIpoteca rimuoviIpoteca){
 
     }
+
+    public void onAzioneGiocatore(PagaAffittoAzione pagaAffittoAzione) {
+
+    }
 }

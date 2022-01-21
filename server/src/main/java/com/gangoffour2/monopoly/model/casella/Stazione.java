@@ -19,5 +19,11 @@ public class Stazione extends Proprieta {
         evento = StazioneNonAcquistata.builder().stazione(this).build();
     }
 
+    @Override
+    public int calcolaAffitto() {
+        // Da decidere come calcolare l'affitto
+        return 200;
+    }
+
 
 }

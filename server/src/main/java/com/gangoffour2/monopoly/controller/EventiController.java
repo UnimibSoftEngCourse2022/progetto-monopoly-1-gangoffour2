@@ -88,11 +88,12 @@ public class EventiController {
 
     @MessageMapping("/partite/{id}/ipoteca")
     public void ipoteca(@Payload Ipoteca ipoteca, @DestinationVariable String id){
-
+        throw new UnsupportedOperationException();
     }
 
     @MessageMapping("/partite/{id}/offri")
     public void offri(@Payload Offerta offerta, @DestinationVariable String id) {
+        throw new UnsupportedOperationException();
     }
 
     @Autowired

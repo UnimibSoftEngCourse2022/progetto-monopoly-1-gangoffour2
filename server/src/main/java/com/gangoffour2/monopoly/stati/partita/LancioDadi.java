@@ -36,7 +36,8 @@ public class LancioDadi extends StatoPartita {
 
     @Override
     public void onAzioneCasella(PagaAffitto pagaAffitto){
-
+        partita.setStato(AttesaAffitto.builder().build());
+        partita.getStato().esegui(pagaAffitto);
     }
 
     @Override
@@ -46,7 +47,8 @@ public class LancioDadi extends StatoPartita {
 
     @Override
     public void onAzioneCasella(ArrestaGiocatore arrestaGiocatore){
-
+        partita.setStato(AttesaPrigione.builder().build());
+        partita.getStato().esegui(arrestaGiocatore);
     }
 
 

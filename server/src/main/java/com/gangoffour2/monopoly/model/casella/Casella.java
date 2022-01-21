@@ -15,6 +15,7 @@ import lombok.experimental.SuperBuilder;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Objects;
 
 
 @Data
@@ -90,5 +91,18 @@ public abstract class Casella implements SubjectStatoPartita, Serializable {
 
     public void onAzioneGiocatore(AzioneGiocatore azioneGiocatore){
         azioneGiocatore.accept(evento);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Casella casella = (Casella) o;
+        return Objects.equals(nome, casella.nome);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(nome);
     }
 }
