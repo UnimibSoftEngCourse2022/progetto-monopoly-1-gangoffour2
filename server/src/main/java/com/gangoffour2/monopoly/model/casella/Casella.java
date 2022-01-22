@@ -43,7 +43,9 @@ public abstract class Casella implements SubjectStatoPartita, Serializable {
 
 
     @JsonProperty("type")
-    public abstract String getTipo();
+    public String getTipo(){
+        return getClass().getSimpleName();
+    }
 
     public void arrivo(){
         evento.arrivo();
