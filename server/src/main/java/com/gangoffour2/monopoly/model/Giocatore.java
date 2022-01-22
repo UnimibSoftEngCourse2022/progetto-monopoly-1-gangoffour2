@@ -44,6 +44,23 @@ public class Giocatore implements Serializable {
         destinatario.conto += importo;
     }
 
+    public void acquistaProprieta(Proprieta proprieta){
+        proprietaPossedute.add(proprieta);
+        proprieta.setProprietario(this);
+    }
+
+
+    public void abbandona(){
+        lasciaProprieta();
+    }
+
+    public void lasciaProprieta(){
+        for (Proprieta p : proprietaPossedute){
+            p.setProprietario(null);
+        }
+        proprietaPossedute.clear();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

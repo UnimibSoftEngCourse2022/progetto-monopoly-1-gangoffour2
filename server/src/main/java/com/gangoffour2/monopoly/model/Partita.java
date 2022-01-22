@@ -9,8 +9,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.gangoffour2.monopoly.azioni.casella.AzioneCasella;
 import com.gangoffour2.monopoly.azioni.giocatore.AzioneGiocatore;
 import com.gangoffour2.monopoly.eccezioni.GiocatoreEsistenteException;
-import com.gangoffour2.monopoly.eccezioni.NoPlayerException;
 import com.gangoffour2.monopoly.eccezioni.PartitaPienaException;
+import com.gangoffour2.monopoly.services.TimeoutHandler;
 import com.gangoffour2.monopoly.stati.partita.FineTurno;
 import com.gangoffour2.monopoly.stati.partita.InizioTurno;
 import com.gangoffour2.monopoly.stati.partita.StatoPartita;
@@ -43,7 +43,8 @@ public class Partita implements PartitaObserver {
     private boolean azioneAttesaRicevuta;
 
     @JsonIgnore
-    private transient Thread listenerTimeoutEventi;
+    @Builder.Default
+    private transient TimeoutHandler listenerTimeoutEventi = new TimeoutHandler();
 
     public synchronized void inizioPartita(){
         turnoCorrente = Turno.builder()
@@ -70,9 +71,12 @@ public class Partita implements PartitaObserver {
     }
 
 
-    public synchronized void rimuoviGiocatore(Giocatore g) throws NoPlayerException {
-        if(!this.getGiocatori().remove(g))
-            throw new NoPlayerException();
+    public synchronized void rimuoviGiocatore(Giocatore g) {
+        Giocatore giocatore = getGiocatoreByNick(g.getNick());
+        if (giocatore != null){
+            giocatore.abbandona();
+            giocatori.remove(giocatore);
+        }
     }
 
     public synchronized void cambiaTurno(){
@@ -85,7 +89,6 @@ public class Partita implements PartitaObserver {
 
         turnoCorrente.inizializzaDadi();
         turnoCorrente.getGiocatore().getCasellaCorrente().inizioTurno();
-        //Eventi cambiaTurno, broadcast sync
     }
     public void fineGiro(){
         //Eventi per fine giro (Economia random o altro)
@@ -100,15 +103,14 @@ public class Partita implements PartitaObserver {
         stato.esegui(azione);
     }
 
-    public synchronized void onAzioneGiocatore(AzioneGiocatore azione) throws InterruptedException {
+    public synchronized void onAzioneGiocatore(AzioneGiocatore azione)  {
         codaAzioniGiocatore.addLast(azione);
         azioneAttesaRicevuta = azione.accept(stato);
         if(azioneAttesaRicevuta){
+            listenerTimeoutEventi.stopTimeout();
             codaAzioniGiocatore.removeLast();
         }
     }
-
-
 
 
     public synchronized void setStato(StatoPartita nuovoStato){
@@ -145,23 +147,7 @@ public class Partita implements PartitaObserver {
     }
 
     public synchronized void attendiAzione() {
-        azioneAttesaRicevuta = false;
-        setTimeout(() -> stato.onTimeout(), 2000);
+        listenerTimeoutEventi.setTimeout(() -> stato.onTimeout(), 2000);
     }
 
-    public synchronized void setTimeout(Runnable evento, int millisecondi){
-        if(listenerTimeoutEventi != null && listenerTimeoutEventi.isAlive()){
-            listenerTimeoutEventi.interrupt();
-            listenerTimeoutEventi = null;
-        }
-        listenerTimeoutEventi = new Thread(() -> {
-            try {
-                Thread.sleep(millisecondi);
-                evento.run();
-            } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
-            }
-        });
-        listenerTimeoutEventi.start();
-    }
 }
