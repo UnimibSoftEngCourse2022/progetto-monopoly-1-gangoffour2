@@ -1,6 +1,5 @@
 package com.gangoffour2.monopoly.model.casella;
 
-import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.gangoffour2.monopoly.model.Albergo;
 import com.gangoffour2.monopoly.model.Casa;
 import com.gangoffour2.monopoly.stati.casella.TerrenoNonAcquistato;
@@ -14,7 +13,6 @@ import java.util.ArrayList;
 
 @Data
 @SuperBuilder
-@JsonTypeName("Terreno")
 public class Terreno extends Proprieta {
     private ArrayList<Integer> affitti;
     private int maxCase;
@@ -35,11 +33,6 @@ public class Terreno extends Proprieta {
         MARRONE,
         VIOLA,
         VERDE
-    }
-
-    @Override
-    public String getTipo() {
-        return "Terreno";
     }
 
     protected Terreno(){
