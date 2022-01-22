@@ -9,6 +9,6 @@ import java.io.Serializable;
 @SuperBuilder
 public abstract class Carta implements Serializable {
     private String testo;
-    public abstract void Esegui();
-    public abstract void Effetto();
+    public abstract void esegui();
+    public abstract void effetto();
 }

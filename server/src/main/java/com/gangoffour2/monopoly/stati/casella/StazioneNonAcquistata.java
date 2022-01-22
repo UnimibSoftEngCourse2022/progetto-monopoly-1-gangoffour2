@@ -11,7 +11,7 @@ public class StazioneNonAcquistata extends EventoStazione {
 
     @Override
     public void onAzioneGiocatore(AcquistaProprieta acquistaProprieta){
-        stazione.setProprietario(acquistaProprieta.getGiocatore());
+        acquistaProprieta.getGiocatore().acquistaProprieta(stazione);
         stazione.setEvento(StazioneAcquistata.builder()
                         .stazione(stazione)
                 .build());

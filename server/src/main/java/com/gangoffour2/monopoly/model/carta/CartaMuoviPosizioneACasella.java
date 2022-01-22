@@ -8,12 +8,12 @@ import lombok.experimental.SuperBuilder;
 public class CartaMuoviPosizioneACasella extends Carta{
     
     @Override
-    public void Esegui() {
+    public void esegui() {
 
     }
 
     @Override
-    public void Effetto() {
+    public void effetto() {
 
     }
 }

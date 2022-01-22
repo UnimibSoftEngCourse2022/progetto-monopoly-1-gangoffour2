@@ -17,7 +17,7 @@ public class TerrenoNonAcquistato extends EventoTerreno {
 
     @Override
     public void onAzioneGiocatore(AcquistaProprieta acquistaProprieta){
-        terreno.setProprietario(acquistaProprieta.getGiocatore());
+        acquistaProprieta.getGiocatore().acquistaProprieta(terreno);
         terreno.setEvento(
                 TerrenoAcquistato.builder()
                 .terreno(terreno)
