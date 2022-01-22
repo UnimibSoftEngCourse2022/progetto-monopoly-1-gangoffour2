@@ -22,8 +22,9 @@ class TestEventiCaselle {
 
         t.setEvento(TerrenoNonAcquistato.builder().build());
         ((EventoTerreno)t.getEvento()).setTerreno(t);
+        Giocatore giocatore = Giocatore.builder().nick("Ciao").build();
 
-        t.onAzioneGiocatore(AcquistaProprieta.builder().build());
+        t.onAzioneGiocatore(AcquistaProprieta.builder().giocatore(giocatore).build());
         assertTrue(t.getEvento() instanceof TerrenoAcquistato);
 
         t.onAzioneGiocatore(Ipoteca.builder().build());
@@ -35,8 +36,9 @@ class TestEventiCaselle {
         Stazione stazione = Stazione.builder().nome("Stazione sud").build();
         stazione.setEvento(StazioneNonAcquistata.builder().build());
         ((EventoStazione)stazione.getEvento()).setStazione(stazione);
+        Giocatore giocatore = Giocatore.builder().nick("Ciao").build();
 
-        stazione.onAzioneGiocatore(AcquistaProprieta.builder().build());
+        stazione.onAzioneGiocatore(AcquistaProprieta.builder().giocatore(giocatore).build());
         assertTrue(stazione.getEvento() instanceof StazioneAcquistata);
 
         stazione.onAzioneGiocatore(Ipoteca.builder().build());
@@ -49,10 +51,11 @@ class TestEventiCaselle {
         societa.setEvento(SocietaNonAcquistata.builder().build());
         ((EventoSocieta)societa.getEvento()).setSocieta(societa);
 
-        societa.onAzioneGiocatore(AcquistaProprieta.builder().build());
+        Giocatore giocatore = Giocatore.builder().nick("Ciao").build();
+        societa.onAzioneGiocatore(AcquistaProprieta.builder().giocatore(giocatore).build());
         assertTrue(societa.getEvento() instanceof  SocietaAcquistata);
 
-        societa.onAzioneGiocatore(Ipoteca.builder().giocatore(Giocatore.builder().nick("Ciao").build()).build());
+        societa.onAzioneGiocatore(Ipoteca.builder().giocatore(giocatore).build());
         assertTrue(societa.getEvento() instanceof SocietaIpotecata);
     }
 }
