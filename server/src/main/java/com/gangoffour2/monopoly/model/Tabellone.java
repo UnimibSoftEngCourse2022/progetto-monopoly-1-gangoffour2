@@ -28,19 +28,33 @@ public class Tabellone implements Serializable {
 
 
     public void muoviGiocatore(Giocatore giocatore, int quantita){
-        Casella corrente = giocatore.getCasellaCorrente();
-        giocatore.setCasellaCorrente(caselle.get((caselle.indexOf(corrente) + quantita) % caselle.size()));
+        if(quantita != 0){
+            Turno turno = partita.getTurnoCorrente();
+            Casella corrente = giocatore.getCasellaCorrente();
+            giocatore.setCasellaCorrente(caselle.get((caselle.indexOf(corrente) + quantita) % caselle.size()));
+            if(quantita > 0) {
+                turno.setCasellaDaVisitare(quantita);
+                partita.turnoStandard();
+                //eventualmente stati?
+            }
+            else
+                giocatore.getCasellaCorrente().arrivo();
+            }
     }
 
-    public void muoviGiocatoreProssimoTipoCasella(Giocatore giocatore, Casella c){
+    public void muoviGiocatoreACasella(Giocatore giocatore, Casella c){
+        giocatore.setCasellaCorrente(c);
+    }
+
+    public void muoviGiocatoreProssimoTipoCasella(Giocatore giocatore, Class <? extends Casella> c){
         Casella corrente = giocatore.getCasellaCorrente();
         int i = caselle.indexOf(corrente);
         Casella prossimaCasella = caselle.get(i+1);
-        while(!prossimaCasella.getTipo().equals(c.getTipo())){
+        while(!prossimaCasella.getClass().equals(c)){
             if(i + 1 > caselle.size())
                 i = 0;
             i++;
-            if(caselle.get(i).getTipo().equals(c.getTipo()))
+            if(caselle.get(i).getClass().equals(c))
                 prossimaCasella = caselle.get(i);
         }
         giocatore.setCasellaCorrente(prossimaCasella);
@@ -57,13 +71,13 @@ public class Tabellone implements Serializable {
     }
 
     public void pescaImprevisto(Giocatore giocatore){
-
+        Carta carta = imprevisti.remove();
+        carta.effetto(giocatore);
     }
 
     public void pescaOpportunita(Giocatore giocatore){
         Carta carta = probabilita.remove();
-
-
+        carta.effetto(giocatore);
     }
 
 }

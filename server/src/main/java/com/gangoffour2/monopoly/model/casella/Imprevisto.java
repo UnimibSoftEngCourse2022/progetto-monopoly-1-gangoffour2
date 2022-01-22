@@ -13,3 +13,4 @@ public class Imprevisto extends Casella {
     }
 
 }
+
