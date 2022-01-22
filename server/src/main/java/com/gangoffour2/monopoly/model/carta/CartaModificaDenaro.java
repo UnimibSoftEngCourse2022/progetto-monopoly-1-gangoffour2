@@ -1,5 +1,6 @@
 package com.gangoffour2.monopoly.model.carta;
 
+import com.gangoffour2.monopoly.model.Giocatore;
 import lombok.Data;
 import lombok.experimental.SuperBuilder;
 
@@ -8,7 +9,7 @@ import lombok.experimental.SuperBuilder;
 public class CartaModificaDenaro extends Carta{
 
     @Override
-    public void esegui() {
+    public void esegui(Giocatore g) {
 
     }
 

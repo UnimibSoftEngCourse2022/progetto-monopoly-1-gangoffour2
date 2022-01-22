@@ -32,6 +32,20 @@ public class Tabellone implements Serializable {
         giocatore.setCasellaCorrente(caselle.get((caselle.indexOf(corrente) + quantita) % caselle.size()));
     }
 
+    public void muoviGiocatoreProssimoTipoCasella(Giocatore giocatore, Casella c){
+        Casella corrente = giocatore.getCasellaCorrente();
+        int i = caselle.indexOf(corrente);
+        Casella prossimaCasella = caselle.get(i+1);
+        while(!prossimaCasella.getTipo().equals(c.getTipo())){
+            if(i + 1 > caselle.size())
+                i = 0;
+            i++;
+            if(caselle.get(i).getTipo().equals(c.getTipo()))
+                prossimaCasella = caselle.get(i);
+        }
+        giocatore.setCasellaCorrente(prossimaCasella);
+    }
+
     public void applicaEffetto(Giocatore giocatore, int offset){
         if(offset == 0){
             giocatore.getCasellaCorrente().arrivo();
