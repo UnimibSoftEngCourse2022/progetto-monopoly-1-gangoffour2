@@ -20,7 +20,7 @@ public class Ipoteca extends AzioneGiocatore{
     }
 
     @Override
-    public boolean accept(StatoPartita statoPartita) throws InterruptedException {
+    public boolean accept(StatoPartita statoPartita) {
         return statoPartita.onAzioneGiocatore(this);
     }
 }

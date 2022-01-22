@@ -18,5 +18,5 @@ public abstract class AzioneGiocatore implements Serializable {
     }
 
     public abstract void accept(EventoCasella eventoCasella);
-    public abstract boolean accept(StatoPartita statoPartita) throws InterruptedException;
+    public abstract boolean accept(StatoPartita statoPartita) ;
 }

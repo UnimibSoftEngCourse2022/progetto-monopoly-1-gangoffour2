@@ -8,7 +8,7 @@ import lombok.Builder;
 @Builder
 public class Lobby extends StatoPartita {
     @Override
-    public boolean onAzioneGiocatore(EntraInPartita entraInPartita) throws InterruptedException {
+    public boolean onAzioneGiocatore(EntraInPartita entraInPartita){
         // Aggiorna i client e poi si rimette in attesa se non è stato raggiunto il numero
         try {
             partita.aggiungiGiocatore(entraInPartita.getGiocatore());

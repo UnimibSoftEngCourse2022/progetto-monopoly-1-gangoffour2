@@ -6,7 +6,7 @@ import lombok.Builder;
 @Builder
 public class InizioTurno extends StatoPartita {
     @Override
-    public void onAzioneCasella(AttesaLancioDadi attesaLancioDadi) throws InterruptedException {
+    public void onAzioneCasella(AttesaLancioDadi attesaLancioDadi){
         partita.setStato(LancioDadi.builder().build());
         partita.getStato().esegui(attesaLancioDadi);
     }

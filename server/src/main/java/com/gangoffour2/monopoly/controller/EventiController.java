@@ -41,7 +41,7 @@ public class EventiController {
 
     @MessageMapping("/partite/{id}/entra")
     public void entraInPartita(@Payload String nick, @DestinationVariable String id,
-                               SimpMessageHeaderAccessor head) throws InterruptedException {
+                               SimpMessageHeaderAccessor head)  {
         Partita partita = PartiteRespository.getInstance().getPartitaByid(id);
         if(partita != null){
             try{
@@ -71,7 +71,7 @@ public class EventiController {
     }
 
     @MessageMapping("partite/{id}/acquista")
-    public void acquista(@Payload AcquistaProprieta azione, @DestinationVariable String id) throws InterruptedException {
+    public void acquista(@Payload AcquistaProprieta azione, @DestinationVariable String id) {
         Partita partita = PartiteRespository.getInstance().getPartitaByid(id);
         if (partita != null){
             partita.onAzioneGiocatore(azione);
@@ -79,7 +79,7 @@ public class EventiController {
     }
 
     @MessageMapping("/partite/{id}/lanciaDadi")
-    public void lanciaDadi(@Payload LanciaDadi lanciaDadi, @DestinationVariable String id) throws InterruptedException {
+    public void lanciaDadi(@Payload LanciaDadi lanciaDadi, @DestinationVariable String id)  {
         Partita partita = PartiteRespository.getInstance().getPartitaByid(id);
         if (partita != null){
             partita.onAzioneGiocatore(lanciaDadi);

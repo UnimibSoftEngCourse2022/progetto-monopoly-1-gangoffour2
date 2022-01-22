@@ -42,7 +42,7 @@ public abstract class StatoPartita implements Serializable {
 
     }
 
-    public void onAzioneCasella(AttesaLancioDadi attesaLancioDadi) throws InterruptedException {
+    public void onAzioneCasella(AttesaLancioDadi attesaLancioDadi) {
 
     }
 
@@ -87,40 +87,40 @@ public abstract class StatoPartita implements Serializable {
      * Di default, gli eventi arrivati dall'esterno non sbloccano la partita.
      * Ogni stato ridefinirà il suo comportamento in base al tipo dell'azione.
      */
-    public boolean onAzioneGiocatore(AcquistaProprieta acquistaProprieta) throws InterruptedException {
+    public boolean onAzioneGiocatore(AcquistaProprieta acquistaProprieta) {
         return false;
     }
 
-    public boolean onAzioneGiocatore(VendiProprieta vendiProprieta) throws InterruptedException {
+    public boolean onAzioneGiocatore(VendiProprieta vendiProprieta) {
         return false;
     }
 
-    public  boolean onAzioneGiocatore(Ipoteca ipoteca) throws InterruptedException {
+    public  boolean onAzioneGiocatore(Ipoteca ipoteca) {
         return false;
     }
 
-    public boolean onAzioneGiocatore(UpgradaTerreno upgradaTerreno) throws InterruptedException {
+    public boolean onAzioneGiocatore(UpgradaTerreno upgradaTerreno) {
         return false;
     }
-    public boolean onAzioneGiocatore(DowngradaTerreno downgradaTerreno) throws InterruptedException {
-        return false;
-    }
-
-    public boolean onAzioneGiocatore(LanciaDadi lanciaDadi) throws InterruptedException {
+    public boolean onAzioneGiocatore(DowngradaTerreno downgradaTerreno) {
         return false;
     }
 
-    public void onAzioneCasella(Offerta offerta) throws InterruptedException {
-    }
-
-    public void onAzioneCasella(AttesaPrigione attesaPrigione) throws InterruptedException {
-    }
-
-    public boolean onAzioneGiocatore(Paga paga) throws InterruptedException {
+    public boolean onAzioneGiocatore(LanciaDadi lanciaDadi) {
         return false;
     }
 
-    public boolean onAzioneGiocatore(EntraInPartita entraInPartita) throws InterruptedException {
+    public void onAzioneCasella(Offerta offerta) {
+    }
+
+    public void onAzioneCasella(AttesaPrigione attesaPrigione) {
+    }
+
+    public boolean onAzioneGiocatore(Paga paga) {
+        return false;
+    }
+
+    public boolean onAzioneGiocatore(EntraInPartita entraInPartita) {
         return false;
     }
 

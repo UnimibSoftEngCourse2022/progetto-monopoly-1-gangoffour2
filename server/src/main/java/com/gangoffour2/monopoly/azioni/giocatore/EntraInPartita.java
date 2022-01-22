@@ -15,7 +15,7 @@ public class EntraInPartita extends AzioneGiocatore{
     }
 
     @Override
-    public synchronized boolean accept(StatoPartita statoPartita) throws InterruptedException {
+    public synchronized boolean accept(StatoPartita statoPartita) {
         return statoPartita.onAzioneGiocatore(this);
     }
 }
