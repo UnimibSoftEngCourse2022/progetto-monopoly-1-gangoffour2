@@ -5,8 +5,8 @@ import lombok.experimental.SuperBuilder;
 
 @Data
 @SuperBuilder
-public class CartaModificaDenaro extends Carta{
-
+public class CartaMuoviPosizioneACasella extends Carta{
+    
     @Override
     public void Esegui() {
 
