@@ -2,10 +2,11 @@ package com.gangoffour2.monopoly.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.gangoffour2.monopoly.model.carta.Imprevisto;
-import com.gangoffour2.monopoly.model.carta.Probabilita;
+import com.gangoffour2.monopoly.model.carta.Carta;
 import com.gangoffour2.monopoly.model.casella.Casella;
 import lombok.Builder;
 import lombok.AllArgsConstructor;
@@ -20,10 +21,10 @@ public class Tabellone implements Serializable {
     private ArrayList<Casella> caselle;
 
     @Builder.Default
-    private ArrayList<Probabilita> probabilita = new ArrayList<>();
+    private Queue<Carta> probabilita = new LinkedList<>();
 
     @Builder.Default
-    private ArrayList<Imprevisto> imprevisti = new ArrayList<>();
+    private Queue<Carta> imprevisti = new LinkedList<>();
 
 
     public void muoviGiocatore(Giocatore giocatore, int quantita){
