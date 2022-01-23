@@ -28,7 +28,7 @@
   color: #61dafb;
 }
 
-.container {
+.container_menu {
   width: 500px;
   margin: 30px auto;
   border: 1px solid gray;
@@ -46,7 +46,7 @@ button {
   border-radius: 6px;
   box-shadow: 0px 0px 10px 0px black;
   transition: 0.2s all;
-  font-size: 0.7em;
+  font-size: 1.2em;
   text-transform: uppercase;
 }
 

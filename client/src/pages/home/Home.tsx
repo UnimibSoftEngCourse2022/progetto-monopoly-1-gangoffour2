@@ -33,7 +33,7 @@ export default class Home extends React.Component<Props, State> {
         ]
 
         return (
-            <div className={"container"}>
+            <div className={"container_menu"}>
                <h1>Monopoly</h1>
                 <div className={"menu_selector"}>
                     {lista.map(( el, i ) =>

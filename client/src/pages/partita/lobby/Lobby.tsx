@@ -30,7 +30,7 @@ export default class Lobby extends React.Component<Props, State> {
     handleSetNickname = (text: string) => this.setState({nickname: text})
 
     render() {
-        return <div className={"container container_partita"}>
+        return <div className={"container_menu container_partita"}>
             <h1>Accesso alla partita</h1>
             <TextInput className={"text_input_partita"} label={"Nickname"} type={"text"} on_change={this.handleSetNickname}/>
             <button onClick={this.handleSend}>Accedi</button>
