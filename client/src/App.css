@@ -29,7 +29,7 @@
 }
 
 .container {
-  width: 600px;
+  width: 500px;
   margin: 30px auto;
   border: 1px solid gray;
   border-radius: 10px;
@@ -39,13 +39,15 @@
 button {
   padding: 10px 15px;
   border-radius: 10px;
-  background-color: steelblue;
+  background-color: indianred;
   color: white;
   font-weight: bolder;
   border: 0px;
-  border-radius: 10px;
+  border-radius: 6px;
   box-shadow: 0px 0px 10px 0px black;
   transition: 0.2s all;
+  font-size: 0.7em;
+  text-transform: uppercase;
 }
 
 button:hover {
