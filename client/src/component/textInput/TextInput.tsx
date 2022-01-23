@@ -56,8 +56,10 @@ const TextInput: FunctionComponent<Props> = (props) => {
     }
     let type = props.type ? props.type : "text"
 
+    const propsClassName = props.className ?? " "
 
-    return <div className={"text_input_container " + props.className}>
+
+    return <div className={"text_input_container " + propsClassName}>
         <label>{props.label}</label>
         <input
         type={type}

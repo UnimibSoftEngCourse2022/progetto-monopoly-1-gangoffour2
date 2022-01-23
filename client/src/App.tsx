@@ -2,8 +2,7 @@ import React from 'react';
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import './App.css';
 import Home from "./pages/home/Home";
-import Tabellone from "./component/Tabellone";
-import Partita from "./pages/partita/Partita";
+import PartitaRouter from "./pages/partita/PartitaRouter";
 
 function App() {
 
@@ -12,7 +11,7 @@ function App() {
         <BrowserRouter>
             <Routes>
                 <Route path="/" element={<Home/>}/>
-                <Route path={"/partita/:id"} element={<Partita/>} />
+                <Route path={"/partita/:id"} element={<PartitaRouter/>} />
             </Routes>
         </BrowserRouter>
     </div>

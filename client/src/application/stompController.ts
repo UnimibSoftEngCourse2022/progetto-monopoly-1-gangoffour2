@@ -2,6 +2,7 @@ import { Stomp } from "@stomp/stompjs";
 import websocket from "websocket"
 import IPartita from "../interfaces/IPartita";
 import IConfigurazione, {Difficolta} from "../interfaces/IConfigurazione";
+import {ObserverSingleton} from "./ObserverSingleton";
 
 Object.assign(global, {WebSocket: websocket.w3cwebsocket})
 
@@ -40,10 +41,15 @@ export default class StompController {
             })
     }
 
-    static accediPartita(idPartita: string) {
+    static accediPartita(idPartita: string, nickname: string) {
         const client = Stomp.client( WS_URL + "/stomp");
         client.connect({}, () => {
-            client.subscribe("/topic/partite/" + idPartita, (res) => console.log(res.body))
+            client.subscribe("/topic/partite/" + idPartita, (res) => ObserverSingleton.notify(res as unknown as IPartita))
+            client.send("/app/partite/" + idPartita + "/entra", {},
+                JSON.stringify({
+                    nick: nickname
+                })
+            )
         })
     }
 

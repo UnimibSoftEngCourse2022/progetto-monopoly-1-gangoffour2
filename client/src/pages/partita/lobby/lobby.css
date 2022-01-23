@@ -1,0 +1,10 @@
+.container_partita {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin: 40px auto;
+}
+
+.container_partita .text_input_partita {
+    margin: 0px auto 30px auto;
+}
