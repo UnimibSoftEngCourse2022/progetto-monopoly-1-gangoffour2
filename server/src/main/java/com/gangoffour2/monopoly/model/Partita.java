@@ -100,7 +100,6 @@ public class Partita implements PartitaObserver {
     @Override
     public synchronized void onAzioneCasella(AzioneCasella azione) throws InterruptedException {
         azione.accept(stato);
-        stato.esegui(azione);
     }
 
     public synchronized void onAzioneGiocatore(AzioneGiocatore azione)  {
@@ -111,7 +110,6 @@ public class Partita implements PartitaObserver {
             codaAzioniGiocatore.removeLast();
         }
     }
-
 
     public synchronized void setStato(StatoPartita nuovoStato){
         stato = nuovoStato;
