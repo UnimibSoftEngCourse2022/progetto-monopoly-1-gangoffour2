@@ -1,6 +1,6 @@
 import React from 'react';
 import ICasella from "../interfaces/caselle/ICasella";
-import 'caselle/caselle.scss';
+import './caselle/caselle.scss';
 
 interface Props{
     caselle: ICasella[]
