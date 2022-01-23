@@ -49,14 +49,14 @@ h1, h2, h3, h4, h5, h6 {
 
 // Property colors
 
-.dark-purple { background: $dark-purple; }
-.light-blue  { background: $light-blue; }
-.purple      { background: $purple; }
-.orange      { background: $orange; }
-.red         { background: $red; }
-.yellow      { background: $yellow; }
-.green       { background: $green; }
-.dark-blue   { background: $dark-blue; }
+.MARRONE { background: $brown; }
+.AZZURRO  { background: $light-blue; }
+.VIOLA      { background: $purple; }
+.ARANCIONE      { background: $orange; }
+.ROSSO        { background: $red; }
+.GIALLO      { background: $yellow; }
+.VERDE       { background: $green; }
+.BLU   { background: $dark-blue; }
 
 
 // =================
@@ -83,9 +83,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .center {
+  background-color: #bde0c4;
   grid-column: 2 / 11;
   grid-row: 2 / 11;
-  background: $board;
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   grid-template-rows: repeat(7, 1fr);
@@ -154,6 +154,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .bottom-row {
+  grid-auto-flow: dense;
   grid-column: 2 / 11;
   grid-row: 11;
 }
@@ -232,6 +233,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .property {
+  background-color: #bde0c4;
   .color-bar {
     height: 25px;
     border-bottom: 2px solid $black;
@@ -243,6 +245,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .railroad {
+  background-color: #bde0c4;
   .name {
     padding-top: 10px;
   }
@@ -278,6 +281,7 @@ h1, h2, h3, h4, h5, h6 {
 // Specific spaces
 
 .go {
+  background-color: #bde0c4;
   grid-column: 11;
   grid-row: 11 / 12;
   position: relative;
@@ -306,6 +310,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .jail {
+  background-color: #bde0c4;
   grid-column: 1;
   grid-row: 11 / 12;
   display: grid;
@@ -373,6 +378,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .free-parking {
+  background-color: #bde0c4;
   grid-column: 1;
   grid-row: 1 / 2;
 
@@ -394,6 +400,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .go-to-jail {
+  background-color: #bde0c4;
   grid-column: 11;
   grid-row: 1 / 1;
 
@@ -415,6 +422,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .chance {
+  background-color: #bde0c4;
   .container {
     justify-content: center;
   }
@@ -430,6 +438,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .community-chest {
+  background-color: #bde0c4;
   .container {
     justify-content: space-around;
   }
@@ -445,6 +454,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .electric-company {
+  background-color: #bde0c4;
   .drawing {
     color: $yellow;
   }
@@ -481,6 +491,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .luxury-tax {
+  background-color: #bde0c4;
   .drawing {
     font-size: 50px;
   }

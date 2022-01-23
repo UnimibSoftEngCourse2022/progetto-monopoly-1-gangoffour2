@@ -21,7 +21,7 @@ export class Stazione extends React.Component<Props, State> {
         return <div className="space railroad">
             <div className="container">
                 <div className="name">{this.props.casella.nome}</div>
-                    <i className="drawing fa fa-subway"></i>
+                    <i className="drawing fa fa-subway"/>
                     <div className="price">{this.props.casella.costoBase}</div>
             </div>
         </div>
