@@ -20,7 +20,7 @@ export class VaiInPrigione extends React.Component<Props, State> {
         return <div className="space corner go-to-jail">
             <div className="container">
                 <div className="name">Vai in</div>
-                <i className="drawing fa fa-gavel"></i>
+                <i className="drawing fa fa-gavel"/>
                 <div className="name">Prigione</div>
             </div>
         </div>

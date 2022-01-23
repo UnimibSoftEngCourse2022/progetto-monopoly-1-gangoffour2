@@ -1,6 +1,7 @@
 import React from 'react';
-import ICasellaTerreno from '../../interfaces/caselle/ICasellaTererno'
+import ICasellaTerreno, {Colore} from '../../interfaces/caselle/ICasellaTererno'
 import './caselle.scss'
+
 
 interface State {
 
@@ -17,10 +18,9 @@ export class Terreno extends React.Component<Props, State> {
     }
 
     render() {
-        console.log(this.props.casella)
         return <div className="space property">
             <div className = "container">
-                <div className={"color-bar " + "dark-purple"}/>
+                <div className={"color-bar " + this.props.casella.colore}/>
                 <div className="name three-line-name">{this.props.casella.nome}</div>
                 <div className="price">{this.props.casella.costoBase}</div>
             </div>

@@ -20,7 +20,7 @@ export class Parcheggio extends React.Component<Props, State> {
         return <div className="space corner free-parking">
             <div className="container">
                 <div className="name">Free</div>
-                <i className="drawing fa fa-car"></i>
+                <i className="drawing fa fa-car"/>
                 <div className="name">Parking</div>
             </div>
         </div>

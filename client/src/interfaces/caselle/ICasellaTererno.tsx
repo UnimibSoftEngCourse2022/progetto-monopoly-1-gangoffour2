@@ -11,6 +11,7 @@ export enum Colore {
     VIOLA = "purple",
     VERDE = "green"
 }
+
 export interface ICasellaTerreno extends ICasellaProprieta{
     type: "Terreno",
     affitti: number[],
