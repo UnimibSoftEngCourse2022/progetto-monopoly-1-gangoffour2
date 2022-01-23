@@ -1,4 +1,4 @@
-import ICasella from "./ICasella";
+import ICasella from "./caselle/ICasella";
 import {IAlbergo, ICasa} from "./IEdificio";
 import IConfigurazione from "./IConfigurazione";
 import IGiocatore from "./IGiocatore";
