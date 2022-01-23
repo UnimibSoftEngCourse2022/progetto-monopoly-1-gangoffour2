@@ -23,5 +23,8 @@ public class AttesaPrigione extends StatoPartita {
     public void esegui(ArrestaGiocatore ag){
         Turno turno = partita.getTurnoCorrente();
         Giocatore g = turno.getGiocatore();
+        if(g.haCartaEsciGratis()){
+            partita.getTabellone().getProbabilita().add(g.rimuoviEsciGratis());
+        }
     }
 }

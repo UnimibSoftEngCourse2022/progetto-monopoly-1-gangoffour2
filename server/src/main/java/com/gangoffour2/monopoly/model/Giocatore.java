@@ -13,6 +13,7 @@ import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.Objects;
 
 @Data
@@ -26,7 +27,7 @@ public class Giocatore implements Serializable {
     private String idSessione;
     private String nick;
     private int conto;
-    private ArrayList<CartaEsciGratisPrigione> esciGratis;
+    private LinkedList<CartaEsciGratisPrigione> esciGratis;
     private Casella casellaCorrente;
 
     @Builder.Default
@@ -63,6 +64,14 @@ public class Giocatore implements Serializable {
 
     public void aggiungiEsciGratis(CartaEsciGratisPrigione c){
         this.getEsciGratis().add(c);
+    }
+
+    public CartaEsciGratisPrigione rimuoviEsciGratis(){
+        return this.getEsciGratis().remove();
+    }
+
+    public boolean haCartaEsciGratis(){
+        return this.getEsciGratis().size() > 0;
     }
 
     @Override
