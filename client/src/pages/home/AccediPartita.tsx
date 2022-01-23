@@ -45,14 +45,14 @@ export default class AccediPartita extends React.Component<Props, State> {
         return <div className={"container_accedi"}>
             {
                 partite.map(partita =>
-                    <>
+                    <React.Fragment key={partita.id}>
                     <Link to={"/partita/" + partita.id}>
                         <div>
                             {partita.id}
                         </div>
                     </Link>
                     <hr/>
-                    </>
+                    </React.Fragment>
 
                 )
             }
