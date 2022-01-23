@@ -1,6 +1,8 @@
 import React from 'react';
-import ICasella from "../interfaces/caselle/ICasella";
+import ICasella, {AllCaselle} from "../interfaces/caselle/ICasella";
 import './caselle/caselle.scss';
+import ICasellaTererno from "../interfaces/caselle/ICasellaTererno";
+import {Casella} from "./caselle/Casella";
 
 interface Props{
     caselle: ICasella[]
@@ -17,12 +19,14 @@ export default class Tabellone extends React.Component<Props, State> {
 
     render() : JSX.Element {
         let jsxCaselle : JSX.Element[] = []
-        this.props.caselle.forEach(casella => {
-
+        this.props.caselle.map(el => el as AllCaselle).filter(c => c.type === "Imprevisto" || c.type === "Terreno").forEach(casella => {
+            jsxCaselle.push(<Casella {...casella}/>)
         });
 
         return <div className="board">
+            <div className="row horizontal-row bottom-row">
             {jsxCaselle}
+            </div>
         </div>
     }
 }

@@ -44,12 +44,8 @@ export default class StompController {
     static accediPartita(idPartita: string, nickname: string) {
         const client = Stomp.client( WS_URL + "/stomp");
         client.connect({}, () => {
-            client.subscribe("/topic/partite/" + idPartita, (res) => ObserverSingleton.notify(res as unknown as IPartita))
-            client.send("/app/partite/" + idPartita + "/entra", {},
-                JSON.stringify({
-                    nick: nickname
-                })
-            )
+            client.subscribe("/topic/partite/" + idPartita, (res) => ObserverSingleton.notify(JSON.parse(res.body) as IPartita))
+            client.send("/app/partite/" + idPartita + "/entra", {}, nickname)
         })
     }
 
