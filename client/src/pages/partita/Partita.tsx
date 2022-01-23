@@ -3,6 +3,8 @@ import React from "react";
 import IPartita from "../../interfaces/IPartita";
 import Tabellone from "../../component/Tabellone";
 import StompController from "../../application/stompController";
+import {Classifica} from "./classifica/Classifica";
+import {Dashboard} from "./dashboard/Dashboard";
 
 interface Props {
     idPartita: string,
@@ -40,9 +42,13 @@ export default class Partita extends React.Component<Props, State> implements Ob
 
     render() {
         console.log(this.state.partita)
-        if(this.state.partita)
-            return <Tabellone caselle={this.state.partita.tabellone.caselle}/>
-        else
+        if(!this.state.partita)
             return null;
+
+        return <div>
+            <Tabellone caselle={this.state.partita.tabellone.caselle}/>
+            <Classifica partita={this.state.partita}/>
+            <Dashboard nickname={this.props.nickname} partita={this.state.partita}/>
+        </div>
     }
 }
