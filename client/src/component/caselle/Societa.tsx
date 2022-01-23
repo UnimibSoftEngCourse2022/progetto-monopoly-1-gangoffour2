@@ -19,7 +19,7 @@ export class Societa extends React.Component<Props, State> {
     render() {
         return <div className="space utility electric-company">
             <div className="container">
-                <div className="name">{this.props.casella.name}</div>
+                <div className="name">{this.props.casella.nome}</div>
                 <i className="drawing fa fa-lightbulb-o"></i>
                 <div className="price">{this.props.casella.costoBase}</div>
             </div>

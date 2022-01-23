@@ -19,14 +19,13 @@ export default class Tabellone extends React.Component<Props, State> {
 
     render() : JSX.Element {
         let jsxCaselle : JSX.Element[] = []
-        this.props.caselle.map(el => el as AllCaselle).filter(c => c.type === "Imprevisto" || c.type === "Terreno").forEach(casella => {
+        this.props.caselle.map(el => el as AllCaselle).filter(c => c.type === "Imprevisto").forEach(casella => {
             jsxCaselle.push(<Casella {...casella}/>)
         });
 
         return <div className="board">
-            <div className="row horizontal-row bottom-row">
+            <div className={"center"}/>
             {jsxCaselle}
-            </div>
         </div>
     }
 }

@@ -19,7 +19,7 @@ export class Imprevisto extends React.Component<Props, State> {
     render() {
         return <div className="space chance">
             <div className="container">
-                <div className="name">{this.props.casella.name}</div>
+                <div className="name">{this.props.casella.nome}</div>
                 <i className="drawing fa fa-question red"></i>
             </div>
         </div>

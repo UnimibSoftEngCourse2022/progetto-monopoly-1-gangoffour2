@@ -19,7 +19,7 @@ export class Probabilita extends React.Component<Props, State> {
     render() {
         return <div className="space community-chest">
             <div className="container">
-                <div className="name">{this.props.casella.name}</div>
+                <div className="name">{this.props.casella.nome}</div>
                 <i className="drawing fa fa-cube"></i>
                 <div className="instructions">Follow instructions on top card</div>
             </div>

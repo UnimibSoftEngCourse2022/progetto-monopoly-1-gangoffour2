@@ -17,10 +17,11 @@ export class Terreno extends React.Component<Props, State> {
     }
 
     render() {
-        return <div className="property">
+        console.log(this.props.casella)
+        return <div className="space property">
             <div className = "container">
-                <div className={"color-bar " + this.props.casella.colore}/>
-                <div className="name">{this.props.casella.name}</div>
+                <div className={"color-bar " + "dark-purple"}/>
+                <div className="name three-line-name">{this.props.casella.nome}</div>
                 <div className="price">{this.props.casella.costoBase}</div>
             </div>
         </div>

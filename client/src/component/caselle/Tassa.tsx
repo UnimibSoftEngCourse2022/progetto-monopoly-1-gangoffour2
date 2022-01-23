@@ -19,9 +19,9 @@ export class Tassa extends React.Component<Props, State> {
     render() {
         return <div className="space fee luxury-tax">
             <div className="container">
-                <div className="name">{this.props.casella.name}</div>
+                <div className="name">{this.props.casella.nome}</div>
                 <div className="drawing fa fa-diamond"></div>
-                <div className="instructions">{this.props.casella.name}</div>
+                <div className="instructions">{this.props.casella.nome}</div>
             </div>
         </div>
 
