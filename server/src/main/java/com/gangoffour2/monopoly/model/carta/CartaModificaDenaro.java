@@ -12,7 +12,8 @@ public class CartaModificaDenaro extends Carta{
     private int denaro;
 
     @Override
-    public void effetto(Giocatore giocatore) {
+    public boolean effetto(Giocatore giocatore) {
         giocatore.setConto(giocatore.getConto() + denaro);
+        return true;
     }
 }

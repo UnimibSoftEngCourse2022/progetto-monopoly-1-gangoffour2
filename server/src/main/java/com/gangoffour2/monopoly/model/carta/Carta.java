@@ -11,5 +11,5 @@ import java.io.Serializable;
 public abstract class Carta implements Serializable {
     protected String testo;
     protected Tabellone tabellone;
-    public abstract void effetto(Giocatore g);
+    public abstract boolean effetto(Giocatore g);
 }

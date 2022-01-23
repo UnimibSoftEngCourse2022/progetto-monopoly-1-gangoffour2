@@ -13,7 +13,8 @@ public class CartaMuoviPosizioneACasella extends Carta{
     private Casella casella;
 
     @Override
-    public void effetto(Giocatore giocatore) {
+    public boolean effetto(Giocatore giocatore) {
         tabellone.muoviGiocatoreACasella(giocatore, casella);
+        return true;
     }
 }

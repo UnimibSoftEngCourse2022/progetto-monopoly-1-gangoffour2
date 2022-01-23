@@ -94,12 +94,14 @@ public class Tabellone implements Serializable {
 
     public void pescaImprevisto(Giocatore giocatore){
         Carta carta = imprevisti.remove();
-        carta.effetto(giocatore);
+        if(carta.effetto(giocatore))
+            imprevisti.add(carta);
     }
 
     public void pescaOpportunita(Giocatore giocatore){
         Carta carta = probabilita.remove();
-        carta.effetto(giocatore);
+        if(carta.effetto(giocatore))
+            probabilita.add(carta);
     }
 
 }

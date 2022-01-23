@@ -3,6 +3,7 @@ package com.gangoffour2.monopoly.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.gangoffour2.monopoly.eccezioni.ModificaDenaroException;
 import com.gangoffour2.monopoly.model.carta.Carta;
+import com.gangoffour2.monopoly.model.carta.CartaEsciGratisPrigione;
 import com.gangoffour2.monopoly.model.casella.Casella;
 import com.gangoffour2.monopoly.model.casella.Proprieta;
 import lombok.Builder;
@@ -25,8 +26,7 @@ public class Giocatore implements Serializable {
     private String idSessione;
     private String nick;
     private int conto;
-    private ArrayList<Carta> probabilita;
-    private ArrayList<Carta> imprevisti;
+    private ArrayList<CartaEsciGratisPrigione> esciGratis;
     private Casella casellaCorrente;
 
     @Builder.Default
@@ -59,6 +59,10 @@ public class Giocatore implements Serializable {
             p.setProprietario(null);
         }
         proprietaPossedute.clear();
+    }
+
+    public void aggiungiEsciGratis(CartaEsciGratisPrigione c){
+        this.getEsciGratis().add(c);
     }
 
     @Override

@@ -8,12 +8,11 @@ import lombok.experimental.SuperBuilder;
 @Data
 @EqualsAndHashCode(callSuper=true)
 @SuperBuilder
-public class CartaMuoviPosizioneIntero extends Carta{
-    int movimento;
+public class CartaEsciGratisPrigione extends Carta{
 
     @Override
     public boolean effetto(Giocatore giocatore) {
-        tabellone.muoviGiocatoreIntero(giocatore, movimento);
-        return true;
+        giocatore.aggiungiEsciGratis(this);
+        return false;
     }
 }
