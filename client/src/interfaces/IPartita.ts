@@ -7,7 +7,11 @@ import ITurno from "./ITurno";
 export default interface IPartita{
     azioneAttesaRicevuta: boolean,
     id: string,
-    tabellone: ICasella[],
+    tabellone: {
+        caselle: ICasella[],
+        probabilita: [],
+        imprevisti: []
+    },
     alberghi: IAlbergo[],
     config: IConfigurazione,
     giocatori: IGiocatore[],
