@@ -13,3 +13,53 @@
     background-color: lightgrey;
     border-radius: 10px;
 }
+
+.container_data {
+    margin-top: 20px;
+}
+
+.container_accedi {
+    border-radius: 10px;
+    border: 1px solid lightgrey;
+}
+
+.container_accedi div {
+    padding: 16px;
+}
+
+.container_accedi hr {
+    margin: 0px;
+    border-color: lightgrey;
+}
+
+.container_accedi hr:last-of-type {
+    display: none;
+}
+
+.container_accedi a {
+    color: black;
+    text-decoration: none;
+}
+
+.form_accedi {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    justify-content: center;
+}
+
+.form_accedi div{
+    margin: 10px auto;
+    width: 200px;
+    text-align: left;
+}
+
+.form_accedi select {
+    max-width: 300px;
+    margin: 10px auto;
+}
+
+.form_accedi label {
+    width: 200px;
+    margin: auto;
+}

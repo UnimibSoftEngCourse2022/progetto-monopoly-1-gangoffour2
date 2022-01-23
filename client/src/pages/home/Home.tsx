@@ -3,6 +3,7 @@ import "../../App.css";
 import StompController from "../../application/stompController";
 import CreaPartita from "./CreaPartita";
 import "./Home.css";
+import AccediPartita from "./AccediPartita";
 
 interface State {
     selected: number
@@ -20,13 +21,6 @@ export default class Home extends React.Component<Props, State> {
         }
     }
 
-    componentDidMount() {
-        StompController.getPartite()
-            .then((data) => {
-            })
-
-    }
-
     handle_change_select = (i: number) => {
         this.setState({selected: i})
     }
@@ -35,7 +29,7 @@ export default class Home extends React.Component<Props, State> {
 
         const lista = [
             {text: "Crea partita", component: <CreaPartita/>},
-            {text: "Accedi a una partita", component: <div>ciao</div>}
+            {text: "Accedi a una partita", component: <AccediPartita/>}
         ]
 
         return (
@@ -48,7 +42,9 @@ export default class Home extends React.Component<Props, State> {
                         </div>
                     )}
                 </div>
-                { lista[this.state.selected].component }
+                <div className={"container_data"}>
+                    { lista[this.state.selected].component }
+                </div>
             </div>
         )
     }

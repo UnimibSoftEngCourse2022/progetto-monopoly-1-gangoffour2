@@ -8,23 +8,14 @@ Object.assign(global, {WebSocket: websocket.w3cwebsocket})
 const URL = "http://localhost:8080";
 const WS_URL = "ws://localhost:8080";
 
-const defaultConfiguration: IConfigurazione = {
-    difficolta: Difficolta.EASY,
-    randomCaselle: true,
-    randomEconomia: true,
-    soldiIniziali: 1000,
-    numeroGiocatori: 4,
-    facceDadi: 6,
-    numeroDadi: 2,
-    triggerDadiUguali: 3
-}
+
 
 export default class StompController {
 
-    static creaPartita(): Promise<string> {
+    static creaPartita(configuration: IConfigurazione): Promise<string> {
         return fetch(URL + "/partite", {
             method: "POST",
-            body: JSON.stringify(defaultConfiguration),
+            body: JSON.stringify(configuration),
             headers: {
                 'Content-Type': 'application/json'
             }
