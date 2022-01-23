@@ -13,7 +13,7 @@ public class CartaMuoviPosizioneIntero extends Carta{
 
     @Override
     public void effetto(Giocatore giocatore) {
-        tabellone.muoviGiocatore(giocatore, movimento);
+        tabellone.muoviGiocatoreIntero(giocatore, movimento);
 
     }
 }

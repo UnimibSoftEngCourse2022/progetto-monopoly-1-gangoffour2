@@ -28,14 +28,17 @@ public class Tabellone implements Serializable {
 
 
     public void muoviGiocatore(Giocatore giocatore, int quantita){
+        Casella corrente = giocatore.getCasellaCorrente();
+        giocatore.setCasellaCorrente(caselle.get((caselle.indexOf(corrente) + quantita) % caselle.size()));
+    }
+
+    public void muoviGiocatoreIntero(Giocatore giocatore, int quantita){
         if(quantita != 0){
             Turno turno = partita.getTurnoCorrente();
-            Casella corrente = giocatore.getCasellaCorrente();
-            giocatore.setCasellaCorrente(caselle.get((caselle.indexOf(corrente) + quantita) % caselle.size()));
+            muoviGiocatore(giocatore, quantita);
             if(quantita > 0) {
                 turno.setCasellaDaVisitare(quantita);
                 partita.turnoStandard();
-                //eventualmente stati?
             }
             else
                 giocatore.getCasellaCorrente().arrivo();
@@ -43,21 +46,40 @@ public class Tabellone implements Serializable {
     }
 
     public void muoviGiocatoreACasella(Giocatore giocatore, Casella c){
+        Casella corrente = giocatore.getCasellaCorrente();
+        int i = caselle.indexOf(corrente);
+        int count = 1;
+        Casella prossimaCasella = caselle.get(i+1);
+        while(!prossimaCasella.equals(c)){
+            if(i + 1 > caselle.size())
+                i = 0;
+            ++i;
+            ++count;
+            if(caselle.get(i).equals(c))
+                prossimaCasella = caselle.get(i);
+        }
         giocatore.setCasellaCorrente(c);
+        Turno turno = partita.getTurnoCorrente();
+        turno.setCasellaDaVisitare(count);
+        partita.turnoStandard();
     }
 
     public void muoviGiocatoreProssimoTipoCasella(Giocatore giocatore, Class <? extends Casella> c){
         Casella corrente = giocatore.getCasellaCorrente();
         int i = caselle.indexOf(corrente);
+        int count = 1;
         Casella prossimaCasella = caselle.get(i+1);
         while(!prossimaCasella.getClass().equals(c)){
             if(i + 1 > caselle.size())
                 i = 0;
-            i++;
+            ++i;
             if(caselle.get(i).getClass().equals(c))
                 prossimaCasella = caselle.get(i);
         }
         giocatore.setCasellaCorrente(prossimaCasella);
+        Turno turno = partita.getTurnoCorrente();
+        turno.setCasellaDaVisitare(count);
+        partita.turnoStandard();
     }
 
     public void applicaEffetto(Giocatore giocatore, int offset){
