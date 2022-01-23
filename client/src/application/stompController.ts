@@ -43,7 +43,6 @@ export default class StompController {
     static accediPartita(idPartita: string) {
         const client = Stomp.client( WS_URL + "/stomp");
         client.connect({}, () => {
-            console.log("connesso")
             client.subscribe("/topic/partite/" + idPartita, (res) => console.log(res.body))
         })
     }
