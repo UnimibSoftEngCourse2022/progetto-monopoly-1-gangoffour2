@@ -1,0 +1,9 @@
+.float_classifica {
+    position: fixed;
+    min-width: 150px;
+    width: fit-content;
+    top: 10px;
+    background-color: white;
+    left: 10px;
+    text-align: left;
+}
