@@ -1,3 +1,7 @@
+import ICasellaTerreno from "./ICasellaTererno";
+import ICasellaStazione from "./ICasellaStazione";
+import {ICasellaImprevisto} from "./ICasellaImprevisto";
+
 export enum CasellaTypo {
     Terreno,
     Via,
@@ -5,7 +9,10 @@ export enum CasellaTypo {
 }
 
 export interface ICasella {
-    name: string
+    type: string;
+    name: string,
 }
+
+export type AllCaselle = ICasellaImprevisto | ICasellaTerreno
 
 export default ICasella;

@@ -15,6 +15,12 @@ interface State {
 
 export default class Partita extends React.Component<Props, State> implements ObserverPartita {
 
+    constructor(props: Props) {
+        super(props);
+        this.state = {
+            partita: undefined
+        }
+    }
 
     componentDidMount() {
         ObserverSingleton.addListener(this);
@@ -26,14 +32,16 @@ export default class Partita extends React.Component<Props, State> implements Ob
     }
 
     update(partita: IPartita) {
+        console.log(partita)
         this.setState({
             partita: partita
         })
     }
 
     render() {
+        console.log(this.state.partita)
         if(this.state.partita)
-            return <Tabellone caselle={this.state.partita.tabellone}/>
+            return <Tabellone caselle={this.state.partita.tabellone.caselle}/>
         else
             return null;
     }
