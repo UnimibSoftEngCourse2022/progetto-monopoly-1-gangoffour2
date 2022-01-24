@@ -5,6 +5,6 @@ import lombok.Builder;
 import java.io.Serializable;
 
 @Builder
-public class Albergo extends Edificio implements Serializable {
+public class Albergo implements Edificio, Serializable {
 
 }

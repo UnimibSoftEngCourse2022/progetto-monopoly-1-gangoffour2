@@ -1,4 +1,4 @@
 package com.gangoffour2.monopoly.model;
 
-public abstract class Edificio {
+public interface Edificio {
 }
