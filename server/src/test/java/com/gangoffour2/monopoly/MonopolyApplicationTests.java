@@ -42,7 +42,7 @@ class MonopolyApplicationTests {
 	}
 
 
-	Partita creaPartita() throws GiocatoreEsistenteException, IOException {
+	static Partita creaPartita() throws GiocatoreEsistenteException, IOException {
 		Configurazione conf = Configurazione.builder()
 				.difficolta(Configurazione.Difficolta.MEDIUM)
 				.randomCaselle(true)
