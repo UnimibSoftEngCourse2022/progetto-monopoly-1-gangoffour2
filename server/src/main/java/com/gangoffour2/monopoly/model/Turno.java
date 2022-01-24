@@ -1,6 +1,5 @@
 package com.gangoffour2.monopoly.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Builder;
 import lombok.Data;
 
@@ -13,8 +12,6 @@ import java.util.Iterator;
 @Builder
 public class Turno implements Serializable {
     private Giocatore giocatore;
-    @JsonIgnore
-    private Partita partita;
 
     @Builder.Default
     private int lanciConsecutivi = 0;
@@ -28,17 +25,17 @@ public class Turno implements Serializable {
     @Builder.Default
     private SecureRandom random = new SecureRandom();
 
-    public void inizializzaDadi(){
-        if(valoreDadi.isEmpty()){
-            for(int i = 0; i < partita.getConfig().getNumeroDadi(); ++i){
+    public void inizializzaDadi(int numeroDadi){
+        if(valoreDadi.isEmpty()) {
+            for(int i = 0; i < numeroDadi; ++i) {
                 valoreDadi.add(-1);
             }
         }
     }
 
-    public void lancioDadi(){
-        for(int i = 0; i < valoreDadi.size(); ++i){
-            valoreDadi.set(i, random.nextInt(partita.getConfig().getFacceDadi()) + 1);
+    public void lancioDadi(int facceDadi) {
+        for(int i = 0; i < valoreDadi.size(); ++i) {
+            valoreDadi.set(i, random.nextInt(facceDadi) + 1);
         }
 
         ++lanciConsecutivi;
@@ -66,8 +63,8 @@ public class Turno implements Serializable {
         return casellaDaVisitare > 0;
     }
 
-    public void prossimoEffetto(){
+    public void prossimoEffetto(Tabellone tabellone) {
         --casellaDaVisitare;
-        partita.getTabellone().applicaEffetto(giocatore, casellaDaVisitare);
+        tabellone.applicaEffetto(giocatore, casellaDaVisitare);
     }
 }

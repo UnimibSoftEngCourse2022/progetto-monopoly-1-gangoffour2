@@ -62,7 +62,7 @@ class MonopolyApplicationTests {
 				.casellaCorrente(caselle.get(0))
 				.build();
 		partita.aggiungiGiocatore(g);
-		partita.setTurnoCorrente(Turno.builder().partita(partita).giocatore(g).build());
+		partita.setTurnoCorrente(Turno.builder().giocatore(g).build());
 
 		return partita;
 	}

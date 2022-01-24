@@ -47,7 +47,6 @@ public class Partita implements PartitaObserver {
     public synchronized void inizioPartita(){
         turnoCorrente = Turno.builder()
                 .giocatore(giocatori.get(0))
-                .partita(this)
                 .build();
         cambiaTurno();
     }
@@ -77,11 +76,10 @@ public class Partita implements PartitaObserver {
         setStato(InizioTurno.builder().build());
         Giocatore curr = turnoCorrente.getGiocatore();
         setTurnoCorrente(Turno.builder()
-                .partita(this)
                 .giocatore(giocatori.get((giocatori.indexOf(curr) + 1) % giocatori.size()))
                 .build());
 
-        turnoCorrente.inizializzaDadi();
+        turnoCorrente.inizializzaDadi(config.getNumeroDadi());
         turnoCorrente.getGiocatore().getCasellaCorrente().inizioTurno();
     }
 
@@ -114,12 +112,12 @@ public class Partita implements PartitaObserver {
 
     public synchronized void turnoStandard() {
         if (turnoCorrente.inVisita()){
-            turnoCorrente.prossimoEffetto();
+            turnoCorrente.prossimoEffetto(tabellone);
         }
         else if(turnoCorrente.getLanciConsecutivi() == 0 || turnoCorrente.dadiUguali()){
-            turnoCorrente.lancioDadi();
+            turnoCorrente.lancioDadi(config.getFacceDadi());
             tabellone.muoviGiocatore(turnoCorrente.getGiocatore(), turnoCorrente.sommaDadi());
-            turnoCorrente.prossimoEffetto();
+            turnoCorrente.prossimoEffetto(tabellone);
         }
         else {
             setStato(FineTurno.builder().build());
