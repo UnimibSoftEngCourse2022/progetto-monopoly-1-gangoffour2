@@ -17,10 +17,16 @@ export class Societa extends React.Component<Props, State> {
     }
 
     render() {
-        return <div className="space utility electric-company">
+        let icona: string = "fa-lightbulb-o";
+        let classe: string = "electric-company";
+        if (!this.props.casella.nome.includes("Elettrica")){
+            icona = "fa-faucet";
+            classe = "waterworks"
+        }
+        return <div className={"space utility " + classe}>
             <div className="container">
                 <div className="name">{this.props.casella.nome}</div>
-                <i className="drawing fa fa-lightbulb-o"/>
+                <i className={"drawing fa " + icona}/>
                 <div className="price">{this.props.casella.costoBase}</div>
             </div>
         </div>

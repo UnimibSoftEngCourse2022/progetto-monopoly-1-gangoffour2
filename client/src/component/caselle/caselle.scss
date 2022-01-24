@@ -99,6 +99,7 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 90px;
   font-weight: 400;
   letter-spacing: 12px;
+  text-align: center;
 }
 
 .community-chest-deck {
@@ -209,12 +210,10 @@ h1, h2, h3, h4, h5, h6 {
 
   .name,
   .instructions {
-    padding-left: 15px;
-    padding-right: 15px;
   }
 
   .price {
-    font-size: 7px;
+    font-size: 12px;
     font-weight: 400;
     padding-bottom: 5px;
   }
@@ -424,31 +423,39 @@ h1, h2, h3, h4, h5, h6 {
 .chance {
   background-color: #bde0c4;
   .container {
+    display: flex;
     justify-content: center;
   }
 
   .drawing {
-    font-size: 90px;
+    padding-top: 10px;
+    font-size: 70px;
     color: $red;
   }
 
   .blue {
     color: $dark-blue;
   }
+  .instructions{
+    padding-top: 20px;
+    font-size: 8px;
+  }
 }
 
 .community-chest {
   background-color: #bde0c4;
   .container {
-    justify-content: space-around;
+    display: flex;
+    justify-content: center;
   }
 
   .drawing {
+    padding-top: 10px;
     font-size: 50px;
-    color: $light-blue;
   }
 
   .instructions {
+    padding-top: 20px;
     font-size: 8px;
   }
 }
@@ -456,13 +463,16 @@ h1, h2, h3, h4, h5, h6 {
 .electric-company {
   background-color: #bde0c4;
   .drawing {
+    font-size: 60px;
     color: $yellow;
   }
 }
 
 .waterworks {
+  background-color: #bde0c4;
   .drawing {
-    color: $dark-blue;
+    font-size: 60px;
+    color: gray;
   }
 }
 
@@ -473,6 +483,7 @@ h1, h2, h3, h4, h5, h6 {
   }
 
   .name {
+    padding-top: 10px;
     padding-bottom: 5px;
   }
 
@@ -490,10 +501,16 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
+.name-tassa{
+  padding-top: 10px;
+  font-size: 10px;
+}
+
 .luxury-tax {
   background-color: #bde0c4;
+  font-size: 10px;
   .drawing {
-    font-size: 50px;
+    font-size: 30px;
   }
 
   .instructions {
@@ -502,7 +519,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 
-// =================
+// =================s
 // UTILITY
 // =================
 

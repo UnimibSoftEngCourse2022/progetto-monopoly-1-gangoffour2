@@ -29,11 +29,12 @@
 }
 
 .container_menu {
-  width: 500px;
-  margin: 30px auto;
-  border: 1px solid gray;
-  border-radius: 10px;
-  padding: 10px 40px;
+    width: 500px;
+    margin: 30px auto;
+    border: 1px solid gray;
+    border-radius: 10px;
+    padding: 10px 40px;
+    background-color: white;
 }
 
 button {
