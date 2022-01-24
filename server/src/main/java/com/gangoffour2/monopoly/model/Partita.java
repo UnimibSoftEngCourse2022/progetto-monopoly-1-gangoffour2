@@ -33,9 +33,7 @@ public class Partita implements PartitaObserver {
     private ArrayList<Albergo> alberghi = new ArrayList<>();
 
     private Tabellone tabellone;
-
     private Turno turnoCorrente;
-
     private StatoPartita stato;
 
     @Builder.Default
@@ -54,22 +52,18 @@ public class Partita implements PartitaObserver {
         cambiaTurno();
     }
 
-
     public synchronized void aggiungiGiocatore(Giocatore g) throws PartitaPienaException, GiocatoreEsistenteException {
         if(giocatori.size() == config.getNumeroGiocatori()) {
             throw new PartitaPienaException();
         }
-
         if (giocatori.contains(g)){
             throw new GiocatoreEsistenteException();
         }
-
         g.setCasellaCorrente(tabellone.getCaselle().get(0));
         g.setConto(config.getSoldiIniziali());
         giocatori.add(g);
         g.setPartita(this);
     }
-
 
     public synchronized void rimuoviGiocatore(Giocatore g) {
         Giocatore giocatore = getGiocatoreByNick(g.getNick());
@@ -90,9 +84,11 @@ public class Partita implements PartitaObserver {
         turnoCorrente.inizializzaDadi();
         turnoCorrente.getGiocatore().getCasellaCorrente().inizioTurno();
     }
+
     public void fineGiro(){
         //Eventi per fine giro (Economia random o altro)
     }
+
     public void broadcast(){
         //Broadcast sync per tutti i player stato partita
     }

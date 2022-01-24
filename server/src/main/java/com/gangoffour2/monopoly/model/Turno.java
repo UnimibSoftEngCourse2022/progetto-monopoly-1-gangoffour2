@@ -45,6 +45,10 @@ public class Turno implements Serializable {
         casellaDaVisitare = sommaDadi();
     }
 
+    public int sommaDadi(){
+        return valoreDadi.stream().reduce(0, Integer::sum);
+    }
+
     public boolean dadiUguali(){
         boolean dadiUguali = true;
         int valorePrecedente = valoreDadi.get(0);
@@ -65,9 +69,5 @@ public class Turno implements Serializable {
     public void prossimoEffetto(){
         --casellaDaVisitare;
         partita.getTabellone().applicaEffetto(giocatore, casellaDaVisitare);
-    }
-
-    public int sommaDadi(){
-        return valoreDadi.stream().reduce(0, Integer::sum);
     }
 }
