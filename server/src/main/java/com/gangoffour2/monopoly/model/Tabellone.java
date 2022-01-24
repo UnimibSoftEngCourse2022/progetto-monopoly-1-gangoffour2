@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.function.Predicate;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.gangoffour2.monopoly.model.carta.Carta;
@@ -45,41 +46,21 @@ public class Tabellone implements Serializable {
             }
     }
 
-    public void muoviGiocatoreACasella(Giocatore giocatore, Casella c){
+    /**
+     * Funzione che sposta un giocatore sul tabellone sulla base della prima occorrenza trovata (tipo, nome, ecc...).
+     * Bisogna passare una lambda che prende come argomento la casella trovata e ritorna vero o falso.
+     * @param giocatore Il giocatore da spostare
+     * @param predicato La funzione da applicare per capire quando si è arrivati alla casella giusta
+     */
+    public void muoviAProssimaCasella(Giocatore giocatore, Predicate<Casella> predicato){
         Casella corrente = giocatore.getCasellaCorrente();
         int i = caselle.indexOf(corrente);
-        int count = 1;
-        Casella prossimaCasella = caselle.get(i+1);
-        while(!prossimaCasella.equals(c)){
-            if(i + 1 > caselle.size())
-                i = 0;
+        Casella prossimaCasella;
+        do{
+            prossimaCasella = caselle.get((i + 1) % caselle.size());
             ++i;
-            ++count;
-            if(caselle.get(i).equals(c))
-                prossimaCasella = caselle.get(i);
-        }
-        giocatore.setCasellaCorrente(c);
-        Turno turno = partita.getTurnoCorrente();
-        turno.setCasellaDaVisitare(count);
-        partita.turnoStandard();
-    }
-
-    public void muoviGiocatoreProssimoTipoCasella(Giocatore giocatore, Class <? extends Casella> c){
-        Casella corrente = giocatore.getCasellaCorrente();
-        int i = caselle.indexOf(corrente);
-        int count = 1;
-        Casella prossimaCasella = caselle.get(i+1);
-        while(!prossimaCasella.getClass().equals(c)){
-            if(i + 1 > caselle.size())
-                i = 0;
-            ++i;
-            if(caselle.get(i).getClass().equals(c))
-                prossimaCasella = caselle.get(i);
-        }
-        giocatore.setCasellaCorrente(prossimaCasella);
-        Turno turno = partita.getTurnoCorrente();
-        turno.setCasellaDaVisitare(count);
-        partita.turnoStandard();
+        }while (!predicato.test(prossimaCasella));
+        muoviGiocatoreIntero(giocatore, i);
     }
 
     public void applicaEffetto(Giocatore giocatore, int offset){
