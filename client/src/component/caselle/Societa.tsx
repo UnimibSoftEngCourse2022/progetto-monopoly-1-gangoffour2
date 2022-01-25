@@ -17,7 +17,7 @@ export class Societa extends React.Component<Props, State> {
     }
 
     render() {
-        let icona: string = "fa-lightbulb-o";
+        let icona: string = "fa-lightbulb";
         let classe: string = "electric-company";
         if (!this.props.casella.nome.includes("Elettrica")){
             icona = "fa-faucet";
@@ -30,6 +30,5 @@ export class Societa extends React.Component<Props, State> {
                 <div className="price">{this.props.casella.costoBase}</div>
             </div>
         </div>
-
     }
 }

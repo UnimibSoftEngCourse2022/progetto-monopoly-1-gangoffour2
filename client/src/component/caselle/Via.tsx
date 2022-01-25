@@ -19,7 +19,7 @@ export default class Via extends React.Component<Props, State>{
                 <div className="instructions">Ritira 200 al passaggio</div>
                 <div className="go-word">VIA!</div>
             </div>
-            <div className="arrow fa fa-long-arrow-left"/>
+            <div className="arrow fa fa-long-arrow-alt-left"/>
         </div>
     }
 }
