@@ -47,8 +47,7 @@ public class Giocatore implements Serializable {
     }
 
     public void acquistaProprieta(Proprieta proprieta){
-        proprietaPossedute.add(proprieta);
-        proprieta.setProprietario(this);
+        aggiudica(proprieta, proprieta.getCostoBase());
     }
 
 
@@ -73,6 +72,12 @@ public class Giocatore implements Serializable {
 
     public boolean haCartaEsciGratis(){
         return this.getEsciGratis().size() > 0;
+    }
+
+    public void aggiudica(Proprieta proprieta, int importo){
+        conto -= importo;
+        proprietaPossedute.add(proprieta);
+        proprieta.setProprietario(this);
     }
 
     @Override
