@@ -23,6 +23,7 @@ export class Probabilita extends React.Component<Props, State> {
                 <div className="name">&nbsp; </div>
                 <i className="drawing fa fa-balance-scale"/>
                 <div className="instructions"></div>
+                {this.props.children}
             </div>
         </div>
 

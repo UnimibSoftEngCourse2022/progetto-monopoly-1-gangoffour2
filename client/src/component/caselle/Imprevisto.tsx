@@ -22,6 +22,7 @@ export class Imprevisto extends React.Component<Props, State> {
                 <div className="name">{this.props.casella.nome}</div>
                 <div className="name">&nbsp; </div>
                 <i className="drawing fa fa-question"/>
+                {this.props.children}
             </div>
         </div>
 
