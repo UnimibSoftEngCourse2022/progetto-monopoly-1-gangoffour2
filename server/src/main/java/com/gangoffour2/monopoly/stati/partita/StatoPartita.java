@@ -1,5 +1,8 @@
 package com.gangoffour2.monopoly.stati.partita;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.gangoffour2.monopoly.azioni.casella.*;
 import com.gangoffour2.monopoly.azioni.giocatore.*;
 import com.gangoffour2.monopoly.azioni.giocatore.PagaAffittoAzione;
@@ -12,27 +15,67 @@ import java.io.Serializable;
 
 @Data
 @SuperBuilder
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.EXISTING_PROPERTY, property = "type")
 public abstract class StatoPartita implements Serializable {
+    @JsonIgnore
     Partita partita;
 
+    @JsonProperty("type")
+    public String getTipo(){
+        return getClass().getSimpleName();
+    }
+
     protected StatoPartita(){ }
+
+    /**
+     * Metodo che deve essere eseguito se viene rilevato un timeout nell'attesa dell'input
+     */
+
+
+    public void onTimeout() { }
     /**
      * I metodi onAzioneCasella vengono chiamati a partire dagli
      * stati delle caselle per capire che azione è necessaria nella partita, se necessaria.
      */
 
-    public void onAzioneCasella(ArrestaGiocatore arrestaGiocatore){ }
+    public void onAzioneCasella(ArrestaGiocatore arrestaGiocatore){
+        throw new UnsupportedOperationException();
+    }
 
-    public void onAzioneCasella(PagaAffittoAzione pagaAffittoAzione){ }
+    public void onAzioneCasella(PagaAffittoAzione pagaAffittoAzione){
+        throw new UnsupportedOperationException();
+    }
 
-    public void onAzioneCasella(PescaImprevisto pescaImprevisto){ }
+    public void onAzioneCasella(PescaImprevisto pescaImprevisto){
+        throw new UnsupportedOperationException();
+    }
 
-    public void onAzioneCasella(RichiediAcquisto richiediAcquisto){ }
+    public void onAzioneCasella(RichiediAcquisto richiediAcquisto){
+        throw new UnsupportedOperationException();
+    }
 
-    public void onAzioneCasella(AttesaLancioDadi attesaLancioDadi) { }
+    public void onAzioneCasella(AttesaLancioDadi attesaLancioDadi) {
+        throw new UnsupportedOperationException();
+    }
 
     public void onAzioneCasella(PassaggioVuoto passaggioVuoto){
         partita.turnoStandard();
+    }
+
+    public void onAzioneCasella(PagaAffitto pagaAffitto){
+        throw new UnsupportedOperationException();
+    }
+
+    public void onAzioneCasella(AttesaPrigione attesaPrigione) {
+        throw new UnsupportedOperationException();
+    }
+
+    public void onAzioneCasella(ModificaDenaro modificaDenaro) {
+        throw new UnsupportedOperationException();
+    }
+
+    public void onAzioneCasella(PescaProbabilita pescaProbabilita) {
+        throw new UnsupportedOperationException();
     }
 
     /**
@@ -50,9 +93,8 @@ public abstract class StatoPartita implements Serializable {
 
     public void esegui(RichiediAcquisto attesaAcquisto){ }
 
-    public void onAzioneCasella(PagaAffitto pagaAffitto){ }
-
     public void esegui(AttesaLancioDadi attesaLancioDadi){ }
+
 
     /**
      * Di default, gli eventi arrivati dall'esterno non sbloccano la partita.
@@ -81,10 +123,6 @@ public abstract class StatoPartita implements Serializable {
         return false;
     }
 
-    public void onAzioneCasella(Offerta offerta) { }
-
-    public void onAzioneCasella(AttesaPrigione attesaPrigione) { }
-
     public boolean onAzioneGiocatore(Paga paga) {
         return false;
     }
@@ -97,19 +135,12 @@ public abstract class StatoPartita implements Serializable {
         return false;
     }
 
-    /**
-     * Metodo che deve essere eseguito se viene rilevato un timeout nell'attesa dell'input
-     */
-    public void onTimeout() { }
-
     public boolean onAzioneGiocatore(Offerta offerta) {
         return false;
     }
 
-
-    public void onAzioneCasella(ModificaDenaro modificaDenaro) { }
-
     public boolean onAzioneGiocatore(PagaAffittoAzione pagaAffittoAzione) {
         return false;
     }
+
 }

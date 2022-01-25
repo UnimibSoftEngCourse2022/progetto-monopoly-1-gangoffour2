@@ -1,7 +1,6 @@
 package com.gangoffour2.monopoly.stati.partita;
 
 import com.gangoffour2.monopoly.azioni.giocatore.EntraInPartita;
-import com.gangoffour2.monopoly.controller.MessageBrokerSingleton;
 import com.gangoffour2.monopoly.eccezioni.GiocatoreEsistenteException;
 import lombok.Builder;
 
@@ -15,8 +14,7 @@ public class Lobby extends StatoPartita {
         } catch (GiocatoreEsistenteException e) {
             // Lancia un messaggio di errore
         }
-        MessageBrokerSingleton.getInstance().getTemplate()
-                .convertAndSend("/topic/partite/" + partita.getId(), partita);
+        partita.broadcast();
         if (partita.getGiocatori().size() == partita.getConfig().getNumeroGiocatori()){
             partita.inizioPartita();
         }

@@ -1,6 +1,7 @@
 package com.gangoffour2.monopoly.controller;
 
 
+import com.gangoffour2.monopoly.model.Partita;
 import lombok.Builder;
 import lombok.Data;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
@@ -17,5 +18,9 @@ public class MessageBrokerSingleton {
 
     public static MessageBrokerSingleton getInstance(){
         return instance;
+    }
+
+    public synchronized void broadcast(Partita partita){
+        template.convertAndSend("/topic/partite/" + partita.getId(), partita);
     }
 }
