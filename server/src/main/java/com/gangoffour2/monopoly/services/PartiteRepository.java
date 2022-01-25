@@ -7,19 +7,19 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class PartiteRespository {
-    private static PartiteRespository instance;
+public class PartiteRepository {
+    private static PartiteRepository instance;
     private final HashMap<String, Partita> partite;
     private final HashMap<String, Giocatore> giocatori;
 
-    private PartiteRespository(){
+    private PartiteRepository(){
         partite = new HashMap<>();
         giocatori = new HashMap<>();
     }
 
-    public static synchronized PartiteRespository getInstance(){
+    public static synchronized PartiteRepository getInstance(){
         if(instance == null){
-            instance = new PartiteRespository();
+            instance = new PartiteRepository();
         }
 
         return instance;
