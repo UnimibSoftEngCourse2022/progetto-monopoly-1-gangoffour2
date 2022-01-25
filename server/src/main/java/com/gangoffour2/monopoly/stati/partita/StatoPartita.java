@@ -115,6 +115,7 @@ public abstract class StatoPartita implements Serializable {
     public boolean onAzioneGiocatore(UpgradaTerreno upgradaTerreno) {
         return false;
     }
+
     public boolean onAzioneGiocatore(DowngradaTerreno downgradaTerreno) {
         return false;
     }

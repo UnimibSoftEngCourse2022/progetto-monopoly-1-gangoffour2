@@ -14,7 +14,6 @@ public class RichiediAcquisto implements AzioneCasella{
     private Proprieta proprieta;
 
     @Override
-    public void accept(StatoPartita statoPartita) {
-        statoPartita.onAzioneCasella(this);
+    public void accept(StatoPartita statoPartita) {statoPartita.onAzioneCasella(this);
     }
 }
