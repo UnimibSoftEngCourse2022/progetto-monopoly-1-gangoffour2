@@ -30,7 +30,7 @@ class MonopolyApplicationTests {
 		assertNotNull(p.getStato());
 		assertNotNull(p.getStato().getPartita());
 		assertNotNull(p.getTabellone());
-		assertEquals(2, p.getGiocatori().size());
+		assertEquals(1, p.getGiocatori().size());
 	}
 
 	@Test
@@ -42,7 +42,7 @@ class MonopolyApplicationTests {
 		assertEquals("Viale Vesuvio", g.getCasellaCorrente().getNome());
 
 		g.getCasellaCorrente().arrivo();
-		assertTrue(partita.getStato() instanceof AttesaAcquisto);
+		assertInstanceOf(AttesaAcquisto.class, partita.getStato());
 		assertNotNull(partita.getStato().getPartita());
 	}
 
@@ -65,7 +65,6 @@ class MonopolyApplicationTests {
 		Giocatore g = Giocatore.builder()
 				.nick("CancaroMan")
 				.conto(partita.getConfig().getSoldiIniziali())
-				.casellaCorrente(caselle.get(0))
 				.build();
 		partita.aggiungiGiocatore(g);
 		partita.setTurnoCorrente(Turno.builder().giocatore(g).build());
