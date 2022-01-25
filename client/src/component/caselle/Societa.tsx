@@ -28,6 +28,7 @@ export class Societa extends React.Component<Props, State> {
                 <div className="name">{this.props.casella.nome}</div>
                 <i className={"drawing fa " + icona}/>
                 <div className="price">{this.props.casella.costoBase}</div>
+                {this.props.children}
             </div>
         </div>
     }

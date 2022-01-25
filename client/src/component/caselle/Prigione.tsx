@@ -28,6 +28,7 @@ export default class Prigione extends React.Component<Props, State>{
                     <div className="name-prigione">Prigione</div>
                 </div>
             </div>
+            {this.props.children}
             <div className="visiting">Transito</div>
         </div>
     }

@@ -1,5 +1,4 @@
 import React from 'react';
-import ICasellaTerreno from '../../interfaces/caselle/ICasellaTererno'
 import './caselle.scss'
 import ICasellaStazione from "../../interfaces/caselle/ICasellaStazione";
 
@@ -23,6 +22,7 @@ export class Stazione extends React.Component<Props, State> {
                 <div className="name">{this.props.casella.nome}</div>
                     <i className="drawing fa fa-subway"/>
                     <div className="price">{this.props.casella.costoBase}</div>
+                {this.props.children}
             </div>
         </div>
     }
