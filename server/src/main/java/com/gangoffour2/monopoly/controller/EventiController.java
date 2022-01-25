@@ -5,7 +5,6 @@ import com.gangoffour2.monopoly.eccezioni.PartitaPienaException;
 import com.gangoffour2.monopoly.model.Giocatore;
 import com.gangoffour2.monopoly.model.Partita;
 import com.gangoffour2.monopoly.services.PartiteRepository;
-import com.gangoffour2.monopoly.stati.partita.Asta;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.EventListener;
 import org.springframework.messaging.handler.annotation.DestinationVariable;
@@ -17,7 +16,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.socket.messaging.SessionConnectEvent;
 import org.springframework.web.socket.messaging.SessionDisconnectEvent;
 
-import javax.servlet.http.Part;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -49,7 +47,6 @@ public class EventiController {
             SimpMessageHeaderAccessor head
     )  {
         Partita partita = PartiteRepository.getInstance().getPartitaByid(id);
-        System.out.println(nick);
         if(partita != null){
             try{
                 EntraInPartita azione = EntraInPartita.builder()

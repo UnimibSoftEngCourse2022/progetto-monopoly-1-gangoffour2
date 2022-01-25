@@ -39,7 +39,6 @@ public abstract class StatoPartita implements Serializable {
      */
 
     public void onAzioneCasella(ArrestaGiocatore arrestaGiocatore){
-        throw new UnsupportedOperationException();
     }
 
     public void onAzioneCasella(PagaAffittoAzione pagaAffittoAzione){
@@ -47,15 +46,12 @@ public abstract class StatoPartita implements Serializable {
     }
 
     public void onAzioneCasella(PescaImprevisto pescaImprevisto){
-        throw new UnsupportedOperationException();
     }
 
     public void onAzioneCasella(RichiediAcquisto richiediAcquisto){
-        throw new UnsupportedOperationException();
     }
 
     public void onAzioneCasella(AttesaLancioDadi attesaLancioDadi) {
-        throw new UnsupportedOperationException();
     }
 
     public void onAzioneCasella(PassaggioVuoto passaggioVuoto){
@@ -63,19 +59,15 @@ public abstract class StatoPartita implements Serializable {
     }
 
     public void onAzioneCasella(PagaAffitto pagaAffitto){
-        throw new UnsupportedOperationException();
     }
 
     public void onAzioneCasella(AttesaPrigione attesaPrigione) {
-        throw new UnsupportedOperationException();
     }
 
     public void onAzioneCasella(ModificaDenaro modificaDenaro) {
-        throw new UnsupportedOperationException();
     }
 
     public void onAzioneCasella(PescaProbabilita pescaProbabilita) {
-        throw new UnsupportedOperationException();
     }
 
     /**

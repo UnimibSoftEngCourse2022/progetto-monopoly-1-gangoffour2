@@ -95,7 +95,7 @@ public class Partita implements PartitaObserver {
     }
 
     @Override
-    public synchronized void onAzioneCasella(AzioneCasella azione) throws InterruptedException {
+    public synchronized void onAzioneCasella(AzioneCasella azione)  {
         azione.accept(stato);
     }
 

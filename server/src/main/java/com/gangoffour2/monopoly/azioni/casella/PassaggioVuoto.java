@@ -6,7 +6,7 @@ import lombok.Builder;
 @Builder
 public class PassaggioVuoto implements AzioneCasella{
     @Override
-    public void accept(StatoPartita statoPartita) throws InterruptedException {
+    public void accept(StatoPartita statoPartita)  {
         statoPartita.onAzioneCasella(this);
     }
 }

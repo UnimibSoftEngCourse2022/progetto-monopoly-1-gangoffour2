@@ -71,13 +71,7 @@ public abstract class Casella implements SubjectStatoPartita, Serializable {
 
     @Override
     public void notificaTutti(AzioneCasella azione){
-        subscribers.forEach(subscriber -> {
-            try {
-                subscriber.onAzioneCasella(azione);
-            } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
-            }
-        });
+        subscribers.forEach(subscriber -> subscriber.onAzioneCasella(azione));
     }
 
     @Override
