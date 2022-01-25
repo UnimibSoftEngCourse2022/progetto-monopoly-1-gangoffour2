@@ -22,6 +22,7 @@ export class Tassa extends React.Component<Props, State> {
                 <div className="name-tassa">{this.props.casella.nome}</div>
                 <div className="drawing fa fa-diamond"/>
                 <div className="price">{this.props.casella.costo}</div>
+                {this.props.children}
             </div>
         </div>
 

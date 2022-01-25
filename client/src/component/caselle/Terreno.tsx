@@ -23,6 +23,7 @@ export class Terreno extends React.Component<Props, State> {
                 <div className={"color-bar " + this.props.casella.colore}/>
                 <div className="name three-line-name">{this.props.casella.nome}</div>
                 <div className="price">{this.props.casella.costoBase}</div>
+                {this.props.children}
             </div>
         </div>
     }

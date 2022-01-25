@@ -12,22 +12,27 @@ import {Parcheggio} from "./Parcheggio";
 import Via from "./Via";
 
 const translate = {
-    "Imprevisto": (props: any) => <Imprevisto casella={props}/>,
-    "Terreno": (props: any) => <Terreno casella={props}/>,
-    "Societa": (props: any) => <Societa casella={props}/>,
-    "Stazione": (props: any) => <Stazione casella={props}/>,
-    "Prigione": (props: any) => <Prigione casella={props}/>,
-    "Probabilita": (props: any) => <Probabilita casella={props}/>,
-    "Tassa": (props: any) => <Tassa casella={props}/>,
-    "VaiInPrigione": (props: any) => <VaiInPrigione casella={props}/>,
-    "Parcheggio": (props: any) => <Parcheggio casella={props}/>,
-    "Via": (props: any) => <Via casella={props}/>
+    "Imprevisto": (props: any, giocatoriJsx: JSX.Element) => <Imprevisto casella={props}> {giocatoriJsx} </Imprevisto>,
+    "Terreno": (props: any, giocatoriJsx: JSX.Element) => <Terreno casella={props}> {giocatoriJsx} </Terreno>,
+    "Societa": (props: any, giocatoriJsx: JSX.Element) => <Societa casella={props}>{giocatoriJsx}</Societa>,
+    "Stazione": (props: any, giocatoriJsx: JSX.Element) => <Stazione casella={props}>{giocatoriJsx}</Stazione>,
+    "Prigione": (props: any, giocatoriJsx: JSX.Element) => <Prigione casella={props}>{giocatoriJsx}</Prigione>,
+    "Probabilita": (props: any, giocatoriJsx: JSX.Element) => <Probabilita casella={props}>{giocatoriJsx}</Probabilita>,
+    "Tassa": (props: any, giocatoriJsx: JSX.Element) => <Tassa casella={props}>{giocatoriJsx}</Tassa>,
+    "VaiInPrigione": (props: any, giocatoriJsx: JSX.Element) => <VaiInPrigione casella={props}>{giocatoriJsx}</VaiInPrigione>,
+    "Parcheggio": (props: any, giocatoriJsx: JSX.Element) => <Parcheggio casella={props}>{giocatoriJsx}</Parcheggio>,
+    "Via": (props: any, giocatoriJsx: JSX.Element) => <Via casella={props}>{giocatoriJsx}</Via>
 }
 
 export class Casella extends React.Component<ICasella, {}>{
 
     render() {
+        console.log(this.props);
+        const giocatoriJsx = <div className={"overlap_player"}>
+        </div>
         //@ts-ignore
-        return translate[this.props.type](this.props);
+        const casellaJsx = translate[this.props.type](this.props, giocatoriJsx);
+        return casellaJsx
     }
+
 }

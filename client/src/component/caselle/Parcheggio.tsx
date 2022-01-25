@@ -22,6 +22,7 @@ export class Parcheggio extends React.Component<Props, State> {
                 <div className="name">Free</div>
                 <i className="drawing fa fa-car"/>
                 <div className="name">Parking</div>
+                {this.props.children}
             </div>
         </div>
 

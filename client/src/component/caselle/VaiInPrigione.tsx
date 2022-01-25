@@ -22,6 +22,7 @@ export class VaiInPrigione extends React.Component<Props, State> {
                 <div className="name">Vai in</div>
                 <i className="drawing fa fa-gavel"/>
                 <div className="name">Prigione</div>
+                {this.props.children}
             </div>
         </div>
 
