@@ -1,9 +1,6 @@
 package com.gangoffour2.monopoly.stati.partita;
 
-import com.gangoffour2.monopoly.azioni.casella.ArrestaGiocatore;
-import com.gangoffour2.monopoly.azioni.casella.AttesaLancioDadi;
-import com.gangoffour2.monopoly.azioni.casella.PagaAffitto;
-import com.gangoffour2.monopoly.azioni.casella.RichiediAcquisto;
+import com.gangoffour2.monopoly.azioni.casella.*;
 import com.gangoffour2.monopoly.azioni.giocatore.Ipoteca;
 import com.gangoffour2.monopoly.azioni.giocatore.LanciaDadi;
 import lombok.Builder;
@@ -51,5 +48,14 @@ public class LancioDadi extends StatoPartita {
         partita.getStato().esegui(arrestaGiocatore);
     }
 
+    @Override
+    public void onAzioneCasella(PescaImprevisto pescaImpervisto){
+        partita.pescaImprevisto();
+    }
+
+    @Override
+    public void onAzioneCasella(PescaProbabilita pescaProbabilita){
+        partita.pescaProbabilita();
+    }
 
 }

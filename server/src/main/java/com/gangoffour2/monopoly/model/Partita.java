@@ -5,12 +5,13 @@ import java.util.Iterator;
 import java.util.LinkedList;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.gangoffour2.monopoly.azioni.casella.AzioneCasella;
 import com.gangoffour2.monopoly.azioni.giocatore.AzioneGiocatore;
+import com.gangoffour2.monopoly.controller.MessageBrokerSingleton;
 import com.gangoffour2.monopoly.eccezioni.GiocatoreEsistenteException;
 import com.gangoffour2.monopoly.eccezioni.PartitaPienaException;
 import com.gangoffour2.monopoly.services.TimeoutHandler;
+import com.gangoffour2.monopoly.stati.partita.AttesaPrigione;
 import com.gangoffour2.monopoly.stati.partita.FineTurno;
 import com.gangoffour2.monopoly.stati.partita.InizioTurno;
 import com.gangoffour2.monopoly.stati.partita.StatoPartita;
@@ -21,7 +22,6 @@ import lombok.Data;
 @Data
 @Builder
 @AllArgsConstructor
-@JsonIgnoreProperties(value = {"stato", "codaAzioniGiocatore", "azioneRicevuta"})
 public class Partita implements PartitaObserver {
     private String id;
     @Builder.Default
@@ -37,7 +37,9 @@ public class Partita implements PartitaObserver {
     private StatoPartita stato;
 
     @Builder.Default
+    @JsonIgnore
     private LinkedList<AzioneGiocatore> codaAzioniGiocatore = new LinkedList<>();
+    @JsonIgnore
     private boolean azioneAttesaRicevuta;
 
     @JsonIgnore
@@ -81,6 +83,7 @@ public class Partita implements PartitaObserver {
 
         turnoCorrente.inizializzaDadi(config.getNumeroDadi());
         turnoCorrente.getGiocatore().getCasellaCorrente().inizioTurno();
+        broadcast();
     }
 
     public void fineGiro(){
@@ -88,7 +91,7 @@ public class Partita implements PartitaObserver {
     }
 
     public void broadcast(){
-        //Broadcast sync per tutti i player stato partita
+        MessageBrokerSingleton.getInstance().broadcast(this);
     }
 
     @Override
@@ -116,8 +119,13 @@ public class Partita implements PartitaObserver {
         }
         else if(turnoCorrente.getLanciConsecutivi() == 0 || turnoCorrente.dadiUguali()){
             turnoCorrente.lancioDadi(config.getFacceDadi());
-            tabellone.muoviGiocatore(turnoCorrente.getGiocatore(), turnoCorrente.sommaDadi());
-            turnoCorrente.prossimoEffetto(tabellone);
+            if (turnoCorrente.getLanciConsecutivi() == 3){
+                setStato(AttesaPrigione.builder().build());
+            }
+            else {
+                tabellone.muoviGiocatore(turnoCorrente.getGiocatore(), turnoCorrente.sommaDadi());
+                turnoCorrente.prossimoEffetto(tabellone);
+            }
         }
         else {
             setStato(FineTurno.builder().build());
@@ -140,6 +148,14 @@ public class Partita implements PartitaObserver {
 
     public synchronized void attendiAzione() {
         listenerTimeoutEventi.setTimeout(() -> stato.onTimeout(), 2000);
+    }
+
+    public void pescaImprevisto(){
+        tabellone.pescaImprevisto(turnoCorrente.getGiocatore());
+    }
+
+    public void pescaProbabilita(){
+        tabellone.pescaProbabilita(turnoCorrente.getGiocatore());
     }
 
 }
