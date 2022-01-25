@@ -42,8 +42,11 @@ public class EventiController {
     }
 
     @MessageMapping("/partite/{id}/entra")
-    public void entraInPartita(@Payload String nick, @DestinationVariable String id,
-                               SimpMessageHeaderAccessor head)  {
+    public void entraInPartita(
+            @Payload String nick,
+            @DestinationVariable String id,
+            SimpMessageHeaderAccessor head
+    )  {
         Partita partita = PartiteRepository.getInstance().getPartitaByid(id);
         System.out.println(nick);
         if(partita != null){
@@ -102,12 +105,12 @@ public class EventiController {
     }
 
     @MessageMapping("/partite/{id}/ipoteca")
-    public void ipoteca(@Payload Ipoteca ipoteca, @DestinationVariable String id){
+    public void ipoteca(@DestinationVariable String id, SimpMessageHeaderAccessor head){
         throw new UnsupportedOperationException();
     }
 
     @MessageMapping("/partite/{id}/offri")
-    public void offri(@Payload Offerta offerta, @DestinationVariable String id) {
+    public void offri(@DestinationVariable String id, SimpMessageHeaderAccessor head) {
         throw new UnsupportedOperationException();
     }
 
