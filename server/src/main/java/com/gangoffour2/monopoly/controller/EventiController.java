@@ -15,6 +15,8 @@ import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.socket.messaging.SessionConnectEvent;
 import org.springframework.web.socket.messaging.SessionDisconnectEvent;
+
+import javax.servlet.http.Part;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -75,24 +77,24 @@ public class EventiController {
 
     @MessageMapping("partite/{id}/acquista")
     public void acquista(
-            @Payload AcquistaProprieta azione,
             @DestinationVariable String id,
             SimpMessageHeaderAccessor head
     ) {
-        azione.setGiocatore(PartiteRepository.getInstance().getGiocatoreByIdSessione(head.getSessionId()));
+        Giocatore giocatore = PartiteRepository.getInstance().getGiocatoreByIdSessione(head.getSessionId());
+        AcquistaProprieta acquistaProprieta = AcquistaProprieta.builder().giocatore(giocatore).build();
         Partita partita = PartiteRepository.getInstance().getPartitaByid(id);
         if (partita != null){
-            partita.onAzioneGiocatore(azione);
+            partita.onAzioneGiocatore(acquistaProprieta);
         }
     }
 
     @MessageMapping("/partite/{id}/lanciaDadi")
     public void lanciaDadi(
-            @Payload LanciaDadi lanciaDadi,
             @DestinationVariable String id,
             SimpMessageHeaderAccessor head
     )  {
-        lanciaDadi.setGiocatore(PartiteRepository.getInstance().getGiocatoreByIdSessione(head.getSessionId()));
+        Giocatore giocatore = PartiteRepository.getInstance().getGiocatoreByIdSessione(head.getSessionId());
+        LanciaDadi lanciaDadi = LanciaDadi.builder().giocatore(giocatore).build();
         Partita partita = PartiteRepository.getInstance().getPartitaByid(id);
         if (partita != null){
             partita.onAzioneGiocatore(lanciaDadi);
