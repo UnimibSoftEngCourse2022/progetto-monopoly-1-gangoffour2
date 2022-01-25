@@ -23,7 +23,7 @@ export default class Prigione extends React.Component<Props, State>{
                         <div className="bar"/>
                         <div className="bar"/>
                         <div className="bar"/>
-                        <i className="person fa fa-frown-o"/>
+                        <i className="person fa fa-poo"/>
                     </div>
                     <div className="name-prigione">Prigione</div>
                 </div>
