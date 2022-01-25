@@ -1,4 +1,4 @@
-import { Stomp } from "@stomp/stompjs";
+import {CompatClient, Stomp} from "@stomp/stompjs";
 import websocket from "websocket"
 import IPartita from "../interfaces/IPartita";
 import IConfigurazione, {Difficolta} from "../interfaces/IConfigurazione";
@@ -12,6 +12,9 @@ const WS_URL = "ws://localhost:8080";
 
 
 export default class StompController {
+
+    static client: CompatClient;
+    static idPartita: string;
 
     static creaPartita(configuration: IConfigurazione): Promise<string> {
         return fetch(URL + "/partite", {
@@ -43,10 +46,16 @@ export default class StompController {
 
     static accediPartita(idPartita: string, nickname: string) {
         const client = Stomp.client( WS_URL + "/stomp");
+        this.client = client;
+        this.idPartita = idPartita;
         client.connect({}, () => {
             client.subscribe("/topic/partite/" + idPartita, (res) => ObserverSingleton.notify(JSON.parse(res.body) as IPartita))
             client.send("/app/partite/" + idPartita + "/entra", {}, nickname)
         })
+    }
+
+    static lanciaDadi() {
+        this.client.send("/app/partite/" + this.idPartita + "/lanciaDadi")
     }
 
 

@@ -58,3 +58,8 @@
     margin: 0px auto;
     border-bottom: 1px solid black;
 }
+
+.subtitle_dashboard {
+    color: gray;
+    padding: 20px;
+}

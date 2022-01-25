@@ -4,6 +4,7 @@ import "./dashboard.css"
 import ICasellaProprieta from "../../../interfaces/caselle/ICasellaProprieta";
 import ICasellaTererno from "../../../interfaces/caselle/ICasellaTererno";
 import ICasellaTerreno from "../../../interfaces/caselle/ICasellaTererno";
+import StompController from "../../../application/stompController";
 
 interface Props {
     partita: IPartita,
@@ -31,14 +32,17 @@ export class Dashboard extends React.Component<Props, State> {
         }
     }
 
+    handleTiraDadi = () => {
+        StompController.lanciaDadi();
+    }
+
     render() {
         const giocatore = this.props.partita.giocatori.find(el => el.nick === this.props.nickname)
-        console.log(giocatore)
         if (giocatore === undefined)
             return null;
 
-        //const properietaPossedute = giocatore.proprietaPossedute
-        const properietaPossedute: ICasellaProprieta[] = this.props.partita.tabellone.caselle.filter(el => el.type === "Terreno") as ICasellaTererno[]
+        const properietaPossedute = giocatore.proprietaPossedute
+
         return (
             <div className={"container_menu dashboard_container"}>
                 <div className={"dashboard_container_data"}>
@@ -54,11 +58,15 @@ export class Dashboard extends React.Component<Props, State> {
                                 </div>
                             </React.Fragment>
                         )}
+                        {
+                            properietaPossedute.length === 0 && <div className={"subtitle_dashboard"}>
+                                Non possiedi nessuna proprietà
+                            </div>
+                        }
                     </div>
                 </div>
                 <div className={"bottom_button_dashboard"}>
-                    <button>Compra</button>
-                    <button>Tira Dadi</button>
+                    <button onClick={this.handleTiraDadi}>Tira Dadi</button>
                 </div>
             </div>
         );
