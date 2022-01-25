@@ -4,7 +4,7 @@ import com.gangoffour2.monopoly.azioni.giocatore.*;
 import com.gangoffour2.monopoly.eccezioni.PartitaPienaException;
 import com.gangoffour2.monopoly.model.Giocatore;
 import com.gangoffour2.monopoly.model.Partita;
-import com.gangoffour2.monopoly.services.PartiteRespository;
+import com.gangoffour2.monopoly.services.PartiteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.EventListener;
 import org.springframework.messaging.handler.annotation.DestinationVariable;
@@ -15,6 +15,8 @@ import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.socket.messaging.SessionConnectEvent;
 import org.springframework.web.socket.messaging.SessionDisconnectEvent;
+
+import javax.servlet.http.Part;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -32,17 +34,21 @@ public class EventiController {
 
     @EventListener
     public void onApplicationEvent(SessionDisconnectEvent applicationEvent) {
-        Giocatore g = PartiteRespository.getInstance().getGiocatoreByIdSessione(applicationEvent.getSessionId());
+        Giocatore g = PartiteRepository.getInstance().getGiocatoreByIdSessione(applicationEvent.getSessionId());
         if(g != null){
             g.getPartita().rimuoviGiocatore(g);
-            PartiteRespository.getInstance().rimuoviGiocatoreById(applicationEvent.getSessionId());
+            PartiteRepository.getInstance().rimuoviGiocatoreById(applicationEvent.getSessionId());
         }
     }
 
     @MessageMapping("/partite/{id}/entra")
-    public void entraInPartita(@Payload String nick, @DestinationVariable String id,
-                               SimpMessageHeaderAccessor head)  {
-        Partita partita = PartiteRespository.getInstance().getPartitaByid(id);
+    public void entraInPartita(
+            @Payload String nick,
+            @DestinationVariable String id,
+            SimpMessageHeaderAccessor head
+    )  {
+        Partita partita = PartiteRepository.getInstance().getPartitaByid(id);
+        System.out.println(nick);
         if(partita != null){
             try{
                 EntraInPartita azione = EntraInPartita.builder()
@@ -52,7 +58,7 @@ public class EventiController {
                                 .build())
                         .build();
                 partita.onAzioneGiocatore(azione);
-                PartiteRespository.getInstance().registraGiocatore(head.getSessionId(), partita.getGiocatoreByNick(nick));
+                PartiteRepository.getInstance().registraGiocatore(head.getSessionId(), partita.getGiocatoreByNick(nick));
             }catch(PartitaPienaException e){
                 Map<String, Object> headers = new HashMap<>();
                 headers.put("nickname", nick);
@@ -63,36 +69,48 @@ public class EventiController {
     }
 
     @MessageMapping("/partite/{id}/esci")
-    public void esci(@Payload String giocatore, @DestinationVariable String id){
-        Partita partita = PartiteRespository.getInstance().getPartitaByid(id);
-        partita.rimuoviGiocatore(Giocatore.builder()
-                .nick(giocatore)
-                .build());
+    public void esci(
+            @DestinationVariable String id,
+            SimpMessageHeaderAccessor head
+    ){
+        Giocatore giocatore = PartiteRepository.getInstance().getGiocatoreByIdSessione(head.getSessionId());
+        Partita partita = PartiteRepository.getInstance().getPartitaByid(id);
+        partita.rimuoviGiocatore(giocatore);
     }
 
     @MessageMapping("partite/{id}/acquista")
-    public void acquista(@Payload AcquistaProprieta azione, @DestinationVariable String id) {
-        Partita partita = PartiteRespository.getInstance().getPartitaByid(id);
+    public void acquista(
+            @DestinationVariable String id,
+            SimpMessageHeaderAccessor head
+    ) {
+        Giocatore giocatore = PartiteRepository.getInstance().getGiocatoreByIdSessione(head.getSessionId());
+        AcquistaProprieta acquistaProprieta = AcquistaProprieta.builder().giocatore(giocatore).build();
+        Partita partita = PartiteRepository.getInstance().getPartitaByid(id);
         if (partita != null){
-            partita.onAzioneGiocatore(azione);
+            partita.onAzioneGiocatore(acquistaProprieta);
         }
     }
 
     @MessageMapping("/partite/{id}/lanciaDadi")
-    public void lanciaDadi(@Payload LanciaDadi lanciaDadi, @DestinationVariable String id)  {
-        Partita partita = PartiteRespository.getInstance().getPartitaByid(id);
+    public void lanciaDadi(
+            @DestinationVariable String id,
+            SimpMessageHeaderAccessor head
+    )  {
+        Giocatore giocatore = PartiteRepository.getInstance().getGiocatoreByIdSessione(head.getSessionId());
+        LanciaDadi lanciaDadi = LanciaDadi.builder().giocatore(giocatore).build();
+        Partita partita = PartiteRepository.getInstance().getPartitaByid(id);
         if (partita != null){
             partita.onAzioneGiocatore(lanciaDadi);
         }
     }
 
     @MessageMapping("/partite/{id}/ipoteca")
-    public void ipoteca(@Payload Ipoteca ipoteca, @DestinationVariable String id){
+    public void ipoteca(@DestinationVariable String id, SimpMessageHeaderAccessor head){
         throw new UnsupportedOperationException();
     }
 
     @MessageMapping("/partite/{id}/offri")
-    public void offri(@Payload Offerta offerta, @DestinationVariable String id) {
+    public void offri(@DestinationVariable String id, SimpMessageHeaderAccessor head) {
         throw new UnsupportedOperationException();
     }
 

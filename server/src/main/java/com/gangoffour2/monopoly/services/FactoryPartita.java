@@ -25,7 +25,7 @@ public class FactoryPartita {
 
     String creaId(){
         String idPartita = UUID.randomUUID().toString();
-        while(PartiteRespository.getInstance().getPartitaByid(idPartita) != null){
+        while(PartiteRepository.getInstance().getPartitaByid(idPartita) != null){
             idPartita = UUID.randomUUID().toString();
         }
         return idPartita;
