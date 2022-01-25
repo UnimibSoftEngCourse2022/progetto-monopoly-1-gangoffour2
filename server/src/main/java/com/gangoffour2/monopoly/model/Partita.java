@@ -131,6 +131,7 @@ public class Partita implements PartitaObserver {
             setStato(FineTurno.builder().build());
             attendiAzione();
         }
+        this.broadcast();
     }
 
     public synchronized Giocatore getGiocatoreByNick(String nick){

@@ -8,6 +8,7 @@ import com.gangoffour2.monopoly.stati.partita.*;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import javax.servlet.http.Part;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -16,6 +17,10 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 class MonopolyApplicationTests {
 
+	static void muoviGiocatore(Partita p, Giocatore giocatore) {
+		p.getTabellone().muoviGiocatore(giocatore, 1);
+		assertEquals(giocatore.getCasellaCorrente(), p.getTabellone().getCaselle().get(1));
+	}
 
 
 	@Test
@@ -25,7 +30,7 @@ class MonopolyApplicationTests {
 		assertNotNull(p.getStato());
 		assertNotNull(p.getStato().getPartita());
 		assertNotNull(p.getTabellone());
-		assertEquals(1, p.getGiocatori().size());
+		assertEquals(2, p.getGiocatori().size());
 	}
 
 	@Test
@@ -48,6 +53,7 @@ class MonopolyApplicationTests {
 				.randomCaselle(true)
 				.soldiIniziali(5000)
 				.randomEconomia(true)
+				.numeroGiocatori(2)
 				.build();
 
 		Partita partita = FactoryPartita.getInstance().creaPartita(conf);

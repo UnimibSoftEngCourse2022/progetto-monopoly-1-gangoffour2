@@ -15,8 +15,16 @@ public class AttesaAcquisto extends StatoPartita{
     }
 
     @Override
+    public void onAzioneCasella(RichiediAcquisto richiediAcquisto) {
+
+    }
+
+    @Override
     public boolean onAzioneGiocatore(AcquistaProprieta acquistaProprieta){
+        acquistaProprieta.getGiocatore().getCasellaCorrente().onAzioneGiocatore(acquistaProprieta);
         partita.turnoStandard();
         return true;
     }
+
+
 }

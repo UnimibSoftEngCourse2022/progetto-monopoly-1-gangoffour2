@@ -5,6 +5,7 @@ import com.gangoffour2.monopoly.eccezioni.PartitaPienaException;
 import com.gangoffour2.monopoly.model.Giocatore;
 import com.gangoffour2.monopoly.model.Partita;
 import com.gangoffour2.monopoly.services.PartiteRepository;
+import com.gangoffour2.monopoly.stati.partita.Asta;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.EventListener;
 import org.springframework.messaging.handler.annotation.DestinationVariable;
@@ -110,8 +111,17 @@ public class EventiController {
     }
 
     @MessageMapping("/partite/{id}/offri")
-    public void offri(@DestinationVariable String id, SimpMessageHeaderAccessor head) {
-        throw new UnsupportedOperationException();
+    public void offri(
+            @Payload int valore,
+            @DestinationVariable String id,
+            SimpMessageHeaderAccessor head
+    ) {
+        Giocatore giocatore = PartiteRepository.getInstance().getGiocatoreByIdSessione(head.getSessionId());
+        Offerta offerta = Offerta.builder().giocatore(giocatore).valore(valore).build();
+        Partita partita = PartiteRepository.getInstance().getPartitaByid(id);
+        if(partita != null){
+            partita.onAzioneGiocatore(offerta);
+        }
     }
 
     @Autowired

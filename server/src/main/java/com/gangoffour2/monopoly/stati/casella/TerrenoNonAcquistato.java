@@ -11,7 +11,7 @@ public class TerrenoNonAcquistato extends EventoTerreno {
 
     @Override
     public void arrivo() {
-        terreno.notificaTutti(RichiediAcquisto.builder().build());
+        terreno.notificaTutti(RichiediAcquisto.builder().proprieta(terreno).build());
     }
 
 
