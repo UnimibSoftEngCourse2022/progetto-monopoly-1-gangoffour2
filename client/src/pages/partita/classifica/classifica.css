@@ -7,3 +7,40 @@
     left: 10px;
     text-align: left;
 }
+
+hr.rounded {
+    border-top: 3px solid #bbb;
+    border-radius: 2px;
+}
+
+hr.normale {
+    border-top: 3px solid black;
+}
+
+.palla {
+    display: flex;
+    height: 16px;
+    width: 16px;
+    background-color: #bbb;
+    border-radius: 50%;
+}
+
+.giocatore-classifica{
+    font-size: 13px;
+    margin-top: 10px;
+    display:flex;
+    justify-content: flex-start;
+    gap: 10px;
+}
+
+
+.testo_classifica{
+    display: flex;
+    margin-top: auto;
+    margin-bottom: auto;
+    align-content: center;
+    height: fit-content;
+    padding-top: 50%;
+    padding-bottom: 50%;
+    text-align: center;
+}

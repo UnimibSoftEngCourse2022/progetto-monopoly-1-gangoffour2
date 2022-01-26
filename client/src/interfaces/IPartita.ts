@@ -3,6 +3,7 @@ import {IAlbergo, ICasa} from "./IEdificio";
 import IConfigurazione from "./IConfigurazione";
 import IGiocatore from "./IGiocatore";
 import ITurno from "./ITurno";
+import IStatoPartita from "./IStatoPartita";
 
 export default interface IPartita{
     azioneAttesaRicevuta: boolean,
@@ -12,6 +13,7 @@ export default interface IPartita{
         probabilita: [],
         imprevisti: []
     },
+    stato: IStatoPartita,
     alberghi: IAlbergo[],
     config: IConfigurazione,
     giocatori: IGiocatore[],
