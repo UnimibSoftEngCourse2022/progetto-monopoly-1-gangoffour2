@@ -6,13 +6,14 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.SuperBuilder;
 
-import java.util.LinkedHashSet;
+import java.util.HashSet;
 
 @Data
 @EqualsAndHashCode(callSuper=true)
 @SuperBuilder
 public class Prigione extends Casella{
-    private LinkedHashSet<Giocatore> giocatoriInPrigione = new LinkedHashSet<>();
+    private int cauzione;
+    private HashSet<Giocatore> giocatoriInPrigione = new HashSet<>();
 
     protected Prigione(){
         evento = StatoPrigione.builder().prigione(this).build();

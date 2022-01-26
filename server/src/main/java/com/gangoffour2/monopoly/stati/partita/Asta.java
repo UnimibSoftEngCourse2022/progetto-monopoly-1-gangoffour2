@@ -1,17 +1,21 @@
 package com.gangoffour2.monopoly.stati.partita;
 
 import com.gangoffour2.monopoly.azioni.casella.RichiediAcquisto;
+import com.gangoffour2.monopoly.azioni.giocatore.AstaTerminata;
 import com.gangoffour2.monopoly.azioni.giocatore.Offerta;
 import com.gangoffour2.monopoly.eccezioni.OffertaInvalidaException;
 import com.gangoffour2.monopoly.model.casella.Proprieta;
+import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.SuperBuilder;
 
 @SuperBuilder
-@EqualsAndHashCode
+@Data
+@EqualsAndHashCode(callSuper = true)
 public class Asta extends StatoPartita {
     com.gangoffour2.monopoly.model.Asta astaCorrente;
     Proprieta proprieta;
+    StatoPartita statoPrecedente;
 
     @Override
     public void onTimeout() {
@@ -19,8 +23,8 @@ public class Asta extends StatoPartita {
             astaCorrente.getMiglioreOfferente().aggiudica(astaCorrente.getProp(),
                     astaCorrente.getOffertaAttuale());
         }
-        partita.setStato(LancioDadi.builder().build());
-        partita.turnoStandard();
+        partita.setStato(statoPrecedente);
+        partita.getStato().esegui(AstaTerminata.builder().build());
     }
 
     @Override
