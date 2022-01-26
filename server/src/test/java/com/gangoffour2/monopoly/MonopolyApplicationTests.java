@@ -2,40 +2,37 @@ package com.gangoffour2.monopoly;
 
 import com.gangoffour2.monopoly.eccezioni.GiocatoreEsistenteException;
 import com.gangoffour2.monopoly.model.*;
-import com.gangoffour2.monopoly.model.casella.*;
 import com.gangoffour2.monopoly.services.FactoryPartita;
 import com.gangoffour2.monopoly.stati.partita.*;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import javax.servlet.http.Part;
 import java.io.IOException;
-import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 class MonopolyApplicationTests {
 
-	static void muoviGiocatore(Partita p, Giocatore giocatore) {
-		p.getTabellone().muoviGiocatore(giocatore, 1);
-		assertEquals(giocatore.getCasellaCorrente(), p.getTabellone().getCaselle().get(1));
-	}
+    Partita partita;
 
-
-	@Test
-	void creazionePartita() throws GiocatoreEsistenteException, IOException {
-		Partita p = creaPartita();
-		assertEquals("CancaroMan", p.getTurnoCorrente().getGiocatore().getNick());
-		assertNotNull(p.getStato());
-		assertNotNull(p.getStato().getPartita());
-		assertNotNull(p.getTabellone());
-		assertEquals(1, p.getGiocatori().size());
-	}
+    @BeforeEach
+    public void setup() throws GiocatoreEsistenteException, IOException {
+        partita = MonopolyApplicationTests.creaPartita();
+    }
 
 	@Test
-	void cambioStatiPartita() throws GiocatoreEsistenteException, IOException {
-		Partita partita = creaPartita();
+	void creazionePartita() {
+		assertEquals("CancaroMan", partita.getTurnoCorrente().getGiocatore().getNick());
+		assertNotNull(partita.getStato());
+		assertNotNull(partita.getStato().getPartita());
+		assertNotNull(partita.getTabellone());
+		assertEquals(1, partita.getGiocatori().size());
+	}
+
+	@Test
+	void cambioStatiPartita() {
 		Giocatore g = partita.getTurnoCorrente().getGiocatore();
 		partita.setStato(LancioDadi.builder().build());
 		partita.getTabellone().muoviGiocatore(g, 9);
@@ -45,7 +42,6 @@ class MonopolyApplicationTests {
 		assertInstanceOf(AttesaAcquisto.class, partita.getStato());
 		assertNotNull(partita.getStato().getPartita());
 	}
-
 
 	static Partita creaPartita() throws GiocatoreEsistenteException, IOException {
 		Configurazione conf = Configurazione.builder()
@@ -59,8 +55,6 @@ class MonopolyApplicationTests {
 		Partita partita = FactoryPartita.getInstance().creaPartita(conf);
 
 		partita.getStato().setPartita(partita);
-
-		ArrayList<Casella> caselle = partita.getTabellone().getCaselle();
 
 		Giocatore g = Giocatore.builder()
 				.nick("CancaroMan")
