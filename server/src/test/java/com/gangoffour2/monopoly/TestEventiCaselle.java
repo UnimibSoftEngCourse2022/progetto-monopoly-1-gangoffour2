@@ -17,7 +17,6 @@ class TestEventiCaselle {
 
     @Test
     void cambioStatiTerreno(){
-
         Terreno t = Terreno.builder().build();
 
         t.setEvento(TerrenoNonAcquistato.builder().build());

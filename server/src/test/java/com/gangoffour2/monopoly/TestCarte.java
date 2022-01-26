@@ -28,7 +28,6 @@ class TestCarte {
         assertEquals(g.getCasellaCorrente(), p.getTabellone().getCaselle().get(1));
     }
 
-
     @Test
     void modificaDenaro() {
         Giocatore g = Giocatore.builder().conto(1000).nick("Ciao").build();

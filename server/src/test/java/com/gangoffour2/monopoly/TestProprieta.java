@@ -11,6 +11,7 @@ import com.gangoffour2.monopoly.stati.casella.TerrenoIpotecato;
 import com.gangoffour2.monopoly.stati.partita.AttesaAcquisto;
 import com.gangoffour2.monopoly.stati.partita.LancioDadi;
 import com.gangoffour2.monopoly.stati.partita.Lobby;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -18,20 +19,22 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.io.IOException;
 
-import static com.gangoffour2.monopoly.MonopolyApplicationTests.creaPartita;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 
 @SpringBootTest
 class TestProprieta {
 
+    Partita partita;
 
-
+    @BeforeEach
+    public void setup() throws GiocatoreEsistenteException, IOException {
+        partita = MonopolyApplicationTests.creaPartita();
+    }
 
     @ParameterizedTest
     @ValueSource(ints = {1, 5, 12})
-    void acquistoProprieta(int posizione) throws GiocatoreEsistenteException, IOException {
-        Partita partita = creaPartita();
+    void acquistoProprieta(int posizione) {
         assertInstanceOf(Lobby.class, partita.getStato());
         Giocatore g = Giocatore.builder()
                 .nick("Prova")
@@ -55,11 +58,10 @@ class TestProprieta {
     }
 
     @Test
-    void ipotecaTerreno() throws GiocatoreEsistenteException, IOException {
-        Partita p = creaPartita();
-        p.aggiungiGiocatore(Giocatore.builder().nick("sdf").build());
-        Giocatore g = p.getGiocatori().get(0);
-        Casella c = p.getTabellone().getCaselle().get(1);
+    void ipotecaTerreno() throws GiocatoreEsistenteException {
+        partita.aggiungiGiocatore(Giocatore.builder().nick("sdf").build());
+        Giocatore g = partita.getGiocatori().get(0);
+        Casella c = partita.getTabellone().getCaselle().get(1);
         c.onAzioneGiocatore(AcquistaProprieta.builder().giocatore(g).build());
         c.onAzioneGiocatore(Ipoteca.builder().giocatore(g).build());
 
@@ -67,12 +69,10 @@ class TestProprieta {
     }
 
     @Test
-    void ipotecaSocieta() throws GiocatoreEsistenteException, IOException {
-
-        Partita p = creaPartita();
-        p.aggiungiGiocatore(Giocatore.builder().nick("sdf").build());
-        Giocatore g = p.getGiocatori().get(0);
-        Casella c = p.getTabellone().getCaselle().get(12);
+    void ipotecaSocieta() throws GiocatoreEsistenteException {
+        partita.aggiungiGiocatore(Giocatore.builder().nick("sdf").build());
+        Giocatore g = partita.getGiocatori().get(0);
+        Casella c = partita.getTabellone().getCaselle().get(12);
         c.onAzioneGiocatore(AcquistaProprieta.builder().giocatore(g).build());
         c.onAzioneGiocatore(Ipoteca.builder().giocatore(g).build());
 
@@ -81,11 +81,10 @@ class TestProprieta {
 
 
     @Test
-    void ipotecaStazione() throws GiocatoreEsistenteException, IOException {
-        Partita p = creaPartita();
-        p.aggiungiGiocatore(Giocatore.builder().nick("sdf").build());
-        Giocatore g = p.getGiocatori().get(0);
-        Casella c = p.getTabellone().getCaselle().get(5);
+    void ipotecaStazione() throws GiocatoreEsistenteException {
+        partita.aggiungiGiocatore(Giocatore.builder().nick("sdf").build());
+        Giocatore g = partita.getGiocatori().get(0);
+        Casella c = partita.getTabellone().getCaselle().get(5);
         c.onAzioneGiocatore(AcquistaProprieta.builder().giocatore(g).build());
         c.onAzioneGiocatore(Ipoteca.builder().giocatore(g).build());
 
@@ -94,24 +93,21 @@ class TestProprieta {
 
 
     @Test
-    void testAsta() throws GiocatoreEsistenteException, IOException {
-        Partita p = creaPartita();
-        p.onAzioneGiocatore(EntraInPartita.builder().giocatore(Giocatore.builder().nick("Ciao").build()).build());
-        Giocatore g = p.getGiocatori().get(0);
-        p.getTabellone().muoviGiocatore(g, 1);
+    void testAsta() {
+        partita.onAzioneGiocatore(EntraInPartita.builder().giocatore(Giocatore.builder().nick("Ciao").build()).build());
+        Giocatore g = partita.getGiocatori().get(0);
+        partita.getTabellone().muoviGiocatore(g, 1);
 
         g.getCasellaCorrente().arrivo();
-        p.getListenerTimeoutEventi().stopTimeout();
-        System.out.println(p.getStato().getTipo());
-        p.getStato().onTimeout();
-        System.out.println(p.getStato().getTipo());
+        partita.getListenerTimeoutEventi().stopTimeout();
+        System.out.println(partita.getStato().getTipo());
+        partita.getStato().onTimeout();
+        System.out.println(partita.getStato().getTipo());
 
-        p.onAzioneGiocatore(Offerta.builder().valore(100).giocatore(g).build());
-        p.getListenerTimeoutEventi().stopTimeout();
-        p.getStato().onTimeout();
+        partita.onAzioneGiocatore(Offerta.builder().valore(100).giocatore(g).build());
+        partita.getListenerTimeoutEventi().stopTimeout();
+        partita.getStato().onTimeout();
 
         assertEquals(1, g.getProprietaPossedute().size());
     }
-
-
 }

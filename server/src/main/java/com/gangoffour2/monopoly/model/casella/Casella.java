@@ -37,6 +37,7 @@ import java.util.Objects;
 })
 public abstract class Casella implements SubjectStatoPartita, Serializable {
 
+    protected int id;
     protected String nome;
     @Builder.Default
     protected ArrayList<PartitaObserver> subscribers = new ArrayList<>();
