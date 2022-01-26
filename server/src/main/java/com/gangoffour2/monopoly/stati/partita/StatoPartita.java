@@ -45,30 +45,25 @@ public abstract class StatoPartita implements Serializable {
         throw new UnsupportedOperationException();
     }
 
-    public void onAzioneCasella(PescaImprevisto pescaImprevisto){
-    }
+    public void onAzioneCasella(PescaImprevisto pescaImprevisto){}
 
-    public void onAzioneCasella(RichiediAcquisto richiediAcquisto){
-    }
+    public void onAzioneCasella(RichiediAcquisto richiediAcquisto){}
 
-    public void onAzioneCasella(AttesaLancioDadi attesaLancioDadi) {
-    }
+    public void onAzioneCasella(AttesaLancioDadi attesaLancioDadi) {}
 
     public void onAzioneCasella(PassaggioVuoto passaggioVuoto){
         partita.turnoStandard();
     }
 
-    public void onAzioneCasella(PagaAffitto pagaAffitto){
-    }
+    public void onAzioneCasella(PagaAffitto pagaAffitto){}
 
-    public void onAzioneCasella(AttesaPrigione attesaPrigione) {
-    }
+    public void onAzioneCasella(AttesaPrigione attesaPrigione) {}
 
-    public void onAzioneCasella(ModificaDenaro modificaDenaro) {
-    }
+    public void onAzioneCasella(ModificaDenaro modificaDenaro) {}
 
-    public void onAzioneCasella(PescaProbabilita pescaProbabilita) {
-    }
+    public void onAzioneCasella(PescaProbabilita pescaProbabilita) {}
+
+    public void onAzioneCasella(VaiInAttesaPrigione checkPrigione) {}
 
     /**
      * I metodi esegui vengono chiamati dalla partita sulla casella: ad esempio, prima di attendere il lancio dei dadi,
@@ -139,4 +134,6 @@ public abstract class StatoPartita implements Serializable {
     }
 
     public boolean onAzioneGiocatore(AstaTerminata astaTerminata) { return false;}
+
+
 }

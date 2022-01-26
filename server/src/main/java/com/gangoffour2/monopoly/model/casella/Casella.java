@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.gangoffour2.monopoly.azioni.casella.AttesaLancioDadi;
 import com.gangoffour2.monopoly.azioni.casella.AzioneCasella;
 import com.gangoffour2.monopoly.azioni.giocatore.AzioneGiocatore;
+import com.gangoffour2.monopoly.model.Giocatore;
 import com.gangoffour2.monopoly.model.PartitaObserver;
 import com.gangoffour2.monopoly.stati.casella.EventoCasella;
 import lombok.Builder;
@@ -66,8 +67,7 @@ public abstract class Casella implements SubjectStatoPartita, Serializable {
     /**
      * Da overrideare per i comportamenti diversi
      */
-    public void inizioTurno() {
-        notificaTutti(AttesaLancioDadi.builder().build());
+    public void inizioTurno(Giocatore g) {notificaTutti(AttesaLancioDadi.builder().build());
     }
 
     @Override

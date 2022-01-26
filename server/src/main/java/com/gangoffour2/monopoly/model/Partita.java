@@ -82,7 +82,7 @@ public class Partita implements PartitaObserver {
                 .build());
 
         turnoCorrente.inizializzaDadi(config.getNumeroDadi());
-        turnoCorrente.getGiocatore().getCasellaCorrente().inizioTurno();
+        turnoCorrente.getGiocatore().getCasellaCorrente().inizioTurno(turnoCorrente.getGiocatore());
         broadcast();
     }
 

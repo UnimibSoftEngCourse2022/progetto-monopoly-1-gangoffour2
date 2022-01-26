@@ -17,6 +17,8 @@ public class AttesaPrigione extends StatoPartita {
 
     @Override
     public boolean onAzioneGiocatore(Paga paga){
+        Giocatore g = paga.getGiocatore();
+
         return true;
     }
 
@@ -29,8 +31,9 @@ public class AttesaPrigione extends StatoPartita {
             //Notifica client Tizio ha usato carta
             partita.setStato(LancioDadi.builder().build());
             partita.turnoStandard();
+            partita.broadcast();
         }
-        //g.getCasellaCorrente().on
+
 
 
     }
