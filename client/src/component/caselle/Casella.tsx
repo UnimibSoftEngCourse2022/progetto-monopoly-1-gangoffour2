@@ -10,6 +10,7 @@ import {Tassa} from "./Tassa";
 import {VaiInPrigione} from "./VaiInPrigione";
 import {Parcheggio} from "./Parcheggio";
 import Via from "./Via";
+import CasellaSingleton from "./CasellaSingleton";
 
 const translate = {
     "Imprevisto": (props: any, giocatoriJsx: JSX.Element) => <Imprevisto casella={props}> {giocatoriJsx} </Imprevisto>,
@@ -29,6 +30,14 @@ export class Casella extends React.Component<ICasella, {}>{
     render() {
         console.log(this.props);
         const giocatoriJsx = <div className={"overlap_player"}>
+            {
+                CasellaSingleton.casellaGiocatore[this.props.id]?.map(el => {
+                        const colore = CasellaSingleton.giocatoreColore[el];
+                        console.log(colore)
+                        return <div style={{backgroundColor: colore}}></div>
+                    }
+                )
+            }
         </div>
         //@ts-ignore
         const casellaJsx = translate[this.props.type](this.props, giocatoriJsx);

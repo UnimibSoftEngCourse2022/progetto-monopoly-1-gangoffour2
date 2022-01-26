@@ -3,9 +3,11 @@ import ICasella, {AllCaselle} from "../interfaces/caselle/ICasella";
 import './caselle/caselle.scss';
 import ICasellaTererno from "../interfaces/caselle/ICasellaTererno";
 import {Casella} from "./caselle/Casella";
+import IGiocatore from "../interfaces/IGiocatore";
 
 interface Props{
-    caselle: ICasella[]
+    caselle: ICasella[],
+    giocatori: IGiocatore[]
 }
 
 interface State {
@@ -33,6 +35,7 @@ export default class Tabellone extends React.Component<Props, State> {
     }
 
     render() : JSX.Element {
+
         let jsxCaselle = []
         jsxCaselle.push(<Casella {...this.props.caselle[0]}/>);
         jsxCaselle.push(this.costruisciRiga(1, 10, "row horizontal-row bottom-row", true));

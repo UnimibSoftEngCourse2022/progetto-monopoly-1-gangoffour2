@@ -10,7 +10,8 @@ export enum CasellaTypo {
 
 export interface ICasella {
     type: string;
-    nome: string,
+    nome: string;
+    id: number;
 }
 
 export type AllCaselle = ICasellaImprevisto | ICasellaTerreno

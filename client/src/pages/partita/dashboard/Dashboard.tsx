@@ -5,6 +5,7 @@ import ICasellaProprieta from "../../../interfaces/caselle/ICasellaProprieta";
 import ICasellaTererno from "../../../interfaces/caselle/ICasellaTererno";
 import ICasellaTerreno from "../../../interfaces/caselle/ICasellaTererno";
 import StompController from "../../../application/stompController";
+import Popup from "../../../component/popup/Popup";
 
 interface Props {
     partita: IPartita,

@@ -5,6 +5,7 @@ import Tabellone from "../../component/Tabellone";
 import StompController from "../../application/stompController";
 import {Classifica} from "./classifica/Classifica";
 import {Dashboard} from "./dashboard/Dashboard";
+import CasellaSingleton from "../../component/caselle/CasellaSingleton";
 
 interface Props {
     idPartita: string,
@@ -34,7 +35,6 @@ export default class Partita extends React.Component<Props, State> implements Ob
     }
 
     update(partita: IPartita) {
-        console.log(partita)
         this.setState({
             partita: partita
         })
@@ -45,8 +45,13 @@ export default class Partita extends React.Component<Props, State> implements Ob
         if(!this.state.partita)
             return null;
 
+        CasellaSingleton.casellaGiocatore = {}
+        this.state.partita.giocatori.forEach(el => {
+            CasellaSingleton.addGiocatore(el.nick, el.casellaCorrente)
+        })
+
         return <div>
-            <Tabellone caselle={this.state.partita.tabellone.caselle}/>
+            <Tabellone caselle={this.state.partita.tabellone.caselle} giocatori={this.state.partita.giocatori}/>
             <Classifica partita={this.state.partita}/>
             <Dashboard nickname={this.props.nickname} partita={this.state.partita}/>
         </div>
