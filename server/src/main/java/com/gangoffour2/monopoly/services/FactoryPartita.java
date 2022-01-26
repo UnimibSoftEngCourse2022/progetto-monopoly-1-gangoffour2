@@ -6,6 +6,7 @@ import com.gangoffour2.monopoly.model.Partita;
 import com.gangoffour2.monopoly.model.Tabellone;
 import com.gangoffour2.monopoly.model.casella.*;
 import com.gangoffour2.monopoly.stati.partita.Lobby;
+import org.springframework.core.io.ClassPathResource;
 
 import java.io.File;
 import java.io.IOException;
@@ -23,7 +24,7 @@ public class FactoryPartita {
         return instance;
     }
 
-    String creaId(){
+    public String creaId(){
         String idPartita = UUID.randomUUID().toString();
         while(PartiteRepository.getInstance().getPartitaByid(idPartita) != null){
             idPartita = UUID.randomUUID().toString();
@@ -31,15 +32,20 @@ public class FactoryPartita {
         return idPartita;
     }
 
-    ArrayList<Casella> creaCaselle() throws IOException {
+    public ArrayList<Casella> creaCaselle() throws IOException {
         ObjectMapper mapper = new ObjectMapper();
-        File jsonFile = new File(getClass().getClassLoader().getResource("caselle.json").getFile());
+        File jsonFile = new ClassPathResource("caselle.json").getFile();
         Casella[] arrayCaselle = mapper.readValue(jsonFile, Casella[].class);
+
+        int idCounter = 0;
+        for(Casella c: arrayCaselle) {
+            c.setId(idCounter++);
+        }
 
         return new ArrayList<>(List.of(arrayCaselle));
     }
 
-    Tabellone creaTabellone() throws IOException {
+    public Tabellone creaTabellone() throws IOException {
         return Tabellone.builder().caselle(creaCaselle()).build();
     }
 
