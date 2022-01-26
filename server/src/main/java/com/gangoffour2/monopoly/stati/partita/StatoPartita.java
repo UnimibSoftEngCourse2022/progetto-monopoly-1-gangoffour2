@@ -87,6 +87,8 @@ public abstract class StatoPartita implements Serializable {
 
     public void esegui(AttesaLancioDadi attesaLancioDadi){ }
 
+    public void esegui(AstaTerminata astaTerminata){ }
+
 
     /**
      * Di default, gli eventi arrivati dall'esterno non sbloccano la partita.
@@ -136,4 +138,5 @@ public abstract class StatoPartita implements Serializable {
         return false;
     }
 
+    public boolean onAzioneGiocatore(AstaTerminata astaTerminata) { return false;}
 }

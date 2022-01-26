@@ -6,6 +6,7 @@ import com.gangoffour2.monopoly.azioni.giocatore.Paga;
 import com.gangoffour2.monopoly.model.Giocatore;
 import com.gangoffour2.monopoly.model.Turno;
 import lombok.Builder;
+import lombok.EqualsAndHashCode;
 
 @Builder
 public class AttesaPrigione extends StatoPartita {
@@ -25,6 +26,12 @@ public class AttesaPrigione extends StatoPartita {
         Giocatore g = turno.getGiocatore();
         if(g.haCartaEsciGratis()){
             partita.getTabellone().getProbabilita().add(g.rimuoviEsciGratis());
+            //Notifica client Tizio ha usato carta
+            partita.setStato(LancioDadi.builder().build());
+            partita.turnoStandard();
         }
+        //g.getCasellaCorrente().on
+
+
     }
 }
