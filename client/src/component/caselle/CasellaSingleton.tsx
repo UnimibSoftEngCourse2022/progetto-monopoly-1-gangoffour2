@@ -1,4 +1,3 @@
-import {Colore} from "../../interfaces/caselle/ICasellaTererno";
 import ICasella from "../../interfaces/caselle/ICasella";
 
 export default class CasellaSingleton {

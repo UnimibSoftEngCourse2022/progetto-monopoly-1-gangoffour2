@@ -5,7 +5,7 @@ interface Props {
     trigger: boolean,
     onClose: Function,
     title: string
-};
+}
 
 interface State {
     hide_trigger: boolean,

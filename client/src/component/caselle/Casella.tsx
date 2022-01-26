@@ -38,8 +38,7 @@ export class Casella extends React.Component<ICasella, {}>{
             }
         </div>
         //@ts-ignore
-        const casellaJsx = translate[this.props.type](this.props, giocatoriJsx);
-        return casellaJsx
+        return translate[this.props.type](this.props, giocatoriJsx);
     }
 
 }

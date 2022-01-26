@@ -21,7 +21,6 @@
 
 .popup_container .popup {
     position: relative;
-    top: 95px;
     height: fit-content;
     max-height: 70vh;
     border-radius: 12px;
@@ -140,8 +139,7 @@
 }
 
 @media only screen and (max-width: 600px) {
-    .popup_container {
-    }
+
     .popup_container .popup {
         max-width: 80%;
 
@@ -153,9 +151,6 @@
     height: 4px;
 }
 
-/* Track */
-
-.popup_container::-webkit-scrollbar-track {}
 
 /* Handle */
 
