@@ -7,7 +7,7 @@ import lombok.Data;
 
 @Builder
 @Data
-public class CheckPrigione implements AzioneCasella {
+public class VaiInAttesaPrigione implements AzioneCasella {
     private Giocatore giocatore;
     @Override
     public void accept(StatoPartita statoPartita) {

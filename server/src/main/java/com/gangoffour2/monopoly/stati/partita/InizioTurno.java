@@ -1,7 +1,7 @@
 package com.gangoffour2.monopoly.stati.partita;
 
 import com.gangoffour2.monopoly.azioni.casella.AttesaLancioDadi;
-import com.gangoffour2.monopoly.azioni.casella.CheckPrigione;
+import com.gangoffour2.monopoly.azioni.casella.VaiInAttesaPrigione;
 import lombok.Builder;
 
 @Builder
@@ -13,7 +13,7 @@ public class InizioTurno extends StatoPartita {
     }
 
     @Override
-    public void onAzioneCasella(CheckPrigione checkPrigione){
+    public void onAzioneCasella(VaiInAttesaPrigione checkPrigione){
 
     }
 

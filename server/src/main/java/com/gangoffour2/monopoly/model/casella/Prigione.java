@@ -1,7 +1,8 @@
 package com.gangoffour2.monopoly.model.casella;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.gangoffour2.monopoly.azioni.casella.AttesaLancioDadi;
-import com.gangoffour2.monopoly.azioni.casella.CheckPrigione;
+import com.gangoffour2.monopoly.azioni.casella.VaiInAttesaPrigione;
 import com.gangoffour2.monopoly.model.Giocatore;
 import com.gangoffour2.monopoly.stati.casella.StatoPrigione;
 import lombok.Data;
@@ -16,6 +17,7 @@ import java.util.HashMap;
 public class Prigione extends Casella{
     private int cauzione;
     private int turniInPrigione;
+    @JsonIgnore
     private HashMap<Giocatore, Integer> giocatoriInPrigione = new HashMap<>();
 
     protected Prigione(){
@@ -41,7 +43,7 @@ public class Prigione extends Casella{
         }
         else{
             giocatoriInPrigione.put(g, giocatoriInPrigione.get(g)-1);
-            notificaTutti(CheckPrigione.builder().giocatore(g).build());
+            notificaTutti(VaiInAttesaPrigione.builder().giocatore(g).build());
         }
     }
 

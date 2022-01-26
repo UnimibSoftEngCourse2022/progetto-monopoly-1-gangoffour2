@@ -63,7 +63,7 @@ public abstract class StatoPartita implements Serializable {
 
     public void onAzioneCasella(PescaProbabilita pescaProbabilita) {}
 
-    public void onAzioneCasella(CheckPrigione checkPrigione) {}
+    public void onAzioneCasella(VaiInAttesaPrigione checkPrigione) {}
 
     /**
      * I metodi esegui vengono chiamati dalla partita sulla casella: ad esempio, prima di attendere il lancio dei dadi,
