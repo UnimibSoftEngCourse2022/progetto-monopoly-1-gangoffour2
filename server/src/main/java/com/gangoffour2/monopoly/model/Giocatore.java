@@ -31,7 +31,6 @@ public class Giocatore implements Serializable {
     private Casella casellaCorrente;
 
     @Builder.Default
-    @JsonIgnore
     private ArrayList<Proprieta> proprietaPossedute = new ArrayList<>();
 
     public void modificaDenaro(int importo) throws ModificaDenaroException{
