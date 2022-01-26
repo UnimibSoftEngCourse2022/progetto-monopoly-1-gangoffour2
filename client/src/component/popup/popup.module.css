@@ -1,0 +1,209 @@
+.popup_container {
+    position: fixed;
+    background: rgba(211, 217, 222, 0.37);
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    justify-content: center;
+    justify-items: center;
+    animation-name: show-container-animation;
+    animation-duration: .1s;
+    grid-template-columns: 40px calc(100% - 80px) 40px;
+    grid-template-rows: 40px auto 40px;
+}
+
+.popup_container.invisible {
+    display: none;
+}
+
+.popup_container .popup {
+    position: relative;
+    top: 95px;
+    height: fit-content;
+    max-height: 70vh;
+    border-radius: 12px;
+    overflow: hidden;
+    animation-name: show-animation;
+    animation-duration: .3s;
+    box-shadow: 0 16px 100px -1px rgba(0, 0, 0, 0.75);
+
+    vertical-align: middle;
+    margin: auto;
+    top: 38%;
+    width: fit-content;
+}
+
+.popup_container.hide .popup {
+
+    animation-name: hide-animation;
+    animation-duration: .2s;
+}
+
+.popup_container.hide {
+
+    animation-name: hide-container-animation;
+    animation-duration: .3s;
+}
+
+.popup_container .popup.huge {
+    max-width: 800px;
+}
+
+.popup_container .popup .popup_title {
+    padding: 20px 23px 22px;
+    background-color: white;
+    margin: auto;
+    text-align: center;
+
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.popup_container .popup .popup_content {
+    text-align: center;
+    background-color: #fdfdfd;
+    border-top: 1px solid #e6e6e6;
+    border-bottom: 0px;
+    display: flex;
+    flex-direction: column;
+    max-height: calc(70vh - 246px);
+    position: relative;
+    z-index: 0;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.popup_container .popup .popup_content div {
+    transition: all 0.4s;
+    width: 100%;
+    margin: auto auto 0px;
+    padding: 20px;
+}
+
+.popup_container .popup .popup_content div:last-child {
+    margin-bottom: 0px;
+}
+
+.popup_container .popup .popup_content div[aria-selected=true] {
+    background-color: cornflowerblue;
+    color: white;
+}
+
+.popup_container .popup .popup_content div:hover {
+    background-color: lightslategrey;
+    color: white;
+}
+
+.popup_container .popup .popup_button_function {
+    padding: 22px 30px;
+    background-color: white;
+    display: flex;
+    gap: 8px;
+    border-top: 1px solid #e6e6e6;
+    position: relative;
+    z-index: 99;
+}
+
+.popup_container .popup .popup_button_function div {
+    padding: 10px 21px;
+    background-color: #9B9B9B;
+    border-radius: 4px;
+    color: white;
+    cursor: pointer;
+}
+
+.popup_container .popup .popup_button_function div.secondary {
+    background-color: #C7C7C7;
+}
+
+.popup_container .popup .popup_content .input-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.popup_container .popup .popup_content .input-container .label-input {
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.popup_container .popup .popup_content .input-container .input input {
+    width: fit-content;
+    padding: 12px 15px;
+    font-size: 16px;
+    outline: none;
+    border: 1px solid #C7C7C7;
+    border-radius: 4px;
+}
+
+@media only screen and (max-width: 600px) {
+    .popup_container {
+    }
+    .popup_container .popup {
+        max-width: 80%;
+
+    }
+}
+
+.popup_container::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+}
+
+/* Track */
+
+.popup_container::-webkit-scrollbar-track {}
+
+/* Handle */
+
+.popup_container::-webkit-scrollbar-thumb {
+    background: grey;
+}
+
+@keyframes show-animation {
+    0% {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes hide-animation {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    
+    100% {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+}
+
+
+@keyframes hide-container-animation {
+    0% {
+        opacity: 1;
+    }
+    
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes show-container-animation {
+    0% {
+        opacity: 0;
+    }
+    
+    100% {
+        opacity: 1;
+    }
+}
