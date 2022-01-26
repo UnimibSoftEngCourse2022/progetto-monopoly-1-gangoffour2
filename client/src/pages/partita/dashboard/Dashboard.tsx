@@ -5,7 +5,6 @@ import ICasellaProprieta from "../../../interfaces/caselle/ICasellaProprieta";
 import ICasellaTererno from "../../../interfaces/caselle/ICasellaTererno";
 import ICasellaTerreno from "../../../interfaces/caselle/ICasellaTererno";
 import StompController from "../../../application/stompController";
-import Popup from "../../../component/popup/Popup";
 
 interface Props {
     partita: IPartita,
@@ -47,7 +46,7 @@ export class Dashboard extends React.Component<Props, State> {
         return (
             <div className={"container_menu dashboard_container"}>
                 <div className={"dashboard_container_data"}>
-                   <h3>Azioni</h3>
+                   <h3 id={"titolo-dashboard"}>Azioni</h3>
                     <div className={"property_list"}>
                         {properietaPossedute.map(el =>
                             <React.Fragment>

@@ -4,7 +4,7 @@
     border-radius: 35px 35px 0px 0px;
     right: 20px;
     width: 300px;
-    height: 320px;
+    height: 310px;
     margin: 0px;
     box-shadow: 0px 0px 15px -1px;
     background-color: white;
@@ -12,7 +12,13 @@
 }
 
 .dashboard_container_data {
-    padding: 10px 40px 17px 40px;
+    padding: 10px 10px 17px 10px;
+    text-align: center;
+}
+
+#titolo-dashboard{
+    font-size: 18px;
+    margin-bottom: 0;
 }
 
 .dashboard_container h3 {

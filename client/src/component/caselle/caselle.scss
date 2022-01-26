@@ -2,7 +2,7 @@
 // TYPOGRAPHY
 // =================
 
-$body-font: 'Oswald', sans-serif;
+$body-font: 'Arial', sans-serif;
 
 
 // =================
@@ -16,7 +16,7 @@ $dark-purple: #5e3577;
 $light-blue: #d2eaf5;
 $purple: #b02f7c;
 $orange: #fa811d;
-$red: #f50c2b;
+$red: #e13349;
 $yellow: #ffed20;
 $green: #41994e;
 $dark-blue: #5a6dba;
@@ -81,8 +81,6 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .overlap_player div {
-  width: 100%;
-  height: 100%;
   width: 16px;
   height: 16px;
   border-radius: 200px;
@@ -111,13 +109,24 @@ h1, h2, h3, h4, h5, h6 {
   align-items: center;
 }
 
+@font-face {
+  font-family: 'Kabel';
+  src: url('../../../public/KabelBdNormal.ttf');
+}
+
 .title {
+  text-shadow: 7px 7px black;
+  background-color: $red;
+  border: 3px solid black;
+  color: white;
+  font-family: "Kabel", serif;
   grid-column: 1 / 9;
   grid-row: 4;
-  font-size: 90px;
-  font-weight: 400;
-  letter-spacing: 12px;
+  font-size: 70px;
+  font-weight: 50;
   text-align: center;
+  transform: rotate(-45deg);
+
 }
 
 .community-chest-deck {
