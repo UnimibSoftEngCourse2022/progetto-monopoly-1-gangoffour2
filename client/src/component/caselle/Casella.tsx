@@ -28,12 +28,10 @@ const translate = {
 export class Casella extends React.Component<ICasella, {}>{
 
     render() {
-        console.log(this.props);
         const giocatoriJsx = <div className={"overlap_player"}>
             {
                 CasellaSingleton.casellaGiocatore[this.props.id]?.map(el => {
                         const colore = CasellaSingleton.giocatoreColore[el];
-                        console.log(colore)
                         return <div style={{backgroundColor: colore}}></div>
                     }
                 )

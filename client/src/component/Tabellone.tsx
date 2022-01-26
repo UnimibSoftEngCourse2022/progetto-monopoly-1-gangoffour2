@@ -23,7 +23,6 @@ export default class Tabellone extends React.Component<Props, State> {
     costruisciRiga(inizio: number, fine: number, classe: string, reverse: boolean){
         let riga : JSX.Element[] = []
         this.props.caselle.slice(inizio, fine).forEach((casella: ICasella) => {
-            console.log(casella.nome);
             riga.push(<Casella {...casella}/>);
         });
         if (reverse){
