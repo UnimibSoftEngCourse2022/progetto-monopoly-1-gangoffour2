@@ -17,6 +17,8 @@ public class AttesaPrigione extends StatoPartita {
 
     @Override
     public boolean onAzioneGiocatore(Paga paga){
+        Giocatore g = paga.getGiocatore();
+
         return true;
     }
 

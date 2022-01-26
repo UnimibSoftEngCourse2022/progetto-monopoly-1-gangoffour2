@@ -1,30 +1,50 @@
 package com.gangoffour2.monopoly.model.casella;
 
+import com.gangoffour2.monopoly.azioni.casella.AttesaLancioDadi;
+import com.gangoffour2.monopoly.azioni.casella.CheckPrigione;
 import com.gangoffour2.monopoly.model.Giocatore;
 import com.gangoffour2.monopoly.stati.casella.StatoPrigione;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.SuperBuilder;
 
-import java.util.HashSet;
+import java.util.HashMap;
 
 @Data
 @EqualsAndHashCode(callSuper=true)
 @SuperBuilder
 public class Prigione extends Casella{
     private int cauzione;
-    private HashSet<Giocatore> giocatoriInPrigione = new HashSet<>();
+    private int turniInPrigione;
+    private HashMap<Giocatore, Integer> giocatoriInPrigione = new HashMap<>();
 
     protected Prigione(){
         evento = StatoPrigione.builder().prigione(this).build();
     }
 
-    public boolean liberaGiocatore(Giocatore giocatore){
+    public Integer liberaGiocatore(Giocatore giocatore){
         return giocatoriInPrigione.remove(giocatore);
     }
 
-    public boolean imprigionaGiocatore(Giocatore giocatore){
-        return giocatoriInPrigione.add(giocatore);
+    public Integer imprigionaGiocatore(Giocatore giocatore){
+        return giocatoriInPrigione.put(giocatore, turniInPrigione);
     }
+
+    @Override
+    public void inizioTurno(Giocatore g){
+        if(giocatoriInPrigione.get(g) == null) {
+            notificaTutti(AttesaLancioDadi.builder().build());
+        }
+        else if(giocatoriInPrigione.get(g)==0) {
+            this.liberaGiocatore(g);
+            notificaTutti(AttesaLancioDadi.builder().build());
+        }
+        else{
+            giocatoriInPrigione.put(g, giocatoriInPrigione.get(g)-1);
+            notificaTutti(CheckPrigione.builder().giocatore(g).build());
+        }
+    }
+
+
 
 }
