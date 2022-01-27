@@ -34,7 +34,11 @@ public class Terreno extends Proprieta {
             return affitti.get(affitti.size() - 2);
         }
 
-        return affitti.get(listaCase.size() - 1);
+        if (!listaCase.isEmpty()) {
+            return affitti.get(listaCase.size() - 1);
+        }
+
+        return rendita;
     }
 
     public void aggiungiEdificio() {
