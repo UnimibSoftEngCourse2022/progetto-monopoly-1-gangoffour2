@@ -1,13 +1,4 @@
 
-h1 {
-    text-align: center;
-    font-family: 'Balthazar', serif;
-    letter-spacing: 2px;
-}
-p {
-    margin: 2px 0;
-}
-
 
 .table-carta {
     display: flex;
