@@ -8,7 +8,7 @@ public class ModificaDenaro implements AzioneCasella {
     protected int importo;
 
     @Override
-    public void accept(StatoPartita statoPartita)  {
+    public void accept(StatoPartita statoPartita) {
         statoPartita.onAzioneCasella(this);
     }
 }

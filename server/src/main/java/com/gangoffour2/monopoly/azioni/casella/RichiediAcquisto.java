@@ -8,12 +8,13 @@ import lombok.Data;
 
 @Builder
 @Data
-public class RichiediAcquisto implements AzioneCasella{
+public class RichiediAcquisto implements AzioneCasella {
 
     @JsonIgnore
     private Proprieta proprieta;
 
     @Override
-    public void accept(StatoPartita statoPartita) {statoPartita.onAzioneCasella(this);
+    public void accept(StatoPartita statoPartita) {
+        statoPartita.onAzioneCasella(this);
     }
 }

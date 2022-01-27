@@ -7,7 +7,7 @@ import lombok.experimental.SuperBuilder;
 
 @SuperBuilder
 @Data
-public class EntraInPartita extends AzioneGiocatore{
+public class EntraInPartita extends AzioneGiocatore {
 
     @Override
     public void accept(StatoCasella statoCasella) {

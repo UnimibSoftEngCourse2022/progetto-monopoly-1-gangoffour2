@@ -9,6 +9,7 @@ import lombok.Data;
 @Data
 public class VaiInAttesaPrigione implements AzioneCasella {
     private Giocatore giocatore;
+
     @Override
     public void accept(StatoPartita statoPartita) {
         statoPartita.onAzioneCasella(this);

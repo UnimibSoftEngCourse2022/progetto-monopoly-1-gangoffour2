@@ -7,10 +7,10 @@ import lombok.experimental.SuperBuilder;
 
 @Data
 @SuperBuilder
-public class PagaAffitto implements AzioneCasella{
+public class PagaAffitto implements AzioneCasella {
     protected Giocatore proprietario;
 
-    private PagaAffitto(){
+    private PagaAffitto() {
     }
 
     @Override

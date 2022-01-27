@@ -5,7 +5,7 @@ import com.gangoffour2.monopoly.stati.partita.StatoPartita;
 import lombok.experimental.SuperBuilder;
 
 @SuperBuilder
-public class LanciaDadi extends AzioneGiocatore{
+public class LanciaDadi extends AzioneGiocatore {
     @Override
     public void accept(StatoCasella statoCasella) {
         statoCasella.onAzioneGiocatore(this);

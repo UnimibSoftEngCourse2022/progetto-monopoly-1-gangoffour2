@@ -13,10 +13,11 @@ import java.io.Serializable;
 public abstract class AzioneGiocatore implements Serializable {
     protected Giocatore giocatore;
 
-    protected AzioneGiocatore(){
+    protected AzioneGiocatore() {
 
     }
 
     public abstract void accept(StatoCasella statoCasella);
-    public abstract boolean accept(StatoPartita statoPartita) ;
+
+    public abstract boolean accept(StatoPartita statoPartita);
 }

@@ -5,13 +5,11 @@ import com.gangoffour2.monopoly.stati.partita.StatoPartita;
 import lombok.experimental.SuperBuilder;
 
 @SuperBuilder
-public class Ipoteca extends AzioneGiocatore{
+public class Ipoteca extends AzioneGiocatore {
 
-    protected Ipoteca(){
+    protected Ipoteca() {
 
     }
-
-
 
 
     @Override
