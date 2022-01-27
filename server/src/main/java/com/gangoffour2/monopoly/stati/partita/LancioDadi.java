@@ -33,7 +33,9 @@ public class LancioDadi extends StatoPartita {
 
     @Override
     public void onAzioneCasella(PagaAffitto pagaAffitto) {
-        partita.setStato(AttesaAffitto.builder().build());
+        partita.setStato(AttesaAffitto.builder()
+                .proprieta(pagaAffitto.getProprieta())
+                .build());
         partita.getStato().esegui();
     }
 
@@ -62,6 +64,7 @@ public class LancioDadi extends StatoPartita {
     public void onAzioneCasella(AggiungiDenaro aggiungiDenaro) {
         try {
             partita.getTurnoCorrente().getGiocatore().aggiungiDenaro(aggiungiDenaro.getImporto());
+            partita.turnoStandard();
         }catch (Exception e){
             int soldiDaPagare = aggiungiDenaro.getImporto();
             partita.setStato(AttesaFallimento.builder().soldiDaPagare(-soldiDaPagare).build());

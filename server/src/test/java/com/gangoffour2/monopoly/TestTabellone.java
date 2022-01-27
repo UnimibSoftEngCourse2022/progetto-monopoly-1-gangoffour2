@@ -26,6 +26,7 @@ class TestTabellone {
     void muoviAProssimaCasella() throws GiocatoreEsistenteException {
         Giocatore g = Giocatore.builder().nick("Ciao").build();
         partita.aggiungiGiocatore(g);
+        partita.cambiaTurno();
         partita.getTabellone().muoviAProssimaCasella(g, (casella) -> casella.getNome().equals("Bastioni Gran Sasso"));
         assertEquals("Bastioni Gran Sasso", g.getCasellaCorrente().getNome());
     }
@@ -34,6 +35,7 @@ class TestTabellone {
     void muoviAProssimoTipoCasella() throws GiocatoreEsistenteException {
         Giocatore g = Giocatore.builder().nick("Ciao").build();
         partita.aggiungiGiocatore(g);
+        partita.cambiaTurno();
         partita.getTabellone().muoviAProssimaCasella(g, (casella) -> casella.getClass().equals(Stazione.class));
         assertEquals("Stazione Sud", g.getCasellaCorrente().getNome());
     }

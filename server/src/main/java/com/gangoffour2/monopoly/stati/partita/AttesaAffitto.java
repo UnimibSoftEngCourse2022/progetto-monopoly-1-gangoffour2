@@ -4,9 +4,19 @@ import com.gangoffour2.monopoly.azioni.giocatore.PagaAffittoAzione;
 import com.gangoffour2.monopoly.model.Giocatore;
 import com.gangoffour2.monopoly.model.casella.Proprieta;
 import lombok.Builder;
+import lombok.EqualsAndHashCode;
 
 @Builder
+@EqualsAndHashCode(callSuper = true)
 public class AttesaAffitto extends StatoPartita {
+    private Proprieta proprieta;
+
+    @Override
+    public void onTimeout() {
+        Giocatore debitore = partita.getTurnoCorrente().getGiocatore();
+        debitore.paga(proprieta.getProprietario(), proprieta.calcolaAffitto());
+        partita.turnoStandard();
+    }
 
     @Override
     public void esegui() {
@@ -15,9 +25,10 @@ public class AttesaAffitto extends StatoPartita {
 
     @Override
     public void onAzioneGiocatore(PagaAffittoAzione pagaAffittoAzione) {
-        Giocatore debitore = partita.getTurnoCorrente().getGiocatore();
-        Proprieta proprieta = (Proprieta) debitore.getCasellaCorrente();
+        Giocatore debitore = pagaAffittoAzione.getGiocatore();
         debitore.paga(proprieta.getProprietario(), proprieta.calcolaAffitto());
         partita.turnoStandard();
     }
+
+
 }

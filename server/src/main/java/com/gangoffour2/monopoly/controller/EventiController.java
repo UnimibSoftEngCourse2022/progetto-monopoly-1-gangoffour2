@@ -141,4 +141,13 @@ public class EventiController {
             partita.onAzioneGiocatore(TerminaTurno.builder().giocatore(giocatore).build());
         }
     }
+
+    @MessageMapping("/partite/{id}/paga")
+    public void pagaAffitto(@DestinationVariable String id, SimpMessageHeaderAccessor header){
+        Giocatore giocatore = PartiteRepository.getInstance().getGiocatoreByIdSessione(header.getSessionId());
+        IPartita partita = PartiteRepository.getInstance().getPartitaByid(id);
+        if (partita != null){
+            partita.onAzioneGiocatore(Paga.builder().giocatore(giocatore).build());
+        }
+    }
 }
