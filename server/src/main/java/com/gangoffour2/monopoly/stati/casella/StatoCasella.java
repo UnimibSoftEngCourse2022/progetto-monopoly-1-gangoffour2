@@ -76,4 +76,12 @@ public abstract class StatoCasella implements Serializable {
 
     public void onAzioneGiocatore(AstaTerminata astaTerminata) {
     }
+
+    public void onAzioneGiocatore(AvviaAsta avviaAsta) {
+
+    }
+
+    public void onAzioneGiocatore(TerminaTurno terminaTurno) {
+
+    }
 }

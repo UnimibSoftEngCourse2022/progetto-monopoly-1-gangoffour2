@@ -1,9 +1,6 @@
 package com.gangoffour2.monopoly.controller;
 
-import com.gangoffour2.monopoly.azioni.giocatore.AcquistaProprieta;
-import com.gangoffour2.monopoly.azioni.giocatore.EntraInPartita;
-import com.gangoffour2.monopoly.azioni.giocatore.LanciaDadi;
-import com.gangoffour2.monopoly.azioni.giocatore.Offerta;
+import com.gangoffour2.monopoly.azioni.giocatore.*;
 import com.gangoffour2.monopoly.eccezioni.PartitaPienaException;
 import com.gangoffour2.monopoly.model.Giocatore;
 import com.gangoffour2.monopoly.model.IPartita;
@@ -124,6 +121,25 @@ public class EventiController {
         IPartita partita = PartiteRepository.getInstance().getPartitaByid(id);
         if (partita != null) {
             partita.onAzioneGiocatore(offerta);
+        }
+    }
+
+
+    @MessageMapping("/partite/{id}/avviaAsta")
+    public void avviaAsta(@DestinationVariable String id, SimpMessageHeaderAccessor header){
+        Giocatore giocatore = PartiteRepository.getInstance().getGiocatoreByIdSessione(header.getSessionId());
+        IPartita partita = PartiteRepository.getInstance().getPartitaByid(id);
+        if (partita != null){
+            partita.onAzioneGiocatore(AvviaAsta.builder().giocatore(giocatore).build());
+        }
+    }
+
+    @MessageMapping("/partite/{id}/terminaTurno")
+    public void terminaTurno(@DestinationVariable String id, SimpMessageHeaderAccessor header){
+        Giocatore giocatore = PartiteRepository.getInstance().getGiocatoreByIdSessione(header.getSessionId());
+        IPartita partita = PartiteRepository.getInstance().getPartitaByid(id);
+        if (partita != null) {
+            partita.onAzioneGiocatore(TerminaTurno.builder().giocatore(giocatore).build());
         }
     }
 }
