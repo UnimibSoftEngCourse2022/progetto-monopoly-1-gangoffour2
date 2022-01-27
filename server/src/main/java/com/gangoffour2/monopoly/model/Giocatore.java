@@ -2,6 +2,7 @@ package com.gangoffour2.monopoly.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.gangoffour2.monopoly.eccezioni.ModificaDenaroException;
+import com.gangoffour2.monopoly.model.carta.Carta;
 import com.gangoffour2.monopoly.model.carta.CartaEsciGratisPrigione;
 import com.gangoffour2.monopoly.model.casella.Casella;
 import com.gangoffour2.monopoly.model.casella.Proprieta;
@@ -14,6 +15,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Objects;
+import java.util.Queue;
 
 @Data
 @Builder
@@ -26,7 +28,9 @@ public class Giocatore implements Serializable {
     private String idSessione;
     private String nick;
     private int conto;
-    private LinkedList<CartaEsciGratisPrigione> esciGratis;
+
+    @Builder.Default
+    private Queue<Carta> esciGratis = new LinkedList<>();
     private Casella casellaCorrente;
 
     @Builder.Default
@@ -38,6 +42,9 @@ public class Giocatore implements Serializable {
         this.setConto(this.getConto() + importo);
     }
 
+    public Carta popCartaEsciDiPrigione(){
+        return esciGratis.remove();
+    }
 
     public void paga(Giocatore destinatario, int importo) {
         conto -= importo;
@@ -62,10 +69,6 @@ public class Giocatore implements Serializable {
 
     public void aggiungiEsciGratis(CartaEsciGratisPrigione c) {
         this.getEsciGratis().add(c);
-    }
-
-    public CartaEsciGratisPrigione rimuoviEsciGratis() {
-        return this.getEsciGratis().remove();
     }
 
     public boolean haCartaEsciGratis() {
