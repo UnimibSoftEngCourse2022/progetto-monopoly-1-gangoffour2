@@ -74,6 +74,9 @@ public abstract class StatoPartita implements Serializable {
     public void onAzioneCasella(VaiInAttesaPrigione checkPrigione) {
     }
 
+    public void onAzioneCasella(AvviaAsta avviaAsta){
+    }
+
     /**
      * I metodi esegui vengono chiamati dalla partita sulla casella: ad esempio, prima di attendere il lancio dei dadi,
      * sarà necessario un cambio di stato attraverso onAzioneCasella; poi, il nuovo stato si potrà effettivamente
@@ -153,5 +156,8 @@ public abstract class StatoPartita implements Serializable {
 
     }
 
+    public void onAzioneGiocatore(AvviaAsta avviaAsta){
+
+    }
 
 }
