@@ -2,15 +2,14 @@ package com.gangoffour2.monopoly.services;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gangoffour2.monopoly.model.*;
+import com.gangoffour2.monopoly.model.carta.Carta;
 import com.gangoffour2.monopoly.model.casella.Casella;
 import com.gangoffour2.monopoly.stati.partita.Lobby;
 import org.springframework.core.io.ClassPathResource;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 public class FactoryPartita {
 
@@ -43,13 +42,28 @@ public class FactoryPartita {
         return new ArrayList<>(List.of(arrayCaselle));
     }
 
+    public Carta[] creaCarte(String nomeFile) throws IOException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        File jsonFile = new ClassPathResource(nomeFile).getFile();
+        return objectMapper.readValue(jsonFile, Carta[].class);
+    }
+
+    public IMazzo creaMazzo(ITabellone tabellone) throws IOException {
+        Mazzo mazzo = Mazzo.builder().build();
+        mazzo.setImprevisti(new LinkedList<>(List.of(creaCarte("imprevisti.json"))));
+        mazzo.setProbabilita(new LinkedList<>(List.of(creaCarte("probabilita.json"))));
+        mazzo.getImprevisti().forEach(imprevisto -> imprevisto.setTabellone(tabellone));
+        mazzo.getProbabilita().forEach(probabilita -> probabilita.setTabellone(tabellone));
+        return mazzo;
+    }
+
     public Tabellone creaTabellone() throws IOException {
         return Tabellone.builder().caselle(creaCaselle()).build();
     }
 
     public IPartita creaPartita(Configurazione config) throws IOException {
         Tabellone tabellone = creaTabellone();
-        Mazzo mazzo = Mazzo.builder().build();
+        IMazzo mazzo = creaMazzo(tabellone);
         IPartita partita = Partita.builder()
                 .id(creaId())
                 .tabellone(tabellone)

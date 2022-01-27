@@ -12,6 +12,10 @@ import lombok.experimental.SuperBuilder;
 public class CartaMuoviPosizioneACasella extends Carta {
     private Casella casella;
 
+    protected CartaMuoviPosizioneACasella(){
+
+    }
+
     @Override
     public boolean effetto(Giocatore giocatore) {
         tabellone.muoviAProssimaCasella(giocatore, c -> c.equals(casella));

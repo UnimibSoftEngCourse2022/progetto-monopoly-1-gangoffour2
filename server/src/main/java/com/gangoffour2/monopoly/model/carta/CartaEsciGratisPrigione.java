@@ -10,6 +10,11 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 public class CartaEsciGratisPrigione extends Carta {
 
+
+    protected CartaEsciGratisPrigione(){
+
+    }
+
     @Override
     public boolean effetto(Giocatore giocatore) {
         giocatore.aggiungiEsciGratis(this);

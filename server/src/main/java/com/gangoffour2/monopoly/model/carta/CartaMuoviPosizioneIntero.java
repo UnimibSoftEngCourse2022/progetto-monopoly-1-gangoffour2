@@ -11,6 +11,11 @@ import lombok.experimental.SuperBuilder;
 public class CartaMuoviPosizioneIntero extends Carta {
     int movimento;
 
+    protected CartaMuoviPosizioneIntero(){
+
+    }
+
+
     @Override
     public boolean effetto(Giocatore giocatore) {
         tabellone.muoviGiocatoreIntero(giocatore, movimento);

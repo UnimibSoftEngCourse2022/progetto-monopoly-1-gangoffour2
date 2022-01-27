@@ -11,6 +11,10 @@ import lombok.experimental.SuperBuilder;
 public class CartaModificaDenaro extends Carta {
     private int denaro;
 
+    protected CartaModificaDenaro() {
+
+    }
+
     @Override
     public boolean effetto(Giocatore giocatore) {
         giocatore.setConto(giocatore.getConto() + denaro);
