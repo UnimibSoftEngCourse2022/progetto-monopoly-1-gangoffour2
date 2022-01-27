@@ -1,8 +1,8 @@
 package com.gangoffour2.monopoly.stati.partita;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.gangoffour2.monopoly.azioni.casella.RichiediAcquisto;
 import com.gangoffour2.monopoly.azioni.giocatore.AcquistaProprieta;
+import com.gangoffour2.monopoly.azioni.giocatore.AvviaAsta;
 import com.gangoffour2.monopoly.model.casella.Proprieta;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -17,14 +17,16 @@ public class AttesaAcquisto extends StatoPartita {
 
     @Override
     public void onTimeout() {
-        partita.setStato(Asta.builder().statoPrecedente(this).build());
-        partita.getStato().esegui(RichiediAcquisto.builder().proprieta(daAcquistare).build());
+        partita.setStato(Asta.builder()
+                .statoPrecedente(this)
+                .proprieta(daAcquistare)
+                .build());
+        partita.getStato().esegui();
     }
 
 
     @Override
-    public void esegui(RichiediAcquisto richiediAcquisto) {
-        daAcquistare = richiediAcquisto.getProprieta();
+    public void esegui() {
         partita.attendiAzione();
     }
 
@@ -34,5 +36,12 @@ public class AttesaAcquisto extends StatoPartita {
         partita.turnoStandard();
     }
 
-
+    @Override
+    public void onAzioneGiocatore(AvviaAsta avviaAsta){
+        partita.setStato(Asta.builder()
+                .statoPrecedente(this)
+                .proprieta(daAcquistare)
+                .build());
+        partita.getStato().esegui();
+    }
 }

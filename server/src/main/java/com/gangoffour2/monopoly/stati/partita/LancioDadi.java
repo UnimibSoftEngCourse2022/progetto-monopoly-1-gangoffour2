@@ -30,25 +30,27 @@ public class LancioDadi extends StatoPartita {
 
     @Override
     public void onAzioneCasella(RichiediAcquisto richiediAcquisto) {
-        partita.setStato(AttesaAcquisto.builder().build());
-        partita.getStato().esegui(richiediAcquisto);
+        partita.setStato(AttesaAcquisto.builder()
+                .daAcquistare(richiediAcquisto.getProprieta())
+                .build());
+        partita.getStato().esegui();
     }
 
     @Override
     public void onAzioneCasella(PagaAffitto pagaAffitto) {
         partita.setStato(AttesaAffitto.builder().build());
-        partita.getStato().esegui(pagaAffitto);
+        partita.getStato().esegui();
     }
 
     @Override
-    public void esegui(AttesaLancioDadi attesaLancioDadi) {
+    public void esegui() {
         partita.attendiAzione();
     }
 
     @Override
     public void onAzioneCasella(ArrestaGiocatore arrestaGiocatore) {
         partita.setStato(AttesaPrigione.builder().build());
-        partita.getStato().esegui(arrestaGiocatore);
+        partita.getStato().esegui();
     }
 
     @Override

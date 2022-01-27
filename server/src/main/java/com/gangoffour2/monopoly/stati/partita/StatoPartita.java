@@ -79,25 +79,9 @@ public abstract class StatoPartita implements Serializable {
      * sarà necessario un cambio di stato attraverso onAzioneCasella; poi, il nuovo stato si potrà effettivamente
      * mettere in attesa del lancio dei dadi.
      */
-    public void esegui(AzioneCasella azione) {
-    }
 
-    public void esegui(ArrestaGiocatore arrestaGiocatore) {
-    }
+    public void esegui(){
 
-    public void esegui(PagaAffitto pagaAffitto) {
-    }
-
-    public void esegui(PescaImprevisto pescaImprevisto) {
-    }
-
-    public void esegui(RichiediAcquisto attesaAcquisto) {
-    }
-
-    public void esegui(AttesaLancioDadi attesaLancioDadi) {
-    }
-
-    public void esegui(AstaTerminata astaTerminata) {
     }
 
 
@@ -154,4 +138,11 @@ public abstract class StatoPartita implements Serializable {
     }
 
 
+    public void onAzioneGiocatore(AvviaAsta avviaAsta) {
+
+    }
+
+    public void onAzioneGiocatore(TerminaTurno terminaTurno) {
+
+    }
 }

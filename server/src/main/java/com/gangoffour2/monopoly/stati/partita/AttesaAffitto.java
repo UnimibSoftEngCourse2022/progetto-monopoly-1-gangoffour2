@@ -10,7 +10,7 @@ import lombok.Builder;
 public class AttesaAffitto extends StatoPartita {
 
     @Override
-    public void esegui(PagaAffitto pagaAffitto) {
+    public void esegui() {
         partita.attendiAzione();
     }
 

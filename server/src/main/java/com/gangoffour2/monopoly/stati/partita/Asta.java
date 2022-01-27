@@ -1,7 +1,5 @@
 package com.gangoffour2.monopoly.stati.partita;
 
-import com.gangoffour2.monopoly.azioni.casella.RichiediAcquisto;
-import com.gangoffour2.monopoly.azioni.giocatore.AstaTerminata;
 import com.gangoffour2.monopoly.azioni.giocatore.Offerta;
 import com.gangoffour2.monopoly.eccezioni.OffertaInvalidaException;
 import com.gangoffour2.monopoly.model.casella.Proprieta;
@@ -24,12 +22,14 @@ public class Asta extends StatoPartita {
                     astaCorrente.getOffertaAttuale());
         }
         partita.setStato(statoPrecedente);
-        partita.getStato().esegui(AstaTerminata.builder().build());
+        partita.getStato().esegui();
     }
 
     @Override
-    public void esegui(RichiediAcquisto richiediAcquisto) {
-        astaCorrente = com.gangoffour2.monopoly.model.Asta.builder().prop(richiediAcquisto.getProprieta()).build();
+    public void esegui() {
+        astaCorrente = com.gangoffour2.monopoly.model.Asta.builder()
+                .prop(proprieta)
+                .build();
         partita.attendiAzione();
     }
 

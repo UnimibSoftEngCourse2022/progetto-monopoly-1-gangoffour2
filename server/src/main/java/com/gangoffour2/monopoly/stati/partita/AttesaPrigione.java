@@ -1,6 +1,5 @@
 package com.gangoffour2.monopoly.stati.partita;
 
-import com.gangoffour2.monopoly.azioni.casella.ArrestaGiocatore;
 import com.gangoffour2.monopoly.azioni.giocatore.LanciaDadi;
 import com.gangoffour2.monopoly.azioni.giocatore.Paga;
 import com.gangoffour2.monopoly.model.Giocatore;
@@ -21,7 +20,7 @@ public class AttesaPrigione extends StatoPartita {
     }
 
     @Override
-    public void esegui(ArrestaGiocatore ag) {
+    public void esegui() {
         Turno turno = partita.getTurnoCorrente();
         Giocatore g = turno.getGiocatore();
         if (g.haCartaEsciGratis()) {
