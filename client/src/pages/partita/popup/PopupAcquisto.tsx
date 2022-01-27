@@ -1,21 +1,15 @@
 import React from "react";
 import Popup from "../../../component/popup/Popup";
-import IPartita from "../../../interfaces/IPartita";
-import IGiocatore from "../../../interfaces/IGiocatore";
 import StompController from "../../../application/stompController";
 import PopupButtonContainer from "../../../component/popup/PopupButtonContainer";
+import {PopupProps} from "./PopupRouter";
 
-interface Props {
-    giocatore: IGiocatore
-    partita: IPartita,
-    isMioTurno: boolean
-}
 
 interface State {
 
 }
 
-export default class PopupAcquisto extends React.Component<Props, State> {
+export default class PopupAcquisto extends React.Component<PopupProps, State> {
 
     render() {
 
