@@ -1,24 +1,31 @@
 package com.gangoffour2.monopoly.services;
 
+import lombok.Builder;
+
+import java.util.Timer;
+import java.util.TimerTask;
+
+
 public class TimeoutHandler {
-    private Thread handlerThread;
+    @Builder.Default
+    private Timer timer = new Timer();
 
 
     public void setTimeout(Runnable runnable, int millisecondi) {
-        handlerThread = new Thread(() -> {
-            try {
-                Thread.sleep(millisecondi);
+        timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run(){
                 runnable.run();
-            } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
             }
-
-        });
-        handlerThread.start();
+        }, millisecondi);
     }
 
 
     public void stopTimeout() {
-        handlerThread.interrupt();
+        if (timer != null){
+            timer.cancel();
+            timer = null;
+        }
     }
 }
