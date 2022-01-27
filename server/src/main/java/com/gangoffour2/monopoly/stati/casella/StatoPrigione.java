@@ -4,13 +4,11 @@ import com.gangoffour2.monopoly.azioni.giocatore.Paga;
 import com.gangoffour2.monopoly.eccezioni.ModificaDenaroException;
 import com.gangoffour2.monopoly.model.casella.Prigione;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.experimental.SuperBuilder;
 
 @Data
 @SuperBuilder
-@EqualsAndHashCode(callSuper = true)
-public class StatoPrigione extends StatoCasella {
+public class StatoPrigione implements StatoCasella {
     private Prigione prigione;
 
     @Override

@@ -4,76 +4,68 @@ package com.gangoffour2.monopoly.stati.casella;
 import com.gangoffour2.monopoly.azioni.casella.AzioneCasella;
 import com.gangoffour2.monopoly.azioni.casella.PassaggioVuoto;
 import com.gangoffour2.monopoly.azioni.giocatore.*;
-import lombok.Data;
-import lombok.experimental.SuperBuilder;
 
 import java.io.Serializable;
 
-@Data
-@SuperBuilder
-public abstract class StatoCasella implements Serializable {
+public interface StatoCasella extends Serializable {
 
-    protected StatoCasella() {
+    default void arrivo() {
 
     }
 
-    public void arrivo() {
-
-    }
-
-    public AzioneCasella passaggio() {
+    default AzioneCasella passaggio() {
         return PassaggioVuoto.builder().build();
     }
 
-    public void fineGiro() {
+    default void fineGiro() {
 
     }
 
-
-    public void onAzioneGiocatore(Ipoteca ipoteca) {
-
-    }
-
-    public void onAzioneGiocatore(AcquistaProprieta acquistaProprieta) {
+    default void onAzioneGiocatore(Ipoteca ipoteca) {
 
     }
 
-    public void onAzioneGiocatore(UpgradaTerreno upgradaTerreno) {
+    default void onAzioneGiocatore(AcquistaProprieta acquistaProprieta) {
 
     }
 
-    public void onAzioneGiocatore(DowngradaTerreno downgradaTerreno) {
+    default void onAzioneGiocatore(UpgradaTerreno upgradaTerreno) {
 
     }
 
-    public void onAzioneGiocatore(VendiProprieta vendiProprieta) {
+    default void onAzioneGiocatore(DowngradaTerreno downgradaTerreno) {
 
     }
 
-    public void onAzioneGiocatore(LanciaDadi lanciaDadi) {
+    default void onAzioneGiocatore(VendiProprieta vendiProprieta) {
 
     }
 
-    public void onAzioneGiocatore(Offerta offerta) {
+    default void onAzioneGiocatore(LanciaDadi lanciaDadi) {
 
     }
 
-    public void onAzioneGiocatore(Paga paga) {
+    default void onAzioneGiocatore(Offerta offerta) {
 
     }
 
-    public void onAzioneGiocatore(EntraInPartita entraInPartita) {
+    default void onAzioneGiocatore(Paga paga) {
 
     }
 
-    public void onAzioneGiocatore(RimuoviIpoteca rimuoviIpoteca) {
+    default void onAzioneGiocatore(EntraInPartita entraInPartita) {
 
     }
 
-    public void onAzioneGiocatore(PagaAffittoAzione pagaAffittoAzione) {
+    default void onAzioneGiocatore(RimuoviIpoteca rimuoviIpoteca) {
 
     }
 
-    public void onAzioneGiocatore(AstaTerminata astaTerminata) {
+    default void onAzioneGiocatore(PagaAffittoAzione pagaAffittoAzione) {
+
+    }
+
+    default void onAzioneGiocatore(AstaTerminata astaTerminata) {
+
     }
 }

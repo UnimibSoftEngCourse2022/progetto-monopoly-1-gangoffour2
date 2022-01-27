@@ -1,6 +1,9 @@
 package com.gangoffour2.monopoly;
 
-import com.gangoffour2.monopoly.azioni.giocatore.*;
+import com.gangoffour2.monopoly.azioni.giocatore.AcquistaProprieta;
+import com.gangoffour2.monopoly.azioni.giocatore.EntraInPartita;
+import com.gangoffour2.monopoly.azioni.giocatore.Ipoteca;
+import com.gangoffour2.monopoly.azioni.giocatore.Offerta;
 import com.gangoffour2.monopoly.eccezioni.GiocatoreEsistenteException;
 import com.gangoffour2.monopoly.model.Giocatore;
 import com.gangoffour2.monopoly.model.IPartita;

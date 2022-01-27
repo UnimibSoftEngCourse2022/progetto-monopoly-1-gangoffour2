@@ -6,7 +6,7 @@ import lombok.experimental.SuperBuilder;
 
 @Data
 @SuperBuilder
-public class StatoImprevisto extends StatoCasella {
+public class StatoImprevisto implements StatoCasella {
 
     private Imprevisto imprevisto;
 

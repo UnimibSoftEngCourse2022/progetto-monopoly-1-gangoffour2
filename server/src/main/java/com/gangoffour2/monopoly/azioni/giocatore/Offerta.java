@@ -18,7 +18,7 @@ public class Offerta extends AzioneGiocatore {
 
     @Override
     public void accept(StatoPartita statoPartita) {
-         statoPartita.onAzioneGiocatore(this);
+        statoPartita.onAzioneGiocatore(this);
     }
 
 

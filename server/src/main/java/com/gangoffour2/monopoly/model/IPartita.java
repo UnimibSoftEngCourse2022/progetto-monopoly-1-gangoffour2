@@ -9,14 +9,16 @@ import com.gangoffour2.monopoly.services.TimeoutHandler;
 import com.gangoffour2.monopoly.stati.partita.StatoPartita;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
+import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.LinkedList;
 
 @Data
 @SuperBuilder
-public abstract class IPartita {
+@NoArgsConstructor
+public abstract class IPartita implements Serializable {
     protected String id;
 
     @Builder.Default

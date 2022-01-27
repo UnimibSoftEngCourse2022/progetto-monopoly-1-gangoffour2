@@ -11,6 +11,8 @@ import com.gangoffour2.monopoly.stati.partita.InizioTurno;
 import com.gangoffour2.monopoly.stati.partita.StatoPartita;
 import lombok.Data;
 import lombok.experimental.SuperBuilder;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Iterator;
 
@@ -116,14 +118,16 @@ public class Partita extends IPartita implements PartitaObserver {
         attendiAzione();
     }
 
-    public synchronized  void fermaAttesa(){
+    public synchronized void fermaAttesa() {
         listenerTimeoutEventi.stopTimeout();
     }
 
     public synchronized void attendiAzione() {
-        System.out.println("Setto il timeout");
+        Logger logger = LoggerFactory.getLogger(Partita.class);
+
+        logger.info("Setto il timeout");
         listenerTimeoutEventi.setTimeout(() -> {
-            System.out.println("Timeout");
+            logger.info("Timeout");
             stato.onTimeout();
         }, 10000);
     }

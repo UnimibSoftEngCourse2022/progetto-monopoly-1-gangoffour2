@@ -6,7 +6,7 @@ import lombok.experimental.SuperBuilder;
 
 @Data
 @SuperBuilder
-public class StatoProbabilita extends StatoCasella {
+public class StatoProbabilita implements StatoCasella {
 
     private Probabilita probabilita;
 
