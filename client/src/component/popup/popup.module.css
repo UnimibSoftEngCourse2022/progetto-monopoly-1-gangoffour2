@@ -81,7 +81,7 @@
     transition: all 0.4s;
     width: 100%;
     margin: auto auto 0px;
-    padding: 20px;
+    /*padding: 20px;*/
 }
 
 .popup_container .popup .popup_content div:last-child {
@@ -135,6 +135,11 @@
         max-width: 80%;
 
     }
+}
+
+.container-popup-acquisto {
+    display: flex;
+    flex-direction: column;
 }
 
 .popup_container::-webkit-scrollbar {
