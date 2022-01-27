@@ -2,7 +2,6 @@ package com.gangoffour2.monopoly.services;
 
 import com.gangoffour2.monopoly.model.Giocatore;
 import com.gangoffour2.monopoly.model.IPartita;
-import com.gangoffour2.monopoly.model.Partita;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -13,32 +12,32 @@ public class PartiteRepository {
     private final HashMap<String, IPartita> partite;
     private final HashMap<String, Giocatore> giocatori;
 
-    private PartiteRepository(){
+    private PartiteRepository() {
         partite = new HashMap<>();
         giocatori = new HashMap<>();
     }
 
-    public static synchronized PartiteRepository getInstance(){
-        if(instance == null){
+    public static synchronized PartiteRepository getInstance() {
+        if (instance == null) {
             instance = new PartiteRepository();
         }
 
         return instance;
     }
 
-    public synchronized void rimuoviGiocatoreById(String idSessione){
+    public synchronized void rimuoviGiocatoreById(String idSessione) {
         giocatori.remove(idSessione);
     }
 
-    public synchronized Giocatore getGiocatoreByIdSessione(String idSessione){
+    public synchronized Giocatore getGiocatoreByIdSessione(String idSessione) {
         return giocatori.get(idSessione);
     }
 
-    public synchronized void registraGiocatore(String idSessione, Giocatore giocatore){
+    public synchronized void registraGiocatore(String idSessione, Giocatore giocatore) {
         giocatori.put(idSessione, giocatore);
     }
 
-    public synchronized IPartita getPartitaByid(String id){
+    public synchronized IPartita getPartitaByid(String id) {
         return partite.get(id);
     }
 
@@ -46,7 +45,7 @@ public class PartiteRepository {
         partite.put(partita.getId(), partita);
     }
 
-    public synchronized List<IPartita> getPartiteAperte(){
+    public synchronized List<IPartita> getPartiteAperte() {
         return new ArrayList<>(partite.values());
     }
 }

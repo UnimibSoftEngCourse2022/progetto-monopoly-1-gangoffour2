@@ -4,7 +4,7 @@ public class TimeoutHandler {
     private Thread handlerThread;
 
 
-    public void setTimeout(Runnable runnable, int millisecondi){
+    public void setTimeout(Runnable runnable, int millisecondi) {
         handlerThread = new Thread(() -> {
             try {
                 Thread.sleep(millisecondi);
@@ -18,7 +18,7 @@ public class TimeoutHandler {
     }
 
 
-    public void stopTimeout(){
+    public void stopTimeout() {
         handlerThread.interrupt();
     }
 }

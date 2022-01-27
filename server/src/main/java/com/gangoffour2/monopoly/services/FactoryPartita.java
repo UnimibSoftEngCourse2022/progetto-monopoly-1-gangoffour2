@@ -2,7 +2,7 @@ package com.gangoffour2.monopoly.services;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gangoffour2.monopoly.model.*;
-import com.gangoffour2.monopoly.model.casella.*;
+import com.gangoffour2.monopoly.model.casella.Casella;
 import com.gangoffour2.monopoly.stati.partita.Lobby;
 import org.springframework.core.io.ClassPathResource;
 
@@ -17,14 +17,14 @@ public class FactoryPartita {
     private static FactoryPartita instance;
 
     public static synchronized FactoryPartita getInstance() {
-        if(instance == null)
+        if (instance == null)
             instance = new FactoryPartita();
         return instance;
     }
 
-    public String creaId(){
+    public String creaId() {
         String idPartita = UUID.randomUUID().toString();
-        while(PartiteRepository.getInstance().getPartitaByid(idPartita) != null){
+        while (PartiteRepository.getInstance().getPartitaByid(idPartita) != null) {
             idPartita = UUID.randomUUID().toString();
         }
         return idPartita;
@@ -36,7 +36,7 @@ public class FactoryPartita {
         Casella[] arrayCaselle = mapper.readValue(jsonFile, Casella[].class);
 
         int idCounter = 0;
-        for(Casella c: arrayCaselle) {
+        for (Casella c : arrayCaselle) {
             c.setId(idCounter++);
         }
 
