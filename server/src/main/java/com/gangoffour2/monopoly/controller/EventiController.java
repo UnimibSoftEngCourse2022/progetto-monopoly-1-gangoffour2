@@ -131,15 +131,6 @@ public class EventiController {
     }
 
 
-    @MessageMapping("/partite/{id}/avviaAsta")
-    public void avviaAsta(@DestinationVariable String id, SimpMessageHeaderAccessor header){
-        Giocatore giocatore = PartiteRepository.getInstance().getGiocatoreByIdSessione(header.getSessionId());
-        IPartita partita = PartiteRepository.getInstance().getPartitaByid(id);
-        if (partita != null){
-            partita.onAzioneGiocatore(AvviaAsta.builder().giocatore(giocatore).build());
-        }
-    }
-
     @MessageMapping("/partite/{id}/terminaTurno")
     public void terminaTurno(@DestinationVariable String id, SimpMessageHeaderAccessor header){
         Giocatore giocatore = PartiteRepository.getInstance().getGiocatoreByIdSessione(header.getSessionId());

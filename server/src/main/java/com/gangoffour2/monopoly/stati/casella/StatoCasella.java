@@ -73,11 +73,8 @@ public interface StatoCasella extends Serializable {
 
     }
 
-    public void onAzioneGiocatore(AvviaAsta avviaAsta) {
 
-    }
-
-    public void onAzioneGiocatore(TerminaTurno terminaTurno) {
+    default void onAzioneGiocatore(TerminaTurno terminaTurno) {
 
     }
 }

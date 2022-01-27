@@ -143,9 +143,6 @@ public abstract class StatoPartita implements Serializable {
 
     }
 
-    public void onAzioneGiocatore(AvviaAsta avviaAsta) {
-
-    }
 
     public void onAzioneGiocatore(AvviaAsta avviaAsta) {
 

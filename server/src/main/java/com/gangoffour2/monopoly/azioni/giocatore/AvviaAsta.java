@@ -9,8 +9,8 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class AvviaAsta extends AzioneGiocatore{
 
+public class AvviaAsta extends AzioneGiocatore {
     @Override
     public void accept(StatoCasella statoCasella) {
         statoCasella.onAzioneGiocatore(this);
@@ -18,6 +18,6 @@ public class AvviaAsta extends AzioneGiocatore{
 
     @Override
     public void accept(StatoPartita statoPartita) {
-        statoPartita.onAzioneGiocatore(this);
+        statoPartita.onAzioneCasella(this);
     }
 }
