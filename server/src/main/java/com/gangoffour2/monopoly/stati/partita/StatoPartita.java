@@ -74,7 +74,7 @@ public abstract class StatoPartita implements Serializable {
     public void onAzioneCasella(VaiInAttesaPrigione checkPrigione) {
     }
 
-    public void onAzioneCasella(AvviaAsta avviaAsta){
+    public void onAzioneCasella(AvviaAsta avviaAsta) {
     }
 
     /**
@@ -156,7 +156,7 @@ public abstract class StatoPartita implements Serializable {
 
     }
 
-    public void onAzioneGiocatore(AvviaAsta avviaAsta){
+    public void onAzioneGiocatore(AvviaAsta avviaAsta) {
 
     }
 
