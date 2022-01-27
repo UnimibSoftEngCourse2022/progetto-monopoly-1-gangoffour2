@@ -35,10 +35,9 @@ public class AttesaAcquisto extends StatoPartita {
         partita.turnoStandard();
     }
 
+    @Override
     public void onAzioneGiocatore(AvviaAsta avviaAsta) {
         partita.setStato(Asta.builder().statoPrecedente(this).build());
         partita.getStato().esegui(RichiediAcquisto.builder().proprieta(daAcquistare).build());
     }
-
-
 }
