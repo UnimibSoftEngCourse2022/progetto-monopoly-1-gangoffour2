@@ -63,7 +63,8 @@ public class LancioDadi extends StatoPartita {
         try {
             partita.getTurnoCorrente().getGiocatore().aggiungiDenaro(aggiungiDenaro.getImporto());
         }catch (Exception e){
-
+            int soldiDaPagare = aggiungiDenaro.getImporto();
+            partita.setStato(AttesaFallimento.builder().soldiDaPagare(-soldiDaPagare).build());
         }
     }
 }
