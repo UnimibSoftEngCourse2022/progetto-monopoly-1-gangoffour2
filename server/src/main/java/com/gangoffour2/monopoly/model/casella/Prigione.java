@@ -12,41 +12,38 @@ import lombok.experimental.SuperBuilder;
 import java.util.HashMap;
 
 @Data
-@EqualsAndHashCode(callSuper=true)
+@EqualsAndHashCode(callSuper = true)
 @SuperBuilder
-public class Prigione extends Casella{
+public class Prigione extends Casella {
     private int cauzione;
     private int turniInPrigione;
     @JsonIgnore
     private HashMap<Giocatore, Integer> giocatoriInPrigione = new HashMap<>();
 
-    protected Prigione(){
+    protected Prigione() {
         evento = StatoPrigione.builder().prigione(this).build();
     }
 
-    public Integer liberaGiocatore(Giocatore giocatore){
+    public Integer liberaGiocatore(Giocatore giocatore) {
         return giocatoriInPrigione.remove(giocatore);
     }
 
-    public Integer imprigionaGiocatore(Giocatore giocatore){
+    public Integer imprigionaGiocatore(Giocatore giocatore) {
         return giocatoriInPrigione.put(giocatore, turniInPrigione);
     }
 
     @Override
-    public void inizioTurno(Giocatore g){
-        if(giocatoriInPrigione.get(g) == null) {
+    public void inizioTurno(Giocatore g) {
+        if (giocatoriInPrigione.get(g) == null) {
             notificaTutti(AttesaLancioDadi.builder().build());
-        }
-        else if(giocatoriInPrigione.get(g)==0) {
+        } else if (giocatoriInPrigione.get(g) == 0) {
             this.liberaGiocatore(g);
             notificaTutti(AttesaLancioDadi.builder().build());
-        }
-        else{
-            giocatoriInPrigione.put(g, giocatoriInPrigione.get(g)-1);
+        } else {
+            giocatoriInPrigione.put(g, giocatoriInPrigione.get(g) - 1);
             notificaTutti(VaiInAttesaPrigione.builder().giocatore(g).build());
         }
     }
-
 
 
 }

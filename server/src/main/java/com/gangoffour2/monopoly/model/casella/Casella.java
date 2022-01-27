@@ -43,49 +43,51 @@ public abstract class Casella implements SubjectStatoPartita, Serializable {
     protected StatoCasella evento;
 
 
+    protected Casella() {
+        subscribers = new ArrayList<>();
+    }
+
     @JsonProperty("type")
-    public String getTipo(){
+    public String getTipo() {
         return getClass().getSimpleName();
     }
 
-    public void arrivo(){
+    public void arrivo() {
         evento.arrivo();
     }
-    public void passaggio(){
+
+    public void passaggio() {
         notificaTutti(evento.passaggio());
     }
 
-    public void fineGiro(){
+    public void fineGiro() {
         evento.fineGiro();
-    }
-
-    protected Casella(){
-        subscribers = new ArrayList<>();
     }
 
     /**
      * Da overrideare per i comportamenti diversi
      */
-    public void inizioTurno(Giocatore g) {notificaTutti(AttesaLancioDadi.builder().build());
+    public void inizioTurno(Giocatore g) {
+        notificaTutti(AttesaLancioDadi.builder().build());
     }
 
     @Override
-    public void notificaTutti(AzioneCasella azione){
+    public void notificaTutti(AzioneCasella azione) {
         subscribers.forEach(subscriber -> subscriber.onAzioneCasella(azione));
     }
 
     @Override
-    public void aggiungi(PartitaObserver observer){
+    public void aggiungi(PartitaObserver observer) {
         subscribers.add(observer);
     }
 
     @Override
-    public void rimuovi(PartitaObserver observer){
+    public void rimuovi(PartitaObserver observer) {
         subscribers.remove(observer);
     }
 
 
-    public void onAzioneGiocatore(AzioneGiocatore azioneGiocatore){
+    public void onAzioneGiocatore(AzioneGiocatore azioneGiocatore) {
         azioneGiocatore.accept(evento);
     }
 

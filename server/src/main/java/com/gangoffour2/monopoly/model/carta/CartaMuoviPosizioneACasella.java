@@ -7,9 +7,9 @@ import lombok.EqualsAndHashCode;
 import lombok.experimental.SuperBuilder;
 
 @Data
-@EqualsAndHashCode(callSuper=true)
+@EqualsAndHashCode(callSuper = true)
 @SuperBuilder
-public class CartaMuoviPosizioneACasella extends Carta{
+public class CartaMuoviPosizioneACasella extends Carta {
     private Casella casella;
 
     @Override

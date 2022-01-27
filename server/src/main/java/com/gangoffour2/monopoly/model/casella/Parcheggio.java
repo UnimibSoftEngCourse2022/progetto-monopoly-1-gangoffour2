@@ -6,7 +6,7 @@ import lombok.Data;
 @Data
 public class Parcheggio extends Casella {
 
-    protected Parcheggio(){
+    protected Parcheggio() {
         evento = StatoParcheggio.builder().parcheggio(this).build();
     }
 

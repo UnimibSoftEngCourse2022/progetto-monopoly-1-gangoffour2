@@ -51,16 +51,28 @@ public abstract class IPartita {
     protected transient TimeoutHandler listenerTimeoutEventi = new TimeoutHandler();
 
     public abstract void inizioPartita();
+
     public abstract void aggiungiGiocatore(Giocatore g) throws PartitaPienaException, GiocatoreEsistenteException;
+
     public abstract void rimuoviGiocatore(Giocatore g);
+
     public abstract void cambiaTurno();
+
     public abstract void fineGiro();
+
     public abstract void broadcast();
+
     public abstract void onAzioneCasella(AzioneCasella azione);
+
     public abstract void onAzioneGiocatore(AzioneGiocatore azione);
+
     public abstract void setStato(StatoPartita nuovaStato);
+
     public abstract void turnoStandard();
+
     public abstract Giocatore getGiocatoreByNick(String nick);
+
     public abstract void inizializza();
+
     public abstract void attendiAzione();
 }

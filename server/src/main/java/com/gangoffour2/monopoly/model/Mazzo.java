@@ -15,19 +15,19 @@ public class Mazzo implements IMazzo {
     @Builder.Default
     private final Queue<Carta> imprevisti = new LinkedList<>();
 
-    public void pescaImprevisto(Giocatore giocatore){
+    public void pescaImprevisto(Giocatore giocatore) {
         Carta carta = imprevisti.remove();
-        if(carta.effetto(giocatore))
+        if (carta.effetto(giocatore))
             imprevisti.add(carta);
     }
 
-    public void pescaProbabilita(Giocatore giocatore){
+    public void pescaProbabilita(Giocatore giocatore) {
         Carta carta = probabilita.remove();
-        if(carta.effetto(giocatore))
+        if (carta.effetto(giocatore))
             probabilita.add(carta);
     }
 
-    public void utilizzaCarta(Giocatore giocatore){
+    public void utilizzaCarta(Giocatore giocatore) {
         Carta carta = giocatore.getEsciGratis().removeLast();
         carta.effetto(giocatore);
     }

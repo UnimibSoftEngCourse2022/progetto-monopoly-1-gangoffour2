@@ -6,10 +6,10 @@ import lombok.experimental.SuperBuilder;
 
 @Data
 @SuperBuilder
-public class Tassa extends Casella{
+public class Tassa extends Casella {
     private int costo;
 
-    protected Tassa(){
+    protected Tassa() {
         evento = StatoTassa.builder().tassa(this).build();
     }
 }

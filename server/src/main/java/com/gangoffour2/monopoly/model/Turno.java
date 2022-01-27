@@ -25,16 +25,16 @@ public class Turno implements Serializable {
     @Builder.Default
     private SecureRandom random = new SecureRandom();
 
-    public void inizializzaDadi(int numeroDadi){
-        if(valoreDadi.isEmpty()) {
-            for(int i = 0; i < numeroDadi; ++i) {
+    public void inizializzaDadi(int numeroDadi) {
+        if (valoreDadi.isEmpty()) {
+            for (int i = 0; i < numeroDadi; ++i) {
                 valoreDadi.add(-1);
             }
         }
     }
 
     public void lancioDadi(int facceDadi) {
-        for(int i = 0; i < valoreDadi.size(); ++i) {
+        for (int i = 0; i < valoreDadi.size(); ++i) {
             valoreDadi.set(i, random.nextInt(facceDadi) + 1);
         }
 
@@ -42,24 +42,24 @@ public class Turno implements Serializable {
         casellaDaVisitare = sommaDadi();
     }
 
-    public int sommaDadi(){
+    public int sommaDadi() {
         return valoreDadi.stream().reduce(0, Integer::sum);
     }
 
-    public boolean dadiUguali(){
+    public boolean dadiUguali() {
         boolean dadiUguali = true;
         int valorePrecedente = valoreDadi.get(0);
         Iterator<Integer> iter = valoreDadi.iterator();
-        while (iter.hasNext() && dadiUguali){
+        while (iter.hasNext() && dadiUguali) {
             Integer successivo = iter.next();
-            if(valorePrecedente != successivo){
+            if (valorePrecedente != successivo) {
                 dadiUguali = false;
             }
         }
         return dadiUguali;
     }
 
-    public boolean inVisita(){
+    public boolean inVisita() {
         return casellaDaVisitare > 0;
     }
 

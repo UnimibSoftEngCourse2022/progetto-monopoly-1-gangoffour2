@@ -2,12 +2,11 @@ package com.gangoffour2.monopoly.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.gangoffour2.monopoly.eccezioni.ModificaDenaroException;
-import com.gangoffour2.monopoly.model.carta.Carta;
 import com.gangoffour2.monopoly.model.carta.CartaEsciGratisPrigione;
 import com.gangoffour2.monopoly.model.casella.Casella;
 import com.gangoffour2.monopoly.model.casella.Proprieta;
-import lombok.Builder;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -33,47 +32,47 @@ public class Giocatore implements Serializable {
     @Builder.Default
     private ArrayList<Proprieta> proprietaPossedute = new ArrayList<>();
 
-    public void modificaDenaro(int importo) throws ModificaDenaroException{
-        if(this.getConto() + importo < 0)
+    public void modificaDenaro(int importo) throws ModificaDenaroException {
+        if (this.getConto() + importo < 0)
             throw new ModificaDenaroException();
         this.setConto(this.getConto() + importo);
     }
 
 
-    public void paga(Giocatore destinatario, int importo){
+    public void paga(Giocatore destinatario, int importo) {
         conto -= importo;
         destinatario.conto += importo;
     }
 
-    public void acquistaProprieta(Proprieta proprieta){
+    public void acquistaProprieta(Proprieta proprieta) {
         aggiudica(proprieta, proprieta.getCostoBase());
     }
 
 
-    public void abbandona(){
+    public void abbandona() {
         lasciaProprieta();
     }
 
-    public void lasciaProprieta(){
-        for (Proprieta p : proprietaPossedute){
+    public void lasciaProprieta() {
+        for (Proprieta p : proprietaPossedute) {
             p.setProprietario(null);
         }
         proprietaPossedute.clear();
     }
 
-    public void aggiungiEsciGratis(CartaEsciGratisPrigione c){
+    public void aggiungiEsciGratis(CartaEsciGratisPrigione c) {
         this.getEsciGratis().add(c);
     }
 
-    public CartaEsciGratisPrigione rimuoviEsciGratis(){
+    public CartaEsciGratisPrigione rimuoviEsciGratis() {
         return this.getEsciGratis().remove();
     }
 
-    public boolean haCartaEsciGratis(){
+    public boolean haCartaEsciGratis() {
         return this.getEsciGratis().size() > 0;
     }
 
-    public void aggiudica(Proprieta proprieta, int importo){
+    public void aggiudica(Proprieta proprieta, int importo) {
         conto -= importo;
         proprietaPossedute.add(proprieta);
         proprieta.setProprietario(this);

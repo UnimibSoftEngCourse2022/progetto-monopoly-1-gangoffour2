@@ -8,7 +8,7 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 public class Imprevisto extends Casella {
 
-    protected Imprevisto(){
+    protected Imprevisto() {
         evento = StatoImprevisto.builder().imprevisto(this).build();
     }
 

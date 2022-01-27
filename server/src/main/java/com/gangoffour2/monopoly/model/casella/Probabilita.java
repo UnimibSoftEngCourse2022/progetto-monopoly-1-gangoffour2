@@ -6,9 +6,9 @@ import lombok.experimental.SuperBuilder;
 
 @Data
 @SuperBuilder
-public class Probabilita extends Casella{
+public class Probabilita extends Casella {
 
-    protected Probabilita(){
+    protected Probabilita() {
         evento = StatoProbabilita.builder().probabilita(this).build();
     }
 

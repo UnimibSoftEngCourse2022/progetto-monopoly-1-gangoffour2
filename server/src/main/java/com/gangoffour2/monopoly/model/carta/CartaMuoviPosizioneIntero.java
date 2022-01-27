@@ -6,9 +6,9 @@ import lombok.EqualsAndHashCode;
 import lombok.experimental.SuperBuilder;
 
 @Data
-@EqualsAndHashCode(callSuper=true)
+@EqualsAndHashCode(callSuper = true)
 @SuperBuilder
-public class CartaMuoviPosizioneIntero extends Carta{
+public class CartaMuoviPosizioneIntero extends Carta {
     int movimento;
 
     @Override

@@ -1,7 +1,5 @@
 package com.gangoffour2.monopoly.model;
 
-import java.util.Iterator;
-
 import com.gangoffour2.monopoly.azioni.casella.AzioneCasella;
 import com.gangoffour2.monopoly.azioni.giocatore.AzioneGiocatore;
 import com.gangoffour2.monopoly.controller.MessageBrokerSingleton;
@@ -14,6 +12,8 @@ import com.gangoffour2.monopoly.stati.partita.StatoPartita;
 import lombok.Data;
 import lombok.experimental.SuperBuilder;
 
+import java.util.Iterator;
+
 @Data
 @SuperBuilder
 public class Partita extends IPartita implements PartitaObserver {
@@ -22,7 +22,7 @@ public class Partita extends IPartita implements PartitaObserver {
         super(b);
     }
 
-    public synchronized void inizioPartita(){
+    public synchronized void inizioPartita() {
         turnoCorrente = Turno.builder()
                 .giocatore(giocatori.get(0))
                 .build();
@@ -30,10 +30,10 @@ public class Partita extends IPartita implements PartitaObserver {
     }
 
     public synchronized void aggiungiGiocatore(Giocatore g) throws PartitaPienaException, GiocatoreEsistenteException {
-        if(giocatori.size() == config.getNumeroGiocatori()) {
+        if (giocatori.size() == config.getNumeroGiocatori()) {
             throw new PartitaPienaException();
         }
-        if (giocatori.contains(g)){
+        if (giocatori.contains(g)) {
             throw new GiocatoreEsistenteException();
         }
         g.setCasellaCorrente(tabellone.getCasella(0));
@@ -44,13 +44,13 @@ public class Partita extends IPartita implements PartitaObserver {
 
     public synchronized void rimuoviGiocatore(Giocatore g) {
         Giocatore giocatore = getGiocatoreByNick(g.getNick());
-        if (giocatore != null){
+        if (giocatore != null) {
             giocatore.abbandona();
             giocatori.remove(giocatore);
         }
     }
 
-    public synchronized void cambiaTurno(){
+    public synchronized void cambiaTurno() {
         setStato(InizioTurno.builder().build());
         Giocatore curr = turnoCorrente.getGiocatore();
         setTurnoCorrente(Turno.builder()
@@ -62,64 +62,61 @@ public class Partita extends IPartita implements PartitaObserver {
         broadcast();
     }
 
-    public void fineGiro(){
+    public void fineGiro() {
         //Eventi per fine giro (Economia random o altro)
     }
 
-    public void broadcast(){
+    public void broadcast() {
         MessageBrokerSingleton.getInstance().broadcast(this);
     }
 
     @Override
-    public synchronized void onAzioneCasella(AzioneCasella azione)  {
+    public synchronized void onAzioneCasella(AzioneCasella azione) {
         azione.accept(stato);
     }
 
-    public synchronized void onAzioneGiocatore(AzioneGiocatore azione)  {
+    public synchronized void onAzioneGiocatore(AzioneGiocatore azione) {
         codaAzioniGiocatore.addLast(azione);
         azioneAttesaRicevuta = azione.accept(stato);
-        if(azioneAttesaRicevuta){
+        if (azioneAttesaRicevuta) {
             listenerTimeoutEventi.stopTimeout();
             codaAzioniGiocatore.removeLast();
         }
     }
 
-    public synchronized void setStato(StatoPartita nuovoStato){
+    public synchronized void setStato(StatoPartita nuovoStato) {
         stato = nuovoStato;
         stato.setPartita(this);
     }
 
     public synchronized void turnoStandard() {
-        if (turnoCorrente.inVisita()){
+        if (turnoCorrente.inVisita()) {
             turnoCorrente.prossimoEffetto(tabellone);
-        }
-        else if(turnoCorrente.getLanciConsecutivi() == 0 || turnoCorrente.dadiUguali()){
+        } else if (turnoCorrente.getLanciConsecutivi() == 0 || turnoCorrente.dadiUguali()) {
             turnoCorrente.lancioDadi(config.getFacceDadi());
-            if (turnoCorrente.getLanciConsecutivi() == 3){
+            if (turnoCorrente.getLanciConsecutivi() == 3) {
                 setStato(AttesaPrigione.builder().build());
-            }
-            else {
+            } else {
                 tabellone.muoviGiocatore(turnoCorrente.getGiocatore(), turnoCorrente.sommaDadi());
                 turnoCorrente.prossimoEffetto(tabellone);
             }
-        }
-        else {
+        } else {
             setStato(FineTurno.builder().build());
             attendiAzione();
         }
         this.broadcast();
     }
 
-    public synchronized Giocatore getGiocatoreByNick(String nick){
+    public synchronized Giocatore getGiocatoreByNick(String nick) {
         Iterator<Giocatore> iter = giocatori.iterator();
         Giocatore res = null;
-        while (iter.hasNext() && (res == null || !res.getNick().equals(nick))){
+        while (iter.hasNext() && (res == null || !res.getNick().equals(nick))) {
             res = iter.next();
         }
         return res;
     }
 
-    public synchronized void inizializza(){
+    public synchronized void inizializza() {
         attendiAzione();
     }
 

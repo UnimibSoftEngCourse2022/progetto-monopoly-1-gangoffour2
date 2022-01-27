@@ -6,9 +6,9 @@ import lombok.EqualsAndHashCode;
 import lombok.experimental.SuperBuilder;
 
 @Data
-@EqualsAndHashCode(callSuper=true)
+@EqualsAndHashCode(callSuper = true)
 @SuperBuilder
-public class CartaModificaDenaro extends Carta{
+public class CartaModificaDenaro extends Carta {
     private int denaro;
 
     @Override
