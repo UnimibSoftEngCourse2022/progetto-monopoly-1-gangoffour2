@@ -6,6 +6,7 @@ import StompController from "../../application/stompController";
 import {Classifica} from "./classifica/Classifica";
 import {Dashboard} from "./dashboard/Dashboard";
 import CasellaSingleton from "../../component/caselle/CasellaSingleton";
+import PopupRouter from "./popup/PopupRouter";
 
 interface Props {
     idPartita: string,
@@ -51,6 +52,7 @@ export default class Partita extends React.Component<Props, State> implements Ob
         })
 
         return <div>
+            <PopupRouter partita = {this.state.partita} nickname={this.props.nickname}/>
             <Tabellone caselle={this.state.partita.tabellone.caselle} giocatori={this.state.partita.giocatori}/>
             <Classifica partita={this.state.partita}/>
             <Dashboard nickname={this.props.nickname} partita={this.state.partita}/>
