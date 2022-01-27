@@ -16,11 +16,11 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class TestEventiCaselle {
 
     @Test
-    void cambioStatiTerreno(){
+    void cambioStatiTerreno() {
         Terreno t = Terreno.builder().build();
 
         t.setEvento(TerrenoNonAcquistato.builder().build());
-        ((StatoTerreno)t.getEvento()).setTerreno(t);
+        ((StatoTerreno) t.getEvento()).setTerreno(t);
         Giocatore giocatore = Giocatore.builder().nick("Ciao").build();
 
         t.onAzioneGiocatore(AcquistaProprieta.builder().giocatore(giocatore).build());
@@ -31,10 +31,10 @@ class TestEventiCaselle {
     }
 
     @Test
-    void camobioStatiStazione(){
+    void camobioStatiStazione() {
         Stazione stazione = Stazione.builder().nome("Stazione sud").build();
         stazione.setEvento(StazioneNonAcquistata.builder().build());
-        ((StatoStazione)stazione.getEvento()).setStazione(stazione);
+        ((StatoStazione) stazione.getEvento()).setStazione(stazione);
         Giocatore giocatore = Giocatore.builder().nick("Ciao").build();
 
         stazione.onAzioneGiocatore(AcquistaProprieta.builder().giocatore(giocatore).build());
@@ -45,14 +45,14 @@ class TestEventiCaselle {
     }
 
     @Test
-    void cambioStatiSocieta(){
+    void cambioStatiSocieta() {
         Societa societa = Societa.builder().nome("Societa bella").build();
         societa.setEvento(SocietaNonAcquistata.builder().build());
-        ((StatoSocieta)societa.getEvento()).setSocieta(societa);
+        ((StatoSocieta) societa.getEvento()).setSocieta(societa);
 
         Giocatore giocatore = Giocatore.builder().nick("Ciao").build();
         societa.onAzioneGiocatore(AcquistaProprieta.builder().giocatore(giocatore).build());
-        assertTrue(societa.getEvento() instanceof  SocietaAcquistata);
+        assertTrue(societa.getEvento() instanceof SocietaAcquistata);
 
         societa.onAzioneGiocatore(Ipoteca.builder().giocatore(giocatore).build());
         assertTrue(societa.getEvento() instanceof SocietaIpotecata);

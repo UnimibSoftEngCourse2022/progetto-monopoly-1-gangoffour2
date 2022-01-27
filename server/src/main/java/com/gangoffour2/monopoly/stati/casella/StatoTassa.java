@@ -7,7 +7,7 @@ import lombok.experimental.SuperBuilder;
 
 @Data
 @SuperBuilder
-public class StatoTassa extends StatoCasella {
+public class StatoTassa implements StatoCasella {
     private Tassa tassa;
 
     @Override

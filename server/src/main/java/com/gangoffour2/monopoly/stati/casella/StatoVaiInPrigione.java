@@ -7,7 +7,7 @@ import lombok.experimental.SuperBuilder;
 
 @Data
 @SuperBuilder
-public class StatoVaiInPrigione extends StatoCasella {
+public class StatoVaiInPrigione implements StatoCasella {
     VaiInPrigione vaiInPrigione;
 
     @Override

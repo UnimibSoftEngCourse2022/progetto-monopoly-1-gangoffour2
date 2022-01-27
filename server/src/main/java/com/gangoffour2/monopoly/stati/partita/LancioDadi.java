@@ -1,7 +1,6 @@
 package com.gangoffour2.monopoly.stati.partita;
 
 import com.gangoffour2.monopoly.azioni.casella.*;
-import com.gangoffour2.monopoly.azioni.giocatore.Ipoteca;
 import com.gangoffour2.monopoly.azioni.giocatore.LanciaDadi;
 import lombok.Builder;
 
@@ -11,10 +10,6 @@ public class LancioDadi extends StatoPartita {
     @Override
     public void onTimeout() {
         partita.turnoStandard();
-    }
-
-    @Override
-    public void onAzioneGiocatore(Ipoteca ipoteca) {
     }
 
     @Override

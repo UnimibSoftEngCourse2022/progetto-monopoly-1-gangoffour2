@@ -55,6 +55,9 @@ public abstract class StatoPartita implements Serializable {
     public void onAzioneCasella(AttesaLancioDadi attesaLancioDadi) {
     }
 
+    /**
+     * @param passaggioVuoto Usato per fare overloading tramite polimorfismo
+     */
     public void onAzioneCasella(PassaggioVuoto passaggioVuoto) {
         partita.turnoStandard();
     }
@@ -72,6 +75,9 @@ public abstract class StatoPartita implements Serializable {
     }
 
     public void onAzioneCasella(VaiInAttesaPrigione checkPrigione) {
+    }
+
+    public void onAzioneCasella(AvviaAsta avviaAsta) {
     }
 
     /**
@@ -137,6 +143,9 @@ public abstract class StatoPartita implements Serializable {
 
     }
 
+    public void onAzioneGiocatore(AvviaAsta avviaAsta) {
+
+    }
 
     public void onAzioneGiocatore(AvviaAsta avviaAsta) {
 

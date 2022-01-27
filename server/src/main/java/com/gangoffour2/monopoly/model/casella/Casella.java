@@ -42,7 +42,6 @@ public abstract class Casella implements SubjectStatoPartita, Serializable {
     protected ArrayList<PartitaObserver> subscribers = new ArrayList<>();
     protected StatoCasella evento;
 
-
     protected Casella() {
         subscribers = new ArrayList<>();
     }
@@ -66,6 +65,7 @@ public abstract class Casella implements SubjectStatoPartita, Serializable {
 
     /**
      * Da overrideare per i comportamenti diversi
+     * @param g Usato per fare overloading tramite polimorfismo
      */
     public void inizioTurno(Giocatore g) {
         notificaTutti(AttesaLancioDadi.builder().build());

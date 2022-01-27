@@ -6,7 +6,7 @@ import lombok.experimental.SuperBuilder;
 
 @Data
 @SuperBuilder
-public abstract class StatoTerreno extends StatoCasella {
+public abstract class StatoTerreno implements StatoCasella {
     protected Terreno terreno;
 
     protected StatoTerreno() {
