@@ -1,5 +1,6 @@
 package com.gangoffour2.monopoly.stati.casella;
 
+import com.gangoffour2.monopoly.azioni.casella.AzioneCasella;
 import com.gangoffour2.monopoly.azioni.casella.PagaAffitto;
 import com.gangoffour2.monopoly.azioni.giocatore.Ipoteca;
 import lombok.Data;
@@ -18,7 +19,9 @@ public class StazioneAcquistata extends StatoStazione {
     }
 
     @Override
-    public void arrivo() {
-        stazione.notificaTutti(PagaAffitto.builder().build());
+    public AzioneCasella arrivo() {
+        return PagaAffitto.builder()
+                .proprieta(stazione)
+                .build();
     }
 }

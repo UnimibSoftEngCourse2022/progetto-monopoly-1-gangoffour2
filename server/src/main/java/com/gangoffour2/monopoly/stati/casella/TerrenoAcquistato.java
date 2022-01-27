@@ -1,5 +1,6 @@
 package com.gangoffour2.monopoly.stati.casella;
 
+import com.gangoffour2.monopoly.azioni.casella.AzioneCasella;
 import com.gangoffour2.monopoly.azioni.casella.PagaAffitto;
 import com.gangoffour2.monopoly.azioni.giocatore.DowngradaTerreno;
 import com.gangoffour2.monopoly.azioni.giocatore.Ipoteca;
@@ -23,8 +24,10 @@ public class TerrenoAcquistato extends StatoTerreno {
 
 
     @Override
-    public void arrivo() {
-        terreno.notificaTutti(PagaAffitto.builder().build());
+    public AzioneCasella arrivo() {
+        return PagaAffitto.builder()
+                .proprieta(terreno)
+                .build();
     }
 
 

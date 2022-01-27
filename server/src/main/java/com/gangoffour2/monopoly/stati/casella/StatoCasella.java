@@ -9,8 +9,8 @@ import java.io.Serializable;
 
 public interface StatoCasella extends Serializable {
 
-    default void arrivo() {
-
+    default AzioneCasella arrivo() {
+        return PassaggioVuoto.builder().build();
     }
 
     default AzioneCasella passaggio() {

@@ -1,5 +1,6 @@
 package com.gangoffour2.monopoly.stati.casella;
 
+import com.gangoffour2.monopoly.azioni.casella.AzioneCasella;
 import com.gangoffour2.monopoly.azioni.casella.RichiediAcquisto;
 import com.gangoffour2.monopoly.azioni.giocatore.AcquistaProprieta;
 import lombok.Data;
@@ -10,9 +11,8 @@ import lombok.experimental.SuperBuilder;
 public class SocietaNonAcquistata extends StatoSocieta {
 
     @Override
-    public void arrivo() {
-        RichiediAcquisto richiediAcquisto = RichiediAcquisto.builder().proprieta(societa).build();
-        societa.notificaTutti(richiediAcquisto);
+    public AzioneCasella arrivo() {
+        return RichiediAcquisto.builder().proprieta(societa).build();
     }
 
     @Override

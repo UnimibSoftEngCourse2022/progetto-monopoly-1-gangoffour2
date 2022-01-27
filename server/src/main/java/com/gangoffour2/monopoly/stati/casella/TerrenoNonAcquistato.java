@@ -1,5 +1,6 @@
 package com.gangoffour2.monopoly.stati.casella;
 
+import com.gangoffour2.monopoly.azioni.casella.AzioneCasella;
 import com.gangoffour2.monopoly.azioni.casella.RichiediAcquisto;
 import com.gangoffour2.monopoly.azioni.giocatore.AcquistaProprieta;
 import lombok.Data;
@@ -10,8 +11,8 @@ import lombok.experimental.SuperBuilder;
 public class TerrenoNonAcquistato extends StatoTerreno {
 
     @Override
-    public void arrivo() {
-        terreno.notificaTutti(RichiediAcquisto.builder().proprieta(terreno).build());
+    public AzioneCasella arrivo() {
+        return RichiediAcquisto.builder().proprieta(terreno).build();
     }
 
 

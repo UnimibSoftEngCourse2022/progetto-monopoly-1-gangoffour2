@@ -52,7 +52,7 @@ public abstract class Casella implements SubjectStatoPartita, Serializable {
     }
 
     public void arrivo() {
-        evento.arrivo();
+        notificaTutti(evento.arrivo());
     }
 
     public void passaggio() {

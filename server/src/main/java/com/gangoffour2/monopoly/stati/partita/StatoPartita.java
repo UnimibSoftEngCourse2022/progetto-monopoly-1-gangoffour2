@@ -40,19 +40,23 @@ public abstract class StatoPartita implements Serializable {
      */
 
     public void onAzioneCasella(ArrestaGiocatore arrestaGiocatore) {
+        partita.attendiAzione();
     }
 
     public void onAzioneCasella(PagaAffittoAzione pagaAffittoAzione) {
-        throw new UnsupportedOperationException();
+        partita.attendiAzione();
     }
 
     public void onAzioneCasella(PescaImprevisto pescaImprevisto) {
+        partita.attendiAzione();
     }
 
     public void onAzioneCasella(RichiediAcquisto richiediAcquisto) {
+        partita.attendiAzione();
     }
 
     public void onAzioneCasella(AttesaLancioDadi attesaLancioDadi) {
+        partita.attendiAzione();
     }
 
     /**
@@ -63,21 +67,27 @@ public abstract class StatoPartita implements Serializable {
     }
 
     public void onAzioneCasella(PagaAffitto pagaAffitto) {
+        partita.attendiAzione();
     }
 
     public void onAzioneCasella(AttesaPrigione attesaPrigione) {
+        partita.attendiAzione();
     }
 
     public void onAzioneCasella(AggiungiDenaro modificaDenaro) {
+        partita.attendiAzione();
     }
 
     public void onAzioneCasella(PescaProbabilita pescaProbabilita) {
+        partita.attendiAzione();
     }
 
     public void onAzioneCasella(VaiInAttesaPrigione checkPrigione) {
+        partita.attendiAzione();
     }
 
     public void onAzioneCasella(AvviaAsta avviaAsta) {
+        partita.attendiAzione();
     }
 
     /**
