@@ -9,14 +9,18 @@ import lombok.Builder;
 public class LancioDadi extends StatoPartita {
 
     @Override
-    public boolean onAzioneGiocatore(Ipoteca ipoteca) {
-        return true;
+    public void onTimeout() {
+        partita.turnoStandard();
     }
 
     @Override
-    public boolean onAzioneGiocatore(LanciaDadi lanciaDadi) {
+    public void onAzioneGiocatore(Ipoteca ipoteca) {
+    }
+
+    @Override
+    public void onAzioneGiocatore(LanciaDadi lanciaDadi) {
         partita.turnoStandard();
-        return true;
+        partita.fermaAttesa();
     }
 
     @Override

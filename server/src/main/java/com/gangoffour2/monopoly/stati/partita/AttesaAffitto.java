@@ -15,11 +15,10 @@ public class AttesaAffitto extends StatoPartita {
     }
 
     @Override
-    public boolean onAzioneGiocatore(PagaAffittoAzione pagaAffittoAzione) {
+    public void onAzioneGiocatore(PagaAffittoAzione pagaAffittoAzione) {
         Giocatore debitore = partita.getTurnoCorrente().getGiocatore();
         Proprieta proprieta = (Proprieta) debitore.getCasellaCorrente();
         debitore.paga(proprieta.getProprietario(), proprieta.calcolaAffitto());
         partita.turnoStandard();
-        return true;
     }
 }

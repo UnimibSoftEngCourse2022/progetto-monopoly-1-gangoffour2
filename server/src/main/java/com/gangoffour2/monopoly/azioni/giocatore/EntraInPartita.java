@@ -15,7 +15,7 @@ public class EntraInPartita extends AzioneGiocatore {
     }
 
     @Override
-    public synchronized boolean accept(StatoPartita statoPartita) {
-        return statoPartita.onAzioneGiocatore(this);
+    public void accept(StatoPartita statoPartita) {
+        statoPartita.onAzioneGiocatore(this);
     }
 }

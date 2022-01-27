@@ -75,13 +75,9 @@ public class Partita extends IPartita implements PartitaObserver {
         azione.accept(stato);
     }
 
+    @Override
     public synchronized void onAzioneGiocatore(AzioneGiocatore azione) {
-        codaAzioniGiocatore.addLast(azione);
-        azioneAttesaRicevuta = azione.accept(stato);
-        if (azioneAttesaRicevuta) {
-            listenerTimeoutEventi.stopTimeout();
-            codaAzioniGiocatore.removeLast();
-        }
+        azione.accept(stato);
     }
 
     public synchronized void setStato(StatoPartita nuovoStato) {
@@ -120,7 +116,15 @@ public class Partita extends IPartita implements PartitaObserver {
         attendiAzione();
     }
 
+    public synchronized  void fermaAttesa(){
+        listenerTimeoutEventi.stopTimeout();
+    }
+
     public synchronized void attendiAzione() {
-        listenerTimeoutEventi.setTimeout(() -> stato.onTimeout(), 2000);
+        System.out.println("Setto il timeout");
+        listenerTimeoutEventi.setTimeout(() -> {
+            System.out.println("Timeout");
+            stato.onTimeout();
+        }, 10000);
     }
 }

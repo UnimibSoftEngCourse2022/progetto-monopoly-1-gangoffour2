@@ -19,5 +19,5 @@ public abstract class AzioneGiocatore implements Serializable {
 
     public abstract void accept(StatoCasella statoCasella);
 
-    public abstract boolean accept(StatoPartita statoPartita);
+    public abstract void accept(StatoPartita statoPartita);
 }

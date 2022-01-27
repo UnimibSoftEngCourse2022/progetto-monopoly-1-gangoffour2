@@ -29,10 +29,9 @@ public class AttesaAcquisto extends StatoPartita {
     }
 
     @Override
-    public boolean onAzioneGiocatore(AcquistaProprieta acquistaProprieta) {
+    public void onAzioneGiocatore(AcquistaProprieta acquistaProprieta) {
         acquistaProprieta.getGiocatore().getCasellaCorrente().onAzioneGiocatore(acquistaProprieta);
         partita.turnoStandard();
-        return true;
     }
 
 

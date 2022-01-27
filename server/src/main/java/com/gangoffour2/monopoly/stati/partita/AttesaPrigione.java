@@ -10,14 +10,14 @@ import lombok.Builder;
 @Builder
 public class AttesaPrigione extends StatoPartita {
     @Override
-    public boolean onAzioneGiocatore(LanciaDadi lanciaDadi) {
-        return true;
+    public void onAzioneGiocatore(LanciaDadi lanciaDadi) {
+
     }
 
     @Override
-    public boolean onAzioneGiocatore(Paga paga) {
+    public void onAzioneGiocatore(Paga paga) {
         paga.getGiocatore().getCasellaCorrente().onAzioneGiocatore(paga);
-        return true;
+        partita.fermaAttesa();
     }
 
     @Override

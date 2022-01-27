@@ -10,8 +10,8 @@ public class Paga extends AzioneGiocatore {
     }
 
     @Override
-    public boolean accept(StatoPartita statoPartita) {
-        return statoPartita.onAzioneGiocatore(this);
+    public void accept(StatoPartita statoPartita) {
+        statoPartita.onAzioneGiocatore(this);
     }
 
 }

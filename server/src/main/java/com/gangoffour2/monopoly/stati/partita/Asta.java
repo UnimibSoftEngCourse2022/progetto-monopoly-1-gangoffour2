@@ -35,12 +35,11 @@ public class Asta extends StatoPartita {
 
 
     @Override
-    public boolean onAzioneGiocatore(Offerta offerta) {
+    public void onAzioneGiocatore(Offerta offerta) {
+        partita.fermaAttesa();
         if (!offerta.isValida()) {
             throw new OffertaInvalidaException(offerta.getGiocatore());
         }
         astaCorrente.offri(offerta.getGiocatore(), offerta.getValore());
-
-        return true;
     }
 }

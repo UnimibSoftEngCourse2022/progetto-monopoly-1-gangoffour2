@@ -39,10 +39,6 @@ public abstract class IPartita {
 
     protected StatoPartita stato;
 
-    @Builder.Default
-    @JsonIgnore
-    protected LinkedList<AzioneGiocatore> codaAzioniGiocatore = new LinkedList<>();
-
     @JsonIgnore
     protected boolean azioneAttesaRicevuta;
 
@@ -73,6 +69,8 @@ public abstract class IPartita {
     public abstract Giocatore getGiocatoreByNick(String nick);
 
     public abstract void inizializza();
+
+    public abstract void fermaAttesa();
 
     public abstract void attendiAzione();
 }

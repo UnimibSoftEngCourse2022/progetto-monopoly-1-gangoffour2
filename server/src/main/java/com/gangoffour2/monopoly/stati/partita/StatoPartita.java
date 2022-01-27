@@ -105,52 +105,52 @@ public abstract class StatoPartita implements Serializable {
      * Di default, gli eventi arrivati dall'esterno non sbloccano la partita.
      * Ogni stato ridefinirà il suo comportamento in base al tipo dell'azione.
      */
-    public boolean onAzioneGiocatore(AcquistaProprieta acquistaProprieta) {
-        return false;
+    public void onAzioneGiocatore(AcquistaProprieta acquistaProprieta) {
+
     }
 
-    public boolean onAzioneGiocatore(VendiProprieta vendiProprieta) {
-        return false;
+    public void onAzioneGiocatore(VendiProprieta vendiProprieta) {
+
     }
 
-    public boolean onAzioneGiocatore(Ipoteca ipoteca) {
-        return false;
+    public void onAzioneGiocatore(Ipoteca ipoteca) {
+
     }
 
-    public boolean onAzioneGiocatore(UpgradaTerreno upgradaTerreno) {
-        return false;
+    public void onAzioneGiocatore(UpgradaTerreno upgradaTerreno) {
+
     }
 
-    public boolean onAzioneGiocatore(DowngradaTerreno downgradaTerreno) {
-        return false;
+    public void onAzioneGiocatore(DowngradaTerreno downgradaTerreno) {
+
     }
 
-    public boolean onAzioneGiocatore(LanciaDadi lanciaDadi) {
-        return false;
+    public void onAzioneGiocatore(LanciaDadi lanciaDadi) {
+
     }
 
-    public boolean onAzioneGiocatore(Paga paga) {
-        return false;
+    public void onAzioneGiocatore(Paga paga) {
+
     }
 
-    public boolean onAzioneGiocatore(EntraInPartita entraInPartita) {
-        return false;
+    public void onAzioneGiocatore(EntraInPartita entraInPartita) {
+
     }
 
-    public boolean onAzioneGiocatore(RimuoviIpoteca rimuoviIpoteca) {
-        return false;
+    public void onAzioneGiocatore(RimuoviIpoteca rimuoviIpoteca) {
+
     }
 
-    public boolean onAzioneGiocatore(Offerta offerta) {
-        return false;
+    public void onAzioneGiocatore(Offerta offerta) {
+
     }
 
-    public boolean onAzioneGiocatore(PagaAffittoAzione pagaAffittoAzione) {
-        return false;
+    public void onAzioneGiocatore(PagaAffittoAzione pagaAffittoAzione) {
+
     }
 
-    public boolean onAzioneGiocatore(AstaTerminata astaTerminata) {
-        return false;
+    public void onAzioneGiocatore(AstaTerminata astaTerminata) {
+
     }
 
 
