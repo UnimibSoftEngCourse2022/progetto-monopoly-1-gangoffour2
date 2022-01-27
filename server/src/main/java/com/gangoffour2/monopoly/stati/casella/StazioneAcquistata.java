@@ -11,14 +11,14 @@ public class StazioneAcquistata extends StatoStazione {
 
 
     @Override
-    public void onAzioneGiocatore(Ipoteca ipoteca){
+    public void onAzioneGiocatore(Ipoteca ipoteca) {
         stazione.setEvento(StazioneIpotecata.builder()
                 .stazione(stazione)
                 .build());
     }
 
     @Override
-    public void arrivo(){
+    public void arrivo() {
         stazione.notificaTutti(PagaAffitto.builder().build());
     }
 }

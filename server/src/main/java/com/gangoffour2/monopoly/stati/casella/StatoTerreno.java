@@ -9,7 +9,7 @@ import lombok.experimental.SuperBuilder;
 public abstract class StatoTerreno extends StatoCasella {
     protected Terreno terreno;
 
-    protected StatoTerreno(){
+    protected StatoTerreno() {
 
     }
 }

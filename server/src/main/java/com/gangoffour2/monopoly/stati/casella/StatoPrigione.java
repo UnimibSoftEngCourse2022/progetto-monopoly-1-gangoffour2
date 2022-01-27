@@ -14,8 +14,8 @@ public class StatoPrigione extends StatoCasella {
     private Prigione prigione;
 
     @Override
-    public void onAzioneGiocatore(Paga paga) throws ModificaDenaroException{
-        if(paga.getGiocatore().getConto() < prigione.getCauzione()){
+    public void onAzioneGiocatore(Paga paga) throws ModificaDenaroException {
+        if (paga.getGiocatore().getConto() < prigione.getCauzione()) {
             throw new ModificaDenaroException();
         }
         paga.getGiocatore().modificaDenaro(-prigione.getCauzione());

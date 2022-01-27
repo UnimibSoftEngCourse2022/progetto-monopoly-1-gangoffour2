@@ -11,7 +11,7 @@ public class StatoTassa extends StatoCasella {
     private Tassa tassa;
 
     @Override
-    public void arrivo(){
+    public void arrivo() {
         tassa.notificaTutti(ModificaDenaro.builder().importo(tassa.getCosto()).build());
     }
 }

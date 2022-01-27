@@ -12,10 +12,10 @@ import lombok.experimental.SuperBuilder;
 public class TerrenoAcquistato extends StatoTerreno {
 
     @Override
-    public void onAzioneGiocatore(Ipoteca ipoteca){
+    public void onAzioneGiocatore(Ipoteca ipoteca) {
         terreno.setEvento(
                 TerrenoIpotecato
-                .builder()
+                        .builder()
                         .terreno(terreno)
                         .build());
     }
@@ -28,12 +28,12 @@ public class TerrenoAcquistato extends StatoTerreno {
 
 
     @Override
-    public void onAzioneGiocatore(UpgradaTerreno upgradaTerreno){
+    public void onAzioneGiocatore(UpgradaTerreno upgradaTerreno) {
         terreno.aggiungiEdificio();
     }
 
     @Override
-    public void onAzioneGiocatore(DowngradaTerreno downgradaTerreno){
+    public void onAzioneGiocatore(DowngradaTerreno downgradaTerreno) {
         terreno.rimuoviEdificio();
     }
 }

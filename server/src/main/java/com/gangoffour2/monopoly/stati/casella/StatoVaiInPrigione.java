@@ -11,7 +11,7 @@ public class StatoVaiInPrigione extends StatoCasella {
     VaiInPrigione vaiInPrigione;
 
     @Override
-    public void arrivo(){
+    public void arrivo() {
         ArrestaGiocatore.builder().build();
     }
 }

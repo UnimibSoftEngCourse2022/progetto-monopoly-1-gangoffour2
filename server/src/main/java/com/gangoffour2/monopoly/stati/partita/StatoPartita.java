@@ -5,9 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.gangoffour2.monopoly.azioni.casella.*;
 import com.gangoffour2.monopoly.azioni.giocatore.*;
-import com.gangoffour2.monopoly.azioni.giocatore.PagaAffittoAzione;
 import com.gangoffour2.monopoly.model.IPartita;
-import com.gangoffour2.monopoly.model.Partita;
 import lombok.Data;
 import lombok.experimental.SuperBuilder;
 
@@ -20,69 +18,87 @@ public abstract class StatoPartita implements Serializable {
     @JsonIgnore
     IPartita partita;
 
-    @JsonProperty("type")
-    public String getTipo(){
-        return getClass().getSimpleName();
+    protected StatoPartita() {
     }
 
-    protected StatoPartita(){ }
+    @JsonProperty("type")
+    public String getTipo() {
+        return getClass().getSimpleName();
+    }
 
     /**
      * Metodo che deve essere eseguito se viene rilevato un timeout nell'attesa dell'input
      */
 
 
-    public void onTimeout() { }
+    public void onTimeout() {
+    }
+
     /**
      * I metodi onAzioneCasella vengono chiamati a partire dagli
      * stati delle caselle per capire che azione è necessaria nella partita, se necessaria.
      */
 
-    public void onAzioneCasella(ArrestaGiocatore arrestaGiocatore){
+    public void onAzioneCasella(ArrestaGiocatore arrestaGiocatore) {
     }
 
-    public void onAzioneCasella(PagaAffittoAzione pagaAffittoAzione){
+    public void onAzioneCasella(PagaAffittoAzione pagaAffittoAzione) {
         throw new UnsupportedOperationException();
     }
 
-    public void onAzioneCasella(PescaImprevisto pescaImprevisto){}
+    public void onAzioneCasella(PescaImprevisto pescaImprevisto) {
+    }
 
-    public void onAzioneCasella(RichiediAcquisto richiediAcquisto){}
+    public void onAzioneCasella(RichiediAcquisto richiediAcquisto) {
+    }
 
-    public void onAzioneCasella(AttesaLancioDadi attesaLancioDadi) {}
+    public void onAzioneCasella(AttesaLancioDadi attesaLancioDadi) {
+    }
 
-    public void onAzioneCasella(PassaggioVuoto passaggioVuoto){
+    public void onAzioneCasella(PassaggioVuoto passaggioVuoto) {
         partita.turnoStandard();
     }
 
-    public void onAzioneCasella(PagaAffitto pagaAffitto){}
+    public void onAzioneCasella(PagaAffitto pagaAffitto) {
+    }
 
-    public void onAzioneCasella(AttesaPrigione attesaPrigione) {}
+    public void onAzioneCasella(AttesaPrigione attesaPrigione) {
+    }
 
-    public void onAzioneCasella(ModificaDenaro modificaDenaro) {}
+    public void onAzioneCasella(ModificaDenaro modificaDenaro) {
+    }
 
-    public void onAzioneCasella(PescaProbabilita pescaProbabilita) {}
+    public void onAzioneCasella(PescaProbabilita pescaProbabilita) {
+    }
 
-    public void onAzioneCasella(VaiInAttesaPrigione checkPrigione) {}
+    public void onAzioneCasella(VaiInAttesaPrigione checkPrigione) {
+    }
 
     /**
      * I metodi esegui vengono chiamati dalla partita sulla casella: ad esempio, prima di attendere il lancio dei dadi,
      * sarà necessario un cambio di stato attraverso onAzioneCasella; poi, il nuovo stato si potrà effettivamente
      * mettere in attesa del lancio dei dadi.
      */
-    public void esegui(AzioneCasella azione){ }
+    public void esegui(AzioneCasella azione) {
+    }
 
-    public void esegui(ArrestaGiocatore arrestaGiocatore){ }
+    public void esegui(ArrestaGiocatore arrestaGiocatore) {
+    }
 
-    public void esegui(PagaAffitto pagaAffitto){ }
+    public void esegui(PagaAffitto pagaAffitto) {
+    }
 
-    public void esegui(PescaImprevisto pescaImprevisto){ }
+    public void esegui(PescaImprevisto pescaImprevisto) {
+    }
 
-    public void esegui(RichiediAcquisto attesaAcquisto){ }
+    public void esegui(RichiediAcquisto attesaAcquisto) {
+    }
 
-    public void esegui(AttesaLancioDadi attesaLancioDadi){ }
+    public void esegui(AttesaLancioDadi attesaLancioDadi) {
+    }
 
-    public void esegui(AstaTerminata astaTerminata){ }
+    public void esegui(AstaTerminata astaTerminata) {
+    }
 
 
     /**
@@ -97,7 +113,7 @@ public abstract class StatoPartita implements Serializable {
         return false;
     }
 
-    public  boolean onAzioneGiocatore(Ipoteca ipoteca) {
+    public boolean onAzioneGiocatore(Ipoteca ipoteca) {
         return false;
     }
 
@@ -133,7 +149,9 @@ public abstract class StatoPartita implements Serializable {
         return false;
     }
 
-    public boolean onAzioneGiocatore(AstaTerminata astaTerminata) { return false;}
+    public boolean onAzioneGiocatore(AstaTerminata astaTerminata) {
+        return false;
+    }
 
 
 }

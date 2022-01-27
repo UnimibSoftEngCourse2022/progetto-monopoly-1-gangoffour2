@@ -10,10 +10,10 @@ import lombok.experimental.SuperBuilder;
 public class StazioneNonAcquistata extends StatoStazione {
 
     @Override
-    public void onAzioneGiocatore(AcquistaProprieta acquistaProprieta){
+    public void onAzioneGiocatore(AcquistaProprieta acquistaProprieta) {
         acquistaProprieta.getGiocatore().acquistaProprieta(stazione);
         stazione.setEvento(StazioneAcquistata.builder()
-                        .stazione(stazione)
+                .stazione(stazione)
                 .build());
     }
 

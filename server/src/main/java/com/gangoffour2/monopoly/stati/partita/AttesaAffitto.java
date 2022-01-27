@@ -10,12 +10,12 @@ import lombok.Builder;
 public class AttesaAffitto extends StatoPartita {
 
     @Override
-    public void esegui(PagaAffitto pagaAffitto){
+    public void esegui(PagaAffitto pagaAffitto) {
         partita.attendiAzione();
     }
 
     @Override
-    public boolean onAzioneGiocatore(PagaAffittoAzione pagaAffittoAzione){
+    public boolean onAzioneGiocatore(PagaAffittoAzione pagaAffittoAzione) {
         Giocatore debitore = partita.getTurnoCorrente().getGiocatore();
         Proprieta proprieta = (Proprieta) debitore.getCasellaCorrente();
         debitore.paga(proprieta.getProprietario(), proprieta.calcolaAffitto());

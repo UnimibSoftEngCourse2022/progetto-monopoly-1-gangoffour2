@@ -12,7 +12,7 @@ public class StatoVia extends StatoCasella {
     private Via via;
 
     @Override
-    public AzioneCasella passaggio(){
+    public AzioneCasella passaggio() {
         return ModificaDenaro.builder()
                 .importo(via.getImporto())
                 .build();

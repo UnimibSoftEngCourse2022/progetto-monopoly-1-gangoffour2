@@ -9,7 +9,7 @@ import lombok.experimental.SuperBuilder;
 public class SocietaIpotecata extends StatoSocieta {
 
     @Override
-    public void onAzioneGiocatore(RimuoviIpoteca rimuoviIpoteca){
+    public void onAzioneGiocatore(RimuoviIpoteca rimuoviIpoteca) {
         societa.setEvento(SocietaAcquistata.builder()
                 .societa(societa)
                 .build());

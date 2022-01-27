@@ -17,36 +17,36 @@ public abstract class StatoCasella implements Serializable {
 
     }
 
-    public void arrivo(){
+    public void arrivo() {
 
     }
 
-    public AzioneCasella passaggio(){
+    public AzioneCasella passaggio() {
         return PassaggioVuoto.builder().build();
     }
 
-    public void fineGiro(){
+    public void fineGiro() {
 
     }
 
 
-    public void onAzioneGiocatore(Ipoteca ipoteca){
+    public void onAzioneGiocatore(Ipoteca ipoteca) {
 
     }
 
-    public void onAzioneGiocatore(AcquistaProprieta acquistaProprieta){
+    public void onAzioneGiocatore(AcquistaProprieta acquistaProprieta) {
 
     }
 
-    public void onAzioneGiocatore(UpgradaTerreno upgradaTerreno){
+    public void onAzioneGiocatore(UpgradaTerreno upgradaTerreno) {
 
     }
 
-    public void onAzioneGiocatore(DowngradaTerreno downgradaTerreno){
+    public void onAzioneGiocatore(DowngradaTerreno downgradaTerreno) {
 
     }
 
-    public void onAzioneGiocatore(VendiProprieta vendiProprieta){
+    public void onAzioneGiocatore(VendiProprieta vendiProprieta) {
 
     }
 
@@ -66,7 +66,7 @@ public abstract class StatoCasella implements Serializable {
 
     }
 
-    public void onAzioneGiocatore(RimuoviIpoteca rimuoviIpoteca){
+    public void onAzioneGiocatore(RimuoviIpoteca rimuoviIpoteca) {
 
     }
 
@@ -74,5 +74,6 @@ public abstract class StatoCasella implements Serializable {
 
     }
 
-    public void onAzioneGiocatore(AstaTerminata astaTerminata){ }
+    public void onAzioneGiocatore(AstaTerminata astaTerminata) {
+    }
 }

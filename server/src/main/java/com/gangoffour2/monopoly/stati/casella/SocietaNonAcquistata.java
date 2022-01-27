@@ -16,7 +16,7 @@ public class SocietaNonAcquistata extends StatoSocieta {
     }
 
     @Override
-    public void onAzioneGiocatore(AcquistaProprieta acquistaProprieta){
+    public void onAzioneGiocatore(AcquistaProprieta acquistaProprieta) {
         acquistaProprieta.getGiocatore().acquistaProprieta(societa);
         societa.setProprietario(acquistaProprieta.getGiocatore());
         societa.setEvento(SocietaAcquistata.builder()

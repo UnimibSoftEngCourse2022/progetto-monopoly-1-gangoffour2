@@ -16,11 +16,11 @@ public class TerrenoNonAcquistato extends StatoTerreno {
 
 
     @Override
-    public void onAzioneGiocatore(AcquistaProprieta acquistaProprieta){
+    public void onAzioneGiocatore(AcquistaProprieta acquistaProprieta) {
         acquistaProprieta.getGiocatore().acquistaProprieta(terreno);
         terreno.setEvento(
                 TerrenoAcquistato.builder()
-                .terreno(terreno)
-                .build());
+                        .terreno(terreno)
+                        .build());
     }
 }

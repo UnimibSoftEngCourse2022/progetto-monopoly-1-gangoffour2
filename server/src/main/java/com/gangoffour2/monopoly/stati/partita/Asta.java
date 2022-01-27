@@ -19,7 +19,7 @@ public class Asta extends StatoPartita {
 
     @Override
     public void onTimeout() {
-        if (astaCorrente.getMiglioreOfferente() != null){
+        if (astaCorrente.getMiglioreOfferente() != null) {
             astaCorrente.getMiglioreOfferente().aggiudica(astaCorrente.getProp(),
                     astaCorrente.getOffertaAttuale());
         }
@@ -28,15 +28,15 @@ public class Asta extends StatoPartita {
     }
 
     @Override
-    public void esegui(RichiediAcquisto richiediAcquisto){
-         astaCorrente = com.gangoffour2.monopoly.model.Asta.builder().prop(richiediAcquisto.getProprieta()).build();
-         partita.attendiAzione();
+    public void esegui(RichiediAcquisto richiediAcquisto) {
+        astaCorrente = com.gangoffour2.monopoly.model.Asta.builder().prop(richiediAcquisto.getProprieta()).build();
+        partita.attendiAzione();
     }
 
 
     @Override
-    public boolean onAzioneGiocatore(Offerta offerta){
-        if(!offerta.isValida()){
+    public boolean onAzioneGiocatore(Offerta offerta) {
+        if (!offerta.isValida()) {
             throw new OffertaInvalidaException(offerta.getGiocatore());
         }
         astaCorrente.offri(offerta.getGiocatore(), offerta.getValore());

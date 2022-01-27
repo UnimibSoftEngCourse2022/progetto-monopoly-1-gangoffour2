@@ -10,21 +10,21 @@ import lombok.Builder;
 @Builder
 public class AttesaPrigione extends StatoPartita {
     @Override
-    public boolean onAzioneGiocatore(LanciaDadi lanciaDadi){
+    public boolean onAzioneGiocatore(LanciaDadi lanciaDadi) {
         return true;
     }
 
     @Override
-    public boolean onAzioneGiocatore(Paga paga){
+    public boolean onAzioneGiocatore(Paga paga) {
         paga.getGiocatore().getCasellaCorrente().onAzioneGiocatore(paga);
         return true;
     }
 
     @Override
-    public void esegui(ArrestaGiocatore ag){
+    public void esegui(ArrestaGiocatore ag) {
         Turno turno = partita.getTurnoCorrente();
         Giocatore g = turno.getGiocatore();
-        if(g.haCartaEsciGratis()){
+        if (g.haCartaEsciGratis()) {
             partita.getMazzo().utilizzaCarta(g);
             //Notifica client Tizio ha usato carta
             partita.setStato(LancioDadi.builder().build());
