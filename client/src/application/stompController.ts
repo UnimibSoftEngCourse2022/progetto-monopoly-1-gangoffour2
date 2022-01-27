@@ -58,5 +58,9 @@ export default class StompController {
         this.client.send("/app/partite/" + this.idPartita + "/lanciaDadi")
     }
 
+    static acquista() {
+        this.client.send("/app/partite/" + this.idPartita + "/acquista")
+    }
+
 
 }
