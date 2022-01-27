@@ -11,9 +11,9 @@ import java.io.Serializable;
 
 @Data
 @SuperBuilder
-public abstract class EventoCasella implements Serializable {
+public abstract class StatoCasella implements Serializable {
 
-    protected EventoCasella() {
+    protected StatoCasella() {
 
     }
 

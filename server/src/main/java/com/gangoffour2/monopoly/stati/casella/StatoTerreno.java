@@ -6,10 +6,10 @@ import lombok.experimental.SuperBuilder;
 
 @Data
 @SuperBuilder
-public abstract class EventoTerreno extends EventoCasella {
+public abstract class StatoTerreno extends StatoCasella {
     protected Terreno terreno;
 
-    protected EventoTerreno(){
+    protected StatoTerreno(){
 
     }
 }

@@ -6,7 +6,7 @@ import lombok.experimental.SuperBuilder;
 
 @Data
 @SuperBuilder
-public class StatoParcheggio extends EventoCasella {
+public class StatoParcheggio extends StatoCasella {
 
     private Parcheggio parcheggio;
 

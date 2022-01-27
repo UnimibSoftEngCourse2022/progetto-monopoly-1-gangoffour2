@@ -7,7 +7,7 @@ import lombok.experimental.SuperBuilder;
 
 @Data
 @SuperBuilder
-public class SocietaAcquistata extends EventoSocieta {
+public class SocietaAcquistata extends StatoSocieta {
 
     @Override
     public void arrivo() {

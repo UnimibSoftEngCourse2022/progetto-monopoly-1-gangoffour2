@@ -9,7 +9,7 @@ import com.gangoffour2.monopoly.azioni.casella.AzioneCasella;
 import com.gangoffour2.monopoly.azioni.giocatore.AzioneGiocatore;
 import com.gangoffour2.monopoly.model.Giocatore;
 import com.gangoffour2.monopoly.model.PartitaObserver;
-import com.gangoffour2.monopoly.stati.casella.EventoCasella;
+import com.gangoffour2.monopoly.stati.casella.StatoCasella;
 import lombok.Builder;
 import lombok.Data;
 import lombok.experimental.SuperBuilder;
@@ -41,7 +41,7 @@ public abstract class Casella implements SubjectStatoPartita, Serializable {
     protected String nome;
     @Builder.Default
     protected ArrayList<PartitaObserver> subscribers = new ArrayList<>();
-    protected EventoCasella evento;
+    protected StatoCasella evento;
 
 
     @JsonProperty("type")

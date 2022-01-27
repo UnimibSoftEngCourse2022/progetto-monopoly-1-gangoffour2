@@ -8,7 +8,7 @@ import lombok.experimental.SuperBuilder;
 
 @Data
 @SuperBuilder
-public class StatoVia extends EventoCasella {
+public class StatoVia extends StatoCasella {
     private Via via;
 
     @Override

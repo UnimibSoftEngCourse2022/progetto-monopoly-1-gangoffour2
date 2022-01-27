@@ -6,7 +6,7 @@ import lombok.experimental.SuperBuilder;
 
 @Data
 @SuperBuilder
-public class StazioneIpotecata extends EventoStazione {
+public class StazioneIpotecata extends StatoStazione {
     @Override
     public void onAzioneGiocatore(RimuoviIpoteca rimuoviIpoteca){
         stazione.setEvento(StazioneAcquistata.builder().stazione(stazione).build());

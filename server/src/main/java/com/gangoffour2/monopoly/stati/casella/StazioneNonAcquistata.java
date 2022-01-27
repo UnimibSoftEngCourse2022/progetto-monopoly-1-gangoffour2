@@ -7,7 +7,7 @@ import lombok.experimental.SuperBuilder;
 
 @Data
 @SuperBuilder
-public class StazioneNonAcquistata extends EventoStazione {
+public class StazioneNonAcquistata extends StatoStazione {
 
     @Override
     public void onAzioneGiocatore(AcquistaProprieta acquistaProprieta){

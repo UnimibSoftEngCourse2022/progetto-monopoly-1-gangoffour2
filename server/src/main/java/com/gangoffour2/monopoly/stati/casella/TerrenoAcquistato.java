@@ -9,7 +9,7 @@ import lombok.experimental.SuperBuilder;
 
 @Data
 @SuperBuilder
-public class TerrenoAcquistato extends EventoTerreno{
+public class TerrenoAcquistato extends StatoTerreno {
 
     @Override
     public void onAzioneGiocatore(Ipoteca ipoteca){

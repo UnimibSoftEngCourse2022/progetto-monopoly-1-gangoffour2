@@ -20,7 +20,7 @@ class TestEventiCaselle {
         Terreno t = Terreno.builder().build();
 
         t.setEvento(TerrenoNonAcquistato.builder().build());
-        ((EventoTerreno)t.getEvento()).setTerreno(t);
+        ((StatoTerreno)t.getEvento()).setTerreno(t);
         Giocatore giocatore = Giocatore.builder().nick("Ciao").build();
 
         t.onAzioneGiocatore(AcquistaProprieta.builder().giocatore(giocatore).build());
@@ -34,7 +34,7 @@ class TestEventiCaselle {
     void camobioStatiStazione(){
         Stazione stazione = Stazione.builder().nome("Stazione sud").build();
         stazione.setEvento(StazioneNonAcquistata.builder().build());
-        ((EventoStazione)stazione.getEvento()).setStazione(stazione);
+        ((StatoStazione)stazione.getEvento()).setStazione(stazione);
         Giocatore giocatore = Giocatore.builder().nick("Ciao").build();
 
         stazione.onAzioneGiocatore(AcquistaProprieta.builder().giocatore(giocatore).build());
@@ -48,7 +48,7 @@ class TestEventiCaselle {
     void cambioStatiSocieta(){
         Societa societa = Societa.builder().nome("Societa bella").build();
         societa.setEvento(SocietaNonAcquistata.builder().build());
-        ((EventoSocieta)societa.getEvento()).setSocieta(societa);
+        ((StatoSocieta)societa.getEvento()).setSocieta(societa);
 
         Giocatore giocatore = Giocatore.builder().nick("Ciao").build();
         societa.onAzioneGiocatore(AcquistaProprieta.builder().giocatore(giocatore).build());

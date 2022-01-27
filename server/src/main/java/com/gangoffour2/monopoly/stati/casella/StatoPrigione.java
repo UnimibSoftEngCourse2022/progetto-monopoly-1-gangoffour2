@@ -10,7 +10,7 @@ import lombok.experimental.SuperBuilder;
 @Data
 @SuperBuilder
 @EqualsAndHashCode(callSuper = true)
-public class StatoPrigione extends EventoCasella {
+public class StatoPrigione extends StatoCasella {
     private Prigione prigione;
 
     @Override

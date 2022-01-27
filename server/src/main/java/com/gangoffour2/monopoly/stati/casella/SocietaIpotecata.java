@@ -6,7 +6,7 @@ import lombok.experimental.SuperBuilder;
 
 @Data
 @SuperBuilder
-public class SocietaIpotecata extends EventoSocieta {
+public class SocietaIpotecata extends StatoSocieta {
 
     @Override
     public void onAzioneGiocatore(RimuoviIpoteca rimuoviIpoteca){
