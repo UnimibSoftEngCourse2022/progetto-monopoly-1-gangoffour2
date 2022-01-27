@@ -12,9 +12,9 @@ export default class CartaTerreno extends React.Component<Props, {}>{
     render() : JSX.Element {
         let {casella} = this.props;
         let jsxPrezzi: JSX.Element[] = [];
-        for(let i = 1; i < casella.affitti.length - 1; ++i){
+        for(let i = 0; i < casella.affitti.length - 1; ++i){
             jsxPrezzi.push(<>
-                <div className="qty">Con {i} {i > 1 ? "case" : "casa"}:</div>
+                <div className="qty">Con {i + 1} {i + 1 > 1 ? "case" : "casa"}:</div>
                 <div className="price">{casella.affitti[i]}€</div>
             </>)
         }
@@ -25,7 +25,7 @@ export default class CartaTerreno extends React.Component<Props, {}>{
                     <span className="eyebrow"/>
                     {casella.nome}
                 </summary>
-                <p className="rent">Rendita solo terreno {casella.affitti[0]}€.</p>
+                <p className="rent">Rendita solo terreno {casella.rendita}€.</p>
                 <div className="priceTable">
                     {jsxPrezzi}
                 </div>

@@ -18,7 +18,7 @@ export default class CartaStazione extends React.Component<Props, {}>{
                     <span className="eyebrow"/>
                     {casella.nome}
                 </summary>
-                <p className="hotel">Rendita: {}</p>
+                <p className="hotel">Rendita: {casella.rendita}</p>
                 <p className="disclaimer">If a player owns ALL the Lots of any Color-Group, the<br/>rent is Doubled on
                     Unimproved Lots in that group.<br/>&copy;1935 Hasbro, Inc.</p>
             </div>
