@@ -113,6 +113,12 @@ public class EventiController {
         throw new UnsupportedOperationException();
     }
 
+    @MessageMapping("/partite/{id}/avviaAsta")
+    public void avviaAsta(@DestinationVariable String id, SimpMessageHeaderAccessor head) {
+        Giocatore giocatore = PartiteRepository.getInstance().getGiocatoreByIdSessione(head.getSessionId());
+
+    }
+
     @MessageMapping("/partite/{id}/offri")
     public void offri(
             @Payload int valore,
