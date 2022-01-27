@@ -62,5 +62,9 @@ export default class StompController {
         this.client.send("/app/partite/" + this.idPartita + "/acquista")
     }
 
+    static paga() {
+        this.client.send("/app/partite/" + this.idPartita + "/paga")
+    }
+
 
 }
