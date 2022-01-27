@@ -18,7 +18,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Objects;
 
-
 @Data
 @SuperBuilder
 @JsonIgnoreProperties(value = {"evento", "subscribers"})

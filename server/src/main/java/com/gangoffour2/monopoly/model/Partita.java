@@ -1,52 +1,26 @@
 package com.gangoffour2.monopoly.model;
 
-import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.LinkedList;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.gangoffour2.monopoly.azioni.casella.AzioneCasella;
 import com.gangoffour2.monopoly.azioni.giocatore.AzioneGiocatore;
 import com.gangoffour2.monopoly.controller.MessageBrokerSingleton;
 import com.gangoffour2.monopoly.eccezioni.GiocatoreEsistenteException;
 import com.gangoffour2.monopoly.eccezioni.PartitaPienaException;
-import com.gangoffour2.monopoly.services.TimeoutHandler;
 import com.gangoffour2.monopoly.stati.partita.AttesaPrigione;
 import com.gangoffour2.monopoly.stati.partita.FineTurno;
 import com.gangoffour2.monopoly.stati.partita.InizioTurno;
 import com.gangoffour2.monopoly.stati.partita.StatoPartita;
-import lombok.Builder;
-import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.experimental.SuperBuilder;
 
 @Data
-@Builder
-@AllArgsConstructor
-public class Partita implements PartitaObserver {
-    private String id;
-    @Builder.Default
-    private ArrayList<Giocatore> giocatori = new ArrayList<>();
-    private Configurazione config;
-    @Builder.Default
-    private ArrayList<Casa> listaCase = new ArrayList<>();
-    @Builder.Default
-    private ArrayList<Albergo> alberghi = new ArrayList<>();
+@SuperBuilder
+public class Partita extends IPartita implements PartitaObserver {
 
-    private ITabellone tabellone;
-    @JsonIgnore
-    private IMazzo mazzo;
-    private Turno turnoCorrente;
-    private StatoPartita stato;
-
-    @Builder.Default
-    @JsonIgnore
-    private LinkedList<AzioneGiocatore> codaAzioniGiocatore = new LinkedList<>();
-    @JsonIgnore
-    private boolean azioneAttesaRicevuta;
-
-    @JsonIgnore
-    @Builder.Default
-    private transient TimeoutHandler listenerTimeoutEventi = new TimeoutHandler();
+    protected Partita(IPartitaBuilder<?, ?> b) {
+        super(b);
+    }
 
     public synchronized void inizioPartita(){
         turnoCorrente = Turno.builder()
@@ -152,13 +126,4 @@ public class Partita implements PartitaObserver {
     public synchronized void attendiAzione() {
         listenerTimeoutEventi.setTimeout(() -> stato.onTimeout(), 2000);
     }
-
-    public void pescaImprevisto(){
-        mazzo.pescaImprevisto(turnoCorrente.getGiocatore());
-    }
-
-    public void pescaProbabilita(){
-        mazzo.pescaProbabilita(turnoCorrente.getGiocatore());
-    }
-
 }

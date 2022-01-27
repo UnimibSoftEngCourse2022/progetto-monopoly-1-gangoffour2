@@ -22,7 +22,7 @@ import java.util.Objects;
 @NoArgsConstructor
 public class Giocatore implements Serializable {
     @JsonIgnore
-    private Partita partita;
+    private IPartita partita;
     @JsonIgnore
     private String idSessione;
     private String nick;

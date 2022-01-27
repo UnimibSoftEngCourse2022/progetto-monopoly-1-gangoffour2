@@ -15,9 +15,8 @@ import lombok.Data;
 @AllArgsConstructor
 public class Tabellone implements ITabellone, Serializable {
     @JsonIgnore
-    private Partita partita;
+    private IPartita partita;
     private List<Casella> caselle;
-
 
     @Override
     public Casella getCasella(int posizione){
@@ -50,7 +49,6 @@ public class Tabellone implements ITabellone, Serializable {
      * @param giocatore Il giocatore da spostare
      * @param predicato La funzione da applicare per capire quando si è arrivati alla casella giusta
      */
-
     @Override
     public void muoviAProssimaCasella(Giocatore giocatore, Predicate<Casella> predicato){
         Casella corrente = giocatore.getCasellaCorrente();
@@ -73,6 +71,4 @@ public class Tabellone implements ITabellone, Serializable {
             caselle.get((posizioneCorrente - offset + caselle.size()) % caselle.size()).passaggio();
         }
     }
-
-
 }

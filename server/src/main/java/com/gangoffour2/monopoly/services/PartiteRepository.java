@@ -1,6 +1,7 @@
 package com.gangoffour2.monopoly.services;
 
 import com.gangoffour2.monopoly.model.Giocatore;
+import com.gangoffour2.monopoly.model.IPartita;
 import com.gangoffour2.monopoly.model.Partita;
 
 import java.util.ArrayList;
@@ -9,7 +10,7 @@ import java.util.List;
 
 public class PartiteRepository {
     private static PartiteRepository instance;
-    private final HashMap<String, Partita> partite;
+    private final HashMap<String, IPartita> partite;
     private final HashMap<String, Giocatore> giocatori;
 
     private PartiteRepository(){
@@ -37,16 +38,15 @@ public class PartiteRepository {
         giocatori.put(idSessione, giocatore);
     }
 
-    public synchronized Partita getPartitaByid(String id){
+    public synchronized IPartita getPartitaByid(String id){
         return partite.get(id);
     }
 
-    public synchronized void addPartita(Partita partita) {
+    public synchronized void addPartita(IPartita partita) {
         partite.put(partita.getId(), partita);
     }
 
-
-    public synchronized List<Partita> getPartiteAperte(){
+    public synchronized List<IPartita> getPartiteAperte(){
         return new ArrayList<>(partite.values());
     }
 }

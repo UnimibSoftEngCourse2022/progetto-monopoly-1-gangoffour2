@@ -15,7 +15,6 @@ public class Mazzo implements IMazzo {
     @Builder.Default
     private final Queue<Carta> imprevisti = new LinkedList<>();
 
-
     public void pescaImprevisto(Giocatore giocatore){
         Carta carta = imprevisti.remove();
         if(carta.effetto(giocatore))

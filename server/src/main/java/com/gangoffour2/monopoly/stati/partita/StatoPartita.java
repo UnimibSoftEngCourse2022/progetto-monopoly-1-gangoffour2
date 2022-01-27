@@ -6,19 +6,19 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.gangoffour2.monopoly.azioni.casella.*;
 import com.gangoffour2.monopoly.azioni.giocatore.*;
 import com.gangoffour2.monopoly.azioni.giocatore.PagaAffittoAzione;
+import com.gangoffour2.monopoly.model.IPartita;
 import com.gangoffour2.monopoly.model.Partita;
 import lombok.Data;
 import lombok.experimental.SuperBuilder;
 
 import java.io.Serializable;
 
-
 @Data
 @SuperBuilder
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.EXISTING_PROPERTY, property = "type")
 public abstract class StatoPartita implements Serializable {
     @JsonIgnore
-    Partita partita;
+    IPartita partita;
 
     @JsonProperty("type")
     public String getTipo(){

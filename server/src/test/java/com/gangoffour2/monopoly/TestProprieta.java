@@ -3,7 +3,7 @@ package com.gangoffour2.monopoly;
 import com.gangoffour2.monopoly.azioni.giocatore.*;
 import com.gangoffour2.monopoly.eccezioni.GiocatoreEsistenteException;
 import com.gangoffour2.monopoly.model.Giocatore;
-import com.gangoffour2.monopoly.model.Partita;
+import com.gangoffour2.monopoly.model.IPartita;
 import com.gangoffour2.monopoly.model.casella.Casella;
 import com.gangoffour2.monopoly.stati.casella.SocietaIpotecata;
 import com.gangoffour2.monopoly.stati.casella.StazioneIpotecata;
@@ -25,7 +25,7 @@ import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 @SpringBootTest
 class TestProprieta {
 
-    Partita partita;
+    IPartita partita;
 
     @BeforeEach
     public void setup() throws GiocatoreEsistenteException, IOException {
@@ -90,7 +90,6 @@ class TestProprieta {
 
         assertInstanceOf(StazioneIpotecata.class, c.getEvento());
     }
-
 
     @Test
     void testAsta() {

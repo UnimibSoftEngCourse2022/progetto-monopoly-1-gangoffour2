@@ -9,16 +9,15 @@ import lombok.Builder;
 public class LancioDadi extends StatoPartita {
 
     @Override
-    public boolean onAzioneGiocatore(Ipoteca ipoteca){
+    public boolean onAzioneGiocatore(Ipoteca ipoteca) {
         return true;
     }
 
     @Override
-    public boolean onAzioneGiocatore(LanciaDadi lanciaDadi){
+    public boolean onAzioneGiocatore(LanciaDadi lanciaDadi) {
         partita.turnoStandard();
         return true;
     }
-
 
     @Override
     public void onAzioneCasella(AttesaLancioDadi attesaLancioDadi) {
@@ -26,36 +25,35 @@ public class LancioDadi extends StatoPartita {
     }
 
     @Override
-    public void onAzioneCasella(RichiediAcquisto richiediAcquisto){
+    public void onAzioneCasella(RichiediAcquisto richiediAcquisto) {
         partita.setStato(AttesaAcquisto.builder().build());
         partita.getStato().esegui(richiediAcquisto);
     }
 
     @Override
-    public void onAzioneCasella(PagaAffitto pagaAffitto){
+    public void onAzioneCasella(PagaAffitto pagaAffitto) {
         partita.setStato(AttesaAffitto.builder().build());
         partita.getStato().esegui(pagaAffitto);
     }
 
     @Override
-    public void esegui(AttesaLancioDadi attesaLancioDadi)  {
+    public void esegui(AttesaLancioDadi attesaLancioDadi) {
         partita.attendiAzione();
     }
 
     @Override
-    public void onAzioneCasella(ArrestaGiocatore arrestaGiocatore){
+    public void onAzioneCasella(ArrestaGiocatore arrestaGiocatore) {
         partita.setStato(AttesaPrigione.builder().build());
         partita.getStato().esegui(arrestaGiocatore);
     }
 
     @Override
-    public void onAzioneCasella(PescaImprevisto pescaImpervisto){
-        partita.pescaImprevisto();
+    public void onAzioneCasella(PescaImprevisto pescaImpervisto) {
+        partita.getMazzo().pescaImprevisto(partita.getTurnoCorrente().getGiocatore());
     }
 
     @Override
-    public void onAzioneCasella(PescaProbabilita pescaProbabilita){
-        partita.pescaProbabilita();
+    public void onAzioneCasella(PescaProbabilita pescaProbabilita) {
+        partita.getMazzo().pescaProbabilita(partita.getTurnoCorrente().getGiocatore());
     }
-
 }

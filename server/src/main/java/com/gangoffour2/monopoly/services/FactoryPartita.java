@@ -1,10 +1,7 @@
 package com.gangoffour2.monopoly.services;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.gangoffour2.monopoly.model.Configurazione;
-import com.gangoffour2.monopoly.model.Mazzo;
-import com.gangoffour2.monopoly.model.Partita;
-import com.gangoffour2.monopoly.model.Tabellone;
+import com.gangoffour2.monopoly.model.*;
 import com.gangoffour2.monopoly.model.casella.*;
 import com.gangoffour2.monopoly.stati.partita.Lobby;
 import org.springframework.core.io.ClassPathResource;
@@ -50,11 +47,10 @@ public class FactoryPartita {
         return Tabellone.builder().caselle(creaCaselle()).build();
     }
 
-
-    public Partita creaPartita(Configurazione config) throws IOException {
+    public IPartita creaPartita(Configurazione config) throws IOException {
         Tabellone tabellone = creaTabellone();
         Mazzo mazzo = Mazzo.builder().build();
-        Partita partita = Partita.builder()
+        IPartita partita = Partita.builder()
                 .id(creaId())
                 .tabellone(tabellone)
                 .mazzo(mazzo)
@@ -64,7 +60,7 @@ public class FactoryPartita {
 
         List<Casella> caselle = tabellone.getCaselle();
 
-        caselle.forEach(casella -> casella.aggiungi(partita));
+        caselle.forEach(casella -> casella.aggiungi((PartitaObserver) partita));
 
         partita.setStato(Lobby.builder().build());
 

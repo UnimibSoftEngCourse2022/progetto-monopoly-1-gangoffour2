@@ -3,6 +3,7 @@ package com.gangoffour2.monopoly.controller;
 import com.gangoffour2.monopoly.azioni.giocatore.*;
 import com.gangoffour2.monopoly.eccezioni.PartitaPienaException;
 import com.gangoffour2.monopoly.model.Giocatore;
+import com.gangoffour2.monopoly.model.IPartita;
 import com.gangoffour2.monopoly.model.Partita;
 import com.gangoffour2.monopoly.services.PartiteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,10 +19,6 @@ import org.springframework.web.socket.messaging.SessionDisconnectEvent;
 
 import java.util.HashMap;
 import java.util.Map;
-
-
-
-
 
 @Controller
 public class EventiController {
@@ -46,7 +43,7 @@ public class EventiController {
             @DestinationVariable String id,
             SimpMessageHeaderAccessor head
     )  {
-        Partita partita = PartiteRepository.getInstance().getPartitaByid(id);
+        IPartita partita = PartiteRepository.getInstance().getPartitaByid(id);
         if(partita != null){
             try{
                 EntraInPartita azione = EntraInPartita.builder()
@@ -72,7 +69,7 @@ public class EventiController {
             SimpMessageHeaderAccessor head
     ){
         Giocatore giocatore = PartiteRepository.getInstance().getGiocatoreByIdSessione(head.getSessionId());
-        Partita partita = PartiteRepository.getInstance().getPartitaByid(id);
+        IPartita partita = PartiteRepository.getInstance().getPartitaByid(id);
         partita.rimuoviGiocatore(giocatore);
     }
 
@@ -83,7 +80,7 @@ public class EventiController {
     ) {
         Giocatore giocatore = PartiteRepository.getInstance().getGiocatoreByIdSessione(head.getSessionId());
         AcquistaProprieta acquistaProprieta = AcquistaProprieta.builder().giocatore(giocatore).build();
-        Partita partita = PartiteRepository.getInstance().getPartitaByid(id);
+        IPartita partita = PartiteRepository.getInstance().getPartitaByid(id);
         if (partita != null){
             partita.onAzioneGiocatore(acquistaProprieta);
         }
@@ -96,7 +93,7 @@ public class EventiController {
     )  {
         Giocatore giocatore = PartiteRepository.getInstance().getGiocatoreByIdSessione(head.getSessionId());
         LanciaDadi lanciaDadi = LanciaDadi.builder().giocatore(giocatore).build();
-        Partita partita = PartiteRepository.getInstance().getPartitaByid(id);
+        IPartita partita = PartiteRepository.getInstance().getPartitaByid(id);
         if (partita != null){
             partita.onAzioneGiocatore(lanciaDadi);
         }
@@ -115,7 +112,7 @@ public class EventiController {
     ) {
         Giocatore giocatore = PartiteRepository.getInstance().getGiocatoreByIdSessione(head.getSessionId());
         Offerta offerta = Offerta.builder().giocatore(giocatore).valore(valore).build();
-        Partita partita = PartiteRepository.getInstance().getPartitaByid(id);
+        IPartita partita = PartiteRepository.getInstance().getPartitaByid(id);
         if(partita != null){
             partita.onAzioneGiocatore(offerta);
         }

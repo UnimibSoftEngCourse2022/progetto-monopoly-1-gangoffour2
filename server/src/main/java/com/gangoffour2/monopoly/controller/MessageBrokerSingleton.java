@@ -1,6 +1,7 @@
 package com.gangoffour2.monopoly.controller;
 
 
+import com.gangoffour2.monopoly.model.IPartita;
 import com.gangoffour2.monopoly.model.Partita;
 import lombok.Builder;
 import lombok.Data;
@@ -20,7 +21,7 @@ public class MessageBrokerSingleton {
         return instance;
     }
 
-    public synchronized void broadcast(Partita partita){
+    public synchronized void broadcast(IPartita partita){
         template.convertAndSend("/topic/partite/" + partita.getId(), partita);
     }
 }

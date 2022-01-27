@@ -9,8 +9,6 @@ import lombok.experimental.SuperBuilder;
 
 import java.util.ArrayList;
 
-
-
 @Data
 @SuperBuilder
 public class Terreno extends Proprieta {

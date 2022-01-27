@@ -15,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 class MonopolyApplicationTests {
 
-    Partita partita;
+    IPartita partita;
 
     @BeforeEach
     public void setup() throws GiocatoreEsistenteException, IOException {
@@ -43,7 +43,7 @@ class MonopolyApplicationTests {
 		assertNotNull(partita.getStato().getPartita());
 	}
 
-	static Partita creaPartita() throws GiocatoreEsistenteException, IOException {
+	static IPartita creaPartita() throws GiocatoreEsistenteException, IOException {
 		Configurazione conf = Configurazione.builder()
 				.difficolta(Configurazione.Difficolta.MEDIUM)
 				.randomCaselle(true)
@@ -52,7 +52,7 @@ class MonopolyApplicationTests {
 				.numeroGiocatori(2)
 				.build();
 
-		Partita partita = FactoryPartita.getInstance().creaPartita(conf);
+		IPartita partita = FactoryPartita.getInstance().creaPartita(conf);
 
 		partita.getStato().setPartita(partita);
 
