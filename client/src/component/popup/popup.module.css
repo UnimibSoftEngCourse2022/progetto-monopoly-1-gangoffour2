@@ -13,6 +13,7 @@
     animation-duration: .1s;
     grid-template-columns: 40px calc(100% - 80px) 40px;
     grid-template-rows: 40px auto 40px;
+    z-index: 1000;
 }
 
 .popup_container.invisible {
@@ -72,6 +73,7 @@
     position: relative;
     z-index: 0;
     overflow-y: scroll;
+    padding: 20px;
     overflow-x: hidden;
 }
 
@@ -91,11 +93,6 @@
     color: white;
 }
 
-.popup_container .popup .popup_content div:hover {
-    background-color: lightslategrey;
-    color: white;
-}
-
 .popup_container .popup .popup_button_function {
     padding: 22px 30px;
     background-color: white;
@@ -106,17 +103,11 @@
     z-index: 99;
 }
 
-.popup_container .popup .popup_button_function div {
-    padding: 10px 21px;
-    background-color: #9B9B9B;
-    border-radius: 4px;
-    color: white;
-    cursor: pointer;
+.popup_container .popup button {
+    width: 100% !important;
 }
 
-.popup_container .popup .popup_button_function div.secondary {
-    background-color: #C7C7C7;
-}
+
 
 .popup_container .popup .popup_content .input-container {
     display: flex;
