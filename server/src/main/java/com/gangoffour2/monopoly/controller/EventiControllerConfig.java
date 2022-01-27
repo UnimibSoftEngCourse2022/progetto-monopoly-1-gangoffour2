@@ -22,7 +22,7 @@ public class EventiControllerConfig implements WebSocketMessageBrokerConfigurer 
         String urls = env.getProperty("cors.urls");
         StompWebSocketEndpointRegistration reg = registry.addEndpoint("/stomp");
 
-        if (urls != null){
+        if (urls != null) {
             for (String url : urls.split(",")) {
                 reg.setAllowedOriginPatterns(url);
             }

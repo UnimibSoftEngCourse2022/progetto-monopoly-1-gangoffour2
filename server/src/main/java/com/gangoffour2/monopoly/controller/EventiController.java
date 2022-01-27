@@ -1,10 +1,12 @@
 package com.gangoffour2.monopoly.controller;
 
-import com.gangoffour2.monopoly.azioni.giocatore.*;
+import com.gangoffour2.monopoly.azioni.giocatore.AcquistaProprieta;
+import com.gangoffour2.monopoly.azioni.giocatore.EntraInPartita;
+import com.gangoffour2.monopoly.azioni.giocatore.LanciaDadi;
+import com.gangoffour2.monopoly.azioni.giocatore.Offerta;
 import com.gangoffour2.monopoly.eccezioni.PartitaPienaException;
 import com.gangoffour2.monopoly.model.Giocatore;
 import com.gangoffour2.monopoly.model.IPartita;
-import com.gangoffour2.monopoly.model.Partita;
 import com.gangoffour2.monopoly.services.PartiteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.EventListener;
@@ -23,6 +25,13 @@ import java.util.Map;
 @Controller
 public class EventiController {
 
+    @Autowired
+    public EventiController(SimpMessagingTemplate template) {
+        MessageBrokerSingleton.setInstance(MessageBrokerSingleton.builder()
+                .template(template)
+                .build());
+    }
+
     @EventListener
     public void onApplicationEvent(SessionConnectEvent applicationEvent) {
         // Eventuali operazioni al momento della connessione
@@ -31,7 +40,7 @@ public class EventiController {
     @EventListener
     public void onApplicationEvent(SessionDisconnectEvent applicationEvent) {
         Giocatore g = PartiteRepository.getInstance().getGiocatoreByIdSessione(applicationEvent.getSessionId());
-        if(g != null){
+        if (g != null) {
             g.getPartita().rimuoviGiocatore(g);
             PartiteRepository.getInstance().rimuoviGiocatoreById(applicationEvent.getSessionId());
         }
@@ -42,10 +51,10 @@ public class EventiController {
             @Payload String nick,
             @DestinationVariable String id,
             SimpMessageHeaderAccessor head
-    )  {
+    ) {
         IPartita partita = PartiteRepository.getInstance().getPartitaByid(id);
-        if(partita != null){
-            try{
+        if (partita != null) {
+            try {
                 EntraInPartita azione = EntraInPartita.builder()
                         .giocatore(Giocatore.builder()
                                 .nick(nick)
@@ -54,7 +63,7 @@ public class EventiController {
                         .build();
                 partita.onAzioneGiocatore(azione);
                 PartiteRepository.getInstance().registraGiocatore(head.getSessionId(), partita.getGiocatoreByNick(nick));
-            }catch(PartitaPienaException e){
+            } catch (PartitaPienaException e) {
                 Map<String, Object> headers = new HashMap<>();
                 headers.put("nickname", nick);
                 MessageBrokerSingleton.getInstance().getTemplate()
@@ -67,7 +76,7 @@ public class EventiController {
     public void esci(
             @DestinationVariable String id,
             SimpMessageHeaderAccessor head
-    ){
+    ) {
         Giocatore giocatore = PartiteRepository.getInstance().getGiocatoreByIdSessione(head.getSessionId());
         IPartita partita = PartiteRepository.getInstance().getPartitaByid(id);
         partita.rimuoviGiocatore(giocatore);
@@ -81,7 +90,7 @@ public class EventiController {
         Giocatore giocatore = PartiteRepository.getInstance().getGiocatoreByIdSessione(head.getSessionId());
         AcquistaProprieta acquistaProprieta = AcquistaProprieta.builder().giocatore(giocatore).build();
         IPartita partita = PartiteRepository.getInstance().getPartitaByid(id);
-        if (partita != null){
+        if (partita != null) {
             partita.onAzioneGiocatore(acquistaProprieta);
         }
     }
@@ -90,17 +99,17 @@ public class EventiController {
     public void lanciaDadi(
             @DestinationVariable String id,
             SimpMessageHeaderAccessor head
-    )  {
+    ) {
         Giocatore giocatore = PartiteRepository.getInstance().getGiocatoreByIdSessione(head.getSessionId());
         LanciaDadi lanciaDadi = LanciaDadi.builder().giocatore(giocatore).build();
         IPartita partita = PartiteRepository.getInstance().getPartitaByid(id);
-        if (partita != null){
+        if (partita != null) {
             partita.onAzioneGiocatore(lanciaDadi);
         }
     }
 
     @MessageMapping("/partite/{id}/ipoteca")
-    public void ipoteca(@DestinationVariable String id, SimpMessageHeaderAccessor head){
+    public void ipoteca(@DestinationVariable String id, SimpMessageHeaderAccessor head) {
         throw new UnsupportedOperationException();
     }
 
@@ -113,15 +122,8 @@ public class EventiController {
         Giocatore giocatore = PartiteRepository.getInstance().getGiocatoreByIdSessione(head.getSessionId());
         Offerta offerta = Offerta.builder().giocatore(giocatore).valore(valore).build();
         IPartita partita = PartiteRepository.getInstance().getPartitaByid(id);
-        if(partita != null){
+        if (partita != null) {
             partita.onAzioneGiocatore(offerta);
         }
-    }
-
-    @Autowired
-    public EventiController(SimpMessagingTemplate template) {
-        MessageBrokerSingleton.setInstance(MessageBrokerSingleton.builder()
-                .template(template)
-                .build());
     }
 }
