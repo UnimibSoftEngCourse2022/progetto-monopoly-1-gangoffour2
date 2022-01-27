@@ -25,7 +25,7 @@ class TestCarte {
         p.onAzioneGiocatore(EntraInPartita.builder().giocatore(g).build());
         Carta c = CartaMuoviPosizioneIntero.builder().movimento(1).tabellone(p.getTabellone()).build();
         c.effetto(g);
-        assertEquals(g.getCasellaCorrente(), p.getTabellone().getCaselle().get(1));
+        assertEquals(g.getCasellaCorrente(), p.getTabellone().getCasella(1));
     }
 
     @Test

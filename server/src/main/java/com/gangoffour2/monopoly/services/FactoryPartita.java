@@ -2,6 +2,7 @@ package com.gangoffour2.monopoly.services;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gangoffour2.monopoly.model.Configurazione;
+import com.gangoffour2.monopoly.model.Mazzo;
 import com.gangoffour2.monopoly.model.Partita;
 import com.gangoffour2.monopoly.model.Tabellone;
 import com.gangoffour2.monopoly.model.casella.*;
@@ -32,7 +33,7 @@ public class FactoryPartita {
         return idPartita;
     }
 
-    public ArrayList<Casella> creaCaselle() throws IOException {
+    public List<Casella> creaCaselle() throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         File jsonFile = new ClassPathResource("caselle.json").getFile();
         Casella[] arrayCaselle = mapper.readValue(jsonFile, Casella[].class);
@@ -51,16 +52,17 @@ public class FactoryPartita {
 
 
     public Partita creaPartita(Configurazione config) throws IOException {
-
+        Tabellone tabellone = creaTabellone();
+        Mazzo mazzo = Mazzo.builder().build();
         Partita partita = Partita.builder()
                 .id(creaId())
-                .tabellone(creaTabellone())
+                .tabellone(tabellone)
+                .mazzo(mazzo)
                 .config(config)
                 .build();
+        tabellone.setPartita(partita);
 
-        partita.getTabellone().setPartita(partita);
-
-        ArrayList<Casella> caselle = partita.getTabellone().getCaselle();
+        List<Casella> caselle = tabellone.getCaselle();
 
         caselle.forEach(casella -> casella.aggiungi(partita));
 

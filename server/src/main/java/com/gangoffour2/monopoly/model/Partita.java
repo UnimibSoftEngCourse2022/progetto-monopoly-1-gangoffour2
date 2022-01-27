@@ -32,7 +32,9 @@ public class Partita implements PartitaObserver {
     @Builder.Default
     private ArrayList<Albergo> alberghi = new ArrayList<>();
 
-    private Tabellone tabellone;
+    private ITabellone tabellone;
+    @JsonIgnore
+    private IMazzo mazzo;
     private Turno turnoCorrente;
     private StatoPartita stato;
 
@@ -60,7 +62,7 @@ public class Partita implements PartitaObserver {
         if (giocatori.contains(g)){
             throw new GiocatoreEsistenteException();
         }
-        g.setCasellaCorrente(tabellone.getCaselle().get(0));
+        g.setCasellaCorrente(tabellone.getCasella(0));
         g.setConto(config.getSoldiIniziali());
         giocatori.add(g);
         g.setPartita(this);
@@ -152,11 +154,11 @@ public class Partita implements PartitaObserver {
     }
 
     public void pescaImprevisto(){
-        tabellone.pescaImprevisto(turnoCorrente.getGiocatore());
+        mazzo.pescaImprevisto(turnoCorrente.getGiocatore());
     }
 
     public void pescaProbabilita(){
-        tabellone.pescaProbabilita(turnoCorrente.getGiocatore());
+        mazzo.pescaProbabilita(turnoCorrente.getGiocatore());
     }
 
 }

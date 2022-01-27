@@ -6,7 +6,6 @@ import com.gangoffour2.monopoly.azioni.giocatore.Paga;
 import com.gangoffour2.monopoly.model.Giocatore;
 import com.gangoffour2.monopoly.model.Turno;
 import lombok.Builder;
-import lombok.EqualsAndHashCode;
 
 @Builder
 public class AttesaPrigione extends StatoPartita {
@@ -17,8 +16,7 @@ public class AttesaPrigione extends StatoPartita {
 
     @Override
     public boolean onAzioneGiocatore(Paga paga){
-        Giocatore g = paga.getGiocatore();
-
+        paga.getGiocatore().getCasellaCorrente().onAzioneGiocatore(paga);
         return true;
     }
 
@@ -27,14 +25,11 @@ public class AttesaPrigione extends StatoPartita {
         Turno turno = partita.getTurnoCorrente();
         Giocatore g = turno.getGiocatore();
         if(g.haCartaEsciGratis()){
-            partita.getTabellone().getProbabilita().add(g.rimuoviEsciGratis());
+            partita.getMazzo().utilizzaCarta(g);
             //Notifica client Tizio ha usato carta
             partita.setStato(LancioDadi.builder().build());
             partita.turnoStandard();
             partita.broadcast();
         }
-
-
-
     }
 }

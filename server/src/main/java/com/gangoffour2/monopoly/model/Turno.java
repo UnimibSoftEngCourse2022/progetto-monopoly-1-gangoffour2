@@ -63,7 +63,7 @@ public class Turno implements Serializable {
         return casellaDaVisitare > 0;
     }
 
-    public void prossimoEffetto(Tabellone tabellone) {
+    public void prossimoEffetto(ITabellone tabellone) {
         --casellaDaVisitare;
         tabellone.applicaEffetto(giocatore, casellaDaVisitare);
     }

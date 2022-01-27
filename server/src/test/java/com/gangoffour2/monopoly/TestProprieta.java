@@ -61,7 +61,7 @@ class TestProprieta {
     void ipotecaTerreno() throws GiocatoreEsistenteException {
         partita.aggiungiGiocatore(Giocatore.builder().nick("sdf").build());
         Giocatore g = partita.getGiocatori().get(0);
-        Casella c = partita.getTabellone().getCaselle().get(1);
+        Casella c = partita.getTabellone().getCasella(1);
         c.onAzioneGiocatore(AcquistaProprieta.builder().giocatore(g).build());
         c.onAzioneGiocatore(Ipoteca.builder().giocatore(g).build());
 
@@ -72,7 +72,7 @@ class TestProprieta {
     void ipotecaSocieta() throws GiocatoreEsistenteException {
         partita.aggiungiGiocatore(Giocatore.builder().nick("sdf").build());
         Giocatore g = partita.getGiocatori().get(0);
-        Casella c = partita.getTabellone().getCaselle().get(12);
+        Casella c = partita.getTabellone().getCasella(12);
         c.onAzioneGiocatore(AcquistaProprieta.builder().giocatore(g).build());
         c.onAzioneGiocatore(Ipoteca.builder().giocatore(g).build());
 
@@ -84,7 +84,7 @@ class TestProprieta {
     void ipotecaStazione() throws GiocatoreEsistenteException {
         partita.aggiungiGiocatore(Giocatore.builder().nick("sdf").build());
         Giocatore g = partita.getGiocatori().get(0);
-        Casella c = partita.getTabellone().getCaselle().get(5);
+        Casella c = partita.getTabellone().getCasella(5);
         c.onAzioneGiocatore(AcquistaProprieta.builder().giocatore(g).build());
         c.onAzioneGiocatore(Ipoteca.builder().giocatore(g).build());
 
