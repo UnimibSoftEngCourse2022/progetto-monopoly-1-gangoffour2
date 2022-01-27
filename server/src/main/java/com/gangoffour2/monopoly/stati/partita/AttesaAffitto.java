@@ -1,6 +1,5 @@
 package com.gangoffour2.monopoly.stati.partita;
 
-import com.gangoffour2.monopoly.azioni.casella.PagaAffitto;
 import com.gangoffour2.monopoly.azioni.giocatore.PagaAffittoAzione;
 import com.gangoffour2.monopoly.model.Giocatore;
 import com.gangoffour2.monopoly.model.casella.Proprieta;

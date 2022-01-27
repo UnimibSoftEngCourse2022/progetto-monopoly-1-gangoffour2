@@ -113,6 +113,8 @@ public class EventiController {
     @MessageMapping("/partite/{id}/avviaAsta")
     public void avviaAsta(@DestinationVariable String id, SimpMessageHeaderAccessor head) {
         Giocatore giocatore = PartiteRepository.getInstance().getGiocatoreByIdSessione(head.getSessionId());
+        IPartita partita = PartiteRepository.getInstance().getPartitaByid(id);
+        partita.onAzioneGiocatore(AvviaAsta.builder().giocatore(giocatore).build());
 
     }
 
