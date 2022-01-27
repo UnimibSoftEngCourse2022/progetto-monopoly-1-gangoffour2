@@ -68,7 +68,7 @@ public abstract class StatoPartita implements Serializable {
     public void onAzioneCasella(AttesaPrigione attesaPrigione) {
     }
 
-    public void onAzioneCasella(ModificaDenaro modificaDenaro) {
+    public void onAzioneCasella(AggiungiDenaro modificaDenaro) {
     }
 
     public void onAzioneCasella(PescaProbabilita pescaProbabilita) {

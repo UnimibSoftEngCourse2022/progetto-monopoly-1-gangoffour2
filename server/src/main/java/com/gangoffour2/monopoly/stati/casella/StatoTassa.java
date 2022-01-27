@@ -1,6 +1,6 @@
 package com.gangoffour2.monopoly.stati.casella;
 
-import com.gangoffour2.monopoly.azioni.casella.ModificaDenaro;
+import com.gangoffour2.monopoly.azioni.casella.AggiungiDenaro;
 import com.gangoffour2.monopoly.model.casella.Tassa;
 import lombok.Data;
 import lombok.experimental.SuperBuilder;
@@ -12,6 +12,6 @@ public class StatoTassa implements StatoCasella {
 
     @Override
     public void arrivo() {
-        tassa.notificaTutti(ModificaDenaro.builder().importo(tassa.getCosto()).build());
+        tassa.notificaTutti(AggiungiDenaro.builder().importo(tassa.getCosto()).build());
     }
 }

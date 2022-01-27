@@ -1,5 +1,6 @@
 package com.gangoffour2.monopoly.model.casella;
 
+import com.gangoffour2.monopoly.azioni.casella.AggiungiDenaro;
 import com.gangoffour2.monopoly.stati.casella.StatoTassa;
 import lombok.Data;
 import lombok.experimental.SuperBuilder;
@@ -11,5 +12,10 @@ public class Tassa extends Casella {
 
     protected Tassa() {
         evento = StatoTassa.builder().tassa(this).build();
+    }
+
+    @Override
+    public void arrivo() {
+        notificaTutti(AggiungiDenaro.builder().importo(-costo).build());
     }
 }

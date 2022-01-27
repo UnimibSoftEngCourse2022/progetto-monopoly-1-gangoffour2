@@ -2,9 +2,11 @@ package com.gangoffour2.monopoly.azioni.casella;
 
 import com.gangoffour2.monopoly.stati.partita.StatoPartita;
 import lombok.Builder;
+import lombok.Data;
 
 @Builder
-public class ModificaDenaro implements AzioneCasella {
+@Data
+public class AggiungiDenaro implements AzioneCasella {
     protected int importo;
 
     @Override

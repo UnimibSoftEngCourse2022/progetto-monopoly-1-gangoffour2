@@ -57,4 +57,13 @@ public class LancioDadi extends StatoPartita {
     public void onAzioneCasella(PescaProbabilita pescaProbabilita) {
         partita.getMazzo().pescaProbabilita(partita.getTurnoCorrente().getGiocatore());
     }
+
+    @Override
+    public void onAzioneCasella(AggiungiDenaro aggiungiDenaro) {
+        try {
+            partita.getTurnoCorrente().getGiocatore().aggiungiDenaro(aggiungiDenaro.getImporto());
+        }catch (Exception e){
+
+        }
+    }
 }

@@ -16,6 +16,6 @@ public class StatoPrigione implements StatoCasella {
         if (paga.getGiocatore().getConto() < prigione.getCauzione()) {
             throw new ModificaDenaroException();
         }
-        paga.getGiocatore().modificaDenaro(-prigione.getCauzione());
+        paga.getGiocatore().aggiungiDenaro(-prigione.getCauzione());
     }
 }

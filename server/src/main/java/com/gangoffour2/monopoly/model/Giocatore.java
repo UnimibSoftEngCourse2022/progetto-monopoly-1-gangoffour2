@@ -32,7 +32,7 @@ public class Giocatore implements Serializable {
     @Builder.Default
     private ArrayList<Proprieta> proprietaPossedute = new ArrayList<>();
 
-    public void modificaDenaro(int importo) throws ModificaDenaroException {
+    public void aggiungiDenaro(int importo) throws ModificaDenaroException {
         if (this.getConto() + importo < 0)
             throw new ModificaDenaroException();
         this.setConto(this.getConto() + importo);
