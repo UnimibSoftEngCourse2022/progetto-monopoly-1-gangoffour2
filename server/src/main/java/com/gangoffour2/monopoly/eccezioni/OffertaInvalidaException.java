@@ -4,7 +4,7 @@ import com.gangoffour2.monopoly.model.Giocatore;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
-public class OffertaInvalidaException extends RuntimeException{
+public class OffertaInvalidaException extends RuntimeException {
     private final Giocatore giocatore;
 
 }
