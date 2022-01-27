@@ -11,7 +11,8 @@
     "costoAlbergo": 50,
     "colore": "MARRONE",
     "ipoteca": 30,
-    "affitti": [2, 10, 30, 90, 160, 250]
+    "rendita": 2,
+    "affitti": [10, 30, 90, 160, 250]
   },
   {
     "type": "Probabilita",
@@ -25,7 +26,8 @@
     "costoAlbergo": 50,
     "colore": "MARRONE",
     "ipoteca": 30,
-    "affitti": [4, 20, 60, 180, 320, 450]
+    "rendita": 4,
+    "affitti": [20, 60, 180, 320, 450]
   },
   {
     "type": "Tassa",
@@ -36,7 +38,8 @@
     "type": "Stazione",
     "nome": "Stazione Sud",
     "costoBase": 200,
-    "ipoteca": 100
+    "ipoteca": 100,
+    "rendita": 50
   },
   {
     "type": "Terreno",
@@ -46,7 +49,8 @@
     "costoAlbergo": 50,
     "colore": "AZZURRO",
     "ipoteca": 50,
-    "affitti": [6, 30, 90, 270, 400, 550]
+    "rendita": 6,
+    "affitti": [30, 90, 270, 400, 550]
   },
   {
     "type": "Imprevisto",
@@ -60,7 +64,8 @@
     "costoAlbergo": 50,
     "colore": "AZZURRO",
     "ipoteca": 50,
-    "affitti": [6, 30, 90, 270, 400, 550]
+    "rendita": 6,
+    "affitti": [30, 90, 270, 400, 550]
   },
   {
     "type": "Terreno",
@@ -70,7 +75,8 @@
     "costoAlbergo": 50,
     "colore": "AZZURRO",
     "ipoteca": 60,
-    "affitti": [8, 40, 100, 300, 450, 600]
+    "rendita": 8,
+    "affitti": [40, 100, 300, 450, 600]
   },
   {
     "type": "Prigione",
@@ -84,13 +90,15 @@
     "costoAlbergo": 100,
     "colore": "VIOLA",
     "ipoteca": 70,
-    "affitti": [10, 50, 150, 450, 625, 750]
+    "rendita": 10,
+    "affitti": [50, 150, 450, 625, 750]
   },
   {
     "type": "Societa",
     "nome": "Società Elettrica",
     "costoBase": 150,
-    "ipoteca": 75
+    "ipoteca": 75,
+    "rendita": 50
   },
   {
     "type": "Terreno",
@@ -100,7 +108,8 @@
     "costoAlbergo": 100,
     "colore": "VIOLA",
     "ipoteca": 70,
-    "affitti": [10, 50, 150, 450, 625, 750]
+    "rendita": 10,
+    "affitti": [50, 150, 450, 625, 750]
   },
   {
     "type": "Terreno",
@@ -110,7 +119,8 @@
     "costoAlbergo": 100,
     "colore": "VIOLA",
     "ipoteca": 80,
-    "affitti": [12, 60, 180, 500, 700, 900]
+    "rendita":12,
+    "affitti": [60, 180, 500, 700, 900]
   },
   {
     "type": "Stazione",
@@ -140,7 +150,8 @@
     "costoAlbergo": 100,
     "colore": "ARANCIONE",
     "ipoteca": 90,
-    "affitti": [14, 70, 200, 550, 750, 950]
+    "rendita": 14,
+    "affitti": [70, 200, 550, 750, 950]
   },
   {
     "type": "Terreno",
@@ -150,7 +161,8 @@
     "costoAlbergo": 100,
     "colore": "ARANCIONE",
     "ipoteca": 100,
-    "affitti": [16, 80, 220, 600, 800, 1000]
+    "rendita": 16,
+    "affitti": [80, 220, 600, 800, 1000]
   },
   {
     "type": "Parcheggio",
@@ -164,7 +176,8 @@
     "costoAlbergo": 150,
     "colore": "ROSSO",
     "ipoteca": 110,
-    "affitti": [18, 90, 250, 700, 875, 1050]
+    "rendita": 18,
+    "affitti": [90, 250, 700, 875, 1050]
   },
   {
     "type": "Imprevisto",
@@ -178,7 +191,8 @@
     "costoAlbergo": 150,
     "colore": "ROSSO",
     "ipoteca": 110,
-    "affitti": [18, 90, 250, 700, 875, 1050]
+    "rendita": 18,
+    "affitti": [90, 250, 700, 875, 1050]
   },
   {
     "type": "Terreno",
@@ -188,13 +202,15 @@
     "costoAlbergo": 150,
     "colore": "ROSSO",
     "ipoteca": "120",
-    "affitti": [20, 100, 300, 750, 925, 1100]
+    "rendita": 20,
+    "affitti": [100, 300, 750, 925, 1100]
   },
   {
     "type": "Stazione",
     "nome": "Stazione Nord",
     "costoBase": 200,
-    "ipoteca": 100
+    "ipoteca": 100,
+    "rendita": 50
   },
   {
     "type": "Terreno",
@@ -204,7 +220,8 @@
     "costoAlbergo": 150,
     "colore": "GIALLO",
     "ipoteca": 130,
-    "affitti": [22, 110, 330, 800, 975, 1150]
+    "rendita": 22,
+    "affitti": [110, 330, 800, 975, 1150]
   },
   {
     "type": "Terreno",
@@ -214,13 +231,15 @@
     "costoAlbergo": 150,
     "colore": "GIALLO",
     "ipoteca": 130,
-    "affitti": [22, 110, 330, 800, 975, 1150]
+    "rendita": 22,
+    "affitti": [110, 330, 800, 975, 1150]
   },
   {
     "type": "Societa",
     "nome": "Società acqua potabile",
     "costoBase": 150,
-    "ipoteca": 75
+    "ipoteca": 75,
+    "rendita": 50
   },
   {
     "type": "Terreno",
@@ -230,7 +249,8 @@
     "costoAlbergo": 150,
     "colore": "GIALLO",
     "ipoteca": 140,
-    "affitti": [24, 120, 360, 850, 1025, 1200]
+    "rendita": 24,
+    "affitti": [120, 360, 850, 1025, 1200]
   },
   {
     "type": "VaiInPrigione",
@@ -244,7 +264,8 @@
     "costoAlbergo": 200,
     "colore": "VERDE",
     "ipoteca": 150,
-    "affitti": [26, 130, 390, 900, 1100, 1275]
+    "rendita": 26,
+    "affitti": [130, 390, 900, 1100, 1275]
   },
   {
     "type": "Terreno",
@@ -254,7 +275,8 @@
     "costoAlbergo": 200,
     "colore": "VERDE",
     "ipoteca": 150,
-    "affitti": [26, 130, 390, 900, 1100, 1275]
+    "rendita": 26,
+    "affitti": [130, 390, 900, 1100, 1275]
   },
   {
     "type": "Probabilita",
@@ -268,13 +290,15 @@
     "costoAlbergo": 200,
     "colore": "VERDE",
     "ipoteca": 160,
-    "affitti": [28, 150, 450, 1000, 1200, 1400]
+    "rendita": 28,
+    "affitti": [150, 450, 1000, 1200, 1400]
   },
   {
     "type": "Stazione",
     "nome": "Stazione Est",
     "costoBase": 200,
-    "ipoteca": 100
+    "ipoteca": 100,
+    "rendita": 50
   },
   {
     "type": "Imprevisto",
@@ -288,7 +312,8 @@
     "costoAlbergo": 200,
     "colore": "BLU",
     "ipoteca": 175,
-    "affitti": [35, 175, 500, 1100, 1300, 1500]
+    "rendita": 35,
+    "affitti": [175, 500, 1100, 1300, 1500]
   },
   {
     "type": "Tassa",
@@ -302,7 +327,8 @@
     "costoCasa": 200,
     "costoAlbergo": 200,
     "colore": "BLU",
-    "affitti": [50, 200, 600, 1400, 1700, 2000],
+    "rendita": 50,
+    "affitti": [200, 600, 1400, 1700, 2000],
     "ipoteca": 200
   }
 ]

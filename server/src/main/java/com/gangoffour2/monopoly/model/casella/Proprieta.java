@@ -10,6 +10,7 @@ import lombok.experimental.SuperBuilder;
 public abstract class Proprieta extends Casella {
     protected int costoBase;
     protected int ipoteca;
+    protected int rendita;
     @JsonIgnore
     protected Giocatore proprietario;
 
