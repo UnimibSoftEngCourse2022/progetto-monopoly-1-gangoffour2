@@ -43,10 +43,6 @@ public abstract class StatoPartita implements Serializable {
 
     }
 
-    public void onAzioneCasella(PagaAffittoAzione pagaAffittoAzione) {
-
-    }
-
     public void onAzioneCasella(PescaImprevisto pescaImprevisto) {
 
     }
@@ -142,10 +138,6 @@ public abstract class StatoPartita implements Serializable {
     }
 
     public void onAzioneGiocatore(Offerta offerta) {
-
-    }
-
-    public void onAzioneGiocatore(PagaAffittoAzione pagaAffittoAzione) {
 
     }
 

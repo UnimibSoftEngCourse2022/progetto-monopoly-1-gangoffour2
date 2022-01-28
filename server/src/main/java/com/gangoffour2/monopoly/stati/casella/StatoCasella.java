@@ -61,10 +61,6 @@ public interface StatoCasella extends Serializable {
 
     }
 
-    default void onAzioneGiocatore(PagaAffittoAzione pagaAffittoAzione) {
-
-    }
-
     default void onAzioneGiocatore(AstaTerminata astaTerminata) {
 
     }
