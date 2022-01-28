@@ -19,7 +19,7 @@ public class Mazzo implements IMazzo {
 
     @JsonIgnore
     @Builder.Default
-    private RandomCarteStrategy strategiaMazzo = new StrategiaCarteVanilla();
+    private transient RandomCarteStrategy strategiaMazzo = new StrategiaCarteVanilla();
 
     public void pescaImprevisto(Giocatore giocatore) {
         Carta carta = imprevisti.remove();

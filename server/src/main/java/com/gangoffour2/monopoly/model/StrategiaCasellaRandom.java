@@ -4,7 +4,6 @@ import com.gangoffour2.monopoly.model.casella.Casella;
 import lombok.Builder;
 
 import java.security.SecureRandom;
-import java.util.ArrayList;
 
 @Builder
 public class StrategiaCasellaRandom implements RandomCaselleStrategy{
