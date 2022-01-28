@@ -10,7 +10,7 @@ public class SocietaIpotecata extends StatoSocieta {
 
     @Override
     public void onAzioneGiocatore(RimuoviIpoteca rimuoviIpoteca) {
-        societa.setEvento(SocietaAcquistata.builder()
+        societa.setStato(SocietaAcquistata.builder()
                 .societa(societa)
                 .build());
     }

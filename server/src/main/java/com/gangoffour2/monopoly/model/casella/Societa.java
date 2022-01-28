@@ -12,7 +12,7 @@ public class Societa extends Proprieta {
 
     //manca img
     private Societa() {
-        evento = SocietaNonAcquistata.builder().societa(this).build();
+        stato = SocietaNonAcquistata.builder().societa(this).build();
     }
 
     @Override

@@ -24,7 +24,7 @@ public class Terreno extends Proprieta {
     private int costoAlbergo;
 
     protected Terreno() {
-        evento = TerrenoNonAcquistato.builder().terreno(this).build();
+        stato = TerrenoNonAcquistato.builder().terreno(this).build();
         listaCase = new ArrayList<>();
     }
 

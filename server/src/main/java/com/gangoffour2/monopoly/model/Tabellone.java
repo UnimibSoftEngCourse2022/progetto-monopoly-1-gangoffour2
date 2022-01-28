@@ -51,12 +51,15 @@ public class Tabellone implements ITabellone, Serializable {
     public void muoviAProssimaCasella(Giocatore giocatore, Predicate<Casella> predicato) {
         Casella corrente = giocatore.getCasellaCorrente();
         int i = caselle.indexOf(corrente);
+        int cont = 0;
         Casella prossimaCasella;
         do {
             prossimaCasella = caselle.get((i + 1) % caselle.size());
             ++i;
+            ++cont;
         } while (!predicato.test(prossimaCasella));
-        muoviGiocatoreIntero(giocatore, i);
+
+        muoviGiocatoreIntero(giocatore, cont);
     }
 
     @Override

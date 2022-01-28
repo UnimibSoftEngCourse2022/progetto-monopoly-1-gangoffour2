@@ -67,7 +67,7 @@ class TestProprieta {
         c.onAzioneGiocatore(AcquistaProprieta.builder().giocatore(g).build());
         c.onAzioneGiocatore(Ipoteca.builder().giocatore(g).build());
 
-        assertInstanceOf(TerrenoIpotecato.class, c.getEvento());
+        assertInstanceOf(TerrenoIpotecato.class, c.getStato());
     }
 
     @Test
@@ -78,9 +78,8 @@ class TestProprieta {
         c.onAzioneGiocatore(AcquistaProprieta.builder().giocatore(g).build());
         c.onAzioneGiocatore(Ipoteca.builder().giocatore(g).build());
 
-        assertInstanceOf(SocietaIpotecata.class, c.getEvento());
+        assertInstanceOf(SocietaIpotecata.class, c.getStato());
     }
-
 
     @Test
     void ipotecaStazione() throws GiocatoreEsistenteException {
@@ -90,7 +89,7 @@ class TestProprieta {
         c.onAzioneGiocatore(AcquistaProprieta.builder().giocatore(g).build());
         c.onAzioneGiocatore(Ipoteca.builder().giocatore(g).build());
 
-        assertInstanceOf(StazioneIpotecata.class, c.getEvento());
+        assertInstanceOf(StazioneIpotecata.class, c.getStato());
     }
 
     @Test
@@ -135,7 +134,7 @@ class TestProprieta {
         assertEquals("AttesaFallimento", partita.getStato().getTipo());
     }
 
-    void fakeTiro(IPartita partita, Giocatore giocatore, int spostamento) {
+    static void fakeTiro(IPartita partita, Giocatore giocatore, int spostamento) {
         ArrayList<Integer> dadi = new ArrayList<>();
         dadi.add(spostamento - 1);
         dadi.add(1);
@@ -162,7 +161,7 @@ class TestProprieta {
         partita.onAzioneGiocatore(TerminaTurno.builder().build());
 
         Giocatore debitore = partita.getTurnoCorrente().getGiocatore();
-        this.fakeTiro(partita, debitore, 1);
+        TestProprieta.fakeTiro(partita, debitore, 1);
         debitore.getCasellaCorrente().arrivo();
         assertEquals("AttesaAffitto", partita.getStato().getTipo());
         partita.onAzioneGiocatore(Paga.builder().giocatore(debitore).build());

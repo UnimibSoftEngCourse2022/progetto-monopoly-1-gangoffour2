@@ -21,7 +21,7 @@ public class Prigione extends Casella {
     private HashMap<Giocatore, Integer> giocatoriInPrigione = new HashMap<>();
 
     protected Prigione() {
-        evento = StatoPrigione.builder().prigione(this).build();
+        stato = StatoPrigione.builder().prigione(this).build();
     }
 
     public Integer liberaGiocatore(Giocatore giocatore) {

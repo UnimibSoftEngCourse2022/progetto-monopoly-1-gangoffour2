@@ -13,7 +13,7 @@ public class Tassa extends Casella {
     private int costo;
 
     protected Tassa() {
-        evento = StatoTassa.builder().tassa(this).build();
+        stato = StatoTassa.builder().tassa(this).build();
     }
 
     @Override

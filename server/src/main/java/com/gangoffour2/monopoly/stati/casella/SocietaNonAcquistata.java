@@ -19,7 +19,7 @@ public class SocietaNonAcquistata extends StatoSocieta {
     public void onAzioneGiocatore(AcquistaProprieta acquistaProprieta) {
         acquistaProprieta.getGiocatore().acquistaProprieta(societa);
         societa.setProprietario(acquistaProprieta.getGiocatore());
-        societa.setEvento(SocietaAcquistata.builder()
+        societa.setStato(SocietaAcquistata.builder()
                 .societa(societa)
                 .build());
 

@@ -1,9 +1,6 @@
 package com.gangoffour2.monopoly.model.casella;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonSubTypes;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.annotation.*;
 import com.gangoffour2.monopoly.azioni.casella.AttesaLancioDadi;
 import com.gangoffour2.monopoly.azioni.casella.AzioneCasella;
 import com.gangoffour2.monopoly.azioni.giocatore.AzioneGiocatore;
@@ -20,7 +17,7 @@ import java.util.Objects;
 
 @Data
 @SuperBuilder
-@JsonIgnoreProperties(value = {"evento", "subscribers"})
+@JsonIgnoreProperties(value = {"stato", "subscribers"})
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.EXISTING_PROPERTY, property = "type")
 @JsonSubTypes({
         @JsonSubTypes.Type(value = Terreno.class, name = "Terreno"),
@@ -40,7 +37,7 @@ public abstract class Casella implements SubjectStatoPartita, Serializable {
     protected String nome;
     @Builder.Default
     protected ArrayList<PartitaObserver> subscribers = new ArrayList<>();
-    protected StatoCasella evento;
+    protected StatoCasella stato;
 
     protected Casella() {
         subscribers = new ArrayList<>();
@@ -52,15 +49,15 @@ public abstract class Casella implements SubjectStatoPartita, Serializable {
     }
 
     public void arrivo() {
-        notificaTutti(evento.arrivo());
+        notificaTutti(stato.arrivo());
     }
 
     public void passaggio() {
-        notificaTutti(evento.passaggio());
+        notificaTutti(stato.passaggio());
     }
 
     public void fineGiro() {
-        evento.fineGiro();
+        stato.fineGiro();
     }
 
     /**
@@ -88,7 +85,7 @@ public abstract class Casella implements SubjectStatoPartita, Serializable {
 
 
     public void onAzioneGiocatore(AzioneGiocatore azioneGiocatore) {
-        azioneGiocatore.accept(evento);
+        azioneGiocatore.accept(stato);
     }
 
     @Override

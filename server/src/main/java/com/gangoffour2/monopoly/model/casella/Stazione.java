@@ -11,7 +11,7 @@ import lombok.experimental.SuperBuilder;
 public class Stazione extends Proprieta {
 
     private Stazione() {
-        evento = StazioneNonAcquistata.builder().stazione(this).build();
+        stato = StazioneNonAcquistata.builder().stazione(this).build();
     }
 
     @Override

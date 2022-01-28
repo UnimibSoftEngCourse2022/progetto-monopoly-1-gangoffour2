@@ -15,7 +15,7 @@ public class TerrenoAcquistato extends StatoTerreno {
     @Override
     public void onAzioneGiocatore(Ipoteca ipoteca) {
         terreno.getProprietario().aggiungiDenaro(terreno.getIpoteca());
-        terreno.setEvento(
+        terreno.setStato(
                 TerrenoIpotecato
                         .builder()
                         .terreno(terreno)

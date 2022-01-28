@@ -12,7 +12,7 @@ public class StazioneAcquistata extends StatoStazione {
 
     @Override
     public void onAzioneGiocatore(Ipoteca ipoteca) {
-        stazione.setEvento(StazioneIpotecata.builder()
+        stazione.setStato(StazioneIpotecata.builder()
                 .stazione(stazione)
                 .build());
     }

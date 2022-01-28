@@ -91,6 +91,7 @@ public class Partita extends IPartita implements PartitaObserver {
 
     public void continuaTurno() {
         broadcast();
+
         try {
             Thread.sleep(200);
         } catch (InterruptedException e) {
@@ -98,6 +99,7 @@ public class Partita extends IPartita implements PartitaObserver {
             logger.error("Wait fallita");
             Thread.currentThread().interrupt();
         }
+
         if (turnoCorrente.inVisita()) {
             turnoCorrente.prossimoEffetto(tabellone);
         } else if (turnoCorrente.getLanciConsecutivi() == 0 || turnoCorrente.dadiUguali()) {

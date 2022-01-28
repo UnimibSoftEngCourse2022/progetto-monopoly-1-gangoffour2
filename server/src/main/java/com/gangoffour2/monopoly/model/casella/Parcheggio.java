@@ -9,7 +9,7 @@ import lombok.EqualsAndHashCode;
 public class Parcheggio extends Casella {
 
     protected Parcheggio() {
-        evento = StatoParcheggio.builder().parcheggio(this).build();
+        stato = StatoParcheggio.builder().parcheggio(this).build();
     }
 
 }

@@ -19,42 +19,42 @@ class TestEventiCaselle {
     void cambioStatiTerreno() {
         Terreno t = Terreno.builder().build();
 
-        t.setEvento(TerrenoNonAcquistato.builder().build());
-        ((StatoTerreno) t.getEvento()).setTerreno(t);
+        t.setStato(TerrenoNonAcquistato.builder().build());
+        ((StatoTerreno) t.getStato()).setTerreno(t);
         Giocatore giocatore = Giocatore.builder().nick("Ciao").build();
 
         t.onAzioneGiocatore(AcquistaProprieta.builder().giocatore(giocatore).build());
-        assertTrue(t.getEvento() instanceof TerrenoAcquistato);
+        assertTrue(t.getStato() instanceof TerrenoAcquistato);
 
         t.onAzioneGiocatore(Ipoteca.builder().build());
-        assertTrue(t.getEvento() instanceof TerrenoIpotecato);
+        assertTrue(t.getStato() instanceof TerrenoIpotecato);
     }
 
     @Test
-    void camobioStatiStazione() {
+    void cambioStatiStazione() {
         Stazione stazione = Stazione.builder().nome("Stazione sud").build();
-        stazione.setEvento(StazioneNonAcquistata.builder().build());
-        ((StatoStazione) stazione.getEvento()).setStazione(stazione);
+        stazione.setStato(StazioneNonAcquistata.builder().build());
+        ((StatoStazione) stazione.getStato()).setStazione(stazione);
         Giocatore giocatore = Giocatore.builder().nick("Ciao").build();
 
         stazione.onAzioneGiocatore(AcquistaProprieta.builder().giocatore(giocatore).build());
-        assertTrue(stazione.getEvento() instanceof StazioneAcquistata);
+        assertTrue(stazione.getStato() instanceof StazioneAcquistata);
 
         stazione.onAzioneGiocatore(Ipoteca.builder().build());
-        assertTrue(stazione.getEvento() instanceof StazioneIpotecata);
+        assertTrue(stazione.getStato() instanceof StazioneIpotecata);
     }
 
     @Test
     void cambioStatiSocieta() {
         Societa societa = Societa.builder().nome("Societa bella").build();
-        societa.setEvento(SocietaNonAcquistata.builder().build());
-        ((StatoSocieta) societa.getEvento()).setSocieta(societa);
+        societa.setStato(SocietaNonAcquistata.builder().build());
+        ((StatoSocieta) societa.getStato()).setSocieta(societa);
 
         Giocatore giocatore = Giocatore.builder().nick("Ciao").build();
         societa.onAzioneGiocatore(AcquistaProprieta.builder().giocatore(giocatore).build());
-        assertTrue(societa.getEvento() instanceof SocietaAcquistata);
+        assertTrue(societa.getStato() instanceof SocietaAcquistata);
 
         societa.onAzioneGiocatore(Ipoteca.builder().giocatore(giocatore).build());
-        assertTrue(societa.getEvento() instanceof SocietaIpotecata);
+        assertTrue(societa.getStato() instanceof SocietaIpotecata);
     }
 }

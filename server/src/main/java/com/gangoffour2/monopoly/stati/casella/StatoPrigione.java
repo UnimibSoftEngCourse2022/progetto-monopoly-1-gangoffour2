@@ -13,9 +13,6 @@ public class StatoPrigione implements StatoCasella {
 
     @Override
     public void onAzioneGiocatore(Paga paga) throws ModificaDenaroException {
-        if (paga.getGiocatore().getConto() < prigione.getCauzione()) {
-            throw new ModificaDenaroException();
-        }
         paga.getGiocatore().aggiungiDenaro(-prigione.getCauzione());
     }
 }

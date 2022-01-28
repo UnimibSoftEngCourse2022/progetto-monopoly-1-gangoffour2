@@ -14,7 +14,7 @@ public class Via extends Casella {
     int importo = 200;
 
     private Via() {
-        evento = StatoVia.builder().via(this).build();
+        stato = StatoVia.builder().via(this).build();
         importo = 200;
     }
 
