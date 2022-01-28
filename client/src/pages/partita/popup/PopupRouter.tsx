@@ -3,6 +3,8 @@ import IPartita from "../../../interfaces/IPartita";
 import PopupAcquisto from "./PopupAcquisto";
 import IGiocatore from "../../../interfaces/IGiocatore";
 import PopupAffitto from "./PopupAffitto";
+import PopupPrigione from "./PopupPrigione";
+import PopupFineTurno from "./PopupFineTurno";
 
 interface Props {
     partita: IPartita,
@@ -19,9 +21,14 @@ const componentStato: {[key: string]: (props: Props, giocatore: IGiocatore, isMi
     'AttesaAcquisto': (props: Props, giocatore: IGiocatore, isMioTurno) =>
         <PopupAcquisto partita={props.partita} giocatore={giocatore} isMioTurno={isMioTurno}/>,
     'AttesaAffitto': (props: Props, giocatore, isMioTurno) =>
-        <PopupAffitto partita={props.partita} giocatore={giocatore} isMioTurno={isMioTurno}/>
-
+        <PopupAffitto partita={props.partita} giocatore={giocatore} isMioTurno={isMioTurno}/>,
+    'AttesaPrigione': (props: Props, giocatore: IGiocatore, isMioTurno) =>
+        <PopupPrigione partita = {props.partita} giocatore = {giocatore} isMioTurno={isMioTurno}/>,
+    'FineTurno': (props: Props, giocatore: IGiocatore, isMioTurno: boolean) =>
+        <PopupFineTurno partita = {props.partita} giocatore ={giocatore} isMioTurno={isMioTurno}/>
 }
+
+
 
 const PopupRouter: FunctionComponent<Props> = (props) => {
 

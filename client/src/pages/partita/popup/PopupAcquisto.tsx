@@ -15,7 +15,7 @@ import ICasellaStazione from "../../../interfaces/caselle/ICasellaStazione";
 const translate_carta : any = {
     "Terreno": (terreno: ICasellaTerreno) => <CartaTerreno casella={terreno}/>,
     "Societa": (societa: ICasellaSocieta) => <CartaSocieta casella={societa}/>,
-    "Stazione": (stazione: ICasellaStazione) => <CartaStazione casella={stazione}/>
+    "Stazione": (stazione: ICasellaStazione) => <CartaStazione casella={stazione}/>,
 }
 
 interface State {
