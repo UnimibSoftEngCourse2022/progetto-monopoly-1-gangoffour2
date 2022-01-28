@@ -72,4 +72,9 @@ public class Tabellone implements ITabellone, Serializable {
             giocatore.getCasellaCorrente().passaggio();
         }
     }
+
+    @Override
+    public void randomizzaCaselle() {
+        caselle.forEach(c -> strategia.randomizzaCasella(c));
+    }
 }

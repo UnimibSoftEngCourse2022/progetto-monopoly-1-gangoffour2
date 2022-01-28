@@ -37,4 +37,10 @@ public class Mazzo implements IMazzo {
         Carta carta = giocatore.popCartaEsciDiPrigione();
         carta.effetto(giocatore);
     }
+
+    @Override
+    public void randomizzaCarte() {
+        probabilita.forEach(c -> strategiaMazzo.randomizzaCarta(c));
+        imprevisti.forEach(c -> strategiaMazzo.randomizzaCarta(c));
+    }
 }
