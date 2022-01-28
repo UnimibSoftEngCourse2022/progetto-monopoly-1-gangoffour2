@@ -27,6 +27,16 @@ public class Terreno extends Proprieta {
         evento = TerrenoNonAcquistato.builder().terreno(this).build();
         listaCase = new ArrayList<>();
     }
+    @Override
+    public void randomizzaCasella(float m){
+        setCostoBase((int) Math.floor(getCostoBase()*m));
+        setIpoteca((int) Math.floor(getIpoteca()*m));
+        setRendita((int) Math.floor(getRendita()*m));
+        for(int i = 0; i < affitti.size(); i++)
+            getAffitti().set(i, (int) Math.floor(getAffitti().get(i)*m));
+
+    }
+
 
     @Override
     public int calcolaAffitto() {

@@ -20,4 +20,9 @@ public class Tassa extends Casella {
     public void arrivo() {
         notificaTutti(AggiungiDenaro.builder().importo(-costo).build());
     }
+
+    @Override
+    public void randomizzaCasella(float m){
+        costo = (int) Math.floor(costo*m);
+    }
 }
