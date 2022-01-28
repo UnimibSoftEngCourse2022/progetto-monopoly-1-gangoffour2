@@ -3,20 +3,11 @@ import Popup from "../../../component/popup/Popup";
 import StompController from "../../../application/stompController";
 import PopupButtonContainer from "../../../component/popup/PopupButtonContainer";
 import {PopupProps} from "./PopupRouter";
-import CartaTerreno from "../../../component/carte/CartaTerreno";
-import ICasellaTerreno from "../../../interfaces/caselle/ICasellaTererno";
 import ICasella from "../../../interfaces/caselle/ICasella";
-import ICasellaSocieta from "../../../interfaces/caselle/ICasellaSocieta";
-import CartaSocieta from "../../../component/carte/CartaSocieta";
-import CartaStazione from "../../../component/carte/CartaStazione";
-import ICasellaStazione from "../../../interfaces/caselle/ICasellaStazione";
+import translateCarteProprieta from "./TranslateCarteProprieta";
 
 
-const translate_carta : any = {
-    "Terreno": (terreno: ICasellaTerreno) => <CartaTerreno casella={terreno}/>,
-    "Societa": (societa: ICasellaSocieta) => <CartaSocieta casella={societa}/>,
-    "Stazione": (stazione: ICasellaStazione) => <CartaStazione casella={stazione}/>,
-}
+
 
 interface State {
 
@@ -43,7 +34,7 @@ export default class PopupAcquisto extends React.Component<PopupProps, State> {
                                 <button onClick = {() => StompController.avviaAsta()}>Metti all'asta</button>
                             </PopupButtonContainer>
                         }
-                        {translate_carta[casellaCorrente.type](casellaCorrente)}
+                        {translateCarteProprieta[casellaCorrente.type](casellaCorrente)}
                     </div>
                 </Popup>
             </div>

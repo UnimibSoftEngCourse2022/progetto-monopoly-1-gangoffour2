@@ -3,7 +3,7 @@ import {IAlbergo, ICasa} from "./IEdificio";
 import IConfigurazione from "./IConfigurazione";
 import IGiocatore from "./IGiocatore";
 import ITurno from "./ITurno";
-import IStatoPartita from "./IStatoPartita";
+import IStatoPartita from "./stati/partita/IStatoPartita";
 
 export default interface IPartita{
     azioneAttesaRicevuta: boolean,
