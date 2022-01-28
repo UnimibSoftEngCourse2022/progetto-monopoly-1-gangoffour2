@@ -73,4 +73,5 @@ public interface StatoCasella extends Serializable {
     default void onAzioneGiocatore(TerminaTurno terminaTurno) {
 
     }
+
 }

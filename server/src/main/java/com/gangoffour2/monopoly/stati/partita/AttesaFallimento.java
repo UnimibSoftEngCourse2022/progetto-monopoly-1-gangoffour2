@@ -5,6 +5,9 @@ import com.gangoffour2.monopoly.model.Giocatore;
 import lombok.Builder;
 import lombok.Data;
 
+import java.util.concurrent.Callable;
+import java.util.function.Function;
+
 @Builder
 @Data
 public class AttesaFallimento extends StatoPartita{
@@ -24,6 +27,7 @@ public class AttesaFallimento extends StatoPartita{
             giocatore.aggiungiDenaro(-soldiDaPagare);
             if (giocatoreProprietario != null)
                 giocatoreProprietario.aggiungiDenaro(soldiDaPagare);
+
             partita.setStato(LancioDadi.builder().build());
             partita.continuaTurno();
         }
