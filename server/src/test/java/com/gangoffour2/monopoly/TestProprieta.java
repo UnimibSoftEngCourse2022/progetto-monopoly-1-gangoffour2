@@ -126,8 +126,9 @@ class TestProprieta {
         Giocatore povero = partita.getTurnoCorrente().getGiocatore();
         povero.setConto(1);
         assertNotEquals(povero, g);
-        partita.getTabellone().muoviGiocatore(povero, 1);
+        TestProprieta.fakeTiro(partita, povero, 1);
         povero.getCasellaCorrente().arrivo();
+        assertEquals("AttesaAffitto", partita.getStato().getTipo());
         partita.onAzioneGiocatore(Paga.builder().giocatore(povero).build());
         partita.getListenerTimeoutEventi().stopTimeout();
 
@@ -152,7 +153,7 @@ class TestProprieta {
     void testPagamentoAffitto() {
         partita.onAzioneGiocatore(EntraInPartita.builder().giocatore(Giocatore.builder().nick("Prova").build()).build());
         Giocatore g = partita.getTurnoCorrente().getGiocatore();
-        partita.getTabellone().muoviGiocatore(g, 1);
+        TestProprieta.fakeTiro(partita, g, 1);
 
         g.getCasellaCorrente().arrivo();
         partita.getListenerTimeoutEventi().stopTimeout();
@@ -167,8 +168,6 @@ class TestProprieta {
         partita.onAzioneGiocatore(Paga.builder().giocatore(debitore).build());
         partita.getListenerTimeoutEventi().stopTimeout();
 
-        System.out.println( debitore.getCasellaCorrente().getNome() );
-
-        assertEquals("FineTurno", partita.getStato().getTipo());
+        assertEquals("LancioDadi", partita.getStato().getTipo());
     }
 }

@@ -13,6 +13,11 @@ public class AttesaFallimento extends StatoPartita{
     private int soldiDaPagare;
     private Giocatore giocatoreProprietario;
 
+    @Override
+    public void esegui() {
+        partita.attendiAzione();
+    }
+
     void checkFallimento() {
         Giocatore giocatore = partita.getTurnoCorrente().getGiocatore();
         if(giocatore.getConto() > soldiDaPagare){

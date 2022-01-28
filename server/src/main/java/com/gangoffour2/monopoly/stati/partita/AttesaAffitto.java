@@ -32,6 +32,7 @@ public class AttesaAffitto extends StatoPartita {
 
         try {
             debitore.paga(creditore, soldiDaPagare);
+            partita.setStato(LancioDadi.builder().build());
         }catch (ModificaDenaroException e){
             partita.setStato(
                     AttesaFallimento.builder()
@@ -39,9 +40,8 @@ public class AttesaAffitto extends StatoPartita {
                             .giocatoreProprietario(creditore)
                             .build()
             );
+            partita.getStato().esegui();
         }
-        partita.setStato(LancioDadi.builder().build());
-        partita.continuaTurno();
     }
 
 
