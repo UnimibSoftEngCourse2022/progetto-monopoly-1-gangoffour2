@@ -1,0 +1,24 @@
+[
+  {
+    "type": "CartaEsciGratisPrigione",
+    "testo": "Esci gratis di prigione bre"
+  },
+  {
+    "type": "CartaModificaDenaro",
+    "testo": "Multa per eccesso di velocità. Paga 15€",
+    "denaro": -15
+  },
+  {
+    "type": "CartaMuoviPosizioneACasella",
+    "testo": "Avanza fino al Parco Della Vittoria.",
+    "casella": {
+      "type": "Terreno",
+      "nome": "Parco Della Vittoria"
+    }
+  },
+  {
+    "type": "CartaMuoviPosizioneIntero",
+    "testo": "Avanza di 5 caselle.",
+    "movimento": 5
+  }
+]
