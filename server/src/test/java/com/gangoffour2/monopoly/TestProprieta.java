@@ -1,17 +1,16 @@
 package com.gangoffour2.monopoly;
 
-import com.gangoffour2.monopoly.azioni.giocatore.AcquistaProprieta;
-import com.gangoffour2.monopoly.azioni.giocatore.EntraInPartita;
-import com.gangoffour2.monopoly.azioni.giocatore.Ipoteca;
-import com.gangoffour2.monopoly.azioni.giocatore.Offerta;
+import com.gangoffour2.monopoly.azioni.giocatore.*;
 import com.gangoffour2.monopoly.eccezioni.GiocatoreEsistenteException;
 import com.gangoffour2.monopoly.model.Giocatore;
 import com.gangoffour2.monopoly.model.IPartita;
+import com.gangoffour2.monopoly.model.Turno;
 import com.gangoffour2.monopoly.model.casella.Casella;
 import com.gangoffour2.monopoly.stati.casella.SocietaIpotecata;
 import com.gangoffour2.monopoly.stati.casella.StazioneIpotecata;
 import com.gangoffour2.monopoly.stati.casella.TerrenoIpotecato;
 import com.gangoffour2.monopoly.stati.partita.AttesaAcquisto;
+import com.gangoffour2.monopoly.stati.partita.FineTurno;
 import com.gangoffour2.monopoly.stati.partita.LancioDadi;
 import com.gangoffour2.monopoly.stati.partita.Lobby;
 import org.junit.jupiter.api.BeforeEach;
@@ -21,9 +20,9 @@ import org.junit.jupiter.params.provider.ValueSource;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertInstanceOf;
+import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 class TestProprieta {
@@ -111,5 +110,66 @@ class TestProprieta {
         partita.getStato().onTimeout();
 
         assertEquals(1, g.getProprietaPossedute().size());
+    }
+
+    @Test
+    void testFallimento() {
+        partita.onAzioneGiocatore(EntraInPartita.builder().giocatore(Giocatore.builder().nick("Prova").build()).build());
+        Giocatore g = partita.getTurnoCorrente().getGiocatore();
+        partita.getTabellone().muoviGiocatore(g, 1);
+
+        g.getCasellaCorrente().arrivo();
+        partita.getListenerTimeoutEventi().stopTimeout();
+        partita.getStato().onAzioneGiocatore(AcquistaProprieta.builder().giocatore(g).build());
+        partita.setStato(FineTurno.builder().build());
+        partita.onAzioneGiocatore(TerminaTurno.builder().build());
+
+        Giocatore povero = partita.getTurnoCorrente().getGiocatore();
+        povero.setConto(1);
+        assertNotEquals(povero, g);
+        partita.getTabellone().muoviGiocatore(povero, 1);
+        povero.getCasellaCorrente().arrivo();
+        partita.onAzioneGiocatore(Paga.builder().giocatore(povero).build());
+        partita.getListenerTimeoutEventi().stopTimeout();
+
+        assertEquals("AttesaFallimento", partita.getStato().getTipo());
+    }
+
+    void fakeTiro(IPartita partita, Giocatore giocatore, int spostamento) {
+        ArrayList<Integer> dadi = new ArrayList<>();
+        dadi.add(spostamento - 1);
+        dadi.add(1);
+        Turno t =   Turno.builder()
+                .casellaDaVisitare(spostamento)
+                .lanciConsecutivi(1)
+                .valoreDadi(dadi)
+                .giocatore(giocatore)
+                .build();
+        t.inizializzaDadi(2);
+        partita.setTurnoCorrente(t);
+    }
+
+    @Test
+    void testPagamentoAffitto() {
+        partita.onAzioneGiocatore(EntraInPartita.builder().giocatore(Giocatore.builder().nick("Prova").build()).build());
+        Giocatore g = partita.getTurnoCorrente().getGiocatore();
+        partita.getTabellone().muoviGiocatore(g, 1);
+
+        g.getCasellaCorrente().arrivo();
+        partita.getListenerTimeoutEventi().stopTimeout();
+        partita.getStato().onAzioneGiocatore(AcquistaProprieta.builder().giocatore(g).build());
+        partita.setStato(FineTurno.builder().build());
+        partita.onAzioneGiocatore(TerminaTurno.builder().build());
+
+        Giocatore debitore = partita.getTurnoCorrente().getGiocatore();
+        this.fakeTiro(partita, debitore, 1);
+        debitore.getCasellaCorrente().arrivo();
+        assertEquals("AttesaAffitto", partita.getStato().getTipo());
+        partita.onAzioneGiocatore(Paga.builder().giocatore(debitore).build());
+        partita.getListenerTimeoutEventi().stopTimeout();
+
+        System.out.println( debitore.getCasellaCorrente().getNome() );
+
+        assertEquals("FineTurno", partita.getStato().getTipo());
     }
 }

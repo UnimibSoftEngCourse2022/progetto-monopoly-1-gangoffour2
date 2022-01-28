@@ -11,12 +11,16 @@ public class AttesaFallimento extends StatoPartita{
 
     //sono positivi
     private int soldiDaPagare;
+    private Giocatore giocatoreProprietario;
 
     void checkFallimento() {
         Giocatore giocatore = partita.getTurnoCorrente().getGiocatore();
         if(giocatore.getConto() > soldiDaPagare){
             giocatore.aggiungiDenaro(-soldiDaPagare);
+            if (giocatoreProprietario != null)
+                giocatoreProprietario.aggiungiDenaro(soldiDaPagare);
             partita.setStato(LancioDadi.builder().build());
+            partita.continuaTurno();
         }
     }
 

@@ -1,6 +1,7 @@
 package com.gangoffour2.monopoly.stati.partita;
 
-import com.gangoffour2.monopoly.azioni.giocatore.PagaAffittoAzione;
+import com.gangoffour2.monopoly.azioni.giocatore.Paga;
+import com.gangoffour2.monopoly.eccezioni.ModificaDenaroException;
 import com.gangoffour2.monopoly.model.Giocatore;
 import com.gangoffour2.monopoly.model.casella.Proprieta;
 import lombok.Builder;
@@ -24,9 +25,22 @@ public class AttesaAffitto extends StatoPartita {
     }
 
     @Override
-    public void onAzioneGiocatore(PagaAffittoAzione pagaAffittoAzione) {
-        Giocatore debitore = pagaAffittoAzione.getGiocatore();
-        debitore.paga(proprieta.getProprietario(), proprieta.calcolaAffitto());
+    public void onAzioneGiocatore(Paga paga) {
+        Giocatore debitore = paga.getGiocatore();
+        int soldiDaPagare = proprieta.calcolaAffitto();
+        Giocatore creditore = proprieta.getProprietario();
+
+        try {
+            debitore.paga(creditore, soldiDaPagare);
+        }catch (ModificaDenaroException e){
+            partita.setStato(
+                    AttesaFallimento.builder()
+                            .soldiDaPagare(soldiDaPagare)
+                            .giocatoreProprietario(creditore)
+                            .build()
+            );
+        }
+        partita.setStato(LancioDadi.builder().build());
         partita.continuaTurno();
     }
 

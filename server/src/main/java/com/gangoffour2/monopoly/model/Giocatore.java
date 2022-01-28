@@ -46,8 +46,8 @@ public class Giocatore implements Serializable {
         return esciGratis.remove();
     }
 
-    public void paga(Giocatore destinatario, int importo) {
-        conto -= importo;
+    public void paga(Giocatore destinatario, int importo) throws ModificaDenaroException {
+        this.aggiungiDenaro(-importo);
         destinatario.conto += importo;
     }
 
