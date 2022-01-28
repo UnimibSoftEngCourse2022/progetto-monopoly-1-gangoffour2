@@ -37,9 +37,10 @@ public class StatoAsta extends StatoPartita {
     @Override
     public void onAzioneGiocatore(Offerta offerta) {
         partita.fermaAttesa();
-        if (!offerta.isValida()) {
-            throw new OffertaInvalidaException(offerta.getGiocatore());
+        try {
+            astaCorrente.offri(offerta.getGiocatore(), offerta.getValore());
+        }catch (Exception e){
+            //Non bisognare fare nulla per gestire l'eccezione
         }
-        astaCorrente.offri(offerta.getGiocatore(), offerta.getValore());
     }
 }
