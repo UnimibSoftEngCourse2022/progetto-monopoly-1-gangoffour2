@@ -126,7 +126,8 @@
     "type": "Stazione",
     "nome": "Stazione Ovest",
     "costoBase": 200,
-    "ipoteca": 100
+    "ipoteca": 100,
+    "rendita": 0
   },
   {
     "type": "Terreno",
