@@ -5,12 +5,14 @@ import com.gangoffour2.monopoly.model.Casa;
 import com.gangoffour2.monopoly.stati.casella.TerrenoNonAcquistato;
 import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.experimental.SuperBuilder;
 
 import java.util.ArrayList;
 
 @Data
 @SuperBuilder
+@EqualsAndHashCode(callSuper = true)
 public class Terreno extends Proprieta {
     @Builder.Default
     protected ArrayList<Casa> listaCase = new ArrayList<>();
