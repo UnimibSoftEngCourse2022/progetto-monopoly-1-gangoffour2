@@ -48,8 +48,10 @@ public class FactoryPartita {
         return objectMapper.readValue(jsonFile, Carta[].class);
     }
 
-    public IMazzo creaMazzo(ITabellone tabellone) throws IOException {
+    public IMazzo creaMazzo(ITabellone tabellone, Configurazione.Difficolta difficolta) throws IOException {
         Mazzo mazzo = Mazzo.builder().build();
+        if(difficolta == Configurazione.Difficolta.HARD)
+            mazzo = Mazzo.builder().strategiaMazzo(StrategiaCarteRandom.builder().build()).build();
         mazzo.setImprevisti(new LinkedList<>(List.of(creaCarte("imprevisti.json"))));
         mazzo.setProbabilita(new LinkedList<>(List.of(creaCarte("probabilita.json"))));
         mazzo.getImprevisti().forEach(imprevisto -> imprevisto.setTabellone(tabellone));
@@ -57,13 +59,16 @@ public class FactoryPartita {
         return mazzo;
     }
 
-    public Tabellone creaTabellone() throws IOException {
+    public Tabellone creaTabellone(Configurazione.Difficolta difficolta) throws IOException {
+        if(difficolta == Configurazione.Difficolta.HARD)
+            return Tabellone.builder().caselle(creaCaselle()).strategia(StrategiaCasellaRandom.builder().build()).build();
         return Tabellone.builder().caselle(creaCaselle()).build();
     }
 
     public IPartita creaPartita(Configurazione config) throws IOException {
-        Tabellone tabellone = creaTabellone();
-        IMazzo mazzo = creaMazzo(tabellone);
+        Tabellone tabellone = creaTabellone(config.getDifficolta());
+        IMazzo mazzo = creaMazzo(tabellone, config.getDifficolta());
+
         IPartita partita = Partita.builder()
                 .id(creaId())
                 .tabellone(tabellone)
@@ -71,13 +76,9 @@ public class FactoryPartita {
                 .config(config)
                 .build();
         tabellone.setPartita(partita);
-
         List<Casella> caselle = tabellone.getCaselle();
-
         caselle.forEach(casella -> casella.aggiungi((PartitaObserver) partita));
-
         partita.setStato(Lobby.builder().build());
-
         return partita;
     }
 
