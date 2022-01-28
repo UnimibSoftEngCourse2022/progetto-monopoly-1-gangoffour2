@@ -15,4 +15,6 @@ public interface ITabellone extends Serializable {
     void muoviGiocatoreIntero(Giocatore giocatore, int quantita);
 
     void applicaEffetto(Giocatore giocatore, int casellaDaVisitare);
+
+    void randomizzaCaselle();
 }

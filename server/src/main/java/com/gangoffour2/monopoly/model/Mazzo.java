@@ -1,5 +1,6 @@
 package com.gangoffour2.monopoly.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.gangoffour2.monopoly.model.carta.Carta;
 import lombok.Builder;
 import lombok.Data;
@@ -16,6 +17,10 @@ public class Mazzo implements IMazzo {
     @Builder.Default
     private Queue<Carta> imprevisti = new LinkedList<>();
 
+    @JsonIgnore
+    @Builder.Default
+    private transient RandomCarteStrategy strategiaMazzo = new StrategiaCarteVanilla();
+
     public void pescaImprevisto(Giocatore giocatore) {
         Carta carta = imprevisti.remove();
         if (carta.effetto(giocatore))
@@ -31,5 +36,11 @@ public class Mazzo implements IMazzo {
     public void utilizzaCarta(Giocatore giocatore) {
         Carta carta = giocatore.popCartaEsciDiPrigione();
         carta.effetto(giocatore);
+    }
+
+    @Override
+    public void randomizzaCarte() {
+        probabilita.forEach(c -> strategiaMazzo.randomizzaCarta(c));
+        imprevisti.forEach(c -> strategiaMazzo.randomizzaCarta(c));
     }
 }

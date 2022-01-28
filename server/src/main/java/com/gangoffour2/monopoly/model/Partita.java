@@ -10,6 +10,7 @@ import com.gangoffour2.monopoly.stati.partita.FineTurno;
 import com.gangoffour2.monopoly.stati.partita.InizioTurno;
 import com.gangoffour2.monopoly.stati.partita.StatoPartita;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.experimental.SuperBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,6 +19,7 @@ import java.util.Iterator;
 
 @Data
 @SuperBuilder
+@EqualsAndHashCode(callSuper = true)
 public class Partita extends IPartita implements PartitaObserver {
 
     protected Partita(IPartitaBuilder<?, ?> b) {
@@ -55,6 +57,12 @@ public class Partita extends IPartita implements PartitaObserver {
     public synchronized void cambiaTurno() {
         setStato(InizioTurno.builder().build());
         Giocatore curr = turnoCorrente.getGiocatore();
+
+        if(curr == giocatori.get(0)) {
+            tabellone.randomizzaCaselle();
+            mazzo.randomizzaCarte();
+        }
+
         setTurnoCorrente(Turno.builder()
                 .giocatore(giocatori.get((giocatori.indexOf(curr) + 1) % giocatori.size()))
                 .build());

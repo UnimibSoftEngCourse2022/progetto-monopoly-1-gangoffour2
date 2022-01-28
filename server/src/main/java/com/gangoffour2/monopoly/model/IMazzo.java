@@ -8,4 +8,6 @@ public interface IMazzo extends Serializable {
     void pescaProbabilita(Giocatore giocatore);
 
     void utilizzaCarta(Giocatore giocatore);
+
+    void randomizzaCarte();
 }

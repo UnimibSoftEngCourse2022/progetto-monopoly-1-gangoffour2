@@ -27,25 +27,33 @@ public class Terreno extends Proprieta {
         stato = TerrenoNonAcquistato.builder().terreno(this).build();
         listaCase = new ArrayList<>();
     }
+    @Override
+    public void randomizzaCasella(float m){
+        costoBase = (int) Math.floor(costoBase*m);
+        ipoteca = (int) Math.floor(ipoteca*m);
+        rendita = (int) Math.floor(rendita*m);
+        for(int i = 0; i < getAffitti().size(); i++)
+            affitti.set(i, (int) Math.floor(affitti.get(i)*m));
+
+    }
 
     @Override
     public int calcolaAffitto() {
-        if (albergo != null) {
-            return affitti.get(affitti.size() - 1);
-        } else if (listaCase.size() > affitti.size()) {
-            return affitti.get(affitti.size() - 2);
+        if (getAlbergo() != null) {
+            return getAffitti().get(getAffitti().size() - 1);
+        } else if (getListaCase().size() > getAffitti().size()) {
+            return getAffitti().get(getAffitti().size() - 2);
         }
 
         if (!listaCase.isEmpty()) {
-            return affitti.get(listaCase.size() - 1);
+            return getAffitti().get(listaCase.size() - 1);
         }
-
         return rendita;
     }
 
     public void aggiungiEdificio() {
-        if (listaCase.size() == maxCase) {
-            listaCase.add(Casa.builder().build());
+        if (getListaCase().size() == maxCase) {
+            getListaCase().add(Casa.builder().build());
         } else {
             albergo = Albergo.builder().build();
         }

@@ -18,6 +18,10 @@ public class Tabellone implements ITabellone, Serializable {
     private IPartita partita;
     private List<Casella> caselle;
 
+    @JsonIgnore
+    @Builder.Default
+    private transient RandomCaselleStrategy strategia = new StrategiaEconomiaVanilla();
+
     @Override
     public Casella getCasella(int posizione) {
         return caselle.get(posizione);
@@ -70,5 +74,10 @@ public class Tabellone implements ITabellone, Serializable {
         } else {
             giocatore.getCasellaCorrente().passaggio();
         }
+    }
+
+    @Override
+    public void randomizzaCaselle() {
+        caselle.forEach(c -> strategia.randomizzaCasella(c));
     }
 }
