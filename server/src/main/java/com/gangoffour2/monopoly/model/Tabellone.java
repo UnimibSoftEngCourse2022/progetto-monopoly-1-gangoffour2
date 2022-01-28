@@ -17,7 +17,7 @@ public class Tabellone implements ITabellone, Serializable {
     @JsonIgnore
     private IPartita partita;
     private List<Casella> caselle;
-    private RandomTabelloneStrategy strategia;
+    private RandomCaselleStrategy strategia;
 
     @Override
     public Casella getCasella(int posizione) {

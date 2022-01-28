@@ -21,4 +21,6 @@ public abstract class Proprieta extends Casella {
     }
 
     public abstract int calcolaAffitto();
+
+
 }
