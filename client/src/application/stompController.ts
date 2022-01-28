@@ -66,12 +66,15 @@ export default class StompController {
         this.client.send("/app/partite/" + this.idPartita + "/paga")
     }
 
-
     static avviaAsta() {
         this.client.send("/app/partite/" + this.idPartita + "/avviaAsta")
     }
 
     static fineTurno() {
         this.client.send("/app/partite/" + this.idPartita + "/terminaTurno")
+    }
+
+    static offri(importo: number){
+        this.client.send("/app/partite/" + this.idPartita + "/offri", {}, String(importo))
     }
 }

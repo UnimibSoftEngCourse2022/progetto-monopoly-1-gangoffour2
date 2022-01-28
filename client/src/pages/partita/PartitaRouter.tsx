@@ -1,6 +1,4 @@
-import {ObserverPartita, ObserverSingleton} from "../../application/ObserverSingleton";
 import React from "react";
-import IPartita from "../../interfaces/IPartita";
 import Lobby from "./lobby/Lobby";
 import Partita from "./Partita";
 

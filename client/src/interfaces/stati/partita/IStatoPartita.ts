@@ -1,3 +1,3 @@
 export default interface IStatoPartita{
-    type: string;
+    type: string
 }

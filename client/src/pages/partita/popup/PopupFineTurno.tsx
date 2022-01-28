@@ -2,7 +2,7 @@ import React from "react";
 import Popup from "../../../component/popup/Popup";
 import StompController from "../../../application/stompController";
 import PopupButtonContainer from "../../../component/popup/PopupButtonContainer";
-import {PopupProps} from "./PopupRouter";;
+import {PopupProps} from "./PopupRouter";
 
 
 interface State {
