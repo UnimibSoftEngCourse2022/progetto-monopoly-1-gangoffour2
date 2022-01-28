@@ -96,11 +96,11 @@ public abstract class Casella implements SubjectStatoPartita, Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Casella casella = (Casella) o;
-        return Objects.equals(nome, casella.nome);
+        return id == casella.id;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(nome);
+        return Objects.hash(id);
     }
 }
