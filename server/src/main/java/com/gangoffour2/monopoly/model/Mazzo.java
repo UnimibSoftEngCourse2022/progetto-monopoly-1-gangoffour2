@@ -30,6 +30,6 @@ public class Mazzo implements IMazzo {
 
     public void utilizzaCarta(Giocatore giocatore) {
         Carta carta = giocatore.popCartaEsciDiPrigione();
-        carta.effetto(giocatore);
+        probabilita.add(carta);
     }
 }

@@ -4,22 +4,16 @@ import com.gangoffour2.monopoly.azioni.giocatore.EntraInPartita;
 import com.gangoffour2.monopoly.eccezioni.GiocatoreEsistenteException;
 import com.gangoffour2.monopoly.model.Giocatore;
 import com.gangoffour2.monopoly.model.IPartita;
-import com.gangoffour2.monopoly.model.Turno;
-import com.gangoffour2.monopoly.model.carta.Carta;
-import com.gangoffour2.monopoly.model.carta.CartaModificaDenaro;
-import com.gangoffour2.monopoly.model.carta.CartaMuoviPosizioneACasella;
-import com.gangoffour2.monopoly.model.carta.CartaMuoviPosizioneIntero;
+import com.gangoffour2.monopoly.model.carta.*;
 import com.gangoffour2.monopoly.model.casella.Casella;
-import com.gangoffour2.monopoly.model.casella.VaiInPrigione;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 @SpringBootTest
 class TestCarte {
@@ -50,6 +44,17 @@ class TestCarte {
         Carta c = CartaMuoviPosizioneACasella.builder().casella(casella).tabellone(partita.getTabellone()).build();
         c.effetto(g);
         assertEquals(casella, g.getCasellaCorrente());
+    }
+
+    @Test
+    void usaEsciGratisDiPrigione() {
+        Giocatore g = Giocatore.builder().nick("Ciao").build();
+        partita.onAzioneGiocatore(EntraInPartita.builder().giocatore(g).build());
+        Carta c = CartaEsciGratisPrigione.builder().tabellone(partita.getTabellone()).build();
+        c.effetto(g);
+        TestProprieta.fakeTiro(partita, g, 30);
+        partita.continuaTurno();
+        assertFalse(g.haCartaEsciGratis());
     }
 
     @Test

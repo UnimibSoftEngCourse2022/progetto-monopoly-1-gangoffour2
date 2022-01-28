@@ -1,9 +1,5 @@
 [
   {
-    "type": "CartaEsciGratisPrigione",
-    "testo": "Esci gratis di prigione bre"
-  },
-  {
     "type": "CartaModificaDenaro",
     "testo": "Multa per eccesso di velocità. Paga 15€",
     "denaro": -15

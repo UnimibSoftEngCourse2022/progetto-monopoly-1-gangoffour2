@@ -24,6 +24,7 @@ public class AttesaPrigione extends StatoPartita {
     public void esegui() {
         Turno turno = partita.getTurnoCorrente();
         Giocatore g = turno.getGiocatore();
+
         if (g.haCartaEsciGratis()) {
             partita.getMazzo().utilizzaCarta(g);
             //Notifica client Tizio ha usato carta
