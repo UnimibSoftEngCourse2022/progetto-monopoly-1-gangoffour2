@@ -28,7 +28,7 @@ public class AttesaPrigione extends StatoPartita {
             partita.getMazzo().utilizzaCarta(g);
             //Notifica client Tizio ha usato carta
             partita.setStato(LancioDadi.builder().build());
-            partita.turnoStandard();
+            partita.continuaTurno();
             partita.broadcast();
         }
     }

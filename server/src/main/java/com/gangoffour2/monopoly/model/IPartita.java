@@ -66,7 +66,7 @@ public abstract class IPartita implements Serializable {
 
     public abstract void setStato(StatoPartita nuovaStato);
 
-    public abstract void turnoStandard();
+    public abstract void continuaTurno();
 
     public abstract Giocatore getGiocatoreByNick(String nick);
 

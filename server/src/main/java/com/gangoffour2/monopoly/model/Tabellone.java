@@ -25,18 +25,16 @@ public class Tabellone implements ITabellone, Serializable {
 
     @Override
     public void muoviGiocatore(Giocatore giocatore, int quantita) {
-        Casella corrente = giocatore.getCasellaCorrente();
-        giocatore.setCasellaCorrente(caselle.get((caselle.indexOf(corrente) + quantita) % caselle.size()));
+        giocatore.setCasellaCorrente(caselle.get((caselle.indexOf(giocatore.getCasellaCorrente()) + quantita) % caselle.size()));
     }
 
     @Override
     public void muoviGiocatoreIntero(Giocatore giocatore, int quantita) {
         if (quantita != 0) {
             Turno turno = partita.getTurnoCorrente();
-            muoviGiocatore(giocatore, quantita);
             if (quantita > 0) {
                 turno.setCasellaDaVisitare(quantita);
-                partita.turnoStandard();
+                partita.continuaTurno();
             } else
                 giocatore.getCasellaCorrente().arrivo();
         }
@@ -63,11 +61,11 @@ public class Tabellone implements ITabellone, Serializable {
 
     @Override
     public void applicaEffetto(Giocatore giocatore, int offset) {
+        muoviGiocatore(giocatore, 1);
         if (offset == 0) {
             giocatore.getCasellaCorrente().arrivo();
         } else {
-            int posizioneCorrente = caselle.indexOf(giocatore.getCasellaCorrente());
-            caselle.get((posizioneCorrente - offset + caselle.size()) % caselle.size()).passaggio();
+            giocatore.getCasellaCorrente().passaggio();
         }
     }
 }

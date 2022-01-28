@@ -40,54 +40,54 @@ public abstract class StatoPartita implements Serializable {
      */
 
     public void onAzioneCasella(ArrestaGiocatore arrestaGiocatore) {
-        partita.attendiAzione();
+
     }
 
     public void onAzioneCasella(PagaAffittoAzione pagaAffittoAzione) {
-        partita.attendiAzione();
+
     }
 
     public void onAzioneCasella(PescaImprevisto pescaImprevisto) {
-        partita.attendiAzione();
+
     }
 
     public void onAzioneCasella(RichiediAcquisto richiediAcquisto) {
-        partita.attendiAzione();
+
     }
 
     public void onAzioneCasella(AttesaLancioDadi attesaLancioDadi) {
-        partita.attendiAzione();
+
     }
 
     /**
      * @param passaggioVuoto Usato per fare overloading tramite polimorfismo
      */
     public void onAzioneCasella(PassaggioVuoto passaggioVuoto) {
-        partita.turnoStandard();
+        partita.continuaTurno();
     }
 
     public void onAzioneCasella(PagaAffitto pagaAffitto) {
-        partita.attendiAzione();
+
     }
 
     public void onAzioneCasella(AttesaPrigione attesaPrigione) {
-        partita.attendiAzione();
+
     }
 
     public void onAzioneCasella(AggiungiDenaro modificaDenaro) {
-        partita.attendiAzione();
+
     }
 
     public void onAzioneCasella(PescaProbabilita pescaProbabilita) {
-        partita.attendiAzione();
+
     }
 
     public void onAzioneCasella(VaiInAttesaPrigione checkPrigione) {
-        partita.attendiAzione();
+
     }
 
     public void onAzioneCasella(AvviaAsta avviaAsta) {
-        partita.attendiAzione();
+
     }
 
     /**
