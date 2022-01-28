@@ -13,5 +13,4 @@ public class TerrenoIpotecato extends StatoTerreno {
                 .terreno(terreno)
                 .build());
     }
-
 }

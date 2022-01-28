@@ -22,14 +22,12 @@ public class TerrenoAcquistato extends StatoTerreno {
                         .build());
     }
 
-
     @Override
     public AzioneCasella arrivo() {
         return PagaAffitto.builder()
                 .proprieta(terreno)
                 .build();
     }
-
 
     @Override
     public void onAzioneGiocatore(UpgradaTerreno upgradaTerreno) {

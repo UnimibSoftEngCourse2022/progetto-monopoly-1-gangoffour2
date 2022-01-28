@@ -2,6 +2,7 @@ package com.gangoffour2.monopoly.stati.partita;
 
 import com.gangoffour2.monopoly.azioni.giocatore.Offerta;
 import com.gangoffour2.monopoly.eccezioni.OffertaInvalidaException;
+import com.gangoffour2.monopoly.model.Asta;
 import com.gangoffour2.monopoly.model.casella.Proprieta;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -10,8 +11,8 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class Asta extends StatoPartita {
-    com.gangoffour2.monopoly.model.Asta astaCorrente;
+public class StatoAsta extends StatoPartita {
+    Asta astaCorrente;
     Proprieta proprieta;
     StatoPartita statoPrecedente;
 
@@ -32,7 +33,6 @@ public class Asta extends StatoPartita {
                 .build();
         partita.attendiAzione();
     }
-
 
     @Override
     public void onAzioneGiocatore(Offerta offerta) {
