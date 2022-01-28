@@ -4,7 +4,7 @@ import com.gangoffour2.monopoly.model.casella.Casella;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 
-public class StrategiaRandomEconomiaCasella implements RandomCaselleStrategy{
+public class StrategiaCasellaRandom implements RandomCaselleStrategy{
 
     @Override
     public void randomizzaCasella(Casella c) {
