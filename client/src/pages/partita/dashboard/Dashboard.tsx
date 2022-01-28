@@ -44,9 +44,8 @@ export class Dashboard extends React.Component<Props, State> {
         const properietaPossedute = giocatore.proprietaPossedute
 
         return (
-            <div className={"container_menu dashboard_container"}>
                 <div className={"dashboard_container_data"}>
-                   <h3 id={"titolo-dashboard"}>Azioni</h3>
+                   <h3 id={"titolo-dashboard"}>Proprietà</h3>
                     <div className={"property_list"}>
                         {properietaPossedute.map(el =>
                             <React.Fragment>
@@ -65,10 +64,6 @@ export class Dashboard extends React.Component<Props, State> {
                         }
                     </div>
                 </div>
-                <div className={"bottom_button_dashboard"}>
-                    <button onClick={this.handleTiraDadi}>Tira Dadi</button>
-                </div>
-            </div>
         );
     }
 }

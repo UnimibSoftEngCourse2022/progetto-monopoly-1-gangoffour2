@@ -21,7 +21,7 @@ export class Classifica extends React.Component<Props, State> {
             jsxTurno = <h3>Turno di {partita.turnoCorrente.giocatore.nick}</h3>;
         }
 
-        return <div className={"container_menu float_classifica"}>
+        return <div className={"container_classifica"}>
             <h1>Classifica</h1>
 
             <hr className="normale"/>

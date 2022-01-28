@@ -3,10 +3,9 @@ import React from "react";
 import IPartita from "../../interfaces/IPartita";
 import Tabellone from "../../component/Tabellone";
 import StompController from "../../application/stompController";
-import {Classifica} from "./classifica/Classifica";
-import {Dashboard} from "./dashboard/Dashboard";
 import CasellaSingleton from "../../component/caselle/CasellaSingleton";
-import PopupRouter from "./popup/PopupRouter";
+import BarraAzioni from "../../component/barraAzioni/barraAzioni";
+import style from "./partita.module.css"
 
 interface Props {
     idPartita: string,
@@ -51,11 +50,9 @@ export default class Partita extends React.Component<Props, State> implements Ob
             CasellaSingleton.addGiocatore(el.nick, el.casellaCorrente)
         })
 
-        return <div>
-            <PopupRouter partita = {this.state.partita} nickname={this.props.nickname}/>
+        return <div className={style.container}>
+            <BarraAzioni partita={this.state.partita} nickname={this.props.nickname}/>
             <Tabellone caselle={this.state.partita.tabellone.caselle} giocatori={this.state.partita.giocatori}/>
-            <Classifica partita={this.state.partita}/>
-            <Dashboard nickname={this.props.nickname} partita={this.state.partita}/>
         </div>
     }
 }

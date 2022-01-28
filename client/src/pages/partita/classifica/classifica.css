@@ -1,12 +1,12 @@
-.float_classifica {
-    position: fixed;
-    min-width: 150px;
-    width: fit-content;
-    top: 10px;
+
+.container_classifica {
+    height: fit-content;
+    margin: 30px auto;
+    border-radius: 10px;
+    padding: 10px 30px;
     background-color: white;
-    left: 10px;
-    text-align: left;
 }
+
 
 hr.rounded {
     border-top: 3px solid #bbb;
