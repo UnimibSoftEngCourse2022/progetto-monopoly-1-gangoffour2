@@ -23,9 +23,7 @@ import java.io.Serializable;
 public abstract class Carta implements Serializable {
     protected String testo;
 
-    protected Carta(){
-
-    }
+    protected Carta(){}
 
     @JsonProperty("type")
     public String getTipo(){
@@ -37,4 +35,6 @@ public abstract class Carta implements Serializable {
     protected ITabellone tabellone;
 
     public abstract boolean effetto(Giocatore g);
+
+    public void randomizzaCarta(float m){ }
 }

@@ -26,12 +26,6 @@ public abstract class IPartita implements Serializable {
 
     protected Configurazione config;
 
-    @Builder.Default
-    protected ArrayList<Casa> listaCase = new ArrayList<>();
-
-    @Builder.Default
-    protected ArrayList<Albergo> alberghi = new ArrayList<>();
-
     protected ITabellone tabellone;
 
     @JsonIgnore

@@ -2,6 +2,7 @@ package com.gangoffour2.monopoly.stati.partita;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.gangoffour2.monopoly.azioni.casella.*;
 import com.gangoffour2.monopoly.azioni.giocatore.*;
@@ -14,6 +15,17 @@ import java.io.Serializable;
 @Data
 @SuperBuilder
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.EXISTING_PROPERTY, property = "type")
+@JsonSubTypes({
+        @JsonSubTypes.Type(value = AttesaAcquisto.class, name = "AttesaAcquisto"),
+        @JsonSubTypes.Type(value = AttesaAffitto.class, name = "AttesaAffitto"),
+        @JsonSubTypes.Type(value = AttesaFallimento.class, name = "AttesaFallimento"),
+        @JsonSubTypes.Type(value = AttesaPrigione.class, name = "AttesaPrigione"),
+        @JsonSubTypes.Type(value = FineTurno.class, name = "FineTurno"),
+        @JsonSubTypes.Type(value = InizioTurno.class, name = "InizioTurno"),
+        @JsonSubTypes.Type(value = LancioDadi.class, name = "LancioDadi"),
+        @JsonSubTypes.Type(value = Lobby.class, name = "Lobby"),
+        @JsonSubTypes.Type(value = StatoAsta.class, name = "StatoAsta")
+})
 public abstract class StatoPartita implements Serializable {
     @JsonIgnore
     IPartita partita;

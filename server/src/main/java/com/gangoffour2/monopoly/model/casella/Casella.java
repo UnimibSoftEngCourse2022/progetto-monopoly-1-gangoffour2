@@ -60,6 +60,8 @@ public abstract class Casella implements SubjectStatoPartita, Serializable {
         stato.fineGiro();
     }
 
+    public void randomizzaCasella(float m){ }
+
     /**
      * Da overrideare per i comportamenti diversi
      * @param g Usato per fare overloading tramite polimorfismo
