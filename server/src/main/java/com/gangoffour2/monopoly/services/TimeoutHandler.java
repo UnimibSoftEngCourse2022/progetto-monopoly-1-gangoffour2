@@ -12,7 +12,7 @@ public class TimeoutHandler {
 
 
     public void setTimeout(Runnable runnable, int millisecondi) {
-        timer = new Timer();
+        stopTimeout();
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
@@ -23,9 +23,7 @@ public class TimeoutHandler {
 
 
     public void stopTimeout() {
-        if (timer != null) {
-            timer.cancel();
-            timer = null;
-        }
+        timer.cancel();
+        timer = new Timer();
     }
 }

@@ -75,11 +75,13 @@ public class Partita extends IPartita implements PartitaObserver {
     @Override
     public synchronized void onAzioneCasella(AzioneCasella azione) {
         azione.accept(stato);
+        broadcast();
     }
 
     @Override
     public synchronized void onAzioneGiocatore(AzioneGiocatore azione) {
         azione.accept(stato);
+        broadcast();
     }
 
     public synchronized void setStato(StatoPartita nuovoStato) {
@@ -87,7 +89,15 @@ public class Partita extends IPartita implements PartitaObserver {
         stato.setPartita(this);
     }
 
-    public synchronized void turnoStandard() {
+    public void continuaTurno() {
+        broadcast();
+        try {
+            Thread.sleep(200);
+        } catch (InterruptedException e) {
+            Logger logger = LoggerFactory.getLogger(Partita.class);
+            logger.error("Wait fallita");
+            Thread.currentThread().interrupt();
+        }
         if (turnoCorrente.inVisita()) {
             turnoCorrente.prossimoEffetto(tabellone);
         } else if (turnoCorrente.getLanciConsecutivi() == 0 || turnoCorrente.dadiUguali()) {
@@ -95,14 +105,12 @@ public class Partita extends IPartita implements PartitaObserver {
             if (turnoCorrente.getLanciConsecutivi() == 3) {
                 setStato(AttesaPrigione.builder().build());
             } else {
-                tabellone.muoviGiocatore(turnoCorrente.getGiocatore(), turnoCorrente.sommaDadi());
                 turnoCorrente.prossimoEffetto(tabellone);
             }
         } else {
             setStato(FineTurno.builder().build());
             attendiAzione();
         }
-        this.broadcast();
     }
 
     public synchronized Giocatore getGiocatoreByNick(String nick) {
@@ -123,12 +131,6 @@ public class Partita extends IPartita implements PartitaObserver {
     }
 
     public synchronized void attendiAzione() {
-        Logger logger = LoggerFactory.getLogger(Partita.class);
-
-        logger.info("Setto il timeout");
-        listenerTimeoutEventi.setTimeout(() -> {
-            logger.info("Timeout");
-            stato.onTimeout();
-        }, 10000);
+        listenerTimeoutEventi.setTimeout(() -> stato.onTimeout(), 10000);
     }
 }
