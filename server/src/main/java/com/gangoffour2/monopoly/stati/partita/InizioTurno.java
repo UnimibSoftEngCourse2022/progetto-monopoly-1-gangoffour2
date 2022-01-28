@@ -14,5 +14,6 @@ public class InizioTurno extends StatoPartita {
     @Override
     public void onAzioneCasella(AttesaPrigione attesaPrigione) {
         partita.setStato(AttesaPrigione.builder().build());
+        partita.getStato().esegui();
     }
 }
