@@ -2,6 +2,7 @@ package com.gangoffour2.monopoly.controller;
 
 import com.gangoffour2.monopoly.azioni.giocatore.*;
 import com.gangoffour2.monopoly.eccezioni.PartitaPienaException;
+import com.gangoffour2.monopoly.model.casella.Proprieta;
 import com.gangoffour2.monopoly.model.giocatore.Giocatore;
 import com.gangoffour2.monopoly.model.IPartita;
 import com.gangoffour2.monopoly.services.PartiteRepository;
@@ -106,8 +107,10 @@ public class EventiController {
     }
 
     @MessageMapping("/partite/{id}/ipoteca")
-    public void ipoteca(@DestinationVariable String id, SimpMessageHeaderAccessor head) {
-        throw new UnsupportedOperationException();
+    public void ipoteca(@Payload Proprieta proprieta, @DestinationVariable String id, SimpMessageHeaderAccessor head) {
+        Giocatore giocatore = PartiteRepository.getInstance().getGiocatoreByIdSessione(head.getSessionId());
+        IPartita partita = PartiteRepository.getInstance().getPartitaByid(id);
+        partita.onAzioneGiocatore(Ipoteca.builder().giocatore(giocatore).proprieta(proprieta).build());
     }
 
     @MessageMapping("/partite/{id}/avviaAsta")

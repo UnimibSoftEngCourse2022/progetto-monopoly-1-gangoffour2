@@ -34,7 +34,7 @@ public class AttesaFallimento extends StatoPartita{
 
     @Override
     public void onAzioneGiocatore(Ipoteca ipoteca) {
-        partita.getTurnoCorrente().getGiocatore().getCasellaCorrente().onAzioneGiocatore(ipoteca);
+        ipoteca.getProprieta().onAzioneGiocatore(ipoteca);
         checkFallimento();
     }
 }
