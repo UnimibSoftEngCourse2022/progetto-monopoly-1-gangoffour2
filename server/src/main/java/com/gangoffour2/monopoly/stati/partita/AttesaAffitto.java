@@ -30,23 +30,32 @@ public class AttesaAffitto extends StatoPartita {
     }
 
     @Override
+    public void riprendi(AttesaFallimento attesaFallimento) {
+        Giocatore debitore = partita.getTurnoCorrente().getGiocatore();
+        Giocatore creditore = proprieta.getProprietario();
+
+        debitore.paga(creditore, attesaFallimento.getSoldiDaPagare());
+        partita.continua(this);
+    }
+
+    @Override
     public void onAzioneGiocatore(Paga paga) {
         Giocatore debitore = paga.getGiocatore();
         int soldiDaPagare = proprieta.calcolaAffitto(debitore.getStrategiaCalcoloAffitto());
         Giocatore creditore = proprieta.getProprietario();
 
         try {
-            debitore.paga(creditore, soldiDaPagare);
+            if(!debitore.equals(creditore))
+                debitore.paga(creditore, soldiDaPagare);
             partita.setStato(LancioDadi.builder().build());
         }catch (ModificaDenaroException e){
             partita.setStato(
                     AttesaFallimento.builder()
                             .soldiDaPagare(soldiDaPagare)
-                            .giocatoreProprietario(creditore)
                             .build()
             );
-            partita.getStato().esegui();
         }
+        partita.getStato().esegui();
     }
 
 

@@ -31,9 +31,6 @@ public class StatoAsta extends StatoPartita {
 
     @Override
     public void esegui() {
-        astaCorrente = com.gangoffour2.monopoly.model.Asta.builder()
-                .prop(proprieta)
-                .build();
         partita.attendiAzione();
     }
 

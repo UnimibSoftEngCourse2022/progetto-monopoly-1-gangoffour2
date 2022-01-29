@@ -2,6 +2,7 @@ package com.gangoffour2.monopoly.stati.partita;
 
 import com.gangoffour2.monopoly.azioni.casella.*;
 import com.gangoffour2.monopoly.azioni.giocatore.LanciaDadi;
+import com.gangoffour2.monopoly.eccezioni.ModificaDenaroException;
 import lombok.Builder;
 
 @Builder
@@ -58,7 +59,16 @@ public class LancioDadi extends StatoPartita {
 
     @Override
     public void onAzioneCasella(PescaImprevisto pescaImpervisto) {
-        partita.getMazzo().pescaImprevisto(partita.getTurnoCorrente().getGiocatore());
+        try {
+            partita.getMazzo().pescaImprevisto(partita.getTurnoCorrente().getGiocatore());
+        }catch (ModificaDenaroException e){
+            partita.memorizzaStato(this);
+            partita.setStato(
+                    AttesaFallimento.builder()
+                            .soldiDaPagare(e.getSoldiDaPagare())
+                            .build()
+            );
+        }
     }
 
     @Override

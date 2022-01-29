@@ -1,5 +1,6 @@
 package com.gangoffour2.monopoly.model.carta;
 
+import com.gangoffour2.monopoly.eccezioni.ModificaDenaroException;
 import com.gangoffour2.monopoly.model.Giocatore;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -14,8 +15,8 @@ public class CartaModificaDenaro extends Carta {
     protected CartaModificaDenaro() { }
 
     @Override
-    public boolean effetto(Giocatore giocatore) {
-        giocatore.setConto(giocatore.getConto() + denaro);
+    public boolean effetto(Giocatore giocatore) throws ModificaDenaroException {
+        giocatore.aggiungiDenaro(denaro);
         return true;
     }
 

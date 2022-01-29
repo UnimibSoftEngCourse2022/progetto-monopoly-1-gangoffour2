@@ -5,6 +5,7 @@ import com.gangoffour2.monopoly.azioni.giocatore.AcquistaProprieta;
 import com.gangoffour2.monopoly.azioni.giocatore.AvviaAsta;
 import com.gangoffour2.monopoly.eccezioni.ModificaDenaroException;
 import com.gangoffour2.monopoly.model.Asta;
+import com.gangoffour2.monopoly.model.Giocatore;
 import com.gangoffour2.monopoly.model.casella.Proprieta;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -45,6 +46,15 @@ public class AttesaAcquisto extends StatoPartita {
     }
 
     @Override
+    public void riprendi(AttesaFallimento attesaFallimento) {
+        Giocatore giocatore = partita.getTurnoCorrente().getGiocatore();
+        giocatore.getCasellaCorrente().onAzioneGiocatore(
+                AcquistaProprieta.builder().giocatore(giocatore).build()
+        );
+        partita.continua(this);
+    }
+
+    @Override
     public void onAzioneGiocatore(AcquistaProprieta acquistaProprieta) {
         partita.fermaAttesa();
         try {
@@ -53,7 +63,7 @@ public class AttesaAcquisto extends StatoPartita {
             partita.memorizzaStato(this);
             partita.setStato(AttesaFallimento.builder().soldiDaPagare(e.getSoldiDaPagare()).build());
         }
-        partita.continua(null);
+        partita.continua(this);
     }
 
 
