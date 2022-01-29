@@ -124,10 +124,11 @@ class TestProprieta {
         partita.onAzioneGiocatore(TerminaTurno.builder().build());
 
         Giocatore povero = partita.getTurnoCorrente().getGiocatore();
-        povero.setConto(1);
         assertNotEquals(povero, g);
         TestProprieta.fakeTiro(partita, povero, 1);
         povero.getCasellaCorrente().arrivo(g);
+        povero.setConto(1);
+        assertEquals(povero.getConto(), 1);
         assertEquals("AttesaAffitto", partita.getStato().getTipo());
         partita.onAzioneGiocatore(Paga.builder().giocatore(povero).build());
         partita.getListenerTimeoutEventi().stopTimeout();

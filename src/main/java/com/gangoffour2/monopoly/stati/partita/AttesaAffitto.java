@@ -44,10 +44,12 @@ public class AttesaAffitto extends StatoPartita {
         int soldiDaPagare = proprieta.calcolaAffitto(debitore.getStrategiaCalcoloAffitto());
         Giocatore creditore = proprieta.getProprietario();
 
+        System.out.println(soldiDaPagare);
+
         try {
             if(!debitore.equals(creditore))
                 debitore.paga(creditore, soldiDaPagare);
-            partita.setStato(LancioDadi.builder().build());
+            partita.continua(this);
         }catch (ModificaDenaroException e){
             partita.setStato(
                     AttesaFallimento.builder()
@@ -55,7 +57,6 @@ public class AttesaAffitto extends StatoPartita {
                             .build()
             );
         }
-        partita.getStato().esegui();
     }
 
 
