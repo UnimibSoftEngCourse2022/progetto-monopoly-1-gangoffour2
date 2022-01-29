@@ -4,9 +4,8 @@ import com.gangoffour2.monopoly.model.casella.Societa;
 import com.gangoffour2.monopoly.model.casella.Stazione;
 import com.gangoffour2.monopoly.model.casella.Tassa;
 import com.gangoffour2.monopoly.model.casella.Terreno;
-import lombok.Builder;
 
-@Builder
+
 public class AffittiStrategiaGiocatore implements AffittiStrategy{
     @Override
     public int calcolaAffitto(Terreno terreno) {
