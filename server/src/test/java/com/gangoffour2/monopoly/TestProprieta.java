@@ -51,7 +51,7 @@ class TestProprieta {
         Giocatore giocatore = partita.getTurnoCorrente().getGiocatore();
 
         partita.getTabellone().muoviGiocatore(giocatore, posizione);
-        giocatore.getCasellaCorrente().arrivo();
+        giocatore.getCasellaCorrente().arrivo(g);
         assertInstanceOf(AttesaAcquisto.class, partita.getStato());
         AcquistaProprieta acquistaProprieta = AcquistaProprieta.builder().giocatore(giocatore).build();
 
@@ -98,7 +98,7 @@ class TestProprieta {
         Giocatore g = partita.getGiocatori().get(0);
         partita.getTabellone().muoviGiocatore(g, 1);
 
-        g.getCasellaCorrente().arrivo();
+        g.getCasellaCorrente().arrivo(g);
         partita.getListenerTimeoutEventi().stopTimeout();
         System.out.println(partita.getStato().getTipo());
         partita.getStato().onTimeout();
@@ -117,7 +117,7 @@ class TestProprieta {
         Giocatore g = partita.getTurnoCorrente().getGiocatore();
         partita.getTabellone().muoviGiocatore(g, 1);
 
-        g.getCasellaCorrente().arrivo();
+        g.getCasellaCorrente().arrivo(g);
         partita.getListenerTimeoutEventi().stopTimeout();
         partita.getStato().onAzioneGiocatore(AcquistaProprieta.builder().giocatore(g).build());
         partita.setStato(FineTurno.builder().build());
@@ -127,7 +127,7 @@ class TestProprieta {
         povero.setConto(1);
         assertNotEquals(povero, g);
         TestProprieta.fakeTiro(partita, povero, 1);
-        povero.getCasellaCorrente().arrivo();
+        povero.getCasellaCorrente().arrivo(g);
         assertEquals("AttesaAffitto", partita.getStato().getTipo());
         partita.onAzioneGiocatore(Paga.builder().giocatore(povero).build());
         partita.getListenerTimeoutEventi().stopTimeout();
@@ -155,7 +155,7 @@ class TestProprieta {
         Giocatore g = partita.getTurnoCorrente().getGiocatore();
         TestProprieta.fakeTiro(partita, g, 1);
 
-        g.getCasellaCorrente().arrivo();
+        g.getCasellaCorrente().arrivo(g);
         partita.getListenerTimeoutEventi().stopTimeout();
         partita.getStato().onAzioneGiocatore(AcquistaProprieta.builder().giocatore(g).build());
         partita.setStato(FineTurno.builder().build());
@@ -163,7 +163,7 @@ class TestProprieta {
 
         Giocatore debitore = partita.getTurnoCorrente().getGiocatore();
         TestProprieta.fakeTiro(partita, debitore, 1);
-        debitore.getCasellaCorrente().arrivo();
+        debitore.getCasellaCorrente().arrivo(g);
         assertEquals("AttesaAffitto", partita.getStato().getTipo());
         partita.onAzioneGiocatore(Paga.builder().giocatore(debitore).build());
         partita.getListenerTimeoutEventi().stopTimeout();

@@ -48,7 +48,7 @@ public abstract class Casella implements SubjectStatoPartita, Serializable {
         return getClass().getSimpleName();
     }
 
-    public void arrivo() {
+    public void arrivo(Giocatore giocatore) {
         notificaTutti(stato.arrivo());
     }
 
