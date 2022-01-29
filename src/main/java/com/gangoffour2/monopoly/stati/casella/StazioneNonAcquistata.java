@@ -20,6 +20,9 @@ public class StazioneNonAcquistata extends StatoStazione {
 
     @Override
     public AzioneCasella arrivo() {
-        return RichiediAcquisto.builder().build();
+        return RichiediAcquisto
+                .builder()
+                .proprieta(stazione)
+                .build();
     }
 }

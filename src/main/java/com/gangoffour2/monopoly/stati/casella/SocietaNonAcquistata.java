@@ -12,7 +12,9 @@ public class SocietaNonAcquistata extends StatoSocieta {
 
     @Override
     public AzioneCasella arrivo() {
-        return RichiediAcquisto.builder().proprieta(societa).build();
+        return RichiediAcquisto.builder()
+                .proprieta(societa)
+                .build();
     }
 
     @Override
