@@ -1,0 +1,29 @@
+name: Build React App
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    types: [opened, synchronize, reopened]
+jobs:
+  build_client:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [ 12.x, 14.x, 15.x ]
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Install dependencies
+        working-directory: ./client
+        run: |
+          npm i
+      - name: Build
+        working-directory: ./client
+        run: |
+          npm run build
