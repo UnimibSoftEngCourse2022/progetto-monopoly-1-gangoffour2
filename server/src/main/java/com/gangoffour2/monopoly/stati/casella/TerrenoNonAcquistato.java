@@ -1,11 +1,9 @@
 package com.gangoffour2.monopoly.stati.casella;
 
-import com.gangoffour2.monopoly.azioni.casella.AggiungiDenaro;
 import com.gangoffour2.monopoly.azioni.casella.AzioneCasella;
 import com.gangoffour2.monopoly.azioni.casella.RichiediAcquisto;
 import com.gangoffour2.monopoly.azioni.giocatore.AcquistaProprieta;
 import com.gangoffour2.monopoly.eccezioni.ModificaDenaroException;
-import com.gangoffour2.monopoly.stati.partita.AttesaFallimento;
 import lombok.Data;
 import lombok.experimental.SuperBuilder;
 
