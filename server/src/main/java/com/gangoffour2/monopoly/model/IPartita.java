@@ -69,4 +69,8 @@ public abstract class IPartita implements Serializable {
     public abstract void fermaAttesa();
 
     public abstract void attendiAzione();
+
+    public abstract void continua();
+
+    public abstract void memorizzaStato(StatoPartita statoPartita);
 }

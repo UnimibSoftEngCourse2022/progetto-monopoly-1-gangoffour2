@@ -18,7 +18,6 @@ public class AttesaAcquisto extends StatoPartita {
     @Override
     public void onTimeout() {
         partita.setStato(StatoAsta.builder()
-                .statoPrecedente(this)
                 .proprieta(daAcquistare)
                 .build());
         partita.getStato().esegui();
@@ -34,14 +33,13 @@ public class AttesaAcquisto extends StatoPartita {
     public void onAzioneGiocatore(AcquistaProprieta acquistaProprieta) {
         partita.fermaAttesa();
         acquistaProprieta.getGiocatore().getCasellaCorrente().onAzioneGiocatore(acquistaProprieta);
-        partita.continuaTurno();
+        partita.continua();
     }
 
     @Override
     public void onAzioneGiocatore(AvviaAsta avviaAsta){
         partita.fermaAttesa();
         partita.setStato(StatoAsta.builder()
-                .statoPrecedente(this)
                 .proprieta(daAcquistare)
                 .build());
         partita.getStato().esegui();

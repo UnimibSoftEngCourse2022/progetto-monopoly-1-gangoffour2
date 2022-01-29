@@ -1,14 +1,13 @@
 package com.gangoffour2.monopoly.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.gangoffour2.monopoly.azioni.casella.AzioneCasella;
 import com.gangoffour2.monopoly.azioni.giocatore.AzioneGiocatore;
 import com.gangoffour2.monopoly.controller.MessageBrokerSingleton;
 import com.gangoffour2.monopoly.eccezioni.GiocatoreEsistenteException;
 import com.gangoffour2.monopoly.eccezioni.PartitaPienaException;
-import com.gangoffour2.monopoly.stati.partita.AttesaPrigione;
-import com.gangoffour2.monopoly.stati.partita.FineTurno;
-import com.gangoffour2.monopoly.stati.partita.InizioTurno;
-import com.gangoffour2.monopoly.stati.partita.StatoPartita;
+import com.gangoffour2.monopoly.stati.partita.*;
+import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.SuperBuilder;
@@ -16,11 +15,17 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.Iterator;
+import java.util.LinkedList;
 
 @Data
 @SuperBuilder
 @EqualsAndHashCode(callSuper = true)
 public class Partita extends IPartita implements PartitaObserver {
+
+    @JsonIgnore
+    @Builder.Default
+    private LinkedList<StatoPartita> stackStati = new LinkedList<>();
+
 
     protected Partita(IPartitaBuilder<?, ?> b) {
         super(b);
@@ -142,5 +147,22 @@ public class Partita extends IPartita implements PartitaObserver {
 
     public synchronized void attendiAzione() {
         listenerTimeoutEventi.setTimeout(() -> stato.onTimeout(), 10000);
+    }
+
+    @Override
+    public void memorizzaStato(StatoPartita statoPartita){
+        stackStati.add(stato);
+    }
+
+    @Override
+    public void continua(){
+        if (stackStati.isEmpty()){
+            setStato(LancioDadi.builder().build());
+            continuaTurno();
+        }
+        else {
+            StatoPartita rimosso = stackStati.removeLast();
+            rimosso.riprendi();
+        }
     }
 }

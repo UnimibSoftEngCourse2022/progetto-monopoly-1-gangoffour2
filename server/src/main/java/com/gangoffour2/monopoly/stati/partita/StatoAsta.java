@@ -14,7 +14,6 @@ import lombok.experimental.SuperBuilder;
 public class StatoAsta extends StatoPartita {
     Asta astaCorrente;
     Proprieta proprieta;
-    StatoPartita statoPrecedente;
 
     @Override
     public void onTimeout() {
@@ -22,8 +21,7 @@ public class StatoAsta extends StatoPartita {
             astaCorrente.getMiglioreOfferente().aggiudica(astaCorrente.getProp(),
                     astaCorrente.getOffertaAttuale());
         }
-        partita.setStato(statoPrecedente);
-        partita.getStato().esegui();
+        partita.continua();
     }
 
     @Override
@@ -36,10 +34,12 @@ public class StatoAsta extends StatoPartita {
 
     @Override
     public void onAzioneGiocatore(Offerta offerta) {
-        partita.fermaAttesa();
-        if (!offerta.isValida()) {
-            throw new OffertaInvalidaException(offerta.getGiocatore());
+        try{
+            astaCorrente.offri(offerta.getGiocatore(), offerta.getValore());
+            partita.fermaAttesa();
+            partita.attendiAzione();
+        } catch (OffertaInvalidaException ignored){
+            // Non è necessaria alcuna azione
         }
-        astaCorrente.offri(offerta.getGiocatore(), offerta.getValore());
     }
 }

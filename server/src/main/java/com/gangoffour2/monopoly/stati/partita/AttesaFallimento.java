@@ -5,9 +5,6 @@ import com.gangoffour2.monopoly.model.Giocatore;
 import lombok.Builder;
 import lombok.Data;
 
-import java.util.concurrent.Callable;
-import java.util.function.Function;
-
 @Builder
 @Data
 public class AttesaFallimento extends StatoPartita{
