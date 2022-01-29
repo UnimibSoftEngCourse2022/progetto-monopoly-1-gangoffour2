@@ -7,6 +7,11 @@ import lombok.Builder;
 public class FineTurno extends StatoPartita {
 
     @Override
+    public void acceptRiprendi(StatoPartita statoPartita) {
+        statoPartita.riprendi(this);
+    }
+
+    @Override
     public void onTimeout() {
         partita.cambiaTurno();
     }

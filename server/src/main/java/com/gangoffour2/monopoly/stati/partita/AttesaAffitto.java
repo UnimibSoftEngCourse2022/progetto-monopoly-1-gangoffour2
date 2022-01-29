@@ -13,6 +13,11 @@ public class AttesaAffitto extends StatoPartita {
     private Proprieta proprieta;
 
     @Override
+    public void acceptRiprendi(StatoPartita statoPartita) {
+        statoPartita.riprendi(this);
+    }
+
+    @Override
     public void onTimeout() {
         Giocatore debitore = partita.getTurnoCorrente().getGiocatore();
         debitore.paga(proprieta.getProprietario(), proprieta.calcolaAffitto());

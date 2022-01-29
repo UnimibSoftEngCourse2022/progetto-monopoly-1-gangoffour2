@@ -8,6 +8,12 @@ import lombok.Builder;
 
 @Builder
 public class AttesaPrigione extends StatoPartita {
+
+    @Override
+    public void acceptRiprendi(StatoPartita statoPartita) {
+        statoPartita.riprendi(this);
+    }
+
     @Override
     public void onAzioneGiocatore(LanciaDadi lanciaDadi) {
         partita.fermaAttesa();
@@ -33,4 +39,6 @@ public class AttesaPrigione extends StatoPartita {
             partita.broadcast();
         }
     }
+
+
 }

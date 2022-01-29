@@ -5,6 +5,12 @@ import lombok.Builder;
 
 @Builder
 public class InizioTurno extends StatoPartita {
+
+    @Override
+    public void acceptRiprendi(StatoPartita statoPartita) {
+        statoPartita.riprendi(this);
+    }
+
     @Override
     public void onAzioneCasella(AttesaLancioDadi attesaLancioDadi) {
         partita.setStato(LancioDadi.builder().build());

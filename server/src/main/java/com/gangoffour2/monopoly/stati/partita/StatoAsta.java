@@ -16,12 +16,17 @@ public class StatoAsta extends StatoPartita {
     Proprieta proprieta;
 
     @Override
+    public void acceptRiprendi(StatoPartita statoPartita) {
+        statoPartita.riprendi(this);
+    }
+
+    @Override
     public void onTimeout() {
         if (astaCorrente.getMiglioreOfferente() != null) {
             astaCorrente.getMiglioreOfferente().aggiudica(astaCorrente.getProp(),
                     astaCorrente.getOffertaAttuale());
         }
-        partita.continua();
+        partita.continua(this);
     }
 
     @Override

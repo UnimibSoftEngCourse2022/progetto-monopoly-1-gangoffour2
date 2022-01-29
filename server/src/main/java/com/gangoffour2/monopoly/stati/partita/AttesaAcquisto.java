@@ -3,6 +3,7 @@ package com.gangoffour2.monopoly.stati.partita;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.gangoffour2.monopoly.azioni.giocatore.AcquistaProprieta;
 import com.gangoffour2.monopoly.azioni.giocatore.AvviaAsta;
+import com.gangoffour2.monopoly.eccezioni.ModificaDenaroException;
 import com.gangoffour2.monopoly.model.Asta;
 import com.gangoffour2.monopoly.model.casella.Proprieta;
 import lombok.Data;
@@ -15,6 +16,11 @@ import lombok.experimental.SuperBuilder;
 public class AttesaAcquisto extends StatoPartita {
     @JsonIgnore
     Proprieta daAcquistare;
+
+    @Override
+    public void acceptRiprendi(StatoPartita statoPartita) {
+        statoPartita.riprendi(this);
+    }
 
     @Override
     public void onTimeout() {
@@ -33,7 +39,7 @@ public class AttesaAcquisto extends StatoPartita {
     }
 
     @Override
-    public void riprendi(){
+    public void riprendi(StatoAsta statoPartita){
         partita.setStato(FineTurno.builder().build());
         partita.getStato().esegui();
     }
@@ -41,8 +47,13 @@ public class AttesaAcquisto extends StatoPartita {
     @Override
     public void onAzioneGiocatore(AcquistaProprieta acquistaProprieta) {
         partita.fermaAttesa();
-        acquistaProprieta.getGiocatore().getCasellaCorrente().onAzioneGiocatore(acquistaProprieta);
-        partita.continua();
+        try {
+            acquistaProprieta.getGiocatore().getCasellaCorrente().onAzioneGiocatore(acquistaProprieta);
+        }catch (ModificaDenaroException e){
+            partita.memorizzaStato(this);
+            partita.setStato(AttesaFallimento.builder().soldiDaPagare(e.getSoldiDaPagare()).build());
+        }
+        partita.continua(null);
     }
 
 

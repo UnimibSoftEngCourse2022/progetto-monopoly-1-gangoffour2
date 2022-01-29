@@ -38,7 +38,7 @@ public class Giocatore implements Serializable {
 
     public void aggiungiDenaro(int importo) throws ModificaDenaroException {
         if (this.getConto() + importo < 0)
-            throw new ModificaDenaroException();
+            throw new ModificaDenaroException(-importo);
         this.setConto(this.getConto() + importo);
     }
 
@@ -51,7 +51,7 @@ public class Giocatore implements Serializable {
         destinatario.conto += importo;
     }
 
-    public void acquistaProprieta(Proprieta proprieta) {
+    public void acquistaProprieta(Proprieta proprieta) throws ModificaDenaroException{
         aggiudica(proprieta, proprieta.getCostoBase());
     }
 
@@ -75,8 +75,8 @@ public class Giocatore implements Serializable {
         return this.getEsciGratis().size() > 0;
     }
 
-    public void aggiudica(Proprieta proprieta, int importo) {
-        conto -= importo;
+    public void aggiudica(Proprieta proprieta, int importo) throws ModificaDenaroException {
+        aggiungiDenaro(-importo);
         proprietaPossedute.add(proprieta);
         proprieta.setProprietario(this);
     }

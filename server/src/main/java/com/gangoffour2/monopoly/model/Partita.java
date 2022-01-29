@@ -163,7 +163,7 @@ public class Partita extends IPartita implements PartitaObserver {
     }
 
     @Override
-    public void continua(){
+    public void continua(StatoPartita statoPartita){
         if (stackStati.isEmpty()){
             setStato(LancioDadi.builder().build());
             continuaTurno();
@@ -171,7 +171,7 @@ public class Partita extends IPartita implements PartitaObserver {
         else {
             StatoPartita rimosso = stackStati.removeLast();
             setStato(rimosso);
-            rimosso.riprendi();
+            rimosso.acceptRiprendi(statoPartita);
         }
     }
 }

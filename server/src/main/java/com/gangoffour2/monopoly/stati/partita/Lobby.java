@@ -6,6 +6,12 @@ import lombok.Builder;
 
 @Builder
 public class Lobby extends StatoPartita {
+
+    @Override
+    public void acceptRiprendi(StatoPartita statoPartita) {
+        statoPartita.riprendi(this);
+    }
+
     @Override
     public void onAzioneGiocatore(EntraInPartita entraInPartita) {
         partita.fermaAttesa();

@@ -115,9 +115,43 @@ public abstract class StatoPartita implements Serializable {
      * Quando, ad esempio, viene terminata un'asta ma non si sa quale stato è corretto riprendere per continuare
      * la partita in modo coerente.
      */
-    public void riprendi(){
-        partita.continua();
+    public void riprendi(AttesaAcquisto acquistaProprieta){
+        partita.continua(acquistaProprieta);
     }
+
+    public void riprendi(AttesaAffitto attesaAffitto){
+        partita.continua(attesaAffitto);
+    }
+
+    public void riprendi(AttesaFallimento attesaFallimento){
+        partita.continua(attesaFallimento);
+    }
+
+    public void riprendi(AttesaPrigione attesaPrigione){
+        partita.continua(attesaPrigione);
+    }
+
+    public void riprendi(FineTurno fineTurno){
+        partita.continua(fineTurno);
+    }
+
+    public void riprendi(StatoAsta statoAsta){
+        partita.continua(statoAsta);
+    }
+
+    public void riprendi(InizioTurno inizioTurno){
+        partita.continua(inizioTurno);
+    }
+
+    public void riprendi(LancioDadi lancioDadi) {
+        partita.continua(lancioDadi);
+    }
+
+    public void riprendi(Lobby lobby){
+        partita.continua(lobby);
+    }
+
+    public abstract void acceptRiprendi(StatoPartita statoPartita);
 
     /**
      * Di default, gli eventi arrivati dall'esterno non sbloccano la partita.

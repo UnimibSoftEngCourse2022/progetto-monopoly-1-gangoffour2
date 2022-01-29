@@ -8,6 +8,11 @@ import lombok.Builder;
 public class LancioDadi extends StatoPartita {
 
     @Override
+    public void acceptRiprendi(StatoPartita statoPartita) {
+        statoPartita.riprendi(this);
+    }
+
+    @Override
     public void onTimeout() {
         partita.fermaAttesa();
         partita.continuaTurno();

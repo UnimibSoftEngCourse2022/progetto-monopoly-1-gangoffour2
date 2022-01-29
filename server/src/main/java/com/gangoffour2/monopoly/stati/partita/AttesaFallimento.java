@@ -14,6 +14,11 @@ public class AttesaFallimento extends StatoPartita{
     private Giocatore giocatoreProprietario;
 
     @Override
+    public void acceptRiprendi(StatoPartita statoPartita) {
+        statoPartita.riprendi(this);
+    }
+
+    @Override
     public void esegui() {
         partita.attendiAzione();
     }

@@ -18,7 +18,7 @@ public class CartaMuoviPosizioneACasella extends Carta {
 
     @Override
     public boolean effetto(Giocatore giocatore) {
-        tabellone.muoviAProssimaCasella(giocatore, c -> c.equals(casella));
+        tabellone.muoviAProssimaCasella(giocatore, c -> c.getNome().equals(casella.getNome()));
         return true;
     }
 }
