@@ -1,5 +1,6 @@
 package com.gangoffour2.monopoly.model.casella;
 
+import com.gangoffour2.monopoly.model.AffittiStrategy;
 import com.gangoffour2.monopoly.stati.casella.SocietaNonAcquistata;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -16,9 +17,8 @@ public class Societa extends Proprieta {
     }
 
     @Override
-    public int calcolaAffitto() {
-        // Da rivedere come calcolare l'affitto per la società
-        return 200;
+    public int calcolaAffitto(AffittiStrategy strategia) {
+        return strategia.calcolaAffitto(this);
     }
 
 }

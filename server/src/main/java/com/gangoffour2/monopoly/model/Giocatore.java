@@ -10,6 +10,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -18,7 +19,7 @@ import java.util.Objects;
 import java.util.Queue;
 
 @Data
-@Builder
+@SuperBuilder
 @AllArgsConstructor
 @NoArgsConstructor
 public class Giocatore implements Serializable {
@@ -28,6 +29,10 @@ public class Giocatore implements Serializable {
     private String idSessione;
     private String nick;
     private int conto;
+
+    @JsonIgnore
+    @Builder.Default
+    private AffittiStrategy strategiaCalcoloAffitto = new AffittiStrategiaGiocatore();
 
     @Builder.Default
     private Queue<Carta> esciGratis = new LinkedList<>();

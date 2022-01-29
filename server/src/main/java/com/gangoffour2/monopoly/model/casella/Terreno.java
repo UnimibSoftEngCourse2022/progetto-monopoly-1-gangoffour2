@@ -1,5 +1,6 @@
 package com.gangoffour2.monopoly.model.casella;
 
+import com.gangoffour2.monopoly.model.AffittiStrategy;
 import com.gangoffour2.monopoly.model.Albergo;
 import com.gangoffour2.monopoly.model.Casa;
 import com.gangoffour2.monopoly.stati.casella.TerrenoNonAcquistato;
@@ -38,17 +39,8 @@ public class Terreno extends Proprieta {
     }
 
     @Override
-    public int calcolaAffitto() {
-        if (getAlbergo() != null) {
-            return getAffitti().get(getAffitti().size() - 1);
-        } else if (getListaCase().size() > getAffitti().size()) {
-            return getAffitti().get(getAffitti().size() - 2);
-        }
-
-        if (!listaCase.isEmpty()) {
-            return getAffitti().get(listaCase.size() - 1);
-        }
-        return rendita;
+    public int calcolaAffitto(AffittiStrategy strategia) {
+        return strategia.calcolaAffitto(this);
     }
 
     public void aggiungiEdificio() {

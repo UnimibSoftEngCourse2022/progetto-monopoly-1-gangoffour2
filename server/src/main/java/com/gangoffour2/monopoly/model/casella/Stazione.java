@@ -1,5 +1,6 @@
 package com.gangoffour2.monopoly.model.casella;
 
+import com.gangoffour2.monopoly.model.AffittiStrategy;
 import com.gangoffour2.monopoly.stati.casella.StazioneNonAcquistata;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -15,9 +16,8 @@ public class Stazione extends Proprieta {
     }
 
     @Override
-    public int calcolaAffitto() {
-        // Da decidere come calcolare l'affitto
-        return 200;
+    public int calcolaAffitto(AffittiStrategy strategia) {
+        return strategia.calcolaAffitto(this);
     }
 
 
