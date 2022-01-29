@@ -9,7 +9,7 @@ import java.security.SecureRandom;
 public class StrategiaCarteRandom implements RandomCarteStrategy{
     @Override
     public void randomizzaCarta(Carta c) {
-        float moltiplicatore = (float) (new SecureRandom().nextFloat()*1.5 + 0.5);
+        float moltiplicatore = (float) (new SecureRandom().nextFloat()*1.1 + 0.9);
         c.randomizzaCarta(moltiplicatore);
     }
 }
