@@ -118,7 +118,7 @@
                         </goals>
                         <phase>prepare-package</phase>
                         <configuration>
-                            <arguments>build</arguments>
+                            <arguments>run build</arguments>
                         </configuration>
                     </execution>
                 </executions>
@@ -126,7 +126,6 @@
 
             <plugin>
                 <artifactId>maven-resources-plugin</artifactId>
-                <version>3.0.1</version>
                 <executions>
                     <execution>
                         <id>position-react-build</id>
