@@ -40,7 +40,7 @@ public class Tabellone implements ITabellone, Serializable {
                 turno.setCasellaDaVisitare(quantita);
                 partita.continuaTurno();
             } else
-                giocatore.getCasellaCorrente().arrivo();
+                giocatore.getCasellaCorrente().arrivo(giocatore);
         }
     }
 
@@ -70,7 +70,7 @@ public class Tabellone implements ITabellone, Serializable {
     public void applicaEffetto(Giocatore giocatore, int offset) {
         muoviGiocatore(giocatore, 1);
         if (offset == 0) {
-            giocatore.getCasellaCorrente().arrivo();
+            giocatore.getCasellaCorrente().arrivo(giocatore);
         } else {
             giocatore.getCasellaCorrente().passaggio();
         }
