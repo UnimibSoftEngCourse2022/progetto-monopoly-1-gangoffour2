@@ -17,7 +17,7 @@ public class Asta implements Serializable {
     private Proprieta prop;
 
     public void offri(Giocatore g, int offerta) throws OffertaInvalidaException {
-        if (offerta <= this.getOffertaAttuale())
+        if (offerta <= this.getOffertaAttuale() || g.getConto() < offerta)
             throw new OffertaInvalidaException(g);
         else {
             this.setMiglioreOfferente(g);
