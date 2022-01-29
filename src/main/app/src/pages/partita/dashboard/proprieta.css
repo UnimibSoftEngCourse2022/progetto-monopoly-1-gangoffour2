@@ -1,0 +1,34 @@
+.property_list_dropdown {
+    display: flex;
+    justify-content: space-between;
+}
+
+.property_list_element button {
+    box-shadow: none;
+    border-radius: 40px;
+    padding: 4px 15px;
+}
+
+
+.property_list_element {
+    padding: 20px 10px;
+    margin: 0px auto;
+    border-bottom: 1px solid black;
+}
+
+.subtitle_dashboard {
+    color: gray;
+    padding: 0px 10px;
+}
+
+.open_close_property{
+    display: none;
+}
+
+.open_close_property[aria-selected="true"] {
+    display: block;
+}
+
+.open_close_property button {
+    background-color: blue;
+}
