@@ -3,12 +3,13 @@ package com.gangoffour2.monopoly.services;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gangoffour2.monopoly.model.*;
 import com.gangoffour2.monopoly.model.carta.Carta;
+import com.gangoffour2.monopoly.model.carta.strategyCarte.StrategiaCarteRandom;
 import com.gangoffour2.monopoly.model.casella.Casella;
+import com.gangoffour2.monopoly.model.casella.strategyCaselle.StrategiaCasellaRandom;
 import com.gangoffour2.monopoly.stati.partita.Lobby;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.util.FileCopyUtils;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.*;

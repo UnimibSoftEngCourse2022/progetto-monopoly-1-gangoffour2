@@ -1,4 +1,4 @@
-package com.gangoffour2.monopoly.model;
+package com.gangoffour2.monopoly.model.casella.strategyCaselle;
 
 import com.gangoffour2.monopoly.model.casella.Casella;
 
