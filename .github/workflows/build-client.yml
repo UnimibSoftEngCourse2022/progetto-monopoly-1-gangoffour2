@@ -17,10 +17,10 @@ jobs:
         with:
           node-version: 16.x
       - name: Install dependencies
-        working-directory: ./client
+        working-directory: ./src/main/app
         run: |
           npm i
       - name: Build
-        working-directory: ./client
+        working-directory: ./src/main/app
         run: |
           npm run build
