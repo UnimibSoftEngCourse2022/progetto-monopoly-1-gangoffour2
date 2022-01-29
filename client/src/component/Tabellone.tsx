@@ -1,9 +1,9 @@
 import React from 'react';
-import ICasella, {AllCaselle} from "../interfaces/caselle/ICasella";
+import ICasella from "../interfaces/caselle/ICasella";
 import './caselle/caselle.scss';
-import ICasellaTererno from "../interfaces/caselle/ICasellaTererno";
 import {Casella} from "./caselle/Casella";
 import IGiocatore from "../interfaces/IGiocatore";
+import "./tabellone.css"
 
 interface Props{
     caselle: ICasella[],
@@ -45,19 +45,21 @@ export default class Tabellone extends React.Component<Props, State> {
         jsxCaselle.push(<Casella {...this.props.caselle[30]}/>);
         jsxCaselle.push(this.costruisciRiga(31, 40, "row vertical-row right-row", false));
 
-        return <div className="board">
-            <div className="center">
-                <div className="community-chest-deck">
-                    <h2 className="label">Probabilita</h2>
-                    <div className="deck"/>
+        return <div className={"container_tabellone"}>
+            <div className="board">
+                <div className="center">
+                    <div className="community-chest-deck">
+                        <h2 className="label">Probabilita</h2>
+                        <div className="deck"/>
+                    </div>
+                    <h1 className="title">GANG OF FOUR 2</h1>
+                    <div className="chance-deck">
+                        <h2 className="label">Imprevisti</h2>
+                        <div className="deck"/>
+                    </div>
                 </div>
-                <h1 className="title">GANG OF FOUR 2</h1>
-                <div className="chance-deck">
-                    <h2 className="label">Imprevisti</h2>
-                    <div className="deck"/>
-                </div>
+                {jsxCaselle}
             </div>
-            {jsxCaselle}
         </div>
     }
 }
