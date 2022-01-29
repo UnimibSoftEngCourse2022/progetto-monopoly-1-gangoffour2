@@ -20,7 +20,7 @@ public class AttesaAffitto extends StatoPartita {
     @Override
     public void onTimeout() {
         Giocatore debitore = partita.getTurnoCorrente().getGiocatore();
-        debitore.paga(proprieta.getProprietario(), proprieta.calcolaAffitto());
+        debitore.paga(proprieta.getProprietario(), proprieta.calcolaAffitto(debitore.getStrategiaCalcoloAffitto()));
         partita.continuaTurno();
     }
 
@@ -32,7 +32,7 @@ public class AttesaAffitto extends StatoPartita {
     @Override
     public void onAzioneGiocatore(Paga paga) {
         Giocatore debitore = paga.getGiocatore();
-        int soldiDaPagare = proprieta.calcolaAffitto();
+        int soldiDaPagare = proprieta.calcolaAffitto(debitore.getStrategiaCalcoloAffitto());
         Giocatore creditore = proprieta.getProprietario();
 
         try {

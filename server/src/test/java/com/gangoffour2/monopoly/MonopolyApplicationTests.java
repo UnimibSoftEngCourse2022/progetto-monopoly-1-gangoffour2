@@ -65,7 +65,7 @@ class MonopolyApplicationTests {
         partita.getTabellone().muoviGiocatore(g, 9);
         assertEquals("Viale Vesuvio", g.getCasellaCorrente().getNome());
 
-        g.getCasellaCorrente().arrivo();
+        g.getCasellaCorrente().arrivo(g);
         assertInstanceOf(AttesaAcquisto.class, partita.getStato());
         assertNotNull(partita.getStato().getPartita());
     }
