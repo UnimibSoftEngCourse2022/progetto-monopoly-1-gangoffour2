@@ -1,4 +1,4 @@
-package com.gangoffour2.monopoly.model.carta.strategyCarte;
+package com.gangoffour2.monopoly.model.carta.strategy;
 
 import com.gangoffour2.monopoly.model.carta.Carta;
 import lombok.Builder;
