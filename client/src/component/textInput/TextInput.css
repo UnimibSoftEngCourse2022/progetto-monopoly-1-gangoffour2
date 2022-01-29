@@ -1,0 +1,13 @@
+.text_input_container {
+    width: 200px;
+    text-align: left;
+}
+
+.text_input_container .input {
+    width: -webkit-fill-available;
+    border: 1px solid lightgrey;
+    padding: 10px;
+    border-radius: 4px;
+    transition: all 0.2s;
+
+}
