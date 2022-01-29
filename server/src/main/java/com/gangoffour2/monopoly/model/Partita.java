@@ -24,7 +24,7 @@ public class Partita extends IPartita implements PartitaObserver {
 
     @JsonIgnore
     @Builder.Default
-    private LinkedList<StatoPartita> stackStati = new LinkedList<>();
+    private transient LinkedList<StatoPartita> stackStati = new LinkedList<>();
 
 
     protected Partita(IPartitaBuilder<?, ?> b) {
@@ -102,29 +102,36 @@ public class Partita extends IPartita implements PartitaObserver {
         stato.setPartita(this);
     }
 
-    public void continuaTurno() {
-        broadcast();
-
+    private void sleep(int millisecondi){
         try {
-            Thread.sleep(200);
+            Thread.sleep(millisecondi);
         } catch (InterruptedException e) {
             Logger logger = LoggerFactory.getLogger(Partita.class);
             logger.error("Wait fallita");
             Thread.currentThread().interrupt();
         }
+    }
 
-        if (turnoCorrente.inVisita()) {
+    public void continuaTurno() {
+        broadcast();
+        sleep(200);
+
+        if (turnoCorrente.inVisita()){
             turnoCorrente.prossimoEffetto(tabellone);
-        } else if (turnoCorrente.getLanciConsecutivi() == 0 || turnoCorrente.dadiUguali()) {
+        }
+        else if (!turnoCorrente.isTerminato()){
             turnoCorrente.lancioDadi(config.getFacceDadi());
-            if (turnoCorrente.getLanciConsecutivi() == 3) {
+            if (turnoCorrente.limitePrigione()){
                 setStato(AttesaPrigione.builder().build());
-            } else {
+                stato.esegui();
+            }
+            else {
                 turnoCorrente.prossimoEffetto(tabellone);
             }
-        } else {
+        }
+        else {
             setStato(FineTurno.builder().build());
-            attendiAzione();
+            stato.esegui();
         }
     }
 

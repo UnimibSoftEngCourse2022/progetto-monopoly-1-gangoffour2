@@ -15,7 +15,6 @@ public class Lobby extends StatoPartita {
         } catch (GiocatoreEsistenteException e) {
             // Lancia un messaggio di errore
         }
-        partita.broadcast();
         if (partita.getGiocatori().size() == partita.getConfig().getNumeroGiocatori()) {
             partita.inizioPartita();
         }

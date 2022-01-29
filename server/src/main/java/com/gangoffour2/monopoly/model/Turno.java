@@ -47,6 +47,9 @@ public class Turno implements Serializable {
     }
 
     public boolean dadiUguali() {
+        if (valoreDadi.isEmpty()){
+            return false;
+        }
         boolean dadiUguali = true;
         int valorePrecedente = valoreDadi.get(0);
         Iterator<Integer> iter = valoreDadi.iterator();
@@ -66,5 +69,14 @@ public class Turno implements Serializable {
     public void prossimoEffetto(ITabellone tabellone) {
         --casellaDaVisitare;
         tabellone.applicaEffetto(giocatore, casellaDaVisitare);
+    }
+
+
+    public boolean isTerminato(){
+        return !dadiUguali() && lanciConsecutivi > 0;
+    }
+
+    public boolean limitePrigione(){
+        return lanciConsecutivi == 3 && dadiUguali();
     }
 }
