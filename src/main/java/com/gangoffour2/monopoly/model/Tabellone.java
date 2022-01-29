@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.gangoffour2.monopoly.model.casella.Casella;
 import com.gangoffour2.monopoly.model.casella.strategyCaselle.RandomCaselleStrategy;
 import com.gangoffour2.monopoly.model.casella.strategyCaselle.StrategiaEconomiaVanilla;
+import com.gangoffour2.monopoly.model.giocatore.Giocatore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

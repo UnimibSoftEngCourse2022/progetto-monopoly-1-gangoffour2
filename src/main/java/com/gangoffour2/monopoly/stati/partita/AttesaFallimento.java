@@ -1,12 +1,14 @@
 package com.gangoffour2.monopoly.stati.partita;
 
 import com.gangoffour2.monopoly.azioni.giocatore.Ipoteca;
-import com.gangoffour2.monopoly.model.Giocatore;
+import com.gangoffour2.monopoly.model.giocatore.Giocatore;
 import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 @Builder
 @Data
+@EqualsAndHashCode(callSuper = true)
 public class AttesaFallimento extends StatoPartita{
 
     //sono positivi

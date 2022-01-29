@@ -6,6 +6,7 @@ import com.gangoffour2.monopoly.azioni.giocatore.AzioneGiocatore;
 import com.gangoffour2.monopoly.controller.MessageBrokerSingleton;
 import com.gangoffour2.monopoly.eccezioni.GiocatoreEsistenteException;
 import com.gangoffour2.monopoly.eccezioni.PartitaPienaException;
+import com.gangoffour2.monopoly.model.giocatore.Giocatore;
 import com.gangoffour2.monopoly.stati.partita.*;
 import lombok.Builder;
 import lombok.Data;

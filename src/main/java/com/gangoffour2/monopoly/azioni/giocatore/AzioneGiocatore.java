@@ -1,6 +1,6 @@
 package com.gangoffour2.monopoly.azioni.giocatore;
 
-import com.gangoffour2.monopoly.model.Giocatore;
+import com.gangoffour2.monopoly.model.giocatore.Giocatore;
 import com.gangoffour2.monopoly.stati.casella.StatoCasella;
 import com.gangoffour2.monopoly.stati.partita.StatoPartita;
 import lombok.Data;

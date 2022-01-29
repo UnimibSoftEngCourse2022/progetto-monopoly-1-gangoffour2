@@ -5,6 +5,7 @@ import com.gangoffour2.monopoly.azioni.casella.AzioneCasella;
 import com.gangoffour2.monopoly.azioni.giocatore.AzioneGiocatore;
 import com.gangoffour2.monopoly.eccezioni.GiocatoreEsistenteException;
 import com.gangoffour2.monopoly.eccezioni.PartitaPienaException;
+import com.gangoffour2.monopoly.model.giocatore.Giocatore;
 import com.gangoffour2.monopoly.services.TimeoutHandler;
 import com.gangoffour2.monopoly.stati.partita.StatoPartita;
 import lombok.Builder;

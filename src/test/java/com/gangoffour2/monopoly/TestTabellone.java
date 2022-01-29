@@ -1,7 +1,7 @@
 package com.gangoffour2.monopoly;
 
 import com.gangoffour2.monopoly.eccezioni.GiocatoreEsistenteException;
-import com.gangoffour2.monopoly.model.Giocatore;
+import com.gangoffour2.monopoly.model.giocatore.Giocatore;
 import com.gangoffour2.monopoly.model.IPartita;
 import com.gangoffour2.monopoly.model.casella.Stazione;
 import org.junit.jupiter.api.BeforeEach;

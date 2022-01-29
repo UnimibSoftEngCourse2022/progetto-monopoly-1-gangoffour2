@@ -1,9 +1,9 @@
-package com.gangoffour2.monopoly.model;
+package com.gangoffour2.monopoly.model.casella.strategyCaselle;
 
 import com.gangoffour2.monopoly.model.casella.Tassa;
 import com.gangoffour2.monopoly.model.casella.Terreno;
 
-public class AffittiStrategiaImprenditore extends AffittiStrategiaGiocatore{
+public class PagamentoStrategiaImprenditore extends PagamentoStrategiaGiocatore {
     @Override
     public int calcolaAffitto(Terreno terreno) {
 

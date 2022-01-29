@@ -2,7 +2,7 @@ package com.gangoffour2.monopoly.stati.partita;
 
 import com.gangoffour2.monopoly.azioni.giocatore.Paga;
 import com.gangoffour2.monopoly.eccezioni.ModificaDenaroException;
-import com.gangoffour2.monopoly.model.Giocatore;
+import com.gangoffour2.monopoly.model.giocatore.Giocatore;
 import com.gangoffour2.monopoly.model.casella.Proprieta;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;

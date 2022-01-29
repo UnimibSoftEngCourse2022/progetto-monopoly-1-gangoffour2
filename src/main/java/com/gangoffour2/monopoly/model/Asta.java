@@ -2,6 +2,7 @@ package com.gangoffour2.monopoly.model;
 
 import com.gangoffour2.monopoly.eccezioni.OffertaInvalidaException;
 import com.gangoffour2.monopoly.model.casella.Proprieta;
+import com.gangoffour2.monopoly.model.giocatore.Giocatore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

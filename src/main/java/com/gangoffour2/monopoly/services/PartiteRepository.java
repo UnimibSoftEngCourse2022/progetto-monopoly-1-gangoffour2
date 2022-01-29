@@ -1,6 +1,6 @@
 package com.gangoffour2.monopoly.services;
 
-import com.gangoffour2.monopoly.model.Giocatore;
+import com.gangoffour2.monopoly.model.giocatore.Giocatore;
 import com.gangoffour2.monopoly.model.IPartita;
 
 import java.util.ArrayList;

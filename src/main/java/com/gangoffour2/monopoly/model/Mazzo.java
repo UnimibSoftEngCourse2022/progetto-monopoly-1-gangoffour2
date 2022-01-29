@@ -5,6 +5,7 @@ import com.gangoffour2.monopoly.eccezioni.ModificaDenaroException;
 import com.gangoffour2.monopoly.model.carta.Carta;
 import com.gangoffour2.monopoly.model.carta.strategyCarte.RandomCarteStrategy;
 import com.gangoffour2.monopoly.model.carta.strategyCarte.StrategiaCarteVanilla;
+import com.gangoffour2.monopoly.model.giocatore.Giocatore;
 import lombok.Builder;
 import lombok.Data;
 

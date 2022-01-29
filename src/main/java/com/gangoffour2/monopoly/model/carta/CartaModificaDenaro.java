@@ -1,7 +1,7 @@
 package com.gangoffour2.monopoly.model.carta;
 
 import com.gangoffour2.monopoly.eccezioni.ModificaDenaroException;
-import com.gangoffour2.monopoly.model.Giocatore;
+import com.gangoffour2.monopoly.model.giocatore.Giocatore;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.SuperBuilder;

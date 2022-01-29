@@ -3,7 +3,7 @@ package com.gangoffour2.monopoly.model.casella;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.gangoffour2.monopoly.azioni.casella.AttesaLancioDadi;
 import com.gangoffour2.monopoly.azioni.casella.VaiInAttesaPrigione;
-import com.gangoffour2.monopoly.model.Giocatore;
+import com.gangoffour2.monopoly.model.giocatore.Giocatore;
 import com.gangoffour2.monopoly.stati.casella.StatoPrigione;
 import lombok.Data;
 import lombok.EqualsAndHashCode;

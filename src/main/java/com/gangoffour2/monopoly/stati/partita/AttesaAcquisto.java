@@ -5,7 +5,7 @@ import com.gangoffour2.monopoly.azioni.giocatore.AcquistaProprieta;
 import com.gangoffour2.monopoly.azioni.giocatore.AvviaAsta;
 import com.gangoffour2.monopoly.eccezioni.ModificaDenaroException;
 import com.gangoffour2.monopoly.model.Asta;
-import com.gangoffour2.monopoly.model.Giocatore;
+import com.gangoffour2.monopoly.model.giocatore.Giocatore;
 import com.gangoffour2.monopoly.model.casella.Proprieta;
 import lombok.Data;
 import lombok.EqualsAndHashCode;

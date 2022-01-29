@@ -1,4 +1,4 @@
-package com.gangoffour2.monopoly.model;
+package com.gangoffour2.monopoly.model.casella.strategyCaselle;
 
 import com.gangoffour2.monopoly.model.casella.Societa;
 import com.gangoffour2.monopoly.model.casella.Stazione;
@@ -6,7 +6,7 @@ import com.gangoffour2.monopoly.model.casella.Tassa;
 import com.gangoffour2.monopoly.model.casella.Terreno;
 
 
-public class AffittiStrategiaGiocatore implements AffittiStrategy{
+public class PagamentoStrategiaGiocatore implements PagamentoStrategy {
     @Override
     public int calcolaAffitto(Terreno terreno) {
         if (terreno.getAlbergo() != null) {

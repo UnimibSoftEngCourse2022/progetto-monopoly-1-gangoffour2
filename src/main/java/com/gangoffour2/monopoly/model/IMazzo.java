@@ -1,5 +1,7 @@
 package com.gangoffour2.monopoly.model;
 
+import com.gangoffour2.monopoly.model.giocatore.Giocatore;
+
 import java.io.Serializable;
 
 public interface IMazzo extends Serializable {

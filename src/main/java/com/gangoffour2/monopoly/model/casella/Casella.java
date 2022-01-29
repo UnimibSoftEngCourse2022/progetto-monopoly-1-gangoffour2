@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.*;
 import com.gangoffour2.monopoly.azioni.casella.AttesaLancioDadi;
 import com.gangoffour2.monopoly.azioni.casella.AzioneCasella;
 import com.gangoffour2.monopoly.azioni.giocatore.AzioneGiocatore;
-import com.gangoffour2.monopoly.model.Giocatore;
+import com.gangoffour2.monopoly.model.giocatore.Giocatore;
 import com.gangoffour2.monopoly.model.PartitaObserver;
 import com.gangoffour2.monopoly.stati.casella.StatoCasella;
 import lombok.Builder;

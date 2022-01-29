@@ -2,7 +2,7 @@ package com.gangoffour2.monopoly.controller;
 
 import com.gangoffour2.monopoly.azioni.giocatore.*;
 import com.gangoffour2.monopoly.eccezioni.PartitaPienaException;
-import com.gangoffour2.monopoly.model.Giocatore;
+import com.gangoffour2.monopoly.model.giocatore.Giocatore;
 import com.gangoffour2.monopoly.model.IPartita;
 import com.gangoffour2.monopoly.services.PartiteRepository;
 import org.springframework.beans.factory.annotation.Autowired;

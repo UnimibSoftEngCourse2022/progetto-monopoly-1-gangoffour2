@@ -1,5 +1,6 @@
 package com.gangoffour2.monopoly.model;
 
+import com.gangoffour2.monopoly.model.giocatore.Giocatore;
 import lombok.Builder;
 import lombok.Data;
 

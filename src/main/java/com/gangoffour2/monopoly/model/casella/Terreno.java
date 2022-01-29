@@ -1,6 +1,6 @@
 package com.gangoffour2.monopoly.model.casella;
 
-import com.gangoffour2.monopoly.model.AffittiStrategy;
+import com.gangoffour2.monopoly.model.casella.strategyCaselle.PagamentoStrategy;
 import com.gangoffour2.monopoly.model.Albergo;
 import com.gangoffour2.monopoly.model.Casa;
 import com.gangoffour2.monopoly.stati.casella.TerrenoNonAcquistato;
@@ -39,7 +39,7 @@ public class Terreno extends Proprieta {
     }
 
     @Override
-    public int calcolaAffitto(AffittiStrategy strategia) {
+    public int calcolaAffitto(PagamentoStrategy strategia) {
         return strategia.calcolaAffitto(this);
     }
 

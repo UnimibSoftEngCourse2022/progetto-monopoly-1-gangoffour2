@@ -1,6 +1,7 @@
 package com.gangoffour2.monopoly.model;
 
 import com.gangoffour2.monopoly.model.casella.Casella;
+import com.gangoffour2.monopoly.model.giocatore.Giocatore;
 
 import java.io.Serializable;
 import java.util.function.Predicate;

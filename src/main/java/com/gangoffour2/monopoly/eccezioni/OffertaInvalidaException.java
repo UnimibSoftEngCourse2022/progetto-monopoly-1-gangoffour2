@@ -1,6 +1,6 @@
 package com.gangoffour2.monopoly.eccezioni;
 
-import com.gangoffour2.monopoly.model.Giocatore;
+import com.gangoffour2.monopoly.model.giocatore.Giocatore;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor

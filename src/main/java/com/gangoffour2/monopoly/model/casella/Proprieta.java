@@ -1,8 +1,8 @@
 package com.gangoffour2.monopoly.model.casella;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.gangoffour2.monopoly.model.AffittiStrategy;
-import com.gangoffour2.monopoly.model.Giocatore;
+import com.gangoffour2.monopoly.model.casella.strategyCaselle.PagamentoStrategy;
+import com.gangoffour2.monopoly.model.giocatore.Giocatore;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.SuperBuilder;
@@ -21,7 +21,7 @@ public abstract class Proprieta extends Casella {
     protected Proprieta() {
     }
 
-    public abstract int calcolaAffitto(AffittiStrategy strategia);
+    public abstract int calcolaAffitto(PagamentoStrategy strategia);
 
     @Override
     public void randomizzaCasella(float m){

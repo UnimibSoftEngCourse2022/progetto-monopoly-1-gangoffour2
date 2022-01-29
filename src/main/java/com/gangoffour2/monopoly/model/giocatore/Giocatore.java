@@ -1,7 +1,10 @@
-package com.gangoffour2.monopoly.model;
+package com.gangoffour2.monopoly.model.giocatore;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.gangoffour2.monopoly.eccezioni.ModificaDenaroException;
+import com.gangoffour2.monopoly.model.casella.strategyCaselle.PagamentoStrategiaGiocatore;
+import com.gangoffour2.monopoly.model.casella.strategyCaselle.PagamentoStrategy;
+import com.gangoffour2.monopoly.model.IPartita;
 import com.gangoffour2.monopoly.model.carta.Carta;
 import com.gangoffour2.monopoly.model.carta.CartaEsciGratisPrigione;
 import com.gangoffour2.monopoly.model.casella.Casella;
@@ -32,7 +35,7 @@ public class Giocatore implements Serializable {
 
     @JsonIgnore
     @Builder.Default
-    private transient AffittiStrategy strategiaCalcoloAffitto = new AffittiStrategiaGiocatore();
+    private transient PagamentoStrategy strategiaCalcoloAffitto = new PagamentoStrategiaGiocatore();
 
     @Builder.Default
     private Queue<Carta> esciGratis = new LinkedList<>();
