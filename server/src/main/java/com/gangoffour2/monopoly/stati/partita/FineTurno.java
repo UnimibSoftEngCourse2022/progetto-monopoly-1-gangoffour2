@@ -12,6 +12,11 @@ public class FineTurno extends StatoPartita {
     }
 
     @Override
+    public void esegui(){
+        partita.attendiAzione();
+    }
+
+    @Override
     public void onAzioneGiocatore(TerminaTurno terminaTurno){
         partita.fermaAttesa();
         partita.cambiaTurno();

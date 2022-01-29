@@ -100,6 +100,7 @@ public class Partita extends IPartita implements PartitaObserver {
     public synchronized void setStato(StatoPartita nuovoStato) {
         stato = nuovoStato;
         stato.setPartita(this);
+        broadcast();
     }
 
     private void sleep(int millisecondi){
@@ -158,7 +159,7 @@ public class Partita extends IPartita implements PartitaObserver {
 
     @Override
     public void memorizzaStato(StatoPartita statoPartita){
-        stackStati.add(stato);
+        stackStati.addLast(stato);
     }
 
     @Override
@@ -169,6 +170,7 @@ public class Partita extends IPartita implements PartitaObserver {
         }
         else {
             StatoPartita rimosso = stackStati.removeLast();
+            setStato(rimosso);
             rimosso.riprendi();
         }
     }
