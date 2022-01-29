@@ -8,6 +8,7 @@ on:
 jobs:
   build_server:
     runs-on: ubuntu-latest
+    if: hashFile('./server/pom.xml')
     steps:
       - uses: actions/checkout@v2
         with:
