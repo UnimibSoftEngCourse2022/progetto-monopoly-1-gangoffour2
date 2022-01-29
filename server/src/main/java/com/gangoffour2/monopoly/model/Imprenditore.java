@@ -12,5 +12,5 @@ import lombok.experimental.SuperBuilder;
 public class Imprenditore extends Giocatore {
     @JsonIgnore
     @Builder.Default
-    private AffittiStrategy strategiaCalcoloAffitto = new AffittiStrategiaImprenditore();
+    private transient AffittiStrategy strategiaCalcoloAffitto = new AffittiStrategiaImprenditore();
 }

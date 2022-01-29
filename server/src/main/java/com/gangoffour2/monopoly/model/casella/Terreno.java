@@ -59,7 +59,6 @@ public class Terreno extends Proprieta {
         }
     }
 
-
     public enum Colore {
         ROSSO,
         BLU,

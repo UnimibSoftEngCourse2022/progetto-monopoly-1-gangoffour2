@@ -6,8 +6,6 @@ import com.gangoffour2.monopoly.model.casella.Tassa;
 import com.gangoffour2.monopoly.model.casella.Terreno;
 import lombok.Builder;
 
-import java.security.SecureRandom;
-
 @Builder
 public class AffittiStrategiaGiocatore implements AffittiStrategy{
     @Override

@@ -32,7 +32,7 @@ public class Giocatore implements Serializable {
 
     @JsonIgnore
     @Builder.Default
-    private AffittiStrategy strategiaCalcoloAffitto = new AffittiStrategiaGiocatore();
+    private transient AffittiStrategy strategiaCalcoloAffitto = new AffittiStrategiaGiocatore();
 
     @Builder.Default
     private Queue<Carta> esciGratis = new LinkedList<>();

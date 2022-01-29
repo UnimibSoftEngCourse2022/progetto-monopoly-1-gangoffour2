@@ -7,7 +7,7 @@ import com.gangoffour2.monopoly.model.casella.Terreno;
 import lombok.Builder;
 
 @Builder
-public class AffittiStrategiaImprenditore implements AffittiStrategy{
+public class AffittiStrategiaImprenditore extends AffittiStrategiaGiocatore{
     @Override
     public int calcolaAffitto(Terreno terreno) {
         if (terreno.getAlbergo() != null) {
@@ -18,15 +18,7 @@ public class AffittiStrategiaImprenditore implements AffittiStrategy{
         if (!terreno.getListaCase().isEmpty()) {
             return terreno.getAffitti().get(terreno.getListaCase().size() - 1);
         }
-        return terreno.getRendita();
-    }
-    @Override
-    public int calcolaAffitto(Stazione stazione){
-        return stazione.getRendita();
-    }
-    @Override
-    public int calcolaAffitto(Societa societa) {
-    return societa.getRendita();
+        return (int) Math.floor(terreno.getRendita() - terreno.getRendita()* 0.05);
     }
     @Override
     public int calcolaTassa(Tassa tassa){
