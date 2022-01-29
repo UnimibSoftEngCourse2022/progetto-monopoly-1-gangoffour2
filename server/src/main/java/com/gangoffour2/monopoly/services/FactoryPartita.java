@@ -6,9 +6,11 @@ import com.gangoffour2.monopoly.model.carta.Carta;
 import com.gangoffour2.monopoly.model.casella.Casella;
 import com.gangoffour2.monopoly.stati.partita.Lobby;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.util.FileCopyUtils;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.*;
 
 public class FactoryPartita {
@@ -31,8 +33,9 @@ public class FactoryPartita {
 
     public List<Casella> creaCaselle() throws IOException {
         ObjectMapper mapper = new ObjectMapper();
-        File jsonFile = new ClassPathResource("caselle.json").getFile();
-        Casella[] arrayCaselle = mapper.readValue(jsonFile, Casella[].class);
+        byte[] data = FileCopyUtils.copyToByteArray(new ClassPathResource("caselle.json").getInputStream());
+        String json = new String(data, StandardCharsets.UTF_8);
+        Casella[] arrayCaselle = mapper.readValue(json, Casella[].class);
 
         int idCounter = 0;
         for (Casella c : arrayCaselle) {
@@ -44,8 +47,9 @@ public class FactoryPartita {
 
     public Carta[] creaCarte(String nomeFile) throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
-        File jsonFile = new ClassPathResource(nomeFile).getFile();
-        return objectMapper.readValue(jsonFile, Carta[].class);
+        byte[] data = FileCopyUtils.copyToByteArray(new ClassPathResource(nomeFile).getInputStream());
+        String json = new String(data, StandardCharsets.UTF_8);
+        return objectMapper.readValue(json, Carta[].class);
     }
 
     public IMazzo creaMazzo(ITabellone tabellone, Configurazione.Difficolta difficolta) throws IOException {
