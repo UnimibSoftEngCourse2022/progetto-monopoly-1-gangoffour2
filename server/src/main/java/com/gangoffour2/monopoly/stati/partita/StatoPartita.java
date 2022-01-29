@@ -111,6 +111,15 @@ public abstract class StatoPartita implements Serializable {
 
 
     /**
+     * Il metodo riprendi ha lo scopo di "Rientrare" nel flusso di gioco principale. Può essere chiamato dalla partita
+     * Quando, ad esempio, viene terminata un'asta ma non si sa quale stato è corretto riprendere per continuare
+     * la partita in modo coerente.
+     */
+    public void riprendi(){
+        partita.continua();
+    }
+
+    /**
      * Di default, gli eventi arrivati dall'esterno non sbloccano la partita.
      * Ogni stato ridefinirà il suo comportamento in base al tipo dell'azione.
      */

@@ -18,6 +18,6 @@ public class AvviaAsta extends AzioneGiocatore {
 
     @Override
     public void accept(StatoPartita statoPartita) {
-        statoPartita.onAzioneCasella(this);
+        statoPartita.onAzioneGiocatore(this);
     }
 }
