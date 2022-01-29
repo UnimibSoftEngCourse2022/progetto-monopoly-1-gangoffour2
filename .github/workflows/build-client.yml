@@ -8,7 +8,6 @@ on:
 jobs:
   build_client:
     runs-on: ubuntu-latest
-    if: hashFiles('./client/package.json')
     steps:
       - uses: actions/checkout@v2
         with:
