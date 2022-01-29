@@ -5,6 +5,7 @@ import ICasellaProprieta from "../../../interfaces/caselle/ICasellaProprieta";
 import ICasellaTererno from "../../../interfaces/caselle/ICasellaTererno";
 import ICasellaTerreno from "../../../interfaces/caselle/ICasellaTererno";
 import StompController from "../../../application/stompController";
+import Proprieta from "./Proprieta";
 
 interface Props {
     partita: IPartita,
@@ -32,10 +33,6 @@ export class Dashboard extends React.Component<Props, State> {
         }
     }
 
-    handleTiraDadi = () => {
-        StompController.lanciaDadi();
-    }
-
     render() {
         const giocatore = this.props.partita.giocatori.find(el => el.nick === this.props.nickname)
         if (giocatore === undefined)
@@ -49,12 +46,7 @@ export class Dashboard extends React.Component<Props, State> {
                     <div className={"property_list"}>
                         {properietaPossedute.map(el =>
                             <React.Fragment>
-                                <div className={"property_list_element"}>
-                                    <div>
-                                        {el.nome}
-                                    </div>
-                                    {this.computeDescription(el)}
-                                </div>
+                                <Proprieta {...el}/>
                             </React.Fragment>
                         )}
                         {

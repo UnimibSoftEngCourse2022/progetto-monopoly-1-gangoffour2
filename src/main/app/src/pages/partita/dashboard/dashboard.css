@@ -50,22 +50,12 @@
 
 }
 
+
 .property_list {
-    height: 210px;
     margin: 8px;
     overflow: scroll;
     text-align: left;
     border: 1px solid lightgrey;
     border-radius: 10px;
-}
-
-.property_list_element {
-    padding: 20px 10px;
-    margin: 0px auto;
-    border-bottom: 1px solid black;
-}
-
-.subtitle_dashboard {
-    color: gray;
-    padding: 20px;
+    height: 200px;
 }

@@ -3,6 +3,8 @@ import websocket from "websocket"
 import IPartita from "../interfaces/IPartita";
 import IConfigurazione, {Difficolta} from "../interfaces/IConfigurazione";
 import {ObserverSingleton} from "./ObserverSingleton";
+import ICasella from "../interfaces/caselle/ICasella";
+import ICasellaProprieta from "../interfaces/caselle/ICasellaProprieta";
 
 Object.assign(global, {WebSocket: websocket.w3cwebsocket})
 
@@ -52,6 +54,11 @@ export default class StompController {
             client.subscribe("/topic/partite/" + idPartita, (res) => ObserverSingleton.notify(JSON.parse(res.body) as IPartita))
             client.send("/app/partite/" + idPartita + "/entra", {}, nickname)
         })
+    }
+
+    static ipoteca(casella: ICasellaProprieta) {
+        console.log(casella)
+        this.client.send("/app/partite/" + this.idPartita + "/ipoteca", {}, JSON.stringify(casella))
     }
 
     static lanciaDadi() {
