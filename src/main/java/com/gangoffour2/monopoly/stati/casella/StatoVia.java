@@ -17,4 +17,9 @@ public class StatoVia implements StatoCasella {
                 .importo(via.getImporto())
                 .build();
     }
+
+    @Override
+    public AzioneCasella arrivo(){
+        return passaggio();
+    }
 }
