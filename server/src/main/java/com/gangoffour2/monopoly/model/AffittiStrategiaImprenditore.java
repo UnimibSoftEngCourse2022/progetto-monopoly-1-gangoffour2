@@ -10,15 +10,8 @@ import lombok.Builder;
 public class AffittiStrategiaImprenditore extends AffittiStrategiaGiocatore{
     @Override
     public int calcolaAffitto(Terreno terreno) {
-        if (terreno.getAlbergo() != null) {
-            return terreno.getAffitti().get(terreno.getAffitti().size() - 1);
-        } else if (terreno.getListaCase().size() > terreno.getAffitti().size()) {
-            return terreno.getAffitti().get(terreno.getAffitti().size() - 2);
-        }
-        if (!terreno.getListaCase().isEmpty()) {
-            return terreno.getAffitti().get(terreno.getListaCase().size() - 1);
-        }
-        return (int) Math.floor(terreno.getRendita() - terreno.getRendita()* 0.05);
+
+        return (int) Math.floor(super.calcolaAffitto(terreno) - super.calcolaAffitto(terreno)* 0.05);
     }
     @Override
     public int calcolaTassa(Tassa tassa){
