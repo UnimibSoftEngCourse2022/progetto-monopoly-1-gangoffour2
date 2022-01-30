@@ -45,6 +45,10 @@ public class PartiteRepository {
         partite.put(partita.getId(), partita);
     }
 
+    public synchronized IPartita getPartitaById(String idPartita) {
+        return partite.get(idPartita);
+    }
+
     public synchronized List<IPartita> getPartiteAperte() {
         return new ArrayList<>(partite.values());
     }

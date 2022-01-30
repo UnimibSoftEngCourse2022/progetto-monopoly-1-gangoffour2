@@ -4,10 +4,7 @@ import com.gangoffour2.monopoly.model.Configurazione;
 import com.gangoffour2.monopoly.model.IPartita;
 import com.gangoffour2.monopoly.services.FactoryPartita;
 import com.gangoffour2.monopoly.services.PartiteRepository;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.util.List;
@@ -26,5 +23,10 @@ public class WebController {
     @GetMapping("/partite")
     public List<IPartita> getPartiteAperte() {
         return PartiteRepository.getInstance().getPartiteAperte();
+    }
+
+    @GetMapping("/partite/{idPartita}")
+    public IPartita getPartitaById(@PathVariable String idPartita) {
+        return PartiteRepository.getInstance().getPartitaByid(idPartita);
     }
 }

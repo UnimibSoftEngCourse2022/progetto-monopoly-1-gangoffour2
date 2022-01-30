@@ -1,9 +1,8 @@
 import {CompatClient, Stomp} from "@stomp/stompjs";
 import websocket from "websocket"
 import IPartita from "../interfaces/IPartita";
-import IConfigurazione, {Difficolta} from "../interfaces/IConfigurazione";
+import IConfigurazione from "../interfaces/IConfigurazione";
 import {ObserverSingleton} from "./ObserverSingleton";
-import ICasella from "../interfaces/caselle/ICasella";
 import ICasellaProprieta from "../interfaces/caselle/ICasellaProprieta";
 import {ICarta} from "../interfaces/ICarta";
 
@@ -11,7 +10,6 @@ Object.assign(global, {WebSocket: websocket.w3cwebsocket})
 
 const URL = "http://localhost:8080";
 const WS_URL = "ws://localhost:8080";
-
 
 
 export default class StompController {
@@ -29,7 +27,7 @@ export default class StompController {
         })
             .then((res) => {
                 console.log(res)
-                if(res.status === 200){
+                if (res.status === 200) {
                     return res.text()
                 }
                 throw new Error("Impossibile creare una partita")
@@ -40,26 +38,37 @@ export default class StompController {
         return fetch(URL + "/partite")
             .then((res) => {
                 console.log(res)
-                if(res.status === 200){
+                if (res.status === 200) {
                     return res.json()
                 }
-                throw new Error("Impossibile creare una partita")
+                throw new Error("Impossibile ottenere le partita")
             })
     }
 
-    static accediPartita(idPartita: string, nickname: string) {
-        const client = Stomp.client( WS_URL + "/stomp");
+    static getPartita(idPartita: string) {
+        return fetch(URL + "/partite/" + idPartita)
+            .then((res) => {
+                console.log(res)
+                if (res.status === 200) {
+                    return res.json()
+                }
+                throw new Error("Impossibile ottenere la partita")
+            })
+    }
+
+    static accediPartita(idPartita: string, nickname: string, isImprenditore: boolean) {
+        const client = Stomp.client(WS_URL + "/stomp");
         this.client = client;
         this.idPartita = idPartita;
         client.connect({}, () => {
             client.subscribe("/topic/partite/" + idPartita, (res) =>
                 ObserverSingleton.notify(JSON.parse(res.body) as IPartita)
             )
-            client.send("/app/partite/" + idPartita + "/entra", {}, nickname)
+            client.send("/app/partite/" + idPartita + "/entra", {}, JSON.stringify({nickname, isImprenditore}))
         })
     }
 
-    static subscribeCarte(){
+    static subscribeCarte() {
         this.client.subscribe("/topic/partite/" + this.idPartita + "/carta", (res) => {
                 console.log(res.body)
                 ObserverSingleton.notifyCarta(JSON.parse(res.body) as ICarta)
@@ -92,7 +101,7 @@ export default class StompController {
         this.client.send("/app/partite/" + this.idPartita + "/terminaTurno")
     }
 
-    static offri(importo: number){
+    static offri(importo: number) {
         this.client.send("/app/partite/" + this.idPartita + "/offri", {}, String(importo))
     }
 }
