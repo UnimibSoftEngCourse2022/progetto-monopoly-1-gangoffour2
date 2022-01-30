@@ -84,6 +84,7 @@ public class LancioDadi extends StatoPartita {
         partita.broadcast(partita.getMazzo().nextImprevisto(), "carta");
         try {
             partita.getMazzo().pescaImprevisto(partita.getTurnoCorrente().getGiocatore());
+            partita.continua(this);
         }catch (ModificaDenaroException e){
             fallimentoCarta(e.getSoldiDaPagare());
         }
@@ -94,6 +95,7 @@ public class LancioDadi extends StatoPartita {
         partita.broadcast(partita.getMazzo().nextProbabilita(), "carta");
         try {
             partita.getMazzo().pescaProbabilita(partita.getTurnoCorrente().getGiocatore());
+            partita.continua(this);
         }catch (ModificaDenaroException e){
             fallimentoCarta(e.getSoldiDaPagare());
         }
