@@ -47,15 +47,7 @@ public class Tabellone implements ITabellone, Serializable {
         }
     }
 
-    /**
-     * Funzione che sposta un giocatore sul tabellone sulla base della prima occorrenza trovata (tipo, nome, ecc...).
-     * Bisogna passare una lambda che prende come argomento la casella trovata e ritorna vero o falso.
-     *
-     * @param giocatore Il giocatore da spostare
-     * @param predicato La funzione da applicare per capire quando si è arrivati alla casella giusta
-     */
-    @Override
-    public void muoviAProssimaCasella(Giocatore giocatore, Predicate<Casella> predicato) {
+    private int findOffsetProssimaCasella(Giocatore giocatore, Predicate<Casella> predicato){
         Casella corrente = giocatore.getCasellaCorrente();
         int i = caselle.indexOf(corrente);
         int cont = 0;
@@ -66,7 +58,24 @@ public class Tabellone implements ITabellone, Serializable {
             ++cont;
         } while (!predicato.test(prossimaCasella));
 
-        muoviGiocatoreIntero(giocatore, cont);
+        return cont;
+    }
+
+    /**
+     * Funzione che sposta un giocatore sul tabellone sulla base della prima occorrenza trovata (tipo, nome, ecc...).
+     * Bisogna passare una lambda che prende come argomento la casella trovata e ritorna vero o falso.
+     *
+     * @param giocatore Il giocatore da spostare
+     * @param predicato La funzione da applicare per capire quando si è arrivati alla casella giusta
+     */
+    @Override
+    public void muoviAProssimaCasellaIntero(Giocatore giocatore, Predicate<Casella> predicato) {
+        muoviGiocatoreIntero(giocatore, findOffsetProssimaCasella(giocatore, predicato));
+    }
+
+    @Override
+    public void muoviAProssimaCasellaSemplice(Giocatore giocatore,Predicate<Casella> predicato){
+        muoviGiocatore(giocatore, findOffsetProssimaCasella(giocatore, predicato));
     }
 
     @Override

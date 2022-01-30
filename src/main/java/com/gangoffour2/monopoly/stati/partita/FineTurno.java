@@ -33,10 +33,9 @@ public class FineTurno extends StatoPartita {
 
     @Override
     public void onAzioneGiocatore(Ipoteca ipoteca) {
-        Optional<Proprieta> qry = ipoteca.getGiocatore().getProprietaPossedute().stream().filter(c -> c.getId() == ipoteca.getProprieta().getId()).findFirst();
-
+        Optional<Proprieta> qry = ipoteca.getGiocatore().getProprietaPossedute().stream()
+                .filter(c -> c.getId() == ipoteca.getProprieta().getId()).findFirst();
         qry.ifPresent(proprieta -> proprieta.onAzioneGiocatore(ipoteca));
-
         partita.continua(this);
     }
 }

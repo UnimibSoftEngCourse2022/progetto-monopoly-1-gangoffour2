@@ -3,7 +3,6 @@ package com.gangoffour2.monopoly.stati.partita;
 import com.gangoffour2.monopoly.azioni.casella.*;
 import com.gangoffour2.monopoly.azioni.giocatore.LanciaDadi;
 import com.gangoffour2.monopoly.eccezioni.ModificaDenaroException;
-import com.gangoffour2.monopoly.model.carta.Carta;
 import com.gangoffour2.monopoly.model.giocatore.Giocatore;
 import lombok.Builder;
 
@@ -56,9 +55,16 @@ public class LancioDadi extends StatoPartita {
     @Override
     public void onAzioneCasella(ArrestaGiocatore arrestaGiocatore) {
         Giocatore giocatore = partita.getTurnoCorrente().getGiocatore();
-        partita.getTabellone().muoviAProssimaCasella(giocatore, casella -> casella.getTipo().equals("Prigione"));
-        partita.setStato(AttesaPrigione.builder().build());
-        partita.getStato().esegui();
+        if (giocatore.haCartaEsciGratis()) {
+            partita.getMazzo().utilizzaCarta(giocatore);
+            partita.setStato(LancioDadi.builder().build());
+            partita.continua(this);
+        }
+        else {
+            partita.getTabellone().muoviAProssimaCasellaSemplice(giocatore, casella -> casella.getTipo().equals("Prigione"));
+            partita.setStato(FineTurno.builder().build());
+            partita.cambiaTurno();
+        }
     }
 
     @Override

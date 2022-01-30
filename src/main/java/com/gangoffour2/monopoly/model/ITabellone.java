@@ -11,7 +11,9 @@ public interface ITabellone extends Serializable {
 
     void muoviGiocatore(Giocatore giocatore, int quantita);
 
-    void muoviAProssimaCasella(Giocatore giocatore, Predicate<Casella> predicato);
+    void muoviAProssimaCasellaIntero(Giocatore giocatore, Predicate<Casella> predicato);
+
+    void muoviAProssimaCasellaSemplice(Giocatore giocatore, Predicate<Casella> predicato);
 
     void muoviGiocatoreIntero(Giocatore giocatore, int quantita);
 
