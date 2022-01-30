@@ -41,7 +41,6 @@ public class AttesaPrigione extends StatoPartita {
             //Notifica client Tizio ha usato carta
             partita.setStato(LancioDadi.builder().build());
             partita.continuaTurno();
-            partita.broadcast();
         }
     }
 
