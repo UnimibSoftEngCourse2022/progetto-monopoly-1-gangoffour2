@@ -9,7 +9,7 @@ import java.security.SecureRandom;
 public class StrategiaCasellaRandom implements RandomCaselleStrategy{
     @Override
     public void randomizzaCasella(Casella c) {
-        float moltiplicatore = (float) (new SecureRandom().nextFloat()*1.1 + 0.9);
+        float moltiplicatore = (float) (new SecureRandom().nextFloat()*0.4 + 0.8);
         c.randomizzaCasella(moltiplicatore);
     }
 }
