@@ -177,7 +177,7 @@ public class Partita extends IPartita implements PartitaObserver {
         else {
             StatoPartita rimosso = stackStati.removeLast();
             setStato(rimosso);
-            rimosso.acceptRiprendi(statoPartita);
+            statoPartita.acceptRiprendi(rimosso);
         }
     }
 

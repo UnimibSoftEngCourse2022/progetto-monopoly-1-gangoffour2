@@ -49,12 +49,12 @@ public class AttesaAffitto extends StatoPartita {
                 debitore.paga(creditore, soldiDaPagare);
             partita.continua(this);
         }catch (ModificaDenaroException e){
+            partita.memorizzaStato(this);
             partita.setStato(
                     AttesaFallimento.builder()
                             .soldiDaPagare(soldiDaPagare)
                             .build()
             );
-            partita.memorizzaStato(this);
             partita.getStato().esegui();
         }
     }
