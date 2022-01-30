@@ -72,15 +72,21 @@ public class Giocatore implements Serializable {
     }
 
     public void acquistaProprieta(Proprieta proprieta) throws ModificaDenaroException{
-        aggiudica(proprieta, proprieta.getCostoBase());
+        acquistaProprieta(proprieta, null, proprieta.getCostoBase());
     }
 
+    public void acquistaProprieta(Proprieta proprieta, Giocatore venditore, int importo){
+        if (venditore != null){
+            venditore.aggiungiDenaro(importo);
+        }
+        aggiudica(proprieta, importo);
+    }
 
     public void abbandona() {
         lasciaProprieta();
     }
 
-    public void lasciaProprieta() {
+    private void lasciaProprieta() {
         for (Proprieta p : proprietaPossedute) {
             p.setProprietario(null);
         }

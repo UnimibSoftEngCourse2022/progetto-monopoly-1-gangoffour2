@@ -1,9 +1,7 @@
 package com.gangoffour2.monopoly.stati.partita;
 
-import com.gangoffour2.monopoly.azioni.giocatore.DowngradaTerreno;
-import com.gangoffour2.monopoly.azioni.giocatore.Ipoteca;
-import com.gangoffour2.monopoly.azioni.giocatore.TerminaTurno;
-import com.gangoffour2.monopoly.azioni.giocatore.UpgradaTerreno;
+import com.gangoffour2.monopoly.azioni.giocatore.*;
+import com.gangoffour2.monopoly.model.Asta;
 import com.gangoffour2.monopoly.model.casella.Proprieta;
 import com.gangoffour2.monopoly.model.giocatore.Giocatore;
 import lombok.Builder;
@@ -25,6 +23,12 @@ public class FineTurno extends StatoPartita {
 
     @Override
     public void esegui(){
+        partita.attendiAzione();
+    }
+
+
+    @Override
+    public void riprendi(StatoAsta statoAsta){
         partita.attendiAzione();
     }
 
@@ -55,6 +59,21 @@ public class FineTurno extends StatoPartita {
         qry.ifPresent(proprieta -> proprieta.onAzioneGiocatore(downgradeTerreno));
         partita.continua(this);
     }
+
+    @Override
+    public void onAzioneGiocatore(AvviaAsta avviaAsta){
+        Optional<Proprieta> query = findProprieta(avviaAsta.getGiocatore(), avviaAsta.getProprieta());
+        query.ifPresent(casella -> {
+            partita.memorizzaStato(this);
+            partita.setStato(StatoAsta.builder()
+                    .proprieta(casella)
+                    .astaCorrente(Asta.builder().prop(casella).build())
+                    .build());
+            partita.getStato().esegui();
+        });
+    }
+
+
 
     private Optional<Proprieta> findProprieta(Giocatore giocatore, Proprieta proprieta){
         return giocatore.getProprietaPossedute().stream()
