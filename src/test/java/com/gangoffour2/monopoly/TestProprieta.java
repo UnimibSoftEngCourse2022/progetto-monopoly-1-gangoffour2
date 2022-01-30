@@ -154,8 +154,8 @@ class TestProprieta {
         attesaFallimento.onAzioneGiocatore(Ipoteca.builder().giocatore(povero).proprieta(c2).build());
         assertEquals(1000 + c2.getIpoteca() - attesaFallimento.getSoldiDaPagare(), povero.getConto());
 
-        assertEquals(partita.getStato().getTipo(), "FineTurno");
-        assertNotEquals(attesaFallimento.getSoldiDaPagare(), 0);
+        assertEquals("FineTurno", partita.getStato().getTipo());
+        assertNotEquals(0, attesaFallimento.getSoldiDaPagare());
 
         assertEquals(soldiCreditorePrimaDelFallimento + attesaFallimento.getSoldiDaPagare(), creditore.getConto());
 
