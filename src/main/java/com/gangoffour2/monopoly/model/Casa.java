@@ -6,4 +6,6 @@ import java.io.Serializable;
 
 @Builder
 public class Casa implements Edificio, Serializable {
+
+    public Casa(){}
 }

@@ -9,7 +9,7 @@ import UpgradeBtn from "../tastiFunzione/UpgradeBtn";
 
 const translateState: {[key: ICasellaTerrenoState | string]: (terreno: ICasellaTerreno) => string} = {
     "TerrenoNonAcquistato": (terreno) => "",
-    "TerrenoAcquistato": (terreno) => "Case possedute: " + terreno.listaCase?.length ?? 0,
+    "TerrenoAcquistato": (terreno) => "Case possedute: " + terreno.numeroCase,
     "TerrenoIpotecato": (terreno) => "Terreno ipotecato, costo ipoteca: " + terreno.ipoteca
 }
 

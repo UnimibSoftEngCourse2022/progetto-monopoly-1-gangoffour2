@@ -17,7 +17,8 @@ const defaultConfiguration: IConfigurazione = {
     numeroGiocatori: 4,
     facceDadi: 6,
     numeroDadi: 2,
-    triggerDadiUguali: 3
+    triggerDadiUguali: 3,
+    maxCasePerTerreno: 4
 }
 
 export default class CreaPartita extends React.Component<Props, State> {

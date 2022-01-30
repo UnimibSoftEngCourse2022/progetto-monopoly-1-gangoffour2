@@ -1,7 +1,9 @@
 package com.gangoffour2.monopoly.controller;
 
+import com.fasterxml.jackson.annotation.JacksonInject;
 import com.gangoffour2.monopoly.azioni.giocatore.*;
 import com.gangoffour2.monopoly.eccezioni.PartitaPienaException;
+import com.gangoffour2.monopoly.model.Configurazione;
 import com.gangoffour2.monopoly.model.casella.Proprieta;
 import com.gangoffour2.monopoly.model.casella.Terreno;
 import com.gangoffour2.monopoly.model.giocatore.Giocatore;
@@ -157,7 +159,7 @@ public class EventiController {
 
 
     @MessageMapping("/partite/{id}/upgradeTerreno")
-    public void upgradeTerreno(@Payload Terreno terreno, String id, SimpMessageHeaderAccessor headers){
+    public void upgradeTerreno(@Payload Terreno terreno, @DestinationVariable String id, SimpMessageHeaderAccessor headers){
         Giocatore giocatore = PartiteRepository.getInstance().getGiocatoreByIdSessione(headers.getSessionId());
         IPartita partita = PartiteRepository.getInstance().getPartitaByid(id);
         if (partita != null){
@@ -169,7 +171,7 @@ public class EventiController {
     }
 
     @MessageMapping("/partite/{id}/downgradeTerreno")
-    public void downgradeTerreno(@Payload Terreno terreno, String id, SimpMessageHeaderAccessor headers){
+    public void downgradeTerreno(@Payload Terreno terreno, @DestinationVariable String id, SimpMessageHeaderAccessor headers){
         Giocatore giocatore = PartiteRepository.getInstance().getGiocatoreByIdSessione(headers.getSessionId());
         IPartita partita = PartiteRepository.getInstance().getPartitaByid(id);
         if (partita != null){

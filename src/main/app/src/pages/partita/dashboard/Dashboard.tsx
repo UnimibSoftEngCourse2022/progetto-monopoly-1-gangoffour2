@@ -21,18 +21,6 @@ export class Dashboard extends React.Component<Props, State> {
         super(props);
     }
 
-    computeDescription(casella: ICasellaProprieta){
-        switch (casella.type) {
-            case "Terreno":
-                const terreno = casella as ICasellaTererno;
-                if(terreno.albergo)
-                    return "Albero costruito"
-                return "Case possedute: " + (casella as ICasellaTerreno).listaCase?.length ?? 0;
-            default:
-                return "Valore ipoteca: " + casella.ipoteca
-        }
-    }
-
     render() {
         const giocatore = this.props.partita.giocatori.find(el => el.nick === this.props.nickname)
         if (giocatore === undefined)

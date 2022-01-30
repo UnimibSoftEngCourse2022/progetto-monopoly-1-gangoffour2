@@ -5,6 +5,7 @@ import com.gangoffour2.monopoly.azioni.casella.PagaAffitto;
 import com.gangoffour2.monopoly.azioni.giocatore.DowngradaTerreno;
 import com.gangoffour2.monopoly.azioni.giocatore.Ipoteca;
 import com.gangoffour2.monopoly.azioni.giocatore.UpgradaTerreno;
+import com.gangoffour2.monopoly.eccezioni.ModificaDenaroException;
 import lombok.Data;
 import lombok.experimental.SuperBuilder;
 
@@ -35,11 +36,20 @@ public class TerrenoAcquistato extends StatoTerreno {
 
     @Override
     public void onAzioneGiocatore(UpgradaTerreno upgradaTerreno) {
-        terreno.aggiungiEdificio();
+        try {
+            terreno.aggiungiEdificio();
+        }catch (ModificaDenaroException e){
+            System.out.println(e.getSoldiDaPagare());
+            //Non deve gestire l'eccezione se cerca di aggiungere case senza i soldi
+        }
     }
 
     @Override
     public void onAzioneGiocatore(DowngradaTerreno downgradaTerreno) {
-        terreno.rimuoviEdificio();
+        try {
+            terreno.rimuoviEdificio();
+        } catch (ModificaDenaroException e){
+            //Non deve gestire l'eccezione perchè aggiunge solamente i soldi
+        }
     }
 }
