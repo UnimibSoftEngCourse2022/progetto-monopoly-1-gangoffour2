@@ -4,6 +4,8 @@
 ![License](https://img.shields.io/github/license/UnimibSoftEngCourse2022/progetto-monopoly-1-gangoffour2)
 ![Stars](https://img.shields.io/github/stars/UnimibSoftEngCourse2022/progetto-monopoly-1-gangoffour2)
 
+![Monopoly.jpg](Monopoly.jpg?raw=true)
+
 ## Come eseguire il progetto
 
 ### Prerequisiti
