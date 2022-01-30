@@ -200,4 +200,7 @@ public abstract class StatoPartita implements Serializable {
     public void onAzioneGiocatore(TermineAsta termineAsta) {
 
     }
+
+    public void onAzioneGiocatore(VaiInPrigioneAzione vaiInPrigioneAzione) {
+    }
 }
