@@ -1,6 +1,7 @@
 package com.gangoffour2.monopoly.stati.casella;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.gangoffour2.monopoly.azioni.giocatore.LanciaDadi;
 import com.gangoffour2.monopoly.azioni.giocatore.Paga;
 import com.gangoffour2.monopoly.azioni.giocatore.VaiInPrigioneAzione;
 import com.gangoffour2.monopoly.model.casella.Prigione;
@@ -16,6 +17,12 @@ public class StatoPrigione implements StatoCasella {
     protected StatoPrigione(){
 
     }
+
+    @Override
+    public void onAzioneGiocatore(LanciaDadi lanciaDadi){
+        prigione.getGiocatoriInPrigione().remove(lanciaDadi.getGiocatore());
+    }
+
 
     @Override
     public void onAzioneGiocatore(VaiInPrigioneAzione vaiInPrigione){
