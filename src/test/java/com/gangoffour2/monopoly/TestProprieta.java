@@ -158,8 +158,19 @@ class TestProprieta {
         assertNotEquals(0, attesaFallimento.getSoldiDaPagare());
 
         assertEquals(soldiCreditorePrimaDelFallimento + attesaFallimento.getSoldiDaPagare(), creditore.getConto());
+    }
 
+    @Test
+    void testAutoPagamento(){
+        this.acquistoProprieta(1);
 
+        Giocatore g = partita.getTurnoCorrente().getGiocatore();
+        g.setCasellaCorrente(partita.getTabellone().getCasella(0));
+        partita.getTabellone().muoviGiocatore(g, 1);
+        partita.setStato(LancioDadi.builder().build());
+        partita.getTabellone().getCasella(1).arrivo(g);
+
+        assertEquals("FineTurno", partita.getStato().getTipo());
     }
 
     static void fakeTiro(IPartita partita, Giocatore giocatore, int spostamento) {
