@@ -84,6 +84,11 @@ public class Terreno extends Proprieta {
         }
     }
 
+
+    public void reset(){
+        setStato(TerrenoNonAcquistato.builder().terreno(this).build());
+    }
+
     public enum Colore {
         ROSSO,
         BLU,

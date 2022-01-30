@@ -89,6 +89,7 @@ public class Giocatore implements Serializable {
     private void lasciaProprieta() {
         for (Proprieta p : proprietaPossedute) {
             p.setProprietario(null);
+            p.reset();
         }
         proprietaPossedute.clear();
     }
