@@ -12,6 +12,7 @@ export interface ICasella {
     type: string;
     nome: string;
     id: number;
+
 }
 
 export type AllCaselle = ICasellaImprevisto | ICasellaTerreno

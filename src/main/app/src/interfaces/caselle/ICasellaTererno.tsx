@@ -12,6 +12,8 @@ export enum Colore {
     VERDE = "green"
 }
 
+export type ICasellaTerrenoState = "TerrenoAcquistato" | "TerrenoIpotecato" | "TerrenoNonAcquistato"
+
 export interface ICasellaTerreno extends ICasellaProprieta{
     type: "Terreno",
     affitti: number[],
@@ -20,6 +22,9 @@ export interface ICasellaTerreno extends ICasellaProprieta{
     costoCasa: number,
     albergo: IAlbergo | null,
     listaCase: ICasa[] | null,
+    stato: {
+        type: ICasellaTerrenoState
+    }
 }
 
 export default ICasellaTerreno;
