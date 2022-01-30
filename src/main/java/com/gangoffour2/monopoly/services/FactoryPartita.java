@@ -12,6 +12,7 @@ import org.springframework.util.FileCopyUtils;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.security.SecureRandom;
 import java.util.*;
 
 public class FactoryPartita {
@@ -32,18 +33,31 @@ public class FactoryPartita {
         return idPartita;
     }
 
-    public List<Casella> creaCaselle() throws IOException {
+    public List<Casella> creaCaselle(Configurazione.Difficolta difficolta) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         byte[] data = FileCopyUtils.copyToByteArray(new ClassPathResource("caselle.json").getInputStream());
         String json = new String(data, StandardCharsets.UTF_8);
         Casella[] arrayCaselle = mapper.readValue(json, Casella[].class);
 
+
         int idCounter = 0;
         for (Casella c : arrayCaselle) {
             c.setId(idCounter++);
         }
+        ArrayList<Casella> listaCaselle = new ArrayList<>(List.of(arrayCaselle));
+        Casella via = listaCaselle.get(0);
+        Casella prigione = listaCaselle.get(10);
+        Casella parking = listaCaselle.get(20);
+        Casella vaiPrigione = listaCaselle.get(30);
+        if(difficolta == Configurazione.Difficolta.HARD) {
+            Collections.shuffle(listaCaselle);
+            Collections.swap(listaCaselle, 0, listaCaselle.indexOf(via));
+            Collections.swap(listaCaselle, 10, listaCaselle.indexOf(prigione));
+            Collections.swap(listaCaselle, 20, listaCaselle.indexOf(parking));
+            Collections.swap(listaCaselle, 30, listaCaselle.indexOf(vaiPrigione));
+        }
 
-        return new ArrayList<>(List.of(arrayCaselle));
+        return listaCaselle;
     }
 
     public Carta[] creaCarte(String nomeFile) throws IOException {
@@ -66,8 +80,8 @@ public class FactoryPartita {
 
     public Tabellone creaTabellone(Configurazione.Difficolta difficolta) throws IOException {
         if(difficolta == Configurazione.Difficolta.HARD)
-            return Tabellone.builder().caselle(creaCaselle()).strategia(StrategiaCasellaRandom.builder().build()).build();
-        return Tabellone.builder().caselle(creaCaselle()).build();
+            return Tabellone.builder().caselle(creaCaselle(difficolta)).strategia(StrategiaCasellaRandom.builder().build()).build();
+        return Tabellone.builder().caselle(creaCaselle(difficolta)).build();
     }
 
     public IPartita creaPartita(Configurazione config) throws IOException {
