@@ -1,5 +1,6 @@
 package com.gangoffour2.monopoly.stati.casella;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.gangoffour2.monopoly.azioni.giocatore.Paga;
 import com.gangoffour2.monopoly.model.casella.Prigione;
 import lombok.Data;
@@ -8,6 +9,7 @@ import lombok.experimental.SuperBuilder;
 @Data
 @SuperBuilder
 public class StatoPrigione implements StatoCasella {
+    @JsonIgnore
     private Prigione prigione;
 
     @Override

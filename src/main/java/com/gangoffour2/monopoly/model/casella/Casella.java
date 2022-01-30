@@ -17,7 +17,6 @@ import java.util.Objects;
 
 @Data
 @SuperBuilder
-@JsonIgnoreProperties(value = {"stato", "subscribers"})
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.EXISTING_PROPERTY, property = "type")
 @JsonSubTypes({
         @JsonSubTypes.Type(value = Terreno.class, name = "Terreno"),
@@ -36,6 +35,7 @@ public abstract class Casella implements SubjectStatoPartita, Serializable {
     protected int id;
     protected String nome;
     @Builder.Default
+    @JsonIgnore
     protected ArrayList<PartitaObserver> subscribers = new ArrayList<>();
     protected StatoCasella stato;
 
