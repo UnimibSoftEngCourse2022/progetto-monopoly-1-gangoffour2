@@ -1,6 +1,8 @@
 package com.gangoffour2.monopoly.model.casella;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.gangoffour2.monopoly.azioni.giocatore.AvviaAsta;
+import com.gangoffour2.monopoly.azioni.giocatore.AzioneGiocatore;
 import com.gangoffour2.monopoly.model.casella.strategy.PagamentoStrategy;
 import com.gangoffour2.monopoly.model.giocatore.Giocatore;
 import lombok.Data;
@@ -29,4 +31,5 @@ public abstract class Proprieta extends Casella {
         ipoteca = (int) Math.floor(ipoteca*m);
         rendita = (int) Math.floor(rendita*m);
     }
+
 }

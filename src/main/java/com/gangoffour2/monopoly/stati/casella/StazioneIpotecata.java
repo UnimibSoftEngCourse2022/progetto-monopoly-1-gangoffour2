@@ -1,6 +1,7 @@
 package com.gangoffour2.monopoly.stati.casella;
 
-import com.gangoffour2.monopoly.azioni.giocatore.RimuoviIpoteca;
+import com.gangoffour2.monopoly.azioni.giocatore.Ipoteca;
+import com.gangoffour2.monopoly.eccezioni.ModificaDenaroException;
 import lombok.Data;
 import lombok.experimental.SuperBuilder;
 
@@ -12,7 +13,14 @@ public class StazioneIpotecata extends StatoStazione {
     }
 
     @Override
-    public void onAzioneGiocatore(RimuoviIpoteca rimuoviIpoteca) {
-        stazione.setStato(StazioneAcquistata.builder().stazione(stazione).build());
+    public void onAzioneGiocatore(Ipoteca rimuoviIpoteca) {
+        try {
+            stazione.getProprietario().aggiungiDenaro(-stazione.getIpoteca());
+            stazione.setStato(StazioneAcquistata.builder()
+                    .stazione(stazione)
+                    .build());
+        }catch (ModificaDenaroException e){
+            //Il metodo deve essere vuoto perché se non ha i soldi il terreno non viene disipotecato
+        }
     }
 }

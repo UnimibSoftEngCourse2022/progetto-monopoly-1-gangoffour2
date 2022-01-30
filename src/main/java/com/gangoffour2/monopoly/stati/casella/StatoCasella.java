@@ -84,10 +84,6 @@ public interface StatoCasella extends Serializable {
 
     }
 
-    default void onAzioneGiocatore(RimuoviIpoteca rimuoviIpoteca) {
-
-    }
-
     default void onAzioneGiocatore(AstaTerminata astaTerminata) {
 
     }

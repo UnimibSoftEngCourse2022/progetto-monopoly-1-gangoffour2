@@ -185,10 +185,6 @@ public abstract class StatoPartita implements Serializable {
 
     }
 
-    public void onAzioneGiocatore(RimuoviIpoteca rimuoviIpoteca) {
-
-    }
-
     public void onAzioneGiocatore(Offerta offerta) {
 
     }
