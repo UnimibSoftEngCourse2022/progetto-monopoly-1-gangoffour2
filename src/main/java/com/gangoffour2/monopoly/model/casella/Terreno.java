@@ -1,6 +1,6 @@
 package com.gangoffour2.monopoly.model.casella;
 
-import com.gangoffour2.monopoly.model.casella.strategyCaselle.PagamentoStrategy;
+import com.gangoffour2.monopoly.model.casella.strategy.PagamentoStrategy;
 import com.gangoffour2.monopoly.model.Albergo;
 import com.gangoffour2.monopoly.model.Casa;
 import com.gangoffour2.monopoly.stati.casella.TerrenoNonAcquistato;

@@ -1,6 +1,6 @@
 package com.gangoffour2.monopoly.model.casella;
 
-import com.gangoffour2.monopoly.model.casella.strategyCaselle.PagamentoStrategy;
+import com.gangoffour2.monopoly.model.casella.strategy.PagamentoStrategy;
 import com.gangoffour2.monopoly.stati.casella.StazioneNonAcquistata;
 import lombok.Data;
 import lombok.EqualsAndHashCode;

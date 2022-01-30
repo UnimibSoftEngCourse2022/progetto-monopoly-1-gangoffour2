@@ -2,7 +2,6 @@ package com.gangoffour2.monopoly.stati.partita;
 
 import com.gangoffour2.monopoly.azioni.giocatore.Ipoteca;
 import com.gangoffour2.monopoly.azioni.giocatore.TerminaTurno;
-import com.gangoffour2.monopoly.model.casella.Casella;
 import com.gangoffour2.monopoly.model.casella.Proprieta;
 import lombok.Builder;
 

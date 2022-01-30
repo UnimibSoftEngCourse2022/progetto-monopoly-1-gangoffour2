@@ -1,8 +1,8 @@
 package com.gangoffour2.monopoly.model.giocatore;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.gangoffour2.monopoly.model.casella.strategyCaselle.PagamentoStrategiaImprenditore;
-import com.gangoffour2.monopoly.model.casella.strategyCaselle.PagamentoStrategy;
+import com.gangoffour2.monopoly.model.casella.strategy.PagamentoStrategiaImprenditore;
+import com.gangoffour2.monopoly.model.casella.strategy.PagamentoStrategy;
 import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;

@@ -48,6 +48,11 @@ public abstract class Casella implements SubjectStatoPartita, Serializable {
         return getClass().getSimpleName();
     }
 
+    /**
+     *
+     * @param giocatore può essere utilizzato dalle caselle
+     *                  che hanno bisogno di conoscere il giocatore
+     */
     public void arrivo(Giocatore giocatore) {
         notificaTutti(stato.arrivo());
     }

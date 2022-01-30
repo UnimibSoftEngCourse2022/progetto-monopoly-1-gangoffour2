@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class ModificaDenaroException extends RuntimeException {
-    int soldiDaPagare;
+    private final int soldiDaPagare;
 
     public ModificaDenaroException(int soldiDaPagare){
         this.soldiDaPagare = soldiDaPagare;

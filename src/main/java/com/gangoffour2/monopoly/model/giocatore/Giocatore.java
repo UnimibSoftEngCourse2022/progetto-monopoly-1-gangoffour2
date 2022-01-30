@@ -2,8 +2,8 @@ package com.gangoffour2.monopoly.model.giocatore;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.gangoffour2.monopoly.eccezioni.ModificaDenaroException;
-import com.gangoffour2.monopoly.model.casella.strategyCaselle.PagamentoStrategiaGiocatore;
-import com.gangoffour2.monopoly.model.casella.strategyCaselle.PagamentoStrategy;
+import com.gangoffour2.monopoly.model.casella.strategy.PagamentoStrategiaGiocatore;
+import com.gangoffour2.monopoly.model.casella.strategy.PagamentoStrategy;
 import com.gangoffour2.monopoly.model.IPartita;
 import com.gangoffour2.monopoly.model.carta.Carta;
 import com.gangoffour2.monopoly.model.carta.CartaEsciGratisPrigione;

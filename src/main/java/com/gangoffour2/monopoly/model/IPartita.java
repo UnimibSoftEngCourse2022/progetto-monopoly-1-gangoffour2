@@ -37,9 +37,6 @@ public abstract class IPartita implements Serializable {
     protected StatoPartita stato;
 
     @JsonIgnore
-    protected boolean azioneAttesaRicevuta;
-
-    @JsonIgnore
     @Builder.Default
     protected transient TimeoutHandler listenerTimeoutEventi = new TimeoutHandler();
 
