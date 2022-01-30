@@ -73,4 +73,6 @@ public abstract class IPartita implements Serializable {
     public abstract void continua(StatoPartita statoPartita);
 
     public abstract void memorizzaStato(StatoPartita statoPartita);
+
+    public abstract void distruggi();
 }

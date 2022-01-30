@@ -180,4 +180,8 @@ public class Partita extends IPartita implements PartitaObserver {
             rimosso.acceptRiprendi(statoPartita);
         }
     }
+
+    public void distruggi(){
+        listenerTimeoutEventi.stopTimeout();
+    }
 }

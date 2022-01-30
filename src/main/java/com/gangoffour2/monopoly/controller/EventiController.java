@@ -8,6 +8,7 @@ import com.gangoffour2.monopoly.model.casella.Proprieta;
 import com.gangoffour2.monopoly.model.casella.Terreno;
 import com.gangoffour2.monopoly.model.giocatore.Giocatore;
 import com.gangoffour2.monopoly.model.IPartita;
+import com.gangoffour2.monopoly.model.giocatore.Imprenditore;
 import com.gangoffour2.monopoly.services.PartiteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.EventListener;
@@ -44,29 +45,41 @@ public class EventiController {
         if (g != null) {
             g.getPartita().rimuoviGiocatore(g);
             PartiteRepository.getInstance().rimuoviGiocatoreById(applicationEvent.getSessionId());
+            if (g.getPartita().getGiocatori().isEmpty()){
+                PartiteRepository.getInstance().rimuoviPartitaById(g.getPartita().getId());
+                g.getPartita().distruggi();
+            }
         }
     }
 
     @MessageMapping("/partite/{id}/entra")
     public void entraInPartita(
-            @Payload String nick,
+            @Payload GiocatoreEntraRequestBody body,
             @DestinationVariable String id,
             SimpMessageHeaderAccessor head
     ) {
         IPartita partita = PartiteRepository.getInstance().getPartitaByid(id);
         if (partita != null) {
             try {
+                Giocatore g;
+
+                if(body.isImprenditore()) {
+                    g = Imprenditore.builder().nick(body.getNickname()).idSessione(head.getSessionId()).build();
+                } else {
+                    g = Giocatore.builder()
+                            .nick(body.getNickname())
+                            .idSessione(head.getSessionId())
+                            .build();
+                }
+
                 EntraInPartita azione = EntraInPartita.builder()
-                        .giocatore(Giocatore.builder()
-                                .nick(nick)
-                                .idSessione(head.getSessionId())
-                                .build())
+                        .giocatore(g)
                         .build();
                 partita.onAzioneGiocatore(azione);
-                PartiteRepository.getInstance().registraGiocatore(head.getSessionId(), partita.getGiocatoreByNick(nick));
+                PartiteRepository.getInstance().registraGiocatore(head.getSessionId(), partita.getGiocatoreByNick(body.getNickname()));
             } catch (PartitaPienaException e) {
                 Map<String, Object> headers = new HashMap<>();
-                headers.put("nickname", nick);
+                headers.put("nickname", body.getNickname());
                 MessageBrokerSingleton.getInstance().getTemplate()
                         .convertAndSend("/topic/partite/" + id, "Partita piena", headers);
             }

@@ -41,8 +41,7 @@ public class AttesaAcquisto extends StatoPartita {
 
     @Override
     public void riprendi(StatoAsta statoPartita){
-        partita.setStato(FineTurno.builder().build());
-        partita.getStato().esegui();
+        partita.continua(this);
     }
 
     @Override
@@ -56,14 +55,20 @@ public class AttesaAcquisto extends StatoPartita {
 
     @Override
     public void onAzioneGiocatore(AcquistaProprieta acquistaProprieta) {
-        partita.fermaAttesa();
         try {
             acquistaProprieta.getGiocatore().getCasellaCorrente().onAzioneGiocatore(acquistaProprieta);
+            partita.fermaAttesa();
+            partita.continua(this);
         }catch (ModificaDenaroException e){
             partita.memorizzaStato(this);
-            partita.setStato(AttesaFallimento.builder().soldiDaPagare(e.getSoldiDaPagare()).build());
+            partita.setStato(StatoAsta.builder()
+                    .proprieta(daAcquistare)
+                    .astaCorrente(Asta.builder()
+                            .prop(daAcquistare)
+                            .build())
+                    .build()
+            );
         }
-        partita.continua(this);
     }
 
 

@@ -8,7 +8,8 @@ interface Props {
 }
 
 interface State {
-    nickname?: string
+    nickname?: string,
+    isImprenditore: boolean
 }
 
 export default class PartitaRouter extends React.Component<Props, State> {
@@ -21,18 +22,19 @@ export default class PartitaRouter extends React.Component<Props, State> {
         this.idPartita = paths[paths.findIndex(el => el === "partita") + 1];
 
         this.state = {
-            nickname: undefined
+            nickname: undefined,
+            isImprenditore: false
         }
     }
 
-    handle_set_nickname = (nick: string) => {
-        this.setState({nickname: nick})
+    handle_set_giocatore = (nick: string, isImprenditore: boolean) => {
+        this.setState({nickname: nick, isImprenditore})
     }
 
     render() {
         if(this.state.nickname === undefined)
-            return <Lobby setNickame={this.handle_set_nickname}/>
+            return <Lobby setGiocatore={this.handle_set_giocatore} idPartita={this.idPartita}/>
         else
-            return <Partita nickname={this.state.nickname} idPartita={this.idPartita}/>
+            return <Partita isImprenditore={this.state.isImprenditore} nickname={this.state.nickname} idPartita={this.idPartita}/>
     }
 }

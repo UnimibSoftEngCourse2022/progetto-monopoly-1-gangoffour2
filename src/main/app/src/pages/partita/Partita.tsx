@@ -9,7 +9,8 @@ import style from "./partita.module.css"
 
 interface Props {
     idPartita: string,
-    nickname: string
+    nickname: string,
+    isImprenditore: boolean
 }
 
 interface State {
@@ -27,7 +28,7 @@ export default class Partita extends React.Component<Props, State> implements Ob
 
     componentDidMount() {
         ObserverSingleton.addListener(this);
-        StompController.accediPartita(this.props.idPartita, this.props.nickname);
+        StompController.accediPartita(this.props.idPartita, this.props.nickname, this.props.isImprenditore);
     }
 
     componentWillUnmount() {

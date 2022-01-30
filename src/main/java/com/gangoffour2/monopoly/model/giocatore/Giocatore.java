@@ -1,14 +1,16 @@
 package com.gangoffour2.monopoly.model.giocatore;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.gangoffour2.monopoly.eccezioni.ModificaDenaroException;
+import com.gangoffour2.monopoly.model.casella.*;
 import com.gangoffour2.monopoly.model.casella.strategy.PagamentoStrategiaGiocatore;
 import com.gangoffour2.monopoly.model.casella.strategy.PagamentoStrategy;
 import com.gangoffour2.monopoly.model.IPartita;
 import com.gangoffour2.monopoly.model.carta.Carta;
 import com.gangoffour2.monopoly.model.carta.CartaEsciGratisPrigione;
-import com.gangoffour2.monopoly.model.casella.Casella;
-import com.gangoffour2.monopoly.model.casella.Proprieta;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -25,6 +27,11 @@ import java.util.Queue;
 @SuperBuilder
 @AllArgsConstructor
 @NoArgsConstructor
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.EXISTING_PROPERTY, property = "type")
+@JsonSubTypes({
+        @JsonSubTypes.Type(value = Giocatore.class, name = "Giocatore"),
+        @JsonSubTypes.Type(value = Imprenditore.class, name = "Imprenditore"),
+})
 public class Giocatore implements Serializable {
     @JsonIgnore
     private IPartita partita;
@@ -43,6 +50,11 @@ public class Giocatore implements Serializable {
 
     @Builder.Default
     private ArrayList<Proprieta> proprietaPossedute = new ArrayList<>();
+
+    @JsonProperty("type")
+    public String getTipo() {
+        return getClass().getSimpleName();
+    }
 
     public void aggiungiDenaro(int importo) throws ModificaDenaroException {
         if (this.getConto() + importo < 0)
