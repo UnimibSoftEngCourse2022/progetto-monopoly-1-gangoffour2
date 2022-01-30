@@ -6,6 +6,7 @@ import {ObserverSingleton} from "./ObserverSingleton";
 import ICasellaProprieta from "../interfaces/caselle/ICasellaProprieta";
 import {ICarta} from "../interfaces/ICarta";
 import ICasellaTerreno from "../interfaces/caselle/ICasellaTererno";
+import ICasella from "../interfaces/caselle/ICasella";
 
 Object.assign(global, {WebSocket: websocket.w3cwebsocket})
 
@@ -94,8 +95,8 @@ export default class StompController {
         this.client.send("/app/partite/" + this.idPartita + "/paga")
     }
 
-    static avviaAsta() {
-        this.client.send("/app/partite/" + this.idPartita + "/avviaAsta")
+    static avviaAsta(casella: ICasella) {
+        this.client.send("/app/partite/" + this.idPartita + "/avviaAsta", {}, JSON.stringify(casella))
     }
 
     static fineTurno() {
