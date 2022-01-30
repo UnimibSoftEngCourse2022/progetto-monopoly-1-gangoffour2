@@ -21,4 +21,8 @@ public class Societa extends Proprieta {
         return strategia.calcolaAffitto(this);
     }
 
+    @Override
+    public void reset(){
+        setStato(SocietaNonAcquistata.builder().societa(this).build());
+    }
 }

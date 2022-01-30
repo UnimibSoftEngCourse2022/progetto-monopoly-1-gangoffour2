@@ -22,6 +22,8 @@ public abstract class Proprieta extends Casella {
 
     public abstract int calcolaAffitto(PagamentoStrategy strategia);
 
+    public abstract void reset();
+
     @Override
     public void randomizzaCasella(float m){
         costoBase = (int) Math.floor(costoBase*m);

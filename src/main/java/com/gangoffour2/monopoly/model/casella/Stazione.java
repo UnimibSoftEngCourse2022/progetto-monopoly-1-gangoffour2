@@ -20,5 +20,8 @@ public class Stazione extends Proprieta {
         return strategia.calcolaAffitto(this);
     }
 
-
+    @Override
+    public void reset(){
+        setStato(StazioneNonAcquistata.builder().stazione(this).build());
+    }
 }

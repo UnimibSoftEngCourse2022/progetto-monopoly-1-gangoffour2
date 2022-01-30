@@ -26,6 +26,10 @@ $dark-blue: #5a6dba;
 // GLOBAL
 // =================
 
+.container[aria-disabled="true"]{
+  background-color: lightcoral;
+}
+
 * {
   box-sizing: border-box;
 }
