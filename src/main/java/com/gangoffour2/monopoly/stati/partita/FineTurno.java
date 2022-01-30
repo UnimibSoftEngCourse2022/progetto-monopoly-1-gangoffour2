@@ -1,8 +1,11 @@
 package com.gangoffour2.monopoly.stati.partita;
 
+import com.gangoffour2.monopoly.azioni.giocatore.DowngradaTerreno;
 import com.gangoffour2.monopoly.azioni.giocatore.Ipoteca;
 import com.gangoffour2.monopoly.azioni.giocatore.TerminaTurno;
+import com.gangoffour2.monopoly.azioni.giocatore.UpgradaTerreno;
 import com.gangoffour2.monopoly.model.casella.Proprieta;
+import com.gangoffour2.monopoly.model.giocatore.Giocatore;
 import lombok.Builder;
 
 import java.util.Optional;
@@ -33,9 +36,28 @@ public class FineTurno extends StatoPartita {
 
     @Override
     public void onAzioneGiocatore(Ipoteca ipoteca) {
-        Optional<Proprieta> qry = ipoteca.getGiocatore().getProprietaPossedute().stream()
-                .filter(c -> c.getId() == ipoteca.getProprieta().getId()).findFirst();
+        Optional<Proprieta> qry = findProprieta(ipoteca.getGiocatore(), ipoteca.getProprieta());
         qry.ifPresent(proprieta -> proprieta.onAzioneGiocatore(ipoteca));
         partita.continua(this);
+    }
+
+    @Override
+    public void onAzioneGiocatore(UpgradaTerreno upgradeTerreno){
+        Optional<Proprieta> qry = findProprieta(upgradeTerreno.getGiocatore(), upgradeTerreno.getTerreno());
+        qry.ifPresent(proprieta -> proprieta.onAzioneGiocatore(upgradeTerreno));
+        partita.continua(this);
+    }
+
+
+    @Override
+    public void onAzioneGiocatore(DowngradaTerreno downgradeTerreno){
+        Optional<Proprieta> qry = findProprieta(downgradeTerreno.getGiocatore(), downgradeTerreno.getTerreno());
+        qry.ifPresent(proprieta -> proprieta.onAzioneGiocatore(downgradeTerreno));
+        partita.continua(this);
+    }
+
+    private Optional<Proprieta> findProprieta(Giocatore giocatore, Proprieta proprieta){
+        return giocatore.getProprietaPossedute().stream()
+                .filter(c -> c.getId() == proprieta.getId()).findFirst();
     }
 }
