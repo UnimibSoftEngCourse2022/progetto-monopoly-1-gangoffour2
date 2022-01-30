@@ -18,8 +18,9 @@ export class Societa extends React.Component<Props, State> {
             icona = "fa-faucet";
             classe = "waterworks"
         }
+
         return <div className={"space utility " + classe}>
-            <div className="container">
+            <div className="container" aria-disabled={this.props.casella.stato.type === "SocietaIpotecata"}>
                 <div className="name">{this.props.casella.nome}</div>
                 <i className={"drawing fa " + icona}/>
                 <div className="price">{this.props.casella.costoBase}</div>
