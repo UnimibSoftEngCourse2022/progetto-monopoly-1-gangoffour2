@@ -10,9 +10,8 @@ import ICasella from "../interfaces/caselle/ICasella";
 
 Object.assign(global, {WebSocket: websocket.w3cwebsocket})
 
-const URL = "http://localhost:8080";
-const WS_URL = "ws://localhost:8080";
-
+const URL = "http://" + (process.env.NODE_ENV === "development" ? "localhost:8080" : window.location.host);
+const WS_URL = "ws://" + (process.env.NODE_ENV === "development" ? "localhost:8080" : window.location.host);
 
 export default class StompController {
 
