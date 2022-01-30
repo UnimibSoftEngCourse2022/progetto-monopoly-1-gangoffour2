@@ -2,6 +2,7 @@ package com.gangoffour2.monopoly.stati.partita;
 
 import com.gangoffour2.monopoly.azioni.casella.*;
 import com.gangoffour2.monopoly.azioni.giocatore.LanciaDadi;
+import com.gangoffour2.monopoly.azioni.giocatore.VaiInPrigioneAzione;
 import com.gangoffour2.monopoly.eccezioni.ModificaDenaroException;
 import com.gangoffour2.monopoly.model.giocatore.Giocatore;
 import lombok.Builder;
@@ -73,7 +74,7 @@ public class LancioDadi extends StatoPartita {
         }
         else {
             partita.getTabellone().muoviAProssimaCasellaSemplice(giocatore, casella -> casella.getTipo().equals("Prigione"));
-            partita.setStato(FineTurno.builder().build());
+            giocatore.getCasellaCorrente().onAzioneGiocatore(VaiInPrigioneAzione.builder().giocatore(giocatore).build());
             partita.cambiaTurno();
         }
     }

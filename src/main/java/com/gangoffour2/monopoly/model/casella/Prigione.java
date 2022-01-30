@@ -22,6 +22,7 @@ public class Prigione extends Casella {
 
     protected Prigione() {
         stato = StatoPrigione.builder().prigione(this).build();
+        turniInPrigione = 1;
     }
 
     public Integer liberaGiocatore(Giocatore giocatore) {
@@ -44,6 +45,4 @@ public class Prigione extends Casella {
             notificaTutti(VaiInAttesaPrigione.builder().giocatore(g).build());
         }
     }
-
-
 }

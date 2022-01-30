@@ -13,6 +13,12 @@ public class AttesaPrigione extends StatoPartita {
         statoPartita.riprendi(this);
     }
 
+
+    @Override
+    public void onTimeout(){
+        partita.cambiaTurno();
+    }
+
     @Override
     public void onAzioneGiocatore(LanciaDadi lanciaDadi) {
         partita.fermaAttesa();
@@ -21,11 +27,12 @@ public class AttesaPrigione extends StatoPartita {
 
     @Override
     public void onAzioneGiocatore(Paga paga) {
-        partita.fermaAttesa();
         try {
             paga.getGiocatore().getCasellaCorrente().onAzioneGiocatore(paga);
-        }catch (ModificaDenaroException e){
+            partita.fermaAttesa();
             partita.continua(this);
+        }catch (ModificaDenaroException ignored){
+            partita.cambiaTurno();
         }
     }
 

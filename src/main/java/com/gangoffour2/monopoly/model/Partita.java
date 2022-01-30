@@ -3,6 +3,7 @@ package com.gangoffour2.monopoly.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.gangoffour2.monopoly.azioni.casella.AzioneCasella;
 import com.gangoffour2.monopoly.azioni.giocatore.AzioneGiocatore;
+import com.gangoffour2.monopoly.azioni.giocatore.VaiInPrigioneAzione;
 import com.gangoffour2.monopoly.controller.MessageBrokerSingleton;
 import com.gangoffour2.monopoly.eccezioni.GiocatoreEsistenteException;
 import com.gangoffour2.monopoly.eccezioni.PartitaPienaException;
@@ -61,14 +62,12 @@ public class Partita extends IPartita implements PartitaObserver {
     }
 
     public synchronized void cambiaTurno() {
-        setStato(InizioTurno.builder().build());
         Giocatore curr = turnoCorrente.getGiocatore();
-
         if(curr == giocatori.get(0)) {
             tabellone.randomizzaCaselle();
             mazzo.randomizzaCarte();
         }
-
+        setStato(InizioTurno.builder().build());
         setTurnoCorrente(Turno.builder()
                 .giocatore(giocatori.get((giocatori.indexOf(curr) + 1) % giocatori.size()))
                 .triggerDadiUguali(config.getTriggerDadiUguali())
@@ -129,8 +128,13 @@ public class Partita extends IPartita implements PartitaObserver {
         else if (!turnoCorrente.isTerminato()){
             turnoCorrente.lancioDadi(config.getFacceDadi());
             if (turnoCorrente.limitePrigione()){
-                setStato(AttesaPrigione.builder().build());
-                stato.esegui();
+                Giocatore giocatore = turnoCorrente.getGiocatore();
+                tabellone.muoviAProssimaCasellaSemplice(giocatore, casella -> casella.getNome().equals("Prigione"));
+                turnoCorrente.getGiocatore().getCasellaCorrente().onAzioneGiocatore(VaiInPrigioneAzione
+                        .builder()
+                        .giocatore(giocatore)
+                        .build());
+                cambiaTurno();
             }
             else {
                 turnoCorrente.prossimoEffetto(tabellone);
@@ -177,7 +181,7 @@ public class Partita extends IPartita implements PartitaObserver {
         else {
             StatoPartita rimosso = stackStati.removeLast();
             setStato(rimosso);
-            rimosso.acceptRiprendi(statoPartita);
+            statoPartita.acceptRiprendi(rimosso);
         }
     }
 

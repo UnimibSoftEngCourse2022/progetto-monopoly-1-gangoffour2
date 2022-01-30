@@ -31,7 +31,6 @@ public class AttesaFallimento extends StatoPartita{
     void checkFallimento() {
         Giocatore giocatore = partita.getTurnoCorrente().getGiocatore();
         if(giocatore.getConto() > soldiDaPagare){
-            partita.setStato(LancioDadi.builder().build());
             partita.continua(this);
         }else {
             partita.attendiAzione();

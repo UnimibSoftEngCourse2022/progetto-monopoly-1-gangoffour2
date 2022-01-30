@@ -2,17 +2,17 @@ package com.gangoffour2.monopoly;
 
 import com.gangoffour2.monopoly.azioni.giocatore.*;
 import com.gangoffour2.monopoly.eccezioni.GiocatoreEsistenteException;
+import com.gangoffour2.monopoly.model.casella.Proprieta;
+import com.gangoffour2.monopoly.model.casella.Terreno;
 import com.gangoffour2.monopoly.model.giocatore.Giocatore;
 import com.gangoffour2.monopoly.model.IPartita;
 import com.gangoffour2.monopoly.model.Turno;
 import com.gangoffour2.monopoly.model.casella.Casella;
 import com.gangoffour2.monopoly.stati.casella.SocietaIpotecata;
 import com.gangoffour2.monopoly.stati.casella.StazioneIpotecata;
+import com.gangoffour2.monopoly.stati.casella.TerrenoAcquistato;
 import com.gangoffour2.monopoly.stati.casella.TerrenoIpotecato;
-import com.gangoffour2.monopoly.stati.partita.AttesaAcquisto;
-import com.gangoffour2.monopoly.stati.partita.FineTurno;
-import com.gangoffour2.monopoly.stati.partita.LancioDadi;
-import com.gangoffour2.monopoly.stati.partita.Lobby;
+import com.gangoffour2.monopoly.stati.partita.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -134,6 +134,32 @@ class TestProprieta {
         partita.getListenerTimeoutEventi().stopTimeout();
 
         assertEquals("AttesaFallimento", partita.getStato().getTipo());
+    }
+
+    @Test
+    void testPagamentoFallimento(){
+        this.testFallimento();
+        assertEquals("AttesaFallimento", partita.getStato().getTipo());
+        AttesaFallimento attesaFallimento = (AttesaFallimento) partita.getStato();
+        Giocatore povero = partita.getTurnoCorrente().getGiocatore();
+        Giocatore creditore = partita.getGiocatori().get(1);
+        int soldiCreditorePrimaDelFallimento = creditore.getConto();
+        assertNotEquals(povero, creditore);
+
+        Terreno c2 = (Terreno) partita.getTabellone().getCasella(3);
+        c2.setProprietario(povero);
+        c2.setStato(TerrenoAcquistato.builder().terreno(c2).build());
+        povero.getProprietaPossedute().add(c2);
+        povero.setConto(1000);
+        attesaFallimento.onAzioneGiocatore(Ipoteca.builder().giocatore(povero).proprieta(c2).build());
+        assertEquals(1000 + c2.getIpoteca() - attesaFallimento.getSoldiDaPagare(), povero.getConto());
+
+        assertEquals("FineTurno", partita.getStato().getTipo());
+        assertNotEquals(0, attesaFallimento.getSoldiDaPagare());
+
+        assertEquals(soldiCreditorePrimaDelFallimento + attesaFallimento.getSoldiDaPagare(), creditore.getConto());
+
+
     }
 
     static void fakeTiro(IPartita partita, Giocatore giocatore, int spostamento) {
