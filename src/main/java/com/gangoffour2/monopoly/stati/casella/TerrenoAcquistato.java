@@ -6,7 +6,6 @@ import com.gangoffour2.monopoly.azioni.giocatore.DowngradaTerreno;
 import com.gangoffour2.monopoly.azioni.giocatore.Ipoteca;
 import com.gangoffour2.monopoly.azioni.giocatore.UpgradaTerreno;
 import com.gangoffour2.monopoly.eccezioni.ModificaDenaroException;
-import com.gangoffour2.monopoly.model.Partita;
 import lombok.Data;
 import lombok.experimental.SuperBuilder;
 import org.slf4j.Logger;

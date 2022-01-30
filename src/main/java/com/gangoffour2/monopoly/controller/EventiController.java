@@ -56,7 +56,7 @@ public class EventiController {
             @DestinationVariable String id,
             SimpMessageHeaderAccessor head
     ) {
-        IPartita partita = PartiteRepository.getInstance().getPartitaByid(id);
+        IPartita partita = PartiteRepository.getInstance().getPartitaById(id);
         if (partita != null) {
             try {
                 Giocatore g;
@@ -90,7 +90,7 @@ public class EventiController {
             SimpMessageHeaderAccessor head
     ) {
         Giocatore giocatore = PartiteRepository.getInstance().getGiocatoreByIdSessione(head.getSessionId());
-        IPartita partita = PartiteRepository.getInstance().getPartitaByid(id);
+        IPartita partita = PartiteRepository.getInstance().getPartitaById(id);
         partita.rimuoviGiocatore(giocatore);
     }
 
@@ -101,7 +101,7 @@ public class EventiController {
     ) {
         Giocatore giocatore = PartiteRepository.getInstance().getGiocatoreByIdSessione(head.getSessionId());
         AcquistaProprieta acquistaProprieta = AcquistaProprieta.builder().giocatore(giocatore).build();
-        IPartita partita = PartiteRepository.getInstance().getPartitaByid(id);
+        IPartita partita = PartiteRepository.getInstance().getPartitaById(id);
         if (partita != null) {
             partita.onAzioneGiocatore(acquistaProprieta);
         }
@@ -114,7 +114,7 @@ public class EventiController {
     ) {
         Giocatore giocatore = PartiteRepository.getInstance().getGiocatoreByIdSessione(head.getSessionId());
         LanciaDadi lanciaDadi = LanciaDadi.builder().giocatore(giocatore).build();
-        IPartita partita = PartiteRepository.getInstance().getPartitaByid(id);
+        IPartita partita = PartiteRepository.getInstance().getPartitaById(id);
         if (partita != null) {
             partita.onAzioneGiocatore(lanciaDadi);
         }
@@ -123,16 +123,19 @@ public class EventiController {
     @MessageMapping("/partite/{id}/ipoteca")
     public void ipoteca(@Payload Proprieta proprieta, @DestinationVariable String id, SimpMessageHeaderAccessor head) {
         Giocatore giocatore = PartiteRepository.getInstance().getGiocatoreByIdSessione(head.getSessionId());
-        IPartita partita = PartiteRepository.getInstance().getPartitaByid(id);
+        IPartita partita = PartiteRepository.getInstance().getPartitaById(id);
         partita.onAzioneGiocatore(Ipoteca.builder().giocatore(giocatore).proprieta(proprieta).build());
     }
 
     @MessageMapping("/partite/{id}/avviaAsta")
-    public void avviaAsta(@DestinationVariable String id, SimpMessageHeaderAccessor head) {
+    public void avviaAsta(@Payload Proprieta proprieta, @DestinationVariable String id, SimpMessageHeaderAccessor head) {
         Giocatore giocatore = PartiteRepository.getInstance().getGiocatoreByIdSessione(head.getSessionId());
-        IPartita partita = PartiteRepository.getInstance().getPartitaByid(id);
-        partita.onAzioneGiocatore(AvviaAsta.builder().giocatore(giocatore).build());
-
+        IPartita partita = PartiteRepository
+                .getInstance()
+                .getPartitaById(id);
+        partita.onAzioneGiocatore(AvviaAsta.builder()
+                .proprieta(proprieta)
+                .giocatore(giocatore).build());
     }
 
     @MessageMapping("/partite/{id}/offri")
@@ -143,7 +146,7 @@ public class EventiController {
     ) {
         Giocatore giocatore = PartiteRepository.getInstance().getGiocatoreByIdSessione(head.getSessionId());
         Offerta offerta = Offerta.builder().giocatore(giocatore).valore(valore).build();
-        IPartita partita = PartiteRepository.getInstance().getPartitaByid(id);
+        IPartita partita = PartiteRepository.getInstance().getPartitaById(id);
         if (partita != null) {
             partita.onAzioneGiocatore(offerta);
         }
@@ -153,7 +156,7 @@ public class EventiController {
     @MessageMapping("/partite/{id}/terminaTurno")
     public void terminaTurno(@DestinationVariable String id, SimpMessageHeaderAccessor header){
         Giocatore giocatore = PartiteRepository.getInstance().getGiocatoreByIdSessione(header.getSessionId());
-        IPartita partita = PartiteRepository.getInstance().getPartitaByid(id);
+        IPartita partita = PartiteRepository.getInstance().getPartitaById(id);
         if (partita != null) {
             partita.onAzioneGiocatore(TerminaTurno.builder().giocatore(giocatore).build());
         }
@@ -162,7 +165,7 @@ public class EventiController {
     @MessageMapping("/partite/{id}/paga")
     public void pagaAffitto(@DestinationVariable String id, SimpMessageHeaderAccessor header){
         Giocatore giocatore = PartiteRepository.getInstance().getGiocatoreByIdSessione(header.getSessionId());
-        IPartita partita = PartiteRepository.getInstance().getPartitaByid(id);
+        IPartita partita = PartiteRepository.getInstance().getPartitaById(id);
         if (partita != null){
             partita.onAzioneGiocatore(Paga.builder().giocatore(giocatore).build());
         }
@@ -172,7 +175,7 @@ public class EventiController {
     @MessageMapping("/partite/{id}/upgradeTerreno")
     public void upgradeTerreno(@Payload Terreno terreno, @DestinationVariable String id, SimpMessageHeaderAccessor headers){
         Giocatore giocatore = PartiteRepository.getInstance().getGiocatoreByIdSessione(headers.getSessionId());
-        IPartita partita = PartiteRepository.getInstance().getPartitaByid(id);
+        IPartita partita = PartiteRepository.getInstance().getPartitaById(id);
         if (partita != null){
             partita.onAzioneGiocatore(UpgradaTerreno.builder()
                     .giocatore(giocatore)
@@ -184,7 +187,7 @@ public class EventiController {
     @MessageMapping("/partite/{id}/downgradeTerreno")
     public void downgradeTerreno(@Payload Terreno terreno, @DestinationVariable String id, SimpMessageHeaderAccessor headers){
         Giocatore giocatore = PartiteRepository.getInstance().getGiocatoreByIdSessione(headers.getSessionId());
-        IPartita partita = PartiteRepository.getInstance().getPartitaByid(id);
+        IPartita partita = PartiteRepository.getInstance().getPartitaById(id);
         if (partita != null){
             partita.onAzioneGiocatore(DowngradaTerreno.builder()
                     .giocatore(giocatore)

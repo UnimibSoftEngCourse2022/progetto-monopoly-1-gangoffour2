@@ -31,7 +31,7 @@ export default class PopupAcquisto extends React.Component<PopupProps, State> {
                         {this.props.isMioTurno &&
                             <PopupButtonContainer>
                                 <button onClick={() => StompController.acquista()}>Compra</button>
-                                <button onClick = {() => StompController.avviaAsta()}>Metti all'asta</button>
+                                <button onClick = {() => StompController.avviaAsta(this.props.giocatore.casellaCorrente)}>Metti all'asta</button>
                             </PopupButtonContainer>
                         }
                         {translateCarteProprieta[casellaCorrente.type](casellaCorrente)}

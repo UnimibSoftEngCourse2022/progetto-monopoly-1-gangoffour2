@@ -93,4 +93,7 @@ public interface StatoCasella extends Serializable {
 
     }
 
+    default void onAzioneGiocatore(TermineAsta termineAsta){
+
+    }
 }

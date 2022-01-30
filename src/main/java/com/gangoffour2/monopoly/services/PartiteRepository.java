@@ -37,16 +37,12 @@ public class PartiteRepository {
         giocatori.put(idSessione, giocatore);
     }
 
-    public synchronized IPartita getPartitaByid(String id) {
+    public synchronized IPartita getPartitaById(String id) {
         return partite.get(id);
     }
 
     public synchronized void addPartita(IPartita partita) {
         partite.put(partita.getId(), partita);
-    }
-
-    public synchronized IPartita getPartitaById(String idPartita) {
-        return partite.get(idPartita);
     }
 
     public synchronized List<IPartita> getPartiteAperte() {
