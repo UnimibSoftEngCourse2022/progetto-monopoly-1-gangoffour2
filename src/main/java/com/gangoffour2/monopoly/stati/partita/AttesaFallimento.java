@@ -1,10 +1,13 @@
 package com.gangoffour2.monopoly.stati.partita;
 
 import com.gangoffour2.monopoly.azioni.giocatore.Ipoteca;
+import com.gangoffour2.monopoly.model.casella.Proprieta;
 import com.gangoffour2.monopoly.model.giocatore.Giocatore;
 import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+
+import java.util.Optional;
 
 @Builder
 @Data
@@ -34,7 +37,10 @@ public class AttesaFallimento extends StatoPartita{
 
     @Override
     public void onAzioneGiocatore(Ipoteca ipoteca) {
-        ipoteca.getProprieta().onAzioneGiocatore(ipoteca);
-        checkFallimento();
+        Optional<Proprieta> qry = ipoteca.getGiocatore().getProprietaPossedute().stream()
+                .filter(c -> c.getId() == ipoteca.getProprieta().getId()).findFirst();
+        qry.ifPresent(proprieta -> proprieta.onAzioneGiocatore(ipoteca));
+        partita.continua(this);
+
     }
 }
