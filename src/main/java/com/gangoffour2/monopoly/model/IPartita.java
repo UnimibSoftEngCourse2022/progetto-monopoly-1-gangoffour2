@@ -52,6 +52,8 @@ public abstract class IPartita implements Serializable {
 
     public abstract void broadcast();
 
+    public abstract <T> void broadcast(T obj, String name);
+
     public abstract void onAzioneCasella(AzioneCasella azione);
 
     public abstract void onAzioneGiocatore(AzioneGiocatore azione);

@@ -12,6 +12,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.SuperBuilder;
+import org.apache.logging.log4j.message.Message;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -84,6 +85,10 @@ public class Partita extends IPartita implements PartitaObserver {
 
     public void broadcast() {
         MessageBrokerSingleton.getInstance().broadcast(this);
+    }
+
+    public <T> void broadcast(T obj, String nome){
+        MessageBrokerSingleton.getInstance().broadcast(id, nome, obj);
     }
 
     @Override

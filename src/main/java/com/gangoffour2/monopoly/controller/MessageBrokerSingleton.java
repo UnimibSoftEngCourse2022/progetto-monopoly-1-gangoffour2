@@ -23,4 +23,9 @@ public class MessageBrokerSingleton {
     public synchronized void broadcast(IPartita partita) {
         template.convertAndSend("/topic/partite/" + partita.getId(), partita);
     }
+
+
+    public <T> void broadcast(String idPartita, String name,T oggetto){
+        template.convertAndSend("/topic/partite/" + idPartita + "/" + name, oggetto);
+    }
 }

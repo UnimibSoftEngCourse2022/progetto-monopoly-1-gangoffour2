@@ -47,4 +47,12 @@ public class Mazzo implements IMazzo {
         probabilita.forEach(c -> strategiaMazzo.randomizzaCarta(c));
         imprevisti.forEach(c -> strategiaMazzo.randomizzaCarta(c));
     }
+
+    public Carta nextProbabilita(){
+        return probabilita.peek();
+    }
+
+    public Carta nextImprevisto(){
+        return imprevisti.peek();
+    }
 }
