@@ -48,10 +48,14 @@ public class LancioDadi extends StatoPartita {
 
     @Override
     public void onAzioneCasella(PagaAffitto pagaAffitto) {
-        partita.setStato(AttesaAffitto.builder()
-                .proprieta(pagaAffitto.getProprieta())
-                .build());
-        partita.getStato().esegui();
+        if(pagaAffitto.getProprieta().getProprietario().equals(partita.getTurnoCorrente().getGiocatore())) {
+            partita.continua(this);
+        } else {
+            partita.setStato(AttesaAffitto.builder()
+                    .proprieta(pagaAffitto.getProprieta())
+                    .build());
+            partita.getStato().esegui();
+        }
     }
 
     @Override
