@@ -80,7 +80,8 @@
   },
   {
     "type": "Prigione",
-    "nome": "Prigione"
+    "nome": "Prigione",
+    "cauzione": 50
   },
   {
     "type": "Terreno",
