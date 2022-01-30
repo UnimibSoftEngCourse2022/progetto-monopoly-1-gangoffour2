@@ -10,6 +10,7 @@
 
 ### Prerequisiti
 
+- [Java 11](https://www.oracle.com/it/java/technologies/javase/jdk11-archive-downloads.html)
 - [Maven](https://maven.apache.org/install.html)
 - [Git](https://git-scm.com/downloads)
 
