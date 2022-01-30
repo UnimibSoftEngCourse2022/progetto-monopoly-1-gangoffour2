@@ -48,4 +48,8 @@ public class PartiteRepository {
     public synchronized List<IPartita> getPartiteAperte() {
         return new ArrayList<>(partite.values());
     }
+
+    public synchronized void rimuoviPartitaById(String id) {
+        partite.remove(id);
+    }
 }

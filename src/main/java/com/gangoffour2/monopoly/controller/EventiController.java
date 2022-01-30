@@ -42,6 +42,10 @@ public class EventiController {
         if (g != null) {
             g.getPartita().rimuoviGiocatore(g);
             PartiteRepository.getInstance().rimuoviGiocatoreById(applicationEvent.getSessionId());
+            if (g.getPartita().getGiocatori().isEmpty()){
+                PartiteRepository.getInstance().rimuoviPartitaById(g.getPartita().getId());
+                g.getPartita().distruggi();
+            }
         }
     }
 
