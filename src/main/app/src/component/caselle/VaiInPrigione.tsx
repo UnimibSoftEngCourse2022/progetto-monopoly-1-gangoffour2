@@ -11,11 +11,6 @@ interface Props {
 }
 
 export class VaiInPrigione extends React.Component<Props, State> {
-
-    constructor(props: Props) {
-        super(props);
-    }
-
     render() {
         return <div className="space corner go-to-jail">
             <div className="container">

@@ -1,6 +1,5 @@
 import React from "react";
 import "../../App.css";
-import StompController from "../../application/stompController";
 import CreaPartita from "./CreaPartita";
 import "./Home.css";
 import AccediPartita from "./AccediPartita";

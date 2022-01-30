@@ -11,11 +11,6 @@ interface Props {
 }
 
 export class Imprevisto extends React.Component<Props, State> {
-
-    constructor(props: Props) {
-        super(props);
-    }
-
     render() {
         return <div className="space chance">
             <div className="container">

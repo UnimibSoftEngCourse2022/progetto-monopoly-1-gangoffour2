@@ -15,11 +15,6 @@ interface State {
 }
 
 export default class Tabellone extends React.Component<Props, State> {
-    constructor(props: Props){
-        super(props);
-    }
-
-
     costruisciRiga(inizio: number, fine: number, classe: string, reverse: boolean){
         let riga : JSX.Element[] = []
         this.props.caselle.slice(inizio, fine).forEach((casella: ICasella) => {

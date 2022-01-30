@@ -1,6 +1,6 @@
 import React from "react";
 import StompController from "../../../application/stompController";
-import {ObserverCarta, ObserverPartita, ObserverSingleton} from "../../../application/ObserverSingleton";
+import {ObserverCarta, ObserverSingleton} from "../../../application/ObserverSingleton";
 import {ICarta} from "../../../interfaces/ICarta";
 import IPartita from "../../../interfaces/IPartita";
 import PopupRouterAzioni from "./PopupRouterAzioni";
@@ -47,8 +47,4 @@ export default class PopupRouter extends React.Component<Props, State> implement
             <PopupRouterAzioni partita={this.props.partita} nickname={this.props.nickname}/>
         </div>
     }
-
-
-
-
 }

@@ -14,24 +14,24 @@ export default class PopupLancioDadi extends React.Component<PopupProps, State> 
 
         const nome = this.props.giocatore.nick;
         let testo = "";
-        if(!this.props.isMioTurno) {
+        if (!this.props.isMioTurno) {
             testo = "Il giocatore " + this.props.giocatore.nick + "sta lanciando i dadi";
         }
 
-        let turnoCorrente = this.props.partita.turnoCorrente;
-            return (
-                <div>
-                    <Popup trigger={true} onClose={() => {}} title={"È il turno di " + nome}>
-                        <div className={"container-popup-acquisto"}>
-                            <p>{testo}</p>
-                            {this.props.isMioTurno &&
-                                <PopupButtonContainer>
-                                    <button onClick={() => StompController.lanciaDadi()}>Lancia i dadi</button>
-                                </PopupButtonContainer>
-                            }
-                        </div>
-                    </Popup>
-                </div>
-            )
+        return (
+            <div>
+                <Popup trigger={true} onClose={() => {
+                }} title={"È il turno di " + nome}>
+                    <div className={"container-popup-acquisto"}>
+                        <p>{testo}</p>
+                        {this.props.isMioTurno &&
+                            <PopupButtonContainer>
+                                <button onClick={() => StompController.lanciaDadi()}>Lancia i dadi</button>
+                            </PopupButtonContainer>
+                        }
+                    </div>
+                </Popup>
+            </div>
+        )
     }
 }

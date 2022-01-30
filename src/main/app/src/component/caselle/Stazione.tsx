@@ -11,11 +11,6 @@ interface Props {
 }
 
 export class Stazione extends React.Component<Props, State> {
-
-    constructor(props: Props) {
-        super(props);
-    }
-
     render() {
         return <div className="space railroad">
             <div className="container">

@@ -9,10 +9,6 @@ interface State {
 }
 
 export default class Via extends React.Component<Props, State>{
-    constructor(props: Props) {
-        super(props);
-    }
-
     render(){
         return <div className="space corner go">
             <div className="container">

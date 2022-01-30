@@ -11,11 +11,6 @@ interface Props {
 }
 
 export class Probabilita extends React.Component<Props, State> {
-
-    constructor(props: Props) {
-        super(props);
-    }
-
     render() {
         return <div className="space community-chest">
             <div className="container">

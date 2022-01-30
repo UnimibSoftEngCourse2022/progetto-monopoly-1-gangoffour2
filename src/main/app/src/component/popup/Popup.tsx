@@ -38,7 +38,7 @@ class Popup extends React.Component<Props, State> {
 
     closePopupAfterAnimation(name_animation: string) {
 
-        if (name_animation == "hide-animation") {
+        if (name_animation === "hide-animation") {
             this.setState({ hide_trigger: false });
             this.onClose();
         }
