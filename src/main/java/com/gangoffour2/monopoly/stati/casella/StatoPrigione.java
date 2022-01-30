@@ -12,6 +12,10 @@ public class StatoPrigione implements StatoCasella {
     @JsonIgnore
     private Prigione prigione;
 
+    protected StatoPrigione(){
+
+    }
+
     @Override
     public void onAzioneGiocatore(Paga paga) {
         try {

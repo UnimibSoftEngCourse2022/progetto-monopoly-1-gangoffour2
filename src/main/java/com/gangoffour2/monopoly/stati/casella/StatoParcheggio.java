@@ -8,6 +8,11 @@ import lombok.experimental.SuperBuilder;
 @Data
 @SuperBuilder
 public class StatoParcheggio implements StatoCasella {
+
+    protected StatoParcheggio(){
+
+    }
+
     @JsonIgnore
     private Parcheggio parcheggio;
 

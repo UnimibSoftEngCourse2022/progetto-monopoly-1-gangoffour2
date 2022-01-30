@@ -3,6 +3,7 @@ package com.gangoffour2.monopoly.controller;
 import com.gangoffour2.monopoly.azioni.giocatore.*;
 import com.gangoffour2.monopoly.eccezioni.PartitaPienaException;
 import com.gangoffour2.monopoly.model.casella.Proprieta;
+import com.gangoffour2.monopoly.model.casella.Terreno;
 import com.gangoffour2.monopoly.model.giocatore.Giocatore;
 import com.gangoffour2.monopoly.model.IPartita;
 import com.gangoffour2.monopoly.services.PartiteRepository;
@@ -151,6 +152,31 @@ public class EventiController {
         IPartita partita = PartiteRepository.getInstance().getPartitaByid(id);
         if (partita != null){
             partita.onAzioneGiocatore(Paga.builder().giocatore(giocatore).build());
+        }
+    }
+
+
+    @MessageMapping("/partite/{id}/upgradeTerreno")
+    public void upgradeTerreno(@Payload Terreno terreno, String id, SimpMessageHeaderAccessor headers){
+        Giocatore giocatore = PartiteRepository.getInstance().getGiocatoreByIdSessione(headers.getSessionId());
+        IPartita partita = PartiteRepository.getInstance().getPartitaByid(id);
+        if (partita != null){
+            partita.onAzioneGiocatore(UpgradaTerreno.builder()
+                    .giocatore(giocatore)
+                    .terreno(terreno)
+                    .build());
+        }
+    }
+
+    @MessageMapping("/partite/{id}/downgradeTerreno")
+    public void downgradeTerreno(@Payload Terreno terreno, String id, SimpMessageHeaderAccessor headers){
+        Giocatore giocatore = PartiteRepository.getInstance().getGiocatoreByIdSessione(headers.getSessionId());
+        IPartita partita = PartiteRepository.getInstance().getPartitaByid(id);
+        if (partita != null){
+            partita.onAzioneGiocatore(DowngradaTerreno.builder()
+                    .giocatore(giocatore)
+                    .terreno(terreno)
+                    .build());
         }
     }
 }

@@ -13,6 +13,10 @@ public class StatoProbabilita implements StatoCasella {
     @JsonIgnore
     private Probabilita probabilita;
 
+    protected StatoProbabilita(){
+
+    }
+
     @Override
     public AzioneCasella arrivo() {
         return PescaProbabilita.builder().build();

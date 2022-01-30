@@ -7,6 +7,11 @@ import lombok.experimental.SuperBuilder;
 @Data
 @SuperBuilder
 public class TerrenoIpotecato extends StatoTerreno {
+
+    protected TerrenoIpotecato(){
+
+    }
+
     @Override
     public void onAzioneGiocatore(RimuoviIpoteca rimuoviIpoteca) {
         terreno.setStato(TerrenoAcquistato.builder()

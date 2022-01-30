@@ -10,6 +10,10 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 public class StazioneNonAcquistata extends StatoStazione {
 
+    protected StazioneNonAcquistata(){
+
+    }
+
     @Override
     public void onAzioneGiocatore(AcquistaProprieta acquistaProprieta) {
         acquistaProprieta.getGiocatore().acquistaProprieta(stazione);

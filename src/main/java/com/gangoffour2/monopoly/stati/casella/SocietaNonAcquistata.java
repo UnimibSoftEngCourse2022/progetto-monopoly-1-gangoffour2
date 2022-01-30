@@ -10,6 +10,10 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 public class SocietaNonAcquistata extends StatoSocieta {
 
+    protected SocietaNonAcquistata(){
+
+    }
+
     @Override
     public AzioneCasella arrivo() {
         return RichiediAcquisto.builder()

@@ -11,6 +11,10 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 public class TerrenoNonAcquistato extends StatoTerreno {
 
+    protected TerrenoNonAcquistato() {
+
+    }
+
     @Override
     public AzioneCasella arrivo() {
         return RichiediAcquisto.builder().proprieta(terreno).build();

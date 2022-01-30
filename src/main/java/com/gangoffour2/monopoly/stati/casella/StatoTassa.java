@@ -13,6 +13,10 @@ public class StatoTassa implements StatoCasella {
     @JsonIgnore
     private Tassa tassa;
 
+    protected StatoTassa(){
+
+    }
+
     @Override
     public AzioneCasella arrivo() {
        return AggiungiDenaro.builder().importo(tassa.getCosto()).build();

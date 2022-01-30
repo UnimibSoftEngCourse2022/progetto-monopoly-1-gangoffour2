@@ -13,6 +13,10 @@ public class StatoVia implements StatoCasella {
     @JsonIgnore
     private Via via;
 
+    protected StatoVia(){
+
+    }
+
     @Override
     public AzioneCasella passaggio() {
         return AggiungiDenaro.builder()

@@ -13,6 +13,10 @@ public class StatoImprevisto implements StatoCasella {
     @JsonIgnore
     private Imprevisto imprevisto;
 
+    protected StatoImprevisto(){
+
+    }
+
     @Override
     public AzioneCasella arrivo(){
         return PescaImprevisto.builder().build();

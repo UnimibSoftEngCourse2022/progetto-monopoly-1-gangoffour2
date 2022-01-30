@@ -10,6 +10,10 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 public class StazioneAcquistata extends StatoStazione {
 
+    protected StazioneAcquistata(){
+
+    }
+
     @Override
     public void onAzioneGiocatore(Ipoteca ipoteca) {
         stazione.setStato(StazioneIpotecata.builder()

@@ -13,6 +13,10 @@ public class StatoVaiInPrigione implements StatoCasella {
     @JsonIgnore
     VaiInPrigione vaiInPrigione;
 
+    protected StatoVaiInPrigione(){
+
+    }
+
     @Override
     public AzioneCasella arrivo() {
         return ArrestaGiocatore.builder().build();

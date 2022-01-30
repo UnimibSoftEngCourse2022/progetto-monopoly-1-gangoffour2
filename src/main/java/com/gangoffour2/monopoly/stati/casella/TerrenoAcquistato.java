@@ -12,6 +12,10 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 public class TerrenoAcquistato extends StatoTerreno {
 
+    protected TerrenoAcquistato(){
+
+    }
+
     @Override
     public void onAzioneGiocatore(Ipoteca ipoteca) {
         terreno.getProprietario().aggiungiDenaro(terreno.getIpoteca());
