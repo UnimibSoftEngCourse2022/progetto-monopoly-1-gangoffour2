@@ -3,7 +3,8 @@ import React, {ChangeEvent} from "react";
 import IConfigurazione, {Difficolta} from "../../interfaces/IConfigurazione";
 import TextInput from "../../component/textInput/TextInput";
 
-interface Props{}
+interface Props {
+}
 
 interface State {
     configurazione: IConfigurazione
@@ -37,49 +38,57 @@ export default class CreaPartita extends React.Component<Props, State> {
 
     handleSetSoldiIniziali = (soldi: number) => {
         this.handleSet((config) => {
-            config.soldiIniziali = soldi; return config;
+            config.soldiIniziali = soldi;
+            return config;
         })
     }
 
     handleSetNumeroDadi = (dadi: number) => {
         this.handleSet((config) => {
-            config.numeroDadi = dadi; return config;
+            config.numeroDadi = dadi;
+            return config;
         })
     }
 
     handleSetFacceDadi = (facce: number) => {
         this.handleSet((config) => {
-            config.facceDadi = facce; return config;
+            config.facceDadi = facce;
+            return config;
         })
     }
 
     handleSetTriggerDadiUguali = (triggerUguali: number) => {
         this.handleSet((config) => {
-            config.triggerDadiUguali = triggerUguali; return config;
+            config.triggerDadiUguali = triggerUguali;
+            return config;
         })
     }
 
     handleSetNumeroGiocatori = (numeroGiocatori: number) => {
         this.handleSet((config) => {
-            config.numeroGiocatori = numeroGiocatori; return config;
+            config.numeroGiocatori = numeroGiocatori;
+            return config;
         })
     }
 
     handleSetDifficolta = (event: ChangeEvent<HTMLSelectElement>) => {
         this.handleSet((config) => {
-            config.difficolta = event.target.value as Difficolta; return config;
+            config.difficolta = event.target.value as Difficolta;
+            return config;
         })
     }
 
     handleSetRandomCaselle = () => {
         this.handleSet((config) => {
-            config.randomCaselle = !config.randomCaselle; return config;
+            config.randomCaselle = !config.randomCaselle;
+            return config;
         })
     }
 
     handleSetRandomEconomia = () => {
         this.handleSet((config) => {
-            config.randomEconomia = !config.randomEconomia; return config;
+            config.randomEconomia = !config.randomEconomia;
+            return config;
         })
     }
 
@@ -89,32 +98,41 @@ export default class CreaPartita extends React.Component<Props, State> {
         const config = this.state.configurazione;
 
         return <div className={"form_accedi"}>
-            <TextInput label={"Numero Giocatori"} type={"number"} on_change={this.handleSetNumeroGiocatori} value={config.numeroGiocatori}/>
-            <TextInput label={"Numero Dadi"} type={"number"} on_change={this.handleSetNumeroDadi} value={config.numeroDadi}/>
-            <TextInput label={"Facce Dadi"} type={"number"} on_change={this.handleSetFacceDadi} value={config.facceDadi}/>
-            <TextInput label={"Trigger Dadi Uguali"} type={"number"} on_change={this.handleSetTriggerDadiUguali} value={config.triggerDadiUguali}/>
-            <TextInput label={"Soldi Iniziali"} type={"number"} on_change={this.handleSetSoldiIniziali} value={config.soldiIniziali}/>
+            <TextInput label={"Numero Giocatori"} type={"number"} on_change={this.handleSetNumeroGiocatori}
+                       value={config.numeroGiocatori}/>
+            <TextInput label={"Numero Dadi"} type={"number"} on_change={this.handleSetNumeroDadi}
+                       value={config.numeroDadi}/>
+            <TextInput label={"Facce Dadi"} type={"number"} on_change={this.handleSetFacceDadi}
+                       value={config.facceDadi}/>
+            <TextInput label={"Trigger Dadi Uguali"} type={"number"} on_change={this.handleSetTriggerDadiUguali}
+                       value={config.triggerDadiUguali}/>
+            <TextInput label={"Soldi Iniziali"} type={"number"} on_change={this.handleSetSoldiIniziali}
+                       value={config.soldiIniziali}/>
 
-                <label htmlFor={"difficolta"}>Seleziona la difficolta</label>
-                <select id={"difficolta"} onChange={this.handleSetDifficolta} value={config.difficolta}>
-                    <option value={Difficolta.EASY}>Facile</option>
-                    <option value={Difficolta.MEDIUM}>Normale</option>
-                    <option value={Difficolta.HARD}>Difficile</option>
-                </select>
+            <label htmlFor={"difficolta"}>Seleziona la difficolta</label>
+            <select id={"difficolta"} onChange={this.handleSetDifficolta} value={config.difficolta}>
+                <option value={Difficolta.EASY}>Facile</option>
+                <option value={Difficolta.MEDIUM}>Normale</option>
+                <option value={Difficolta.HARD}>Difficile</option>
+            </select>
 
-            <div>
-                <input id={"randomCaselle"} type={"checkbox"} name={"randomCaselle"} onChange={this.handleSetRandomCaselle}/>
-                <label htmlFor={"randomCaselle"}>Caselle random</label>
-            </div>
+            {this.state.configurazione.difficolta === Difficolta.HARD && <div>
+                <div>
+                    <input id={"randomCaselle"} type={"checkbox"} name={"randomCaselle"}
+                           onChange={this.handleSetRandomCaselle}/>
+                    <label htmlFor={"randomCaselle"}>Caselle random</label>
+                </div>
 
-            <div>
-                <input id={"economiaRandom"} type={"checkbox"} name={"economiaRandom"} onChange={this.handleSetRandomEconomia}/>
-                <label htmlFor={"economiaRandom"}>Economia random</label>
-            </div>
+                <div>
+                    <input id={"economiaRandom"} type={"checkbox"} name={"economiaRandom"}
+                           onChange={this.handleSetRandomEconomia}/>
+                    <label htmlFor={"economiaRandom"}>Economia random</label>
+                </div>
+            </div>}
 
             <button onClick={() => StompController.creaPartita(this.state.configurazione)}>
                 crea partita
             </button>
-       </div>
+        </div>
     }
 }
