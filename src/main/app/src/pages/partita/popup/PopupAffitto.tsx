@@ -13,28 +13,28 @@ const PopupAffitto: FunctionComponent<PopupProps> = (props) => {
 
     props.partita.giocatori.forEach(giocatore =>
         giocatore.proprietaPossedute.forEach(proprieta => {
-                if(proprieta.id === props.giocatore.casellaCorrente.id)
+                if (proprieta.id === props.giocatore.casellaCorrente.id)
                     proprietario = giocatore
             }
         )
     )
 
-    if(proprietario === undefined)
+    if (proprietario === undefined)
         return null;
 
-    if(props.isMioTurno){
+    if (props.isMioTurno) {
         text = "Devi pagare l'affitto a " + proprietario.nick
-    }
-    else{
+    } else {
         text = "Il giocatore " + props.giocatore.nick + " deve pagare l'affitto a " + proprietario.nick
     }
 
 
-    return <Popup trigger={true} onClose={() => {}} title={"Attessa Pagamento Affitto"}>
+    return <Popup trigger={true} onClose={() => {
+    }} title={"Attessa Pagamento Affitto"}>
         {text}
-        <PopupButtonContainer>
+        {props.isMioTurno && <PopupButtonContainer>
             <button onClick={() => StompController.paga()}>Paga</button>
-        </PopupButtonContainer>
+        </PopupButtonContainer>}
     </Popup>
 }
 
