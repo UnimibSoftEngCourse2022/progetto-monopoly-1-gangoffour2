@@ -7,7 +7,7 @@ interface Props {
 
 const VendiBtn: FunctionComponent<Props> = (props) => {
 
-    const vendi = () => {}//StompController.ipoteca(props.casella);
+    const vendi = () => {}
 
     return <button onClick={vendi}><i className="fas fa-gavel"></i></button>
 }

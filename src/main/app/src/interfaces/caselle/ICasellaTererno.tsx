@@ -20,8 +20,8 @@ export interface ICasellaTerreno extends ICasellaProprieta{
     colore: Colore,
     costoAlbergo: number,
     costoCasa: number,
-    albergo: IAlbergo | null,
-    listaCase: ICasa[] | null,
+    hasAlbergo: boolean,
+    numeroCase: number
     stato: {
         type: ICasellaTerrenoState
     }
