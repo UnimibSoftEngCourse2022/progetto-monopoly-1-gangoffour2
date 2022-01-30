@@ -14,7 +14,7 @@ interface Props {
 export class Terreno extends React.Component<Props, State> {
     render() {
         return <div className="space property">
-            <div className = "container" aria-disabled={this.props.casella.stato.type == "TerrenoIpotecato"}>
+            <div className = "container" aria-disabled={this.props.casella.stato.type === "TerrenoIpotecato"}>
                 <div className={"color-bar " + this.props.casella.colore}/>
                 <div className="name three-line-name">{this.props.casella.nome}</div>
                 <div className="price">{this.props.casella.costoBase}</div>
