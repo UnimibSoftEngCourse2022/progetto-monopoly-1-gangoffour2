@@ -26,6 +26,8 @@ public class Turno implements Serializable {
     @Builder.Default
     private SecureRandom random = new SecureRandom();
 
+    private int triggerDadiUguali;
+
     public void inizializzaDadi(int numeroDadi) {
         if (valoreDadi.isEmpty()) {
             for (int i = 0; i < numeroDadi; ++i) {
@@ -78,6 +80,6 @@ public class Turno implements Serializable {
     }
 
     public boolean limitePrigione(){
-        return lanciConsecutivi == 3 && dadiUguali();
+        return lanciConsecutivi == triggerDadiUguali && dadiUguali();
     }
 }

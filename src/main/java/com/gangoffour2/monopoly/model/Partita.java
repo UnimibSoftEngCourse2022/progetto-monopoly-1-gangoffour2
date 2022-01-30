@@ -71,6 +71,7 @@ public class Partita extends IPartita implements PartitaObserver {
 
         setTurnoCorrente(Turno.builder()
                 .giocatore(giocatori.get((giocatori.indexOf(curr) + 1) % giocatori.size()))
+                .triggerDadiUguali(config.getTriggerDadiUguali())
                 .build());
 
         turnoCorrente.inizializzaDadi(config.getNumeroDadi());

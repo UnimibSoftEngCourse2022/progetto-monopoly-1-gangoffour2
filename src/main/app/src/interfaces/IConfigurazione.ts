@@ -13,5 +13,6 @@ export default interface IConfigurazione {
     numeroGiocatori: number,
     facceDadi: number,
     numeroDadi: number,
-    triggerDadiUguali: number
+    triggerDadiUguali: number,
+    maxCasePerTerreno: number
 }
