@@ -6,7 +6,6 @@ import {PopupProps} from "./PopupRouterAzioni";
 import IStatoAsta from "../../../interfaces/stati/partita/IStatoAsta";
 import TextInput from "../../../component/textInput/TextInput";
 import translateCarteProprieta from "./TranslateCarteProprieta";
-import {Simulate} from "react-dom/test-utils";
 
 interface State {
     input:number

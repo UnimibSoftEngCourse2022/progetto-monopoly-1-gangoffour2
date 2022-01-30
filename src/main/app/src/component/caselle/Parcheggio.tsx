@@ -11,11 +11,6 @@ interface Props {
 }
 
 export class Parcheggio extends React.Component<Props, State> {
-
-    constructor(props: Props) {
-        super(props);
-    }
-
     render() {
         return <div className="space corner free-parking">
             <div className="container">

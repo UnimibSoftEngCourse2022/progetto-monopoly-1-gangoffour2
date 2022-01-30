@@ -1,9 +1,7 @@
 package com.gangoffour2.monopoly.controller;
 
-import com.fasterxml.jackson.annotation.JacksonInject;
 import com.gangoffour2.monopoly.azioni.giocatore.*;
 import com.gangoffour2.monopoly.eccezioni.PartitaPienaException;
-import com.gangoffour2.monopoly.model.Configurazione;
 import com.gangoffour2.monopoly.model.casella.Proprieta;
 import com.gangoffour2.monopoly.model.casella.Terreno;
 import com.gangoffour2.monopoly.model.giocatore.Giocatore;

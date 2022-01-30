@@ -4,8 +4,6 @@ import {IDescrizioneProprieta} from "../Proprieta";
 import ICasellaStazione, {ICasellaStazioneState} from "../../../../interfaces/caselle/ICasellaStazione";
 import VendiBtn from "../tastiFunzione/VendiBtn";
 import IpotecaBtn from "../tastiFunzione/IpotecaBtn";
-import DowngradeBtn from "../tastiFunzione/DowngradeBtn";
-import UpgradeBtn from "../tastiFunzione/UpgradeBtn";
 
 const translateState: {[key: ICasellaStazioneState | string]: (stazione: ICasellaStazione) => string} = {
     "StazioneAcquistata": (stazione) => "Valore ipoteca: " + stazione.ipoteca,

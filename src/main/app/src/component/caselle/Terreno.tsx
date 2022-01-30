@@ -1,5 +1,5 @@
 import React from 'react';
-import ICasellaTerreno, {Colore} from '../../interfaces/caselle/ICasellaTererno'
+import ICasellaTerreno from '../../interfaces/caselle/ICasellaTererno'
 import './caselle.scss'
 
 
@@ -12,11 +12,6 @@ interface Props {
 }
 
 export class Terreno extends React.Component<Props, State> {
-
-    constructor(props: Props) {
-        super(props);
-    }
-
     render() {
         return <div className="space property">
             <div className = "container">

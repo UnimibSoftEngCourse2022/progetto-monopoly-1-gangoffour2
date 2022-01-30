@@ -11,11 +11,6 @@ interface Props {
 }
 
 export class Societa extends React.Component<Props, State> {
-
-    constructor(props: Props) {
-        super(props);
-    }
-
     render() {
         let icona: string = "fa-lightbulb";
         let classe: string = "electric-company";

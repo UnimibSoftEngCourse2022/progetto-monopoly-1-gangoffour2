@@ -1,10 +1,6 @@
 import React from "react";
 import IPartita from "../../../interfaces/IPartita";
 import "./dashboard.css"
-import ICasellaProprieta from "../../../interfaces/caselle/ICasellaProprieta";
-import ICasellaTererno from "../../../interfaces/caselle/ICasellaTererno";
-import ICasellaTerreno from "../../../interfaces/caselle/ICasellaTererno";
-import StompController from "../../../application/stompController";
 import Proprieta from "./Proprieta";
 
 interface Props {
@@ -17,10 +13,6 @@ interface State {
 }
 
 export class Dashboard extends React.Component<Props, State> {
-    constructor(props: Props) {
-        super(props);
-    }
-
     render() {
         const giocatore = this.props.partita.giocatori.find(el => el.nick === this.props.nickname)
         if (giocatore === undefined)

@@ -9,10 +9,6 @@ interface State {
 }
 
 export default class Prigione extends React.Component<Props, State>{
-    constructor(props: Props) {
-        super(props);
-    }
-
     render(){
         return <div className="space corner jail">
             <div className="just">Transito</div>

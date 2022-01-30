@@ -1,7 +1,6 @@
 import React, {FunctionComponent, useState} from "react";
 import ICasellaProprieta from "../../../interfaces/caselle/ICasellaProprieta";
 import "./proprieta.css"
-import StompController from "../../../application/stompController";
 import {Terreno} from "./proprieta/Terreno";
 import {Societa} from "./proprieta/Societa";
 import {Stazione} from "./proprieta/Stazione";
@@ -20,8 +19,6 @@ export interface IDescrizioneProprieta {
 const Proprieta: FunctionComponent<ICasellaProprieta> = (proprieta) => {
 
     const [open, set_open] = useState(false)
-
-    const avviaAsta = () => StompController.avviaAsta();
 
     const element = translate[proprieta.type](proprieta);
 

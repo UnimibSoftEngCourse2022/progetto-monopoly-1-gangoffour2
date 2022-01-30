@@ -11,11 +11,6 @@ interface Props {
 }
 
 export class Tassa extends React.Component<Props, State> {
-
-    constructor(props: Props) {
-        super(props);
-    }
-
     render() {
         return <div className="space fee luxury-tax">
             <div className="container">

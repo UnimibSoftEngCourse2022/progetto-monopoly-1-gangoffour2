@@ -4,7 +4,6 @@ import StompController from "../../../application/stompController";
 import PopupButtonContainer from "../../../component/popup/PopupButtonContainer";
 import {PopupProps} from "./PopupRouterAzioni";
 
-
 interface State {
 
 }
@@ -13,7 +12,6 @@ export default class PopupFineTurno extends React.Component<PopupProps, State> {
 
     render() {
 
-        const nome = this.props.giocatore.casellaCorrente.nome;
         let testo = "";
         if(!this.props.isMioTurno)
             testo = "Il giocatore " + this.props.giocatore.nick + " sta terminando il suo turno"

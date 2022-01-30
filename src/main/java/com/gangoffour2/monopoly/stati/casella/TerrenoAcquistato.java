@@ -6,8 +6,11 @@ import com.gangoffour2.monopoly.azioni.giocatore.DowngradaTerreno;
 import com.gangoffour2.monopoly.azioni.giocatore.Ipoteca;
 import com.gangoffour2.monopoly.azioni.giocatore.UpgradaTerreno;
 import com.gangoffour2.monopoly.eccezioni.ModificaDenaroException;
+import com.gangoffour2.monopoly.model.Partita;
 import lombok.Data;
 import lombok.experimental.SuperBuilder;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Data
 @SuperBuilder
@@ -39,7 +42,8 @@ public class TerrenoAcquistato extends StatoTerreno {
         try {
             terreno.aggiungiEdificio();
         }catch (ModificaDenaroException e){
-            System.out.println(e.getSoldiDaPagare());
+            Logger logger = LoggerFactory.getLogger(TerrenoAcquistato.class);
+            logger.error(Integer.toString(e.getSoldiDaPagare()));
             //Non deve gestire l'eccezione se cerca di aggiungere case senza i soldi
         }
     }
