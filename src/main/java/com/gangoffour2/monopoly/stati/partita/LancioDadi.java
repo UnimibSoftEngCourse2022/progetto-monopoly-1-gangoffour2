@@ -17,13 +17,20 @@ public class LancioDadi extends StatoPartita {
     @Override
     public void onTimeout() {
         partita.fermaAttesa();
-        partita.continuaTurno();
+        partita.continua(this);
+    }
+
+    @Override
+    public void riprendi(AttesaFallimento attesaFallimento) {
+        Giocatore giocatore = partita.getTurnoCorrente().getGiocatore();
+        giocatore.aggiungiDenaro(attesaFallimento.getSoldiDaPagare());
+        partita.continua(this);
     }
 
     @Override
     public void onAzioneGiocatore(LanciaDadi lanciaDadi) {
         partita.fermaAttesa();
-        partita.continuaTurno();
+        partita.continua(this);
     }
 
     @Override
@@ -100,7 +107,7 @@ public class LancioDadi extends StatoPartita {
     public void onAzioneCasella(AggiungiDenaro aggiungiDenaro) {
         try {
             partita.getTurnoCorrente().getGiocatore().aggiungiDenaro(aggiungiDenaro.getImporto());
-            partita.continuaTurno();
+            partita.continua(this);
         }catch (Exception e){
             int soldiDaPagare = aggiungiDenaro.getImporto();
             partita.setStato(AttesaFallimento.builder().soldiDaPagare(-soldiDaPagare).build());

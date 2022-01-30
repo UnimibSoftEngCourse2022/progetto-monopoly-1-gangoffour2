@@ -21,7 +21,7 @@ public class AttesaAffitto extends StatoPartita {
     public void onTimeout() {
         Giocatore debitore = partita.getTurnoCorrente().getGiocatore();
         debitore.paga(proprieta.getProprietario(), proprieta.calcolaAffitto(debitore.getStrategiaCalcoloAffitto()));
-        partita.continuaTurno();
+        partita.continua(this);
     }
 
     @Override
