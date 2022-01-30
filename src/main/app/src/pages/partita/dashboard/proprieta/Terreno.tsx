@@ -1,8 +1,11 @@
 import ICasellaProprieta from "../../../../interfaces/caselle/ICasellaProprieta";
-import React, {FunctionComponent} from "react";
+import React from "react";
 import ICasellaTerreno, { ICasellaTerrenoState } from "../../../../interfaces/caselle/ICasellaTererno";
 import {IDescrizioneProprieta} from "../Proprieta";
-import ICasellaTererno from "../../../../interfaces/caselle/ICasellaTererno";
+import IpotecaBtn from "../tastiFunzione/IpotecaBtn";
+import VendiBtn from "../tastiFunzione/VendiBtn";
+import DowngradeBtn from "../tastiFunzione/DowngradeBtn";
+import UpgradeBtn from "../tastiFunzione/UpgradeBtn";
 
 const translateState: {[key: ICasellaTerrenoState | string]: (terreno: ICasellaTerreno) => string} = {
     "TerrenoNonAcquistato": (terreno) => "",
@@ -13,21 +16,24 @@ const translateState: {[key: ICasellaTerrenoState | string]: (terreno: ICasellaT
 const translateButtonState: {[key: ICasellaTerrenoState | string]: (terreno: ICasellaTerreno) => JSX.Element} = {
     "TerrenoNonAcquistato": (terreno) => <></>,
     "TerrenoAcquistato": (terreno) => <>
-        <button><i className="fas fa-angle-up"></i></button>
-        <button><i className="fas fa-angle-down"></i></button>
+        <VendiBtn casella={terreno}/>
+        <IpotecaBtn casella={terreno}/>
+        <DowngradeBtn casella={terreno}/>
+        <UpgradeBtn casella={terreno}/>
     </>,
     "TerrenoIpotecato": (terreno) => <>
-
+        <IpotecaBtn casella={terreno}/>
     </>
 }
-
 
 export class Terreno extends React.Component<ICasellaProprieta, {}> implements IDescrizioneProprieta{
 
     getDescrizione(): string {
         const terreno = this.props as ICasellaTerreno
 
-        return translateState[terreno.stato.type](terreno);
+        if(translateState[terreno.stato.type] !== undefined)
+            return translateState[terreno.stato.type](terreno);
+        return "";
     }
 
     render() {
@@ -36,6 +42,4 @@ export class Terreno extends React.Component<ICasellaProprieta, {}> implements I
 
         return translateButtonState[terreno.stato.type](terreno)
     }
-
-
 }

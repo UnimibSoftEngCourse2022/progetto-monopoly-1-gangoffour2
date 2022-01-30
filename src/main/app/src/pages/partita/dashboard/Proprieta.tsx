@@ -22,7 +22,6 @@ const Proprieta: FunctionComponent<ICasellaProprieta> = (proprieta) => {
     const [open, set_open] = useState(false)
 
     const avviaAsta = () => StompController.avviaAsta();
-    const ipoteca = () => StompController.ipoteca(proprieta);
 
     const element = translate[proprieta.type](proprieta);
 
@@ -44,8 +43,6 @@ const Proprieta: FunctionComponent<ICasellaProprieta> = (proprieta) => {
                 <button onClick={() => set_open(!open)}><i className="fas fa-chevron-down"></i></button>
             </div>
             <div className={"open_close_property"} aria-selected={open}>
-                <button onClick={avviaAsta}><i className="fas fa-gavel"></i></button>
-                <button onClick={ipoteca}><i className="fas fa-dollar-sign"></i></button>
                 {element.render()
                     /*translate[proprieta.type] !== undefined ?
                     translate[proprieta.type](proprieta) :

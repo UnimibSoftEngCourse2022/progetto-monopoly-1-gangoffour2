@@ -2,26 +2,26 @@ import ICasellaProprieta from "../../../../interfaces/caselle/ICasellaProprieta"
 import React from "react";
 import {IDescrizioneProprieta} from "../Proprieta";
 import ICasellaStazione, {ICasellaStazioneState} from "../../../../interfaces/caselle/ICasellaStazione";
+import VendiBtn from "../tastiFunzione/VendiBtn";
+import IpotecaBtn from "../tastiFunzione/IpotecaBtn";
+import DowngradeBtn from "../tastiFunzione/DowngradeBtn";
+import UpgradeBtn from "../tastiFunzione/UpgradeBtn";
 
 const translateState: {[key: ICasellaStazioneState | string]: (stazione: ICasellaStazione) => string} = {
-    /*
-    "TerrenoNonAcquistato": (societa) => "",
-    "TerrenoAcquistato": (societa) => "Case possedute: " + terreno.listaCase?.length ?? 0,
-    "TerrenoIpotecato": (terreno) => "Terreno ipotecato, costo ipoteca: " + terreno.ipoteca
-     */
+    "StazioneAcquistata": (stazione) => "Valore ipoteca: " + stazione.ipoteca,
+    "StazioneNonAcquistata": (stazione) => "",
+    "StazioneIpotecata": (stazione) => "Stazione ipotecata, valore ipoteca: " + stazione.ipoteca
 }
 
 const translateButtonState: {[key: ICasellaStazioneState | string]: (stazione: ICasellaStazione) => JSX.Element} = {
-    /*
-    "TerrenoNonAcquistato": (terreno) => <></>,
-    "TerrenoAcquistato": (terreno) => <>
-        <button><i className="fas fa-angle-up"></i></button>
-        <button><i className="fas fa-angle-down"></i></button>
+    "StazioneAcquistata": (stazione) => <>
+        <VendiBtn casella={stazione}/>
+        <IpotecaBtn casella={stazione}/>
     </>,
-    "TerrenoIpotecato": (terreno) => <>
-
+    "StazioneNonAcquistata": (stazione) => <></>,
+    "StazioneIpotecata": (stazione) => <>
+        <IpotecaBtn casella={stazione}/>
     </>
-     */
 }
 
 
@@ -30,7 +30,9 @@ export class Stazione extends React.Component<ICasellaProprieta, {}> implements 
     getDescrizione(): string {
         const stazione = this.props as ICasellaStazione
 
-        return translateState[stazione.stato.type](stazione);
+        if(translateState[stazione.stato.type] !== undefined)
+            return translateState[stazione.stato.type](stazione);
+        return "";
     }
 
     render() {
