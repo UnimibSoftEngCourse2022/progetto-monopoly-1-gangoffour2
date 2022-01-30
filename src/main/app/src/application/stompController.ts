@@ -5,6 +5,7 @@ import IConfigurazione, {Difficolta} from "../interfaces/IConfigurazione";
 import {ObserverSingleton} from "./ObserverSingleton";
 import ICasella from "../interfaces/caselle/ICasella";
 import ICasellaProprieta from "../interfaces/caselle/ICasellaProprieta";
+import {ICarta} from "../interfaces/ICarta";
 
 Object.assign(global, {WebSocket: websocket.w3cwebsocket})
 
@@ -51,9 +52,19 @@ export default class StompController {
         this.client = client;
         this.idPartita = idPartita;
         client.connect({}, () => {
-            client.subscribe("/topic/partite/" + idPartita, (res) => ObserverSingleton.notify(JSON.parse(res.body) as IPartita))
+            client.subscribe("/topic/partite/" + idPartita, (res) =>
+                ObserverSingleton.notify(JSON.parse(res.body) as IPartita)
+            )
             client.send("/app/partite/" + idPartita + "/entra", {}, nickname)
         })
+    }
+
+    static subscribeCarte(){
+        this.client.subscribe("/topic/partite/" + this.idPartita + "/carta", (res) => {
+                console.log(res.body)
+                ObserverSingleton.notifyCarta(JSON.parse(res.body) as ICarta)
+            }
+        )
     }
 
     static ipoteca(casella: ICasellaProprieta) {

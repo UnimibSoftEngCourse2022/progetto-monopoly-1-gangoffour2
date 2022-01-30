@@ -1,7 +1,7 @@
 import {FunctionComponent} from "react";
 import Popup from "../../../component/popup/Popup";
 import PopupButtonContainer from "../../../component/popup/PopupButtonContainer";
-import {PopupProps} from "./PopupRouter";
+import {PopupProps} from "./PopupRouterAzioni";
 import IGiocatore from "../../../interfaces/IGiocatore";
 import StompController from "../../../application/stompController";
 

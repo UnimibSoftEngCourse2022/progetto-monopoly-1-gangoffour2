@@ -1,51 +1,54 @@
-import {FunctionComponent} from "react";
+import React from "react";
+import StompController from "../../../application/stompController";
+import {ObserverCarta, ObserverPartita, ObserverSingleton} from "../../../application/ObserverSingleton";
+import {ICarta} from "../../../interfaces/ICarta";
 import IPartita from "../../../interfaces/IPartita";
-import PopupAcquisto from "./PopupAcquisto";
-import IGiocatore from "../../../interfaces/IGiocatore";
-import PopupAffitto from "./PopupAffitto";
-import PopupPrigione from "./PopupPrigione";
-import PopupFineTurno from "./PopupFineTurno";
-import PopupLancioDadi from "./PopupLancioDadi";
-import PopupAsta from "./PopupAsta";
+import PopupRouterAzioni from "./PopupRouterAzioni";
+import PopupCarta from "./PopupCarta";
 
 interface Props {
     partita: IPartita,
     nickname: string
 }
 
-export interface PopupProps {
-    giocatore: IGiocatore
-    partita: IPartita,
-    isMioTurno: boolean
+interface State {
+    carta: ICarta | undefined
 }
 
-const componentStato: {[key: string]: (props: Props, giocatore: IGiocatore, isMioTurno: boolean) => JSX.Element} = {
-    'AttesaAcquisto': (props: Props, giocatore: IGiocatore, isMioTurno) =>
-        <PopupAcquisto partita={props.partita} giocatore={giocatore} isMioTurno={isMioTurno}/>,
-    'AttesaAffitto': (props: Props, giocatore, isMioTurno) =>
-        <PopupAffitto partita={props.partita} giocatore={giocatore} isMioTurno={isMioTurno}/>,
-    'AttesaPrigione': (props: Props, giocatore: IGiocatore, isMioTurno) =>
-        <PopupPrigione partita = {props.partita} giocatore = {giocatore} isMioTurno={isMioTurno}/>,
-    'FineTurno': (props: Props, giocatore: IGiocatore, isMioTurno: boolean) =>
-        <PopupFineTurno partita = {props.partita} giocatore ={giocatore} isMioTurno={isMioTurno}/>,
-    'LancioDadi': (props: Props, giocatore: IGiocatore, isMioTurno: boolean) =>
-        <PopupLancioDadi partita={props.partita} giocatore={giocatore} isMioTurno={isMioTurno}/>,
-    'StatoAsta': (props: Props, giocatore: IGiocatore, isMioTurno: boolean) =>
-        <PopupAsta partita={props.partita} giocatore={giocatore} isMioTurno={isMioTurno}/>
+export default class PopupRouter extends React.Component<Props, State> implements ObserverCarta {
+
+    constructor(props: Props) {
+        super(props);
+        this.state = {
+            carta: undefined
+        }
+    }
+
+    udpateCarta(carta: ICarta): void {
+        this.setState({carta: carta})
+        setTimeout(() => {
+            this.setState({carta: undefined})
+        }, 5000);
+    }
+
+    componentDidMount() {
+        ObserverSingleton.addListenerCarta(this)
+        StompController.subscribeCarte();
+    }
+
+    componentWillUnmount() {
+        ObserverSingleton.removeListener(this);
+    }
+
+    render() {
+        console.log(this.state.carta)
+        return <div>
+            <PopupCarta carta={this.state.carta}/>
+            <PopupRouterAzioni partita={this.props.partita} nickname={this.props.nickname}/>
+        </div>
+    }
+
+
+
+
 }
-
-
-
-const PopupRouter: FunctionComponent<Props> = (props) => {
-
-    const component = componentStato[props.partita.stato.type]
-    const giocatore = props.partita.giocatori.find(el => el.nick === props.partita.turnoCorrente?.giocatore.nick)
-    const isMioTurno = props.partita.turnoCorrente?.giocatore.nick === props.nickname
-
-    if(component === undefined || giocatore === undefined)
-        return null;
-    return component(props, giocatore, isMioTurno);
-
-}
-
-export default PopupRouter;
