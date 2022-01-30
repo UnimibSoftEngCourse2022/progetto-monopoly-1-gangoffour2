@@ -32,7 +32,9 @@ public class AttesaFallimento extends StatoPartita{
         Giocatore giocatore = partita.getTurnoCorrente().getGiocatore();
         if(giocatore.getConto() > soldiDaPagare){
             partita.setStato(LancioDadi.builder().build());
-            partita.continuaTurno();
+            partita.continua(this);
+        }else {
+            partita.attendiAzione();
         }
     }
 
@@ -40,17 +42,22 @@ public class AttesaFallimento extends StatoPartita{
     public void onAzioneGiocatore(Ipoteca ipoteca) {
         Optional<Proprieta> qry = ipoteca.getGiocatore().getProprietaPossedute().stream()
                 .filter(c -> c.getId() == ipoteca.getProprieta().getId()).findFirst();
-        qry.ifPresent(proprieta -> proprieta.onAzioneGiocatore(ipoteca));
-        partita.continua(this);
-
+        qry.ifPresent(proprieta -> {
+            partita.fermaAttesa();
+            proprieta.onAzioneGiocatore(ipoteca);
+        });
+        checkFallimento();
     }
 
 
     @Override
     public void onAzioneGiocatore(DowngradaTerreno downgradeTerreno){
         Optional<Proprieta> qry = findProprieta(downgradeTerreno.getGiocatore(), downgradeTerreno.getTerreno());
-        qry.ifPresent(proprieta -> proprieta.onAzioneGiocatore(downgradeTerreno));
-        partita.continua(this);
+        qry.ifPresent(proprieta -> {
+            partita.fermaAttesa();
+            proprieta.onAzioneGiocatore(downgradeTerreno);
+        });
+        checkFallimento();
     }
 
 

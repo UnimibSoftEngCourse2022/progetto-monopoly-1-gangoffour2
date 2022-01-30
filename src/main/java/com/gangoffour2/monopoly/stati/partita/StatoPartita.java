@@ -71,14 +71,10 @@ public abstract class StatoPartita implements Serializable {
      * @param passaggioVuoto Usato per fare overloading tramite polimorfismo
      */
     public void onAzioneCasella(PassaggioVuoto passaggioVuoto) {
-        partita.continuaTurno();
+        partita.continua(this);
     }
 
     public void onAzioneCasella(PagaAffitto pagaAffitto) {
-
-    }
-
-    public void onAzioneCasella(AttesaPrigione attesaPrigione) {
 
     }
 
