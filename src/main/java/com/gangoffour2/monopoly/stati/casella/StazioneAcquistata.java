@@ -16,6 +16,7 @@ public class StazioneAcquistata extends StatoStazione {
 
     @Override
     public void onAzioneGiocatore(Ipoteca ipoteca) {
+        ipoteca.getProprieta().getProprietario().aggiungiDenaro(stazione.getIpoteca());
         stazione.setStato(StazioneIpotecata.builder()
                 .stazione(stazione)
                 .build());
