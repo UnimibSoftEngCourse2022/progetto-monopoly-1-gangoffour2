@@ -1,6 +1,7 @@
 import React from 'react';
 import ICasellaTerreno from '../../interfaces/caselle/ICasellaTererno'
 import './caselle.scss'
+import CasellaSingleton from "./CasellaSingleton";
 
 
 interface State {
@@ -15,14 +16,19 @@ interface Props {
 export class Terreno extends React.Component<Props, State> {
 
     render() {
-
+        let casella : ICasellaTerreno = this.props.casella;
+        let style = {}
+        if (casella.proprietario !== null){
+            let colore = CasellaSingleton.giocatoreColore[casella.proprietario];
+            style = {backgroundColor: colore};
+        }
         const caseJsx: JSX.Element[] = [];
 
         for(let i = 0; i < this.props.casella.numeroCase; ++i){
             caseJsx.push(<div className={"casa"}></div>)
         }
 
-        return <div className="space property" onMouseLeave={this.props.caHover} onMouseEnter={this.props.caHover}>
+        return <div className="space property" onMouseLeave={this.props.caHover} onMouseEnter={this.props.caHover} style={style}>
             <div className = "container" aria-disabled={this.props.casella.stato.type === "TerrenoIpotecato"}>
                 <div className={"color-bar " + this.props.casella.colore}>
                     {

@@ -1,6 +1,8 @@
 import React from 'react';
 import './caselle.scss'
 import ICasellaSocieta from "../../interfaces/caselle/ICasellaSocieta";
+import ICasellaStazione from "../../interfaces/caselle/ICasellaStazione";
+import CasellaSingleton from "./CasellaSingleton";
 
 interface State {
 
@@ -20,7 +22,12 @@ export class Societa extends React.Component<Props, State> {
             classe = "waterworks"
         }
 
-        return <div className={"space utility " + classe}>
+        let casella : ICasellaSocieta = this.props.casella;
+        let style = {}
+        if (casella.proprietario !== null){
+            style = {backgroundColor: CasellaSingleton.giocatoreColore[casella.proprietario]};
+        }
+        return <div className={"space utility " + classe} style={style}>
             <div className="container" onMouseLeave={this.props.caHover} onMouseEnter={this.props.caHover} aria-disabled={this.props.casella.stato.type === "SocietaIpotecata"}>
                 <div className="name">{this.props.casella.nome}</div>
                 <i className={"drawing fa " + icona}/>
