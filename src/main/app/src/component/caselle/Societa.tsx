@@ -7,7 +7,8 @@ interface State {
 }
 
 interface Props {
-    casella: ICasellaSocieta
+    casella: ICasellaSocieta,
+    caHover: () => {}
 }
 
 export class Societa extends React.Component<Props, State> {
@@ -20,7 +21,7 @@ export class Societa extends React.Component<Props, State> {
         }
 
         return <div className={"space utility " + classe}>
-            <div className="container" aria-disabled={this.props.casella.stato.type === "SocietaIpotecata"}>
+            <div className="container" onMouseLeave={this.props.caHover} onMouseEnter={this.props.caHover} aria-disabled={this.props.casella.stato.type === "SocietaIpotecata"}>
                 <div className="name">{this.props.casella.nome}</div>
                 <i className={"drawing fa " + icona}/>
                 <div className="price">{this.props.casella.costoBase}</div>

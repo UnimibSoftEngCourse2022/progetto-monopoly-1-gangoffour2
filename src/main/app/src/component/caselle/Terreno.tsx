@@ -8,7 +8,8 @@ interface State {
 }
 
 interface Props {
-    casella: ICasellaTerreno
+    casella: ICasellaTerreno,
+    caHover: () => {}
 }
 
 export class Terreno extends React.Component<Props, State> {
@@ -21,7 +22,7 @@ export class Terreno extends React.Component<Props, State> {
             caseJsx.push(<div className={"casa"}></div>)
         }
 
-        return <div className="space property">
+        return <div className="space property" onMouseLeave={this.props.caHover} onMouseEnter={this.props.caHover}>
             <div className = "container" aria-disabled={this.props.casella.stato.type === "TerrenoIpotecato"}>
                 <div className={"color-bar " + this.props.casella.colore}>
                     {

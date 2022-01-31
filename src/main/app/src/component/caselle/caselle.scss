@@ -26,6 +26,33 @@ $dark-blue: #5a6dba;
 // GLOBAL
 // =================
 
+.container .popup_carta_tabellone {
+  position: absolute;
+  background-color: white;
+  bottom: 126px;
+  overflow: auto;
+  z-index: 1000;
+}
+
+.container .popup_carta_tabellone .table-carta {
+  width: 300px;
+}
+
+.container .popup_carta_tabellone[aria-level="90"] {
+  transform: rotate(90deg);
+  bottom: 89px;
+}
+
+.container .popup_carta_tabellone[aria-level="180"] {
+  transform: rotate(180deg);
+  bottom: 126px;
+}
+
+.container .popup_carta_tabellone[aria-level="270"] {
+  transform: rotate(270deg);
+  bottom: 190px;
+}
+
 .container[aria-disabled="true"]{
   background-color: lightcoral;
 }
