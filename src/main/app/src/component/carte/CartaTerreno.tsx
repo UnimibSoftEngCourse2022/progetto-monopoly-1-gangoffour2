@@ -33,8 +33,8 @@ export default class CartaTerreno extends React.Component<Props, {}>{
                 <p className="mortgage">Valore ipotecario: {casella.ipoteca}€</p>
                 <p className="houses">Prezzo di ogni casa: {casella.costoCasa}€</p>
                 <p className="hotelCost">Prezzo dell'albergo: {casella.costoAlbergo}€</p>
-                <p className="disclaimer">If a player owns ALL the Lots of any Color-Group, the<br/>rent is Doubled on
-                    Unimproved Lots in that group.<br/>&copy;1935 Hasbro, Inc.</p>
+                <p className="disclaimer">Se un giocatore ha TUTTI i lotti di un colore, l'<br/>affitto è raddoppiato
+                    per lotti senza case.<br/>&copy;1935 Hasbro, Inc.</p>
             </div>
         </div>
     }

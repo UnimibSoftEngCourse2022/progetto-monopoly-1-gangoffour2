@@ -109,12 +109,17 @@ export default class CreaPartita extends React.Component<Props, State> {
             <TextInput label={"Soldi Iniziali"} type={"number"} on_change={this.handleSetSoldiIniziali}
                        value={config.soldiIniziali}/>
 
-            <label htmlFor={"difficolta"}>Seleziona la difficolta</label>
-            <select id={"difficolta"} onChange={this.handleSetDifficolta} value={config.difficolta}>
-                <option value={Difficolta.EASY}>Facile</option>
-                <option value={Difficolta.MEDIUM}>Normale</option>
-                <option value={Difficolta.HARD}>Difficile</option>
-            </select>
+                <label htmlFor={"difficolta"}>Seleziona la difficolta</label>
+                <select id={"difficolta"} onChange={this.handleSetDifficolta} value={config.difficolta}>
+                    <option value={Difficolta.EASY}>Facile</option>
+                    <option value={Difficolta.MEDIUM}>Normale</option>
+                    <option value={Difficolta.HARD}>Difficile</option>
+                </select>
+            <div>
+                <p>Facile: Gioco vanilla</p>
+                <p>Normale: I giocatori possono essere imprenditori</p>
+                <p>Difficile: Random Economia + Random Tabellone</p>
+            </div>
 
             {this.state.configurazione.difficolta === Difficolta.HARD && <div>
                 <div>
