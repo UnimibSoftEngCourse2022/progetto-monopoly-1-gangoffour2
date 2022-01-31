@@ -19,6 +19,8 @@ public class StatoTassa implements StatoCasella {
 
     @Override
     public AzioneCasella arrivo() {
-       return AggiungiDenaro.builder().importo(tassa.getCosto()).build();
+       return AggiungiDenaro.builder()
+               .importo(tassa.getCosto())
+               .build();
     }
 }
