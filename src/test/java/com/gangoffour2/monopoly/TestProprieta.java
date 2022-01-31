@@ -124,7 +124,7 @@ class TestProprieta {
 
         Giocatore povero = partita.getTurnoCorrente().getGiocatore();
         assertNotEquals(povero, g);
-        TestProprieta.fakeTiro(partita, povero, 1);
+        MonopolyApplicationTests.fakeTiro(partita, povero, 1);
         povero.getCasellaCorrente().arrivo(g);
         povero.setConto(1);
         assertEquals(1, povero.getConto());
@@ -172,25 +172,11 @@ class TestProprieta {
         assertEquals("FineTurno", partita.getStato().getTipo());
     }
 
-    static void fakeTiro(IPartita partita, Giocatore giocatore, int spostamento) {
-        ArrayList<Integer> dadi = new ArrayList<>();
-        dadi.add(spostamento - 1);
-        dadi.add(1);
-        Turno t =   Turno.builder()
-                .casellaDaVisitare(spostamento)
-                .lanciConsecutivi(1)
-                .valoreDadi(dadi)
-                .giocatore(giocatore)
-                .build();
-        t.inizializzaDadi(2);
-        partita.setTurnoCorrente(t);
-    }
-
     @Test
     void testPagamentoAffitto() {
         partita.onAzioneGiocatore(EntraInPartita.builder().giocatore(Giocatore.builder().nick("Prova").build()).build());
         Giocatore g = partita.getTurnoCorrente().getGiocatore();
-        TestProprieta.fakeTiro(partita, g, 1);
+        MonopolyApplicationTests.fakeTiro(partita, g, 1);
 
         g.getCasellaCorrente().arrivo(g);
         partita.getListenerTimeoutEventi().stopTimeout();
@@ -199,7 +185,7 @@ class TestProprieta {
         partita.onAzioneGiocatore(TerminaTurno.builder().build());
 
         Giocatore debitore = partita.getTurnoCorrente().getGiocatore();
-        TestProprieta.fakeTiro(partita, debitore, 1);
+        MonopolyApplicationTests.fakeTiro(partita, debitore, 1);
         debitore.getCasellaCorrente().arrivo(g);
         assertEquals("AttesaAffitto", partita.getStato().getTipo());
         partita.onAzioneGiocatore(Paga.builder().giocatore(debitore).build());

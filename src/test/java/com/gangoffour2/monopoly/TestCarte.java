@@ -32,7 +32,7 @@ class TestCarte {
     void muoviPosizioneIntero() {
         Giocatore g = Giocatore.builder().nick("Ciao").build();
         partita.onAzioneGiocatore(EntraInPartita.builder().giocatore(g).build());
-        TestProprieta.fakeTiro(partita, g, 3);
+        MonopolyApplicationTests.fakeTiro(partita, g, 3);
         Carta c = CartaMuoviPosizioneIntero.builder().movimento(10).tabellone(partita.getTabellone()).build();
         c.effetto(g);
         assertEquals(partita.getTabellone().getCasella(10), g.getCasellaCorrente());
@@ -42,7 +42,7 @@ class TestCarte {
     void muoviPosizioneACasella() {
         Giocatore g = Giocatore.builder().nick("Ciao").build();
         partita.onAzioneGiocatore(EntraInPartita.builder().giocatore(g).build());
-        TestProprieta.fakeTiro(partita, g, 3);
+        MonopolyApplicationTests.fakeTiro(partita, g, 3);
         Casella casella = partita.getTabellone().getCasella(10);
         Carta c = CartaMuoviPosizioneACasella.builder().casella(casella).tabellone(partita.getTabellone()).build();
         c.effetto(g);
@@ -54,7 +54,7 @@ class TestCarte {
         Giocatore g = Giocatore.builder().nick("Ciao").build();
         Giocatore g2 = Giocatore.builder().nick("Player2").build();
         partita.onAzioneGiocatore(EntraInPartita.builder().giocatore(g).build());
-        TestProprieta.fakeTiro(partita, g, 3);
+        MonopolyApplicationTests.fakeTiro(partita, g, 3);
         Casella casella = partita.getTabellone().getCasella(9);
         ((Terreno) casella).setProprietario(g2);
         casella.setStato(TerrenoAcquistato.builder().terreno((Terreno) casella).build());
@@ -69,7 +69,7 @@ class TestCarte {
         partita.onAzioneGiocatore(EntraInPartita.builder().giocatore(g).build());
         Carta c = CartaEsciGratisPrigione.builder().tabellone(partita.getTabellone()).build();
         c.effetto(g);
-        TestProprieta.fakeTiro(partita, g, 30);
+        MonopolyApplicationTests.fakeTiro(partita, g, 30);
         partita.continuaTurno();
         assertFalse(g.haCartaEsciGratis());
     }
@@ -86,7 +86,7 @@ class TestCarte {
     void pescaProbabilita() {
         Giocatore g = Giocatore.builder().nick("Ciao").build();
         partita.onAzioneGiocatore(EntraInPartita.builder().giocatore(g).build());
-        TestProprieta.fakeTiro(partita, g, 2);
+        MonopolyApplicationTests.fakeTiro(partita, g, 2);
         g.getCasellaCorrente().arrivo(g);
         partita.continuaTurno();
         assertInstanceOf(FineTurno.class, partita.getStato());
@@ -96,7 +96,7 @@ class TestCarte {
     void pescaImprevisto() {
         Giocatore g = Giocatore.builder().nick("Ciao").build();
         partita.onAzioneGiocatore(EntraInPartita.builder().giocatore(g).build());
-        TestProprieta.fakeTiro(partita, g, 7);
+        MonopolyApplicationTests.fakeTiro(partita, g, 7);
         partita.continuaTurno();
         assertInstanceOf(FineTurno.class, partita.getStato());
     }
