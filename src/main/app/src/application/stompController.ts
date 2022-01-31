@@ -27,7 +27,6 @@ export default class StompController {
             }
         })
             .then((res) => {
-                console.log(res)
                 if (res.status === 200) {
                     return res.text()
                 }
@@ -38,7 +37,6 @@ export default class StompController {
     static getPartite(): Promise<IPartita[]> {
         return fetch(URL + "/partite")
             .then((res) => {
-                console.log(res)
                 if (res.status === 200) {
                     return res.json()
                 }
@@ -49,7 +47,6 @@ export default class StompController {
     static getPartita(idPartita: string) {
         return fetch(URL + "/partite/" + idPartita)
             .then((res) => {
-                console.log(res)
                 if (res.status === 200) {
                     return res.json()
                 }
@@ -65,7 +62,10 @@ export default class StompController {
             client.subscribe("/topic/partite/" + idPartita, (res) =>
                 ObserverSingleton.notify(JSON.parse(res.body) as IPartita)
             )
-            client.send("/app/partite/" + idPartita + "/entra", {}, JSON.stringify({nickname, isImprenditore}))
+            console.log("qui", isImprenditore);
+            client.send("/app/partite/" + idPartita + "/entra", {},
+                JSON.stringify({nickname: nickname, isImprenditore: isImprenditore})
+            )
         })
     }
 
