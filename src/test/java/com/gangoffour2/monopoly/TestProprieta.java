@@ -169,7 +169,7 @@ class TestProprieta {
         partita.setStato(LancioDadi.builder().build());
         partita.getTabellone().getCasella(1).arrivo(g);
 
-        assertEquals("FineTurno", partita.getStato().getTipo());
+        assertInstanceOf(FineTurno.class, partita.getStato());
     }
 
     @Test
