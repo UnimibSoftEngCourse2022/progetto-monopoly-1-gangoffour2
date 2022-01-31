@@ -6,7 +6,7 @@
 \usepackage{graphicx}
 \graphicspath{ {./img/} }
 
-\title{Relazione ingegneria - Monopoly 1}
+\title{ \textbf{Relazione ingegneria - Progetto Monopoly}}
 \author {\textbf{Team Gang of Four 2}\\Acerbis Gianluca\\Canesi Gabriele\\Di Pierro Luca\\Fiorenza Gioele}
 \date{\today}
 
@@ -20,31 +20,29 @@
 Essendo alcuni diagrammi particolarmente grandi, abbiamo preferito, per poter permettere la loro visione  renderli consultabili attraverso il browser.
 Cliccando sulle immagini si verrà di fatto portati al diagramma relativo, laddove quest'ultimo sia ritenuto troppo grande per essere consultato dal documento pdf.
 
-\subsection{Requisiti richiesti extra}
-Onestamente abbiamo avuto problemi a comprendere la natura di alcune richieste qui sotto specifichiamo come abbiamo interpretato i diversi punti:
+\subsection{Requisiti extra richiesti dal progetto}
+Qui sotto descriviamo come abbiamo interpretato le richieste ulteriori mosse per il progetto:
 \begin{itemize}
 	\item \textbf{Random sequence of sposts, periodic random change of proprerty pricing, rents e interest e tax rates (both in sposts and cards)}: 
 		Questo punto è abbastanza chiaro e abbiamo implementato tutto ciò che era richiesto (cambi random di sequenza caselle, cambi nei prezzi di caselle proprietà e tasse nonché cambiamenti per le carte imprevisti e probabilità).
 	Questo avviene solo se la difficoltà del gioco è impostata su difficile.
-	
-	\item \textbf{Allow a loyalty program to enable the use of virtual currency with random rules based on existing international alliances' programs}: 
-		Non siamo stati in grado di comprendere in alcun modo come fosse possibile integrare un loyalty program collegato a alleanze internazionali(?) in monopoly.
-	Inoltre si parla di virtual currency (cosa che è già presente di base in monopoly)
-	Abbiamo pensato fosse un errore legato a un progetto di risiko.
 	
 	\item \textbf{Allow new player to join the game as enterpreneurs}: 
 		In questo caso diamo la possibilità, in base alla difficoltà del gioco (normale o difficile), agli utenti di entrare come imprenditori. Gli imprenditori pagano il 5\% in meno sugli affitti ma tasse del 75\% più elevate.
 	Percentuale calcolata in base al rateo proprietà/tasse che sono presenti sul terreno.
 	
 	\item \textbf{Allow complexity setting in three levels (easy, medium, hard)}: 
-		Abbiamo suddiviso le difficoltà come segue:\\
+		Abbiamo suddiviso le difficoltà come segue:
 		\begin{itemize}
 			\item \textbf{Easy}: gioco vanilla senza aggiunte
 			\item \textbf{Medium}: è possibile entrare come Imprenditore in partita
 			\item \textbf{Hard}: Tabellone randomizzato, cambi tassi periodici per Caselle(proprietà \& tasse) e Imprevisti\&Probabilità	
 		\end{itemize}
 		
-	
+	\item \textbf{Allow a loyalty program to enable the use of virtual currency with random rules based on existing international alliances' programs}: 
+		Non siamo stati in grado di comprendere in alcun modo come fosse possibile integrare un loyalty program collegato a alleanze internazionali(?) in monopoly.
+	Inoltre si parla di virtual currency (cosa che è già presente di base di base nel gioco)
+		
 \end{itemize}	
 
 
