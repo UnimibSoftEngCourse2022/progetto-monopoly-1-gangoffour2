@@ -86,6 +86,8 @@ public class Terreno extends Proprieta {
 
 
     public void reset(){
+        listaCase = new ArrayList<>();
+        albergo = null;
         setStato(TerrenoNonAcquistato.builder().terreno(this).build());
     }
 
