@@ -189,20 +189,6 @@ class TestProprieta {
     }
 
     @Test
-    void testAutoPagamento(){
-        this.acquistoProprieta(1);
-
-        Giocatore g = partita.getTurnoCorrente().getGiocatore();
-        g.setCasellaCorrente(partita.getTabellone().getCasella(0));
-        partita.getTabellone().muoviGiocatore(g, 1);
-        partita.setStato(LancioDadi.builder().build());
-        partita.fermaAttesa();
-        partita.getTabellone().getCasella(1).arrivo(g);
-
-        assertInstanceOf(FineTurno.class, partita.getStato());
-    }
-
-    @Test
     void testPagamentoAffitto() {
         partita.onAzioneGiocatore(EntraInPartita.builder().giocatore(Giocatore.builder().nick("Prova").build()).build());
         Giocatore g = partita.getTurnoCorrente().getGiocatore();
