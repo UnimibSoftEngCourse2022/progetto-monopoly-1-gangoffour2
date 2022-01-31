@@ -2,6 +2,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage[italian]{babel}
 \usepackage[a4paper, total={6in, 10in}]{geometry}
+\usepackage{hyperref}
 \usepackage{graphicx}
 \graphicspath{ {./img/} }
 
@@ -17,16 +18,19 @@
 
 \subsection{Premessa}
 Essendo alcuni diagrammi particolarmente grandi, abbiamo preferito, per poter permettere la loro visione  renderli consultabili attraverso il browser.
-Cliccando sulle immagini di fatto si verrà di fatto portati al diagramma relativo.
+Cliccando sulle immagini si verrà di fatto portati al diagramma relativo, laddove quest'ultimo sia ritenuto troppo grande per essere consultato dal documento pdf.
 
 \subsection{Diagramma dei casi d'uso}
-\includegraphics[width=\textwidth]{ModelloCasiDUso}
+\href{https://github.com/UnimibSoftEngCourse2022/progetto-monopoly-1-gangoffour2/blob/feat/doc/doc/img/ModelloCasiDUso.jpg?raw=true}
+	{\includegraphics[width=\textwidth]{ModelloCasiDUso}}
 
 \subsection{Modello di dominio}
-\includegraphics[width=\textwidth]{ModelloDiDominio}
+\href{https://github.com/UnimibSoftEngCourse2022/progetto-monopoly-1-gangoffour2/blob/feat/doc/doc/img/ModelloDiDominio.jpg?raw=true}
+	{\includegraphics[width=\textwidth]{ModelloDiDominio}}
 
 \subsection{Diagramma delle classi a livello progettazione}
-\includegraphics[width=\textwidth]{DiagrammaDelleClassi}
+\href{https://github.com/UnimibSoftEngCourse2022/progetto-monopoly-1-gangoffour2/blob/feat/doc/doc/img/DiagrammaDelleClassi.jpg?raw=true}
+	{\includegraphics[width=\textwidth]{DiagrammaDelleClassi}}
 
 \subsection{Diagrammi SSD}
 \subsubsection{SSD GiocaTurno CasellaProprieta \& Acquisto}
@@ -37,9 +41,12 @@ Cliccando sulle immagini di fatto si verrà di fatto portati al diagramma relati
 \includegraphics[width=\textwidth]{SSD_IniziaAsta_Invenduta}
 
 \subsection{Diagramma di sequenza}
-\includegraphics[width=\textwidth]{DiagrammaDiSequenzaDiProgettazioneTurnoGiocatore}
+\href{https://github.com/UnimibSoftEngCourse2022/progetto-monopoly-1-gangoffour2/blob/feat/doc/doc/img/DiagrammaDiSequenzaDiProgettazioneTurnoGiocatore.jpg?raw=true}
+	{\includegraphics[width=\textwidth]{DiagrammaDiSequenzaDiProgettazioneTurnoGiocatore}}
+
 \subsection{Diagramma Architettura Software}
-\includegraphics[width=\textwidth]{Diagramma_Architettura_Software}
+\href{https://github.com/UnimibSoftEngCourse2022/progetto-monopoly-1-gangoffour2/blob/feat/doc/doc/img/Diagramma_Architettura_Software.jpg?raw=true}
+	{\includegraphics[width=\textwidth]{Diagramma_Architettura_Software}}
 
 \subsection{Diagrammi Stati}
 \subsubsection{Diagramma Stati stato partita}
@@ -50,6 +57,9 @@ Cliccando sulle immagini di fatto si verrà di fatto portati al diagramma relati
 
 
 \section{Progettazione}
+
+\subsection{Tecnologie utilizzate}
+
 
 \subsection{Design principles utilizzati}
 Nello sviluppo del progetto siamo stati guidati dai principi \textbf{SOLID}:
