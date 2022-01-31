@@ -20,7 +20,7 @@
 
 *I seguenti comandi sono da eseguire all'interno della root del repository*
 
-- `mvn package`: Esegui la build del server e i relativi test. 
+- `mvn package`: Esegue la build del server e i relativi test. 
 Se hanno successo, esegue anche la build del client all'interno di `src/main/app` e copia i file generati
 in `target/static`, dove `target/` è la cartella in cui risiedono i file compilati del server.
 Infine, crea il pacchetto .jar completo.
@@ -30,5 +30,10 @@ Infine, crea il pacchetto .jar completo.
 Attualmente è `1.0.0`.
 
 - Il server è ora accessibile all'indirizzo `localhost:8080`.
+
+Per avviare una partita:
+- Dalla pagina principale, è possibile creare una partita selezionando le impostazioni preferite.
+- Una volta creata, questa sarà visibile dalla scheda a destra. Cliccando sull'id, apparirà una schermata tramite la quale sarà possibile avviare la partita.
+- Se vi sono più giocatori selezionati, la partita non inizierà fino a che non verrà raggiunto il numero prestabilito.
 
 *made with ❤️ by Gang Of Four 2*
