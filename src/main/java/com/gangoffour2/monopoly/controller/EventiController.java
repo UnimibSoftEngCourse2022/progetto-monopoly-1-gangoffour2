@@ -61,7 +61,7 @@ public class EventiController {
             try {
                 Giocatore g;
 
-                if(body.isImprenditore()) {
+                if(body.getIsImprenditore()) {
                     g = Imprenditore.builder().nick(body.getNickname()).idSessione(head.getSessionId()).build();
                 } else {
                     g = Giocatore.builder()

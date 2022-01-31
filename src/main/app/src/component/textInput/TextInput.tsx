@@ -44,7 +44,6 @@ const TextInput: FunctionComponent<Props> = (props) => {
             val = evt.target.value
 
             const regex = new RegExp(pattern as string);
-            console.log(regex.test(val), pattern)
             if(regex.test(val)) {
                 if (props.type === "number" && !isNaN(parseFloat(val.replace(",", "."))))
                     props.on_change(parseFloat(val));
