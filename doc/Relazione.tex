@@ -41,19 +41,21 @@ Qui sotto descriviamo come abbiamo interpretato le richieste ulteriori mosse per
 		\end{itemize}
 		
 	\item \textbf{Allow a loyalty program to enable the use of virtual currency with random rules based on existing international alliances' programs}: 
-		Non siamo stati in grado di comprendere in alcun modo come fosse possibile integrare un loyalty program collegato a alleanze internazionali(?) in monopoly.
-	Inoltre si parla di virtual currency (cosa che è già presente di base di base nel gioco)
+	Purtroppo, non siamo riusciti ad integrare questa richiesta all'interno del nostro progetto. Non essendoci nazioni all'interno del gioco, non siamo riusciti ad applicare questo concetto per aggiungere nuove funzionalità.
+
 		
 \end{itemize}	
 
 \subsection{Documenti Prodotti}
-	
-\subsubsection{Caso D'Uso UC1: Gioca Turno}
+\paragraph{\large Caso D'Uso UC1: Gioca Turno}
+\begin{itemize}
+\item
 \begin{enumerate}
     \item Il giocatore lancia i dadi
     \item La pedina del giocatore avanza del numero indicato dalla somma dei dadi.
 \end{enumerate}
-\subsection{Scenari alternativi}
+\item
+\paragraph{\large Scenari alternativi}
 \begin{enumerate}
     \item [1a] Il giocatore si trova in prigione e non sono ancora passati 3 turni dall'ultimo lancio:
     \begin{enumerate}
@@ -101,21 +103,20 @@ Qui sotto descriviamo come abbiamo interpretato le richieste ulteriori mosse per
         \item Se un Giocatore accetta, il proprietario avvia il caso d'Uso Scambia proprietà 
     \end{enumerate}
 \end{enumerate}
+\end{itemize}
 
-
-\subsection{Glossario}
+\paragraph{\large Glossario}
 \begin{itemize}
   \item \textbf{Difficoltà facile}: La difficoltà facile permette di giocare al gioco base del monopoly, anche se durante la creazione della partita sono modificabili i parametri di gioco iniziali, come: i soldi iniziali, il numero di dadi, il numero di facce per dado, quanti dadi uguali bisogna fare per andare in prigione.
   \item \textbf{Difficoltà normale}:  Questa opzione, rispetto a quella facile, introduce la possibilità di entrare in partita come giocatore imprenditore (vedi sotto per la spiegazione).
   \item \textbf{Difficoltà difficile}:  Con questa modalità, rispetto alla precedente è possibile scegliere se abilitare le caselle random e/o l'economia random (sotto seguono le spiegazioni).
   
-  \item \textbf{Imprenditore}: Giocatore che paga di più quando finisce su caselle di tipo tassa, o durante gli imprevisti, ma paga di meno gli altri giocatori quando arriva su una loro proprietà.
+  \item \textbf{Imprenditore}: Giocatore che paga di più quando finisce su caselle di tipo tassa, ma paga di meno gli altri giocatori quando arriva su una loro proprietà.
   \item \textbf{Caselle random}: Opzione che mischia la posizione delle caselle del tabellone in maniera casuale, viene attivata solo all'inizio della partita.
   \item \textbf{Economia random}: Feature che permette di modificare i prezzi di tutte le caselle del tabellone (inclusi affitti, ipoteche e costo delle case) ad ogni fine giro turno.
   \item \textbf{Fine giro turno}: Il Fine giro turno è definito quando tutti i giocatori hanno eseguito il loro turno lo stesso numero di volte.
    
  \end{itemize}
-
 \subsection{Diagrammi Prodotti}
 
 	\begin{figure}[H]
@@ -179,7 +180,7 @@ Qui sotto descriviamo come abbiamo interpretato le richieste ulteriori mosse per
 \centering
 \href{https://github.com/UnimibSoftEngCourse2022/progetto-monopoly-1-gangoffour2/blob/feat/doc/doc/img/DiagrammaDiSequenzaDiProgettazioneTurnoGiocatore.jpg?raw=true}
 	{\includegraphics[width=\textwidth]{DiagrammaDiSequenzaDiProgettazioneTurnoGiocatore}}
-\caption{Diagramma Stati stato terreno}
+\caption{Diagramma di Interazione - Esecuzione turno con pagamento affitto}
 \end{figure}
 
 \begin{figure}[H]
@@ -209,7 +210,7 @@ Inoltre alcune caselle sono dotate di stati per fare in modo che anche lo stato 
 
 \subsection{Tecnologie utilizzate}
 \begin{itemize}
-	\item \textbf{Server}: per il backend abbiamo voluto utilizzare il framework Spring sia perché complessivamente tutto il team conosce Java e ha avuto esperiente con il framework sia perché ritenuto idoneo allo scopo.
+	\item \textbf{Server}: per il backend abbiamo voluto utilizzare il framework Spring sia perché complessivamente tutto il team conosce Java e ha avuto esperienze con il framework sia perché ritenuto idoneo allo scopo. Il framework, inoltre, permette di focalizzarsi sui contenuti piuttosto che sulla parte dei servizi.
 
 
 	\item \textbf{Client}: per il frontend è stata principalmente utilizzata la libreria React per costruire l'interfaccia grafica per interagire con il server e costruire dinamicamente il tabellone.
