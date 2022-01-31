@@ -24,7 +24,7 @@ public class LancioDadi extends StatoPartita {
     @Override
     public void riprendi(AttesaFallimento attesaFallimento) {
         Giocatore giocatore = partita.getTurnoCorrente().getGiocatore();
-        giocatore.aggiungiDenaro(attesaFallimento.getSoldiDaPagare());
+        giocatore.aggiungiDenaro(-attesaFallimento.getSoldiDaPagare());
         partita.continua(this);
     }
 

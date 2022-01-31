@@ -1,7 +1,6 @@
 import React from 'react';
 import './caselle.scss'
 import ICasellaStazione from "../../interfaces/caselle/ICasellaStazione";
-import ICasellaTerreno from "../../interfaces/caselle/ICasellaTererno";
 import CasellaSingleton from "./CasellaSingleton";
 
 interface State {

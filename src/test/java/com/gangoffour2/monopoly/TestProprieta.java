@@ -2,10 +2,10 @@ package com.gangoffour2.monopoly;
 
 import com.gangoffour2.monopoly.azioni.giocatore.*;
 import com.gangoffour2.monopoly.eccezioni.GiocatoreEsistenteException;
+import com.gangoffour2.monopoly.model.casella.Proprieta;
 import com.gangoffour2.monopoly.model.casella.Terreno;
 import com.gangoffour2.monopoly.model.giocatore.Giocatore;
 import com.gangoffour2.monopoly.model.IPartita;
-import com.gangoffour2.monopoly.model.Turno;
 import com.gangoffour2.monopoly.model.casella.Casella;
 import com.gangoffour2.monopoly.stati.casella.SocietaIpotecata;
 import com.gangoffour2.monopoly.stati.casella.StazioneIpotecata;
@@ -19,7 +19,6 @@ import org.junit.jupiter.params.provider.ValueSource;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -132,7 +131,7 @@ class TestProprieta {
         partita.onAzioneGiocatore(Paga.builder().giocatore(povero).build());
         partita.getListenerTimeoutEventi().stopTimeout();
 
-        assertEquals("AttesaFallimento", partita.getStato().getTipo());
+        assertInstanceOf(AttesaFallimento.class, partita.getStato());
     }
 
     @Test
@@ -157,6 +156,36 @@ class TestProprieta {
         assertNotEquals(0, attesaFallimento.getSoldiDaPagare());
 
         assertEquals(soldiCreditorePrimaDelFallimento + attesaFallimento.getSoldiDaPagare(), creditore.getConto());
+    }
+
+    @Test
+    void testFallimentoTassa(){
+        Giocatore g = Giocatore.builder().nick("Ciao").build();
+        partita.onAzioneGiocatore(EntraInPartita.builder().giocatore(g).build());
+        g.setConto(0);
+        MonopolyApplicationTests.fakeTiro(partita, g, 4);
+        partita.continuaTurno();
+
+        assertInstanceOf(AttesaFallimento.class, partita.getStato());
+        assertTrue(((AttesaFallimento)partita.getStato()).getSoldiDaPagare() > 0);
+    }
+
+    @Test
+    void testFallimentoTassaConIpoteca(){
+        this.acquistoProprieta(1);
+
+        Giocatore g = partita.getTurnoCorrente().getGiocatore();
+        g.setConto(0);
+        g.setCasellaCorrente(partita.getTabellone().getCasella(0));
+        MonopolyApplicationTests.fakeTiro(partita, g, 4);
+        partita.continuaTurno();
+        g.setConto(1000);
+        Proprieta casella = (Proprieta) partita.getTabellone().getCasella(1);
+        partita.onAzioneGiocatore(Ipoteca.builder().giocatore(g).proprieta(casella).build());
+        partita.continua(partita.getStato());
+
+        assertInstanceOf(FineTurno.class, partita.getStato());
+        assertEquals(1000 + 30 - 200, g.getConto());
     }
 
     @Test
