@@ -9,7 +9,8 @@ interface State {
 }
 
 interface Props {
-    casella: ICasellaStazione
+    casella: ICasellaStazione,
+    caHover: () => {}
 }
 
 export class Stazione extends React.Component<Props, State> {
@@ -22,7 +23,7 @@ export class Stazione extends React.Component<Props, State> {
             style = {backgroundColor: CasellaSingleton.giocatoreColore[casella.proprietario]};
         }
         return <div className="space railroad" style={style}>
-            <div className="container" aria-disabled={this.props.casella.stato.type === "StazioneIpotecata"}>
+            <div className="container" onMouseLeave={this.props.caHover} onMouseEnter={this.props.caHover} aria-disabled={this.props.casella.stato.type === "StazioneIpotecata"}>
                 <div className="name">{this.props.casella.nome}</div>
                     <i className="drawing fa fa-subway"/>
                     <div className="price">{this.props.casella.costoBase}</div>
