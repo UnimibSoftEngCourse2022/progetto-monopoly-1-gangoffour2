@@ -11,7 +11,7 @@
 ### Prerequisiti
 
 - [Java 11](https://www.oracle.com/it/java/technologies/javase/jdk11-archive-downloads.html)
-- [Maven](https://maven.apache.org/install.html)
+- [Maven](https://maven.apache.org/install.html) (3.1 or >)
 - [Git](https://git-scm.com/downloads)
 
 ### Passi
