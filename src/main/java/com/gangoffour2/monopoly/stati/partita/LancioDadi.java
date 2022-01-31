@@ -123,7 +123,7 @@ public class LancioDadi extends StatoPartita {
         }catch (Exception e){
             int soldiDaPagare = aggiungiDenaro.getImporto();
             partita.memorizzaStato(this);
-            partita.setStato(AttesaFallimento.builder().soldiDaPagare(soldiDaPagare).build());
+            partita.setStato(AttesaFallimento.builder().soldiDaPagare(-soldiDaPagare).build());
             partita.getStato().esegui();
         }
     }
