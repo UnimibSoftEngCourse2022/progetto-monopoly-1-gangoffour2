@@ -2,7 +2,7 @@ package com.gangoffour2.monopoly.model.casella.strategy;
 
 import com.gangoffour2.monopoly.model.casella.Casella;
 
-public class StrategiaEconomiaVanilla implements RandomCaselleStrategy {
+public class StrategiaCasellaVanilla implements ProprietaCaselleStrategy {
 
     @Override
     public void randomizzaCasella(Casella c) {

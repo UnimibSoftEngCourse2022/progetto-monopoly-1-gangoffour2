@@ -6,7 +6,7 @@ import lombok.Builder;
 import java.security.SecureRandom;
 
 @Builder
-public class StrategiaCarteRandom implements RandomCarteStrategy{
+public class StrategiaCarteRandom implements ProprietaCarteStrategy {
     @Override
     public void randomizzaCarta(Carta c) {
         float moltiplicatore = (float) (new SecureRandom().nextFloat()*0.4 + 0.8);

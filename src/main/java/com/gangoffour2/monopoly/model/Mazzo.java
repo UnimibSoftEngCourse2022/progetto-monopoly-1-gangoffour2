@@ -3,7 +3,7 @@ package com.gangoffour2.monopoly.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.gangoffour2.monopoly.eccezioni.ModificaDenaroException;
 import com.gangoffour2.monopoly.model.carta.Carta;
-import com.gangoffour2.monopoly.model.carta.strategy.RandomCarteStrategy;
+import com.gangoffour2.monopoly.model.carta.strategy.ProprietaCarteStrategy;
 import com.gangoffour2.monopoly.model.carta.strategy.StrategiaCarteVanilla;
 import com.gangoffour2.monopoly.model.giocatore.Giocatore;
 import lombok.Builder;
@@ -23,7 +23,7 @@ public class Mazzo implements IMazzo {
 
     @JsonIgnore
     @Builder.Default
-    private transient RandomCarteStrategy strategiaMazzo = new StrategiaCarteVanilla();
+    private transient ProprietaCarteStrategy strategiaMazzo = new StrategiaCarteVanilla();
 
     public void pescaImprevisto(Giocatore giocatore) throws ModificaDenaroException {
         Carta carta = imprevisti.remove();

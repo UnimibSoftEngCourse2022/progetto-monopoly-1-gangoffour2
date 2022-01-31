@@ -6,7 +6,7 @@ import lombok.Builder;
 import java.security.SecureRandom;
 
 @Builder
-public class StrategiaCasellaRandom implements RandomCaselleStrategy{
+public class StrategiaCasellaRandom implements ProprietaCaselleStrategy {
     @Override
     public void randomizzaCasella(Casella c) {
         float moltiplicatore = (float) (new SecureRandom().nextFloat()*0.4 + 0.8);

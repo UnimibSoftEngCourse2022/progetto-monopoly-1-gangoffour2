@@ -100,7 +100,6 @@ public class LancioDadi extends StatoPartita {
             // La partita continua solo se il suo stato non è stato modificato dall'effetto della carta
             if(partita.getStato() == this)
                 partita.continua(this);
-            //partita.continua(this);
         }catch (ModificaDenaroException e){
             fallimentoCarta(e.getSoldiDaPagare());
         }

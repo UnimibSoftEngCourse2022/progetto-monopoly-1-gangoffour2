@@ -2,8 +2,8 @@ package com.gangoffour2.monopoly.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.gangoffour2.monopoly.model.casella.Casella;
-import com.gangoffour2.monopoly.model.casella.strategy.RandomCaselleStrategy;
-import com.gangoffour2.monopoly.model.casella.strategy.StrategiaEconomiaVanilla;
+import com.gangoffour2.monopoly.model.casella.strategy.ProprietaCaselleStrategy;
+import com.gangoffour2.monopoly.model.casella.strategy.StrategiaCasellaVanilla;
 import com.gangoffour2.monopoly.model.giocatore.Giocatore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -23,7 +23,7 @@ public class Tabellone implements ITabellone, Serializable {
 
     @JsonIgnore
     @Builder.Default
-    private transient RandomCaselleStrategy strategia = new StrategiaEconomiaVanilla();
+    private transient ProprietaCaselleStrategy strategia = new StrategiaCasellaVanilla();
 
     @Override
     public Casella getCasella(int posizione) {
