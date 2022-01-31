@@ -13,6 +13,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -42,6 +43,20 @@ class MonopolyApplicationTests {
         partita.setTurnoCorrente(Turno.builder().giocatore(g).build());
 
         return partita;
+    }
+
+    static void fakeTiro(IPartita partita, Giocatore giocatore, int spostamento) {
+        ArrayList<Integer> dadi = new ArrayList<>();
+        dadi.add(spostamento - 1);
+        dadi.add(1);
+        Turno t =   Turno.builder()
+                .casellaDaVisitare(spostamento)
+                .lanciConsecutivi(1)
+                .valoreDadi(dadi)
+                .giocatore(giocatore)
+                .build();
+        t.inizializzaDadi(2);
+        partita.setTurnoCorrente(t);
     }
 
     @BeforeEach

@@ -26,7 +26,6 @@ public class AttesaPrigione extends StatoPartita {
         partita.getTurnoCorrente().lancioDadi(partita.getConfig().getFacceDadi());
         if (partita.getTurnoCorrente().dadiUguali()){
             lanciaDadi.getGiocatore().getCasellaCorrente().onAzioneGiocatore(lanciaDadi);
-            partita.setStato(LancioDadi.builder().build());
             partita.setTurnoCorrente(Turno.builder()
                     .giocatore(partita.getTurnoCorrente().getGiocatore())
                     .build());

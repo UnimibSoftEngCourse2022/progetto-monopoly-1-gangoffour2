@@ -176,6 +176,7 @@ public class Partita extends IPartita implements PartitaObserver {
     public void continua(StatoPartita statoPartita){
         if (stackStati.isEmpty()){
             setStato(LancioDadi.builder().build());
+            turnoCorrente.inizializzaDadi(config.getNumeroDadi());
             continuaTurno();
         }
         else {

@@ -26,7 +26,8 @@ public class Turno implements Serializable {
     @Builder.Default
     private SecureRandom random = new SecureRandom();
 
-    private int triggerDadiUguali;
+    @Builder.Default
+    private int triggerDadiUguali = 3;
 
     public void inizializzaDadi(int numeroDadi) {
         if (valoreDadi.isEmpty()) {
