@@ -5,5 +5,5 @@ import lombok.Data;
 @Data
 public class GiocatoreEntraRequestBody {
     private String nickname;
-    private boolean isImprenditore;
+    private Boolean isImprenditore;
 }

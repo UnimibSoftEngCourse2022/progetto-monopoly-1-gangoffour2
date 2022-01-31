@@ -98,9 +98,7 @@ class TestProprieta {
 
         g.getCasellaCorrente().arrivo(g);
         partita.getListenerTimeoutEventi().stopTimeout();
-        System.out.println(partita.getStato().getTipo());
         partita.getStato().onTimeout();
-        System.out.println(partita.getStato().getTipo());
 
         partita.onAzioneGiocatore(Offerta.builder().valore(100).giocatore(g).build());
         partita.getListenerTimeoutEventi().stopTimeout();
