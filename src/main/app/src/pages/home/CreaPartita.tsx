@@ -78,21 +78,6 @@ export default class CreaPartita extends React.Component<Props, State> {
         })
     }
 
-    handleSetRandomCaselle = () => {
-        this.handleSet((config) => {
-            config.randomCaselle = !config.randomCaselle;
-            return config;
-        })
-    }
-
-    handleSetRandomEconomia = () => {
-        this.handleSet((config) => {
-            config.randomEconomia = !config.randomEconomia;
-            return config;
-        })
-    }
-
-
     render() {
 
         const config = this.state.configurazione;
@@ -120,20 +105,6 @@ export default class CreaPartita extends React.Component<Props, State> {
                 <p>Normale: I giocatori possono essere imprenditori</p>
                 <p>Difficile: Random Economia + Random Tabellone</p>
             </div>
-
-            {this.state.configurazione.difficolta === Difficolta.HARD && <div>
-                <div>
-                    <input id={"randomCaselle"} type={"checkbox"} name={"randomCaselle"}
-                           onChange={this.handleSetRandomCaselle}/>
-                    <label htmlFor={"randomCaselle"}>Caselle random</label>
-                </div>
-
-                <div>
-                    <input id={"economiaRandom"} type={"checkbox"} name={"economiaRandom"}
-                           onChange={this.handleSetRandomEconomia}/>
-                    <label htmlFor={"economiaRandom"}>Economia random</label>
-                </div>
-            </div>}
 
             <button onClick={() => StompController.creaPartita(this.state.configurazione)}>
                 crea partita
