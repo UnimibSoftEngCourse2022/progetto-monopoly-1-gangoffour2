@@ -1,6 +1,8 @@
 import React from 'react';
 import './caselle.scss'
 import ICasellaStazione from "../../interfaces/caselle/ICasellaStazione";
+import ICasellaTerreno from "../../interfaces/caselle/ICasellaTererno";
+import CasellaSingleton from "./CasellaSingleton";
 
 interface State {
 
@@ -11,8 +13,15 @@ interface Props {
 }
 
 export class Stazione extends React.Component<Props, State> {
+
     render() {
-        return <div className="space railroad">
+
+        let casella : ICasellaStazione = this.props.casella;
+        let style = {}
+        if (casella.proprietario !== null){
+            style = {backgroundColor: CasellaSingleton.giocatoreColore[casella.proprietario]};
+        }
+        return <div className="space railroad" style={style}>
             <div className="container" aria-disabled={this.props.casella.stato.type === "StazioneIpotecata"}>
                 <div className="name">{this.props.casella.nome}</div>
                     <i className="drawing fa fa-subway"/>
