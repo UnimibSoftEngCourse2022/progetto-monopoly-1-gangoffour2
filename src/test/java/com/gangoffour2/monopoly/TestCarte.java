@@ -87,6 +87,7 @@ class TestCarte {
         Giocatore g = Giocatore.builder().nick("Ciao").build();
         partita.onAzioneGiocatore(EntraInPartita.builder().giocatore(g).build());
         TestProprieta.fakeTiro(partita, g, 2);
+        g.getCasellaCorrente().arrivo(g);
         partita.continuaTurno();
         assertInstanceOf(FineTurno.class, partita.getStato());
     }
