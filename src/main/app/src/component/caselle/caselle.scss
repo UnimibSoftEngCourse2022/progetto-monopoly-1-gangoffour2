@@ -30,6 +30,21 @@ $dark-blue: #5a6dba;
   background-color: lightcoral;
 }
 
+.color-bar{
+  display: grid;
+  grid-template-columns: repeat(4, 3fr);
+}
+
+.color-bar .casa {
+  margin: 5px;
+  background-color: #ccffcc;
+}
+
+.color-bar .albergo {
+  margin: 2px;
+  background-color: #660000;
+}
+
 * {
   box-sizing: border-box;
 }
