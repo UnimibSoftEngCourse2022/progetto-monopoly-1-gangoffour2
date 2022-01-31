@@ -196,6 +196,7 @@ class TestProprieta {
         g.setCasellaCorrente(partita.getTabellone().getCasella(0));
         partita.getTabellone().muoviGiocatore(g, 1);
         partita.setStato(LancioDadi.builder().build());
+        partita.fermaAttesa();
         partita.getTabellone().getCasella(1).arrivo(g);
 
         assertInstanceOf(FineTurno.class, partita.getStato());
