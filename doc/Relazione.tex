@@ -3,6 +3,7 @@
 \usepackage[italian]{babel}
 \usepackage[a4paper, total={6in, 10in}]{geometry}
 \usepackage{hyperref}
+\usepackage{float}
 \usepackage{graphicx}
 \graphicspath{ {./img/} }
 
@@ -45,50 +46,163 @@ Qui sotto descriviamo come abbiamo interpretato le richieste ulteriori mosse per
 		
 \end{itemize}	
 
+\subsection{Documenti Prodotti}
+	
+\subsubsection{Caso D'Uso UC1: Gioca Turno}
+\begin{enumerate}
+    \item Il giocatore lancia i dadi
+    \item La pedina del giocatore avanza del numero indicato dalla somma dei dadi.
+\end{enumerate}
+\subsection{Scenari alternativi}
+\begin{enumerate}
+    \item [1a] Il giocatore si trova in prigione e non sono ancora passati 3 turni dall'ultimo lancio:
+    \begin{enumerate}
+        \item il caso d'uso termina
+    \end{enumerate}
+    \item [1b] Il giocatore si trova in prigione e sono passati 3 turni dall'ultimo lancio:
+        \begin{enumerate}
+            \item Il giocatore lancia i dadi
+            \item Se i dadi hanno valore uguale, il giocatore esce di prigione
+            \item Se i dadi hanno valore diverso e il giocatore paga 50 euro alla Banca esce dalla prigione.
+        \end{enumerate}
+    \item [2a] I dadi hanno valore uguale dopo un numero consecutivo di lanci minore di 3:
+    \begin{enumerate}
+        \item Il giocatore riesegue lo scenario principale dal punto 1
+    \end{enumerate}
+    \item [2b] La casella in cui si trova la pedina appartiene a un altro giocatore e non è ipotecata:
+    \begin{enumerate}
+        \item Il giocatore deve pagare il proprietario del terreno secondo la formula indicata nel glossario bla bla bla
+    \end{enumerate}
+    
+    \item [2c] I dadi hanno valore uguale dopo un numero consecutivo di lanci uguale a 3:
+    \begin{enumerate}
+        \item Il giocatore lancia i dadi
+        \item Se i dadi hanno valore diverso:
+        \begin{enumerate}
+            \item Se il giocatore paga 50 euro alla Banca, rimane fuori dalla prigione
+            \item Se il giocatore non paga 50 euro alla banca, viene saltato il turno.
+        \end{enumerate}
+    \end{enumerate}
+    \item [2d] La pedina del Giocatore si trova su una casella di imprevisti:
+    \begin{enumerate}
+        \item Il giocatore esegue il caso d'uso Subisci Imprevisto
+    \end{enumerate}
+    \item [2e] La pedina del Giocatore si trova su una casella di probabilità:
+    \begin{enumerate}
+        \item Il giocatore esegue il caso d'uso Subisci Probabilità
+    \end{enumerate}
+    \item [2f]. La pedina del Giocatore si trova su una casella che non appartiene a nessuno dei giocatori:
+    \begin{enumerate}
+        \item Se il giocatore non compra la proprietà associata, la banca esegue il caso d'uso Avvia asta invenduta
+        \item Se il giocatore vuole comprare la proprietà, il Giocatore esegue il caso d'uso Scambia proprietà.
+    \end{enumerate}
+    \item [*] Un Giocatore vuole avviare una trattativa per scambiare una proprietà:
+    \begin{enumerate}
+        \item Se un Giocatore accetta, il proprietario avvia il caso d'Uso Scambia proprietà 
+    \end{enumerate}
+\end{enumerate}
 
-\subsection{Diagramma dei casi d'uso}
+
+\subsection{Glossario}
+\begin{itemize}
+  \item \textbf{Difficoltà facile}: La difficoltà facile permette di giocare al gioco base del monopoly, anche se durante la creazione della partita sono modificabili i parametri di gioco iniziali, come: i soldi iniziali, il numero di dadi, il numero di facce per dado, quanti dadi uguali bisogna fare per andare in prigione.
+  \item \textbf{Difficoltà normale}:  Questa opzione, rispetto a quella facile, introduce la possibilità di entrare in partita come giocatore imprenditore (vedi sotto per la spiegazione).
+  \item \textbf{Difficoltà difficile}:  Con questa modalità, rispetto alla precedente è possibile scegliere se abilitare le caselle random e/o l'economia random (sotto seguono le spiegazioni).
+  
+  \item \textbf{Imprenditore}: Giocatore che paga di più quando finisce su caselle di tipo tassa, o durante gli imprevisti, ma paga di meno gli altri giocatori quando arriva su una loro proprietà.
+  \item \textbf{Caselle random}: Opzione che mischia la posizione delle caselle del tabellone in maniera casuale, viene attivata solo all'inizio della partita.
+  \item \textbf{Economia random}: Feature che permette di modificare i prezzi di tutte le caselle del tabellone (inclusi affitti, ipoteche e costo delle case) ad ogni fine giro turno.
+  \item \textbf{Fine giro turno}: Il Fine giro turno è definito quando tutti i giocatori hanno eseguito il loro turno lo stesso numero di volte.
+   
+ \end{itemize}
+
+\subsection{Diagrammi Prodotti}
+
+	\begin{figure}[H]
+	\centering
 \href{https://github.com/UnimibSoftEngCourse2022/progetto-monopoly-1-gangoffour2/blob/feat/doc/doc/img/ModelloCasiDUso.jpg?raw=true}
 	{\includegraphics[width=\textwidth]{ModelloCasiDUso}}
-
-\subsection{Modello di dominio}
+	\caption{Diagramma dei Casi d'Uso}
+	\end{figure}
+	
+		\begin{figure}[H]
+	\centering
 \href{https://github.com/UnimibSoftEngCourse2022/progetto-monopoly-1-gangoffour2/blob/feat/doc/doc/img/ModelloDiDominio.jpg?raw=true}
 	{\includegraphics[width=\textwidth]{ModelloDiDominio}}
+		\caption{Modello di Dominio}
+	\end{figure}
 
-\subsection{Diagrammi SSD}
-\subsubsection{SSD GiocaTurno CasellaProprieta \& Acquisto}
+		\begin{figure}[H]
+	\centering
 \includegraphics[width=\textwidth]{SSD_GiocaTurno_CasellaProprieta+Acquisto}
-\subsubsection{SSD GiocaTurno CasellaProprieta \& No Acquisto}
+		\caption{SSD GiocaTurno CasellaProprieta \& Acquisto}
+	\end{figure}
+	
+	
+		\begin{figure}[H]
+	\centering
 \includegraphics[width=\textwidth]{SSD_GiocaTurno_CasellaProprietà+NoAcquisto}
-\subsubsection{SSD Inizia Asta Terreno invenduto}
+		\caption{SSD GiocaTurno CasellaProprieta \& No Acquisto}
+	\end{figure}
+
+
+\begin{figure}[H]
+\centering
 \includegraphics[width=\textwidth]{SSD_IniziaAsta_Invenduta}
+\caption{SSD Inizia Asta Terreno invenduto}
+\end{figure}
 
 
-\subsection{Diagrammi Stati}
-\subsubsection{Diagramma Stati stato partita}
+\begin{figure}[H]
+\centering
 \includegraphics[width=\textwidth]{DiagrammaStatiStatoPartita}
-\subsubsection{Diagramma Stati stato terreno}
+\caption{Diagramma Stati stato partita}
+\end{figure}
+
+\begin{figure}[H]
+\centering
 \includegraphics[width=\textwidth]{DiagrammaStatiStatoTerreno}
+\caption{Diagramma Stati stato terreno}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{img/DiagrammaAttivitàEsecuzioneTurno.jpg}
+\caption{Diagramma delle Attività - Esecuzione Turno}
+\end{figure}
 
 
 
 \section{Progettazione}
 \subsection{Diagrammi prodotti}
-\subsection{Diagramma di sequenza}
+\begin{figure}[H]
+\centering
 \href{https://github.com/UnimibSoftEngCourse2022/progetto-monopoly-1-gangoffour2/blob/feat/doc/doc/img/DiagrammaDiSequenzaDiProgettazioneTurnoGiocatore.jpg?raw=true}
 	{\includegraphics[width=\textwidth]{DiagrammaDiSequenzaDiProgettazioneTurnoGiocatore}}
+\caption{Diagramma Stati stato terreno}
+\end{figure}
 
-\subsection{Diagramma delle classi di progetto}
+\begin{figure}[H]
+\centering
 \href{https://github.com/UnimibSoftEngCourse2022/progetto-monopoly-1-gangoffour2/blob/feat/doc/doc/img/DiagrammaDelleClassi.jpg?raw=true}
 	{\includegraphics[width=\textwidth]{img/DiagrammaDelleClassi.jpg}}
+\caption{Diagramma delle classi di progetto}
+\end{figure}
 
-
-\subsection{Diagramma Architettura Software}
+\begin{figure}[H]
+\centering
 \href{https://github.com/UnimibSoftEngCourse2022/progetto-monopoly-1-gangoffour2/blob/feat/doc/doc/img/Diagramma_Architettura_Software.jpg?raw=true}
 	{\includegraphics[width=\textwidth]{Diagramma_Architettura_Software}}
+\caption{Diagramma Architettura Software}
+\end{figure}
 
-\subsection{Diagramma di deployment}
+
+\begin{figure}[H]
+\centering
 \href{https://github.com/UnimibSoftEngCourse2022/progetto-monopoly-1-gangoffour2/blob/feat/doc/doc/img/DiagrammaDiDeployment.jpg?raw=true}
 	{\includegraphics[width=\textwidth]{img/DiagrammaDiDeployment.jpg}}
+\caption{Diagramma di deployment}
+\end{figure}
 
 Nella progettazione abbiamo usufruito del polimorfismo per fare in modo che le diverse tipologie delle caselle potessero rispondere in modi differenti in base al tipo di azione che ricevevano. \\
 Inoltre alcune caselle sono dotate di stati per fare in modo che anche lo stato potesse generare diverse logiche di gestione delle azioni.
@@ -105,12 +219,12 @@ Inoltre alcune caselle sono dotate di stati per fare in modo che anche lo stato 
 \end{itemize}
 
 
-\subsection{Design principles utilizzati}
+\subsection{Principi SOLID}
 Nello sviluppo del progetto siamo stati guidati dai principi \textbf{SOLID}:
 \begin{itemize}
     \item \textbf{S}ingle-Responsibility principle: classi come Partita, Tabellone e Turno tendono a gestire specifici aspetti del gioco e ad esempio sono state divise concettualmente le caselle, i loro stati e i loro comportamenti.
     
-    \item \textbf{O}pen closed principle: il sistema è stato progettando cercando di lasciare la massima possibilità di estenderlo senza andarne a modificare la struttura: ad esempio, è possibile aggiungere un nuovo stato,una nuova casella o nuovi comportamenti senza modificare la struttura principale del sistema.
+    \item \textbf{O}pen closed principle: il sistema è stato progettando cercando di lasciare la massima possibilità di estenderlo senza andarne a modificare la struttura: ad esempio, è possibile aggiungere un nuovo stato,una nuova casella o nuovi comportamenti senza modificare la struttura principale del sistema: è sufficiente ridefinire i metodi per gestire determinati eventi senza preoccuparsi di modificare il resto del software.
     
     \item \textbf{L}iskov Substitution Principle: Per fare in modo che la struttura della partita e il suo corretto comportamento non siano influenzati dalla tipologia della singola casella, abbiamo fatto in modo di rendere la gerarchia delle caselle completamente trasparente alla partita.
     
@@ -118,6 +232,13 @@ Nello sviluppo del progetto siamo stati guidati dai principi \textbf{SOLID}:
     
     \item \textbf{D}ependency Inversion: Per diminuire l'accoppiamento tra classi concrete e aumentare la dipendenza verso classi astratte, abbiamo introdotto varie interfacce che nascondono le implementazioni, tra cui: ITabellone, IPartita, IMazzo.
     \end{itemize}
+
+\subsection{Principi PHAME Utilizzati}
+\begin{itemize}
+        \item Encapsulation: Abbiamo cercato di fare in modo che ogni classe nascondesse i dettagli di implementazione: ad esempio, Quando un giocatore deve aggiudicarsi una proprietà, viene chiamato un metodo su di esso piuttosto che accedere ai suoi attributi. Questo fa bene anche al Single responsibility principle.
+        \item Hierarchy: per cercare di semplificare la logica del gioco, abbiamo creato una gerarchia di caselle, le quali condividono un sottoinsieme di attributi (ad esempio il nome), ma aggiungono o ridefiniscono comportamenti in base al loro tipo. Sfruttando il polimorfismo, È più facile raggiungere un basso livello di disaccoppiamento con il tabellone, che ha bisogno di conoscere solo la radice di questa gerarchia.
+    \end{itemize}
+    
 
 \subsection{Design patterns utilizzati}
     \begin{itemize}
@@ -129,10 +250,10 @@ Nello sviluppo del progetto siamo stati guidati dai principi \textbf{SOLID}:
         
         \item \textbf{State}: fondamentale nella struttura del progetto. È stato utilizzato perché il comportamento all'interno di una partita dipende dallo stato di ogni casella, in combinazione con lo stato della partita. Ad esempio, la terminazione su un terreno deve rispondere in modo diverso in base a se è stato acquistato, ipotecato, ecc… \\ La stessa cosa vale per la partita: se la partita sta attendendo che un giocatore paghi l'affitto per un terreno, non è possibile che un altro giocatore lanci i dadi in quel momento. 
         
-        \textit{Classi interessate: StatoPartita, Casella} 
+        \textit{Classi interessate: StatoPartita, StatoCasella, Partita, Casella} 
         
         
-        \item \textbf{Visitor}: Quando una casella notifica un'azione da eseguire alla partita (o meglio, al suo stato), il metodo da eseguire dipende dal tipo concreto di questa azione. \\Per esempio, dato uno stato, il comportamento dipende dal tipo dell'azione generata dalla casella. Inoltre, in questo modo, è possibile aggiungere nuove azioni senza dover modificare la struttura delle classi.\\Tramite la tecnica del Double dispatch è stato possibile eseguire azioni differenti che differiscono per il tipo di azione generata dalle caselle.
+        \item \textbf{Visitor}: Quando una casella notifica un'azione da eseguire alla partita (o meglio, al suo stato), il metodo da eseguire dipende dal tipo concreto di questa azione. \\Per esempio, dato uno stato, il comportamento dipende dal tipo dell'azione generata dalla casella. Inoltre, in questo modo, è possibile aggiungere nuove azioni senza dover modificare la struttura delle classi.\\Tramite la tecnica del Double dispatch è stato possibile eseguire azioni differenti che differiscono per il tipo di azione generata dalle caselle. L'effetto di questo pattern è la "Creazione" di un automa a stati le cui transizioni dipendono dalle coppie stato corrente/azione
         
         \textit{Classi interessate: AzioniGiocatore, AzioniPartita} 
         
@@ -174,7 +295,5 @@ Nello sviluppo del progetto siamo stati guidati dai principi \textbf{SOLID}:
 Utilizzando il tool Understand, abbiamo notato che la classe Partita aveva molte dipendenze in ingresso e in uscita: questo può essere segno di un antipattern Hub. Per cercare di risolvere il problema, abbiamo aggiunto una classe astratta che viene estesa da partita: In questo modo, abbiamo ridotto le dipendenze in entrata da partita, rendendo visibile solo la classe astratta relativa. Stessa cosa per ITabellone.
 \\Invece StatoPartita ha molte dipendenze in entrata, una per ogni tipo di azione 
 giocatore/casella. Questo implica che ci potremmo trovare davanti a un Global Butterfly.
-
-\paragraph{}
 
 \end{document}
