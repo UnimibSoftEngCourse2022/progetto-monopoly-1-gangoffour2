@@ -58,6 +58,9 @@ Cliccando sulle immagini si verrà di fatto portati al diagramma relativo, laddo
 
 \section{Progettazione}
 
+Nella progettazione abbiamo usufruito del polimorfismo per fare in modo che le diverse tipologie delle caselle potessero rispondere in modi differenti in base al tipo di azione che ricevevano. \\
+Inoltre alcune caselle sono dotate di stati per fare in modo che anche lo stato potesse generare diverse logiche di gestione delle azioni.
+
 \subsection{Tecnologie utilizzate}
 \begin{itemize}
 	\item \textbf{Server}: per il backend abbiamo voluto utilizzare il framework Spring sia perché complessivamente tutto il team conosce Java e ha avuto esperiente con il framework sia perché ritenuto idoneo allo scopo.
@@ -97,7 +100,7 @@ Nello sviluppo del progetto siamo stati guidati dai principi \textbf{SOLID}:
         \textit{Classi interessate: StatoPartita, Casella} 
         
         
-        \item \textbf{Visitor}: Quando una casella notifica un'azione da eseguire alla partita (o meglio, al suo stato), il metodo da eseguire dipende dal tipo concreto di questa azione. \\Per esempio, dato uno stato, il comportamento dipende dal tipo dell'azione generata dalla casella. Inoltre, in questo modo, è possibile aggiungere nuove azioni senza dover modificare la struttura delle classi.
+        \item \textbf{Visitor}: Quando una casella notifica un'azione da eseguire alla partita (o meglio, al suo stato), il metodo da eseguire dipende dal tipo concreto di questa azione. \\Per esempio, dato uno stato, il comportamento dipende dal tipo dell'azione generata dalla casella. Inoltre, in questo modo, è possibile aggiungere nuove azioni senza dover modificare la struttura delle classi.\\Tramite la tecnica del Double dispatch è stato possibile eseguire azioni differenti che differiscono per il tipo di azione generata dalle caselle.
         
         \textit{Classi interessate: AzioniGiocatore, AzioniPartita} 
         
@@ -106,14 +109,29 @@ Nello sviluppo del progetto siamo stati guidati dai principi \textbf{SOLID}:
         \\Il mazzo di carte e il tabellone hanno uno strategy istanziato durante la creazione della partita in base alla difficoltà selezionata. Quando necessario, viene chiamato un metodo su quello strategy che conterrà la logica di gestione specifica per quella difficoltà.
         \\Tutto questo sempre seguendo il principio di apertura ai cambiamenti che in questo permetterà facilmente estendere il software a diversi tipi di strategie legate alle difficoltà di gioco.
         
-        \textit{Classi interessate: (Interfaccia)PagamentoStrategy, PagamentoStrategiaGiocatore, PagamentoStrategiaImprenditore, (Interfaccia)ProprietaCaselleStrategy, StrategiaCasellaRandom, StrategiaCasellaVanilla, (Interfaccia)ProprietaCarteStrategy, StrategiaCarteRandom, StrategiaCarteVanilla}
+         \textit{Classi interessate: (Interfaccia)PagamentoStrategy, PagamentoStrategiaGiocatore, PagamentoStrategiaImprenditore, (Interfaccia)ProprietaCaselleStrategy, StrategiaCasellaRandom, StrategiaCasellaVanilla, (Interfaccia)ProprietaCarteStrategy, StrategiaCarteRandom, StrategiaCarteVanilla}
+         
+         
+         \item \textbf{Facade}: La partita agisce da Facade intercettando tutte le richieste dei controller. \\
+         \textit{Classi interessate: IPartita}
+         
+         
+         \item \textbf{Observer}: Usato nel client per far intercettare l’aggiornamento della partita da più componenti contemporaneamente e nel server per evitare le dipendenze cicliche nelle comunicazioni tra partita e casella e viceversa
+         
+         \textit{Classi interessate clienti: ObserverCarte, ObserverPartite, ObserverSingleton}
+         \textit{Classi interessate server: ObserverStatoPartita, SubjectStatoPartita}
+
+         
     \end{itemize}
 
 \subsection{Pattern architetturali utilizzati}
     \begin{itemize}
         \item \textbf{Front controller}: utile per fornire un punto di accesso al backend dal client. Classi interessate: EventiController, WebController.
         \item \textbf{Message channel}: utilizzato per gestire le sessioni delle partite con i client. Per fare in modo che tutti i giocatori ricevessero lo stato della partita aggiornato, abbiamo utilizzato un message broker al quale si iscrivono.
+        \item \textbf{Layers}: il suo utilizzo ci ha consentito di organizzare l’architettura logica in un sistema di più livelli (layers) con funzionalità distinte ma correlate. In modo tale da avere una separazione delle responsabilità pulita e che aumenti la coesione del sistema finale.
     \end{itemize}
+    
+
 
 
 \subsection{Problemi incontrati durante la fase di progettazione}
