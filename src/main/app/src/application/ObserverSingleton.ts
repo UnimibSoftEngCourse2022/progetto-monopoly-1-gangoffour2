@@ -31,7 +31,6 @@ export class ObserverSingleton {
     }
 
     static notifyCarta(carta: ICarta){
-        console.log(carta)
         this.listListenerCarta.forEach(el => el.udpateCarta(carta))
     }
 }

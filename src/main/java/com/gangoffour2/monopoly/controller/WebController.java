@@ -25,8 +25,4 @@ public class WebController {
         return PartiteRepository.getInstance().getPartiteAperte();
     }
 
-    @GetMapping("/partite/{idPartita}")
-    public IPartita getPartitaById(@PathVariable String idPartita) {
-        return PartiteRepository.getInstance().getPartitaById(idPartita);
-    }
 }

@@ -82,22 +82,4 @@ class TestCarte {
         assertEquals(990, g.getConto());
     }
 
-    @Test
-    void pescaProbabilita() {
-        Giocatore g = Giocatore.builder().nick("Ciao").build();
-        partita.onAzioneGiocatore(EntraInPartita.builder().giocatore(g).build());
-        MonopolyApplicationTests.fakeTiro(partita, g, 2);
-        g.getCasellaCorrente().arrivo(g);
-        partita.continuaTurno();
-        assertInstanceOf(FineTurno.class, partita.getStato());
-    }
-
-    @Test
-    void pescaImprevisto() {
-        Giocatore g = Giocatore.builder().nick("Ciao").build();
-        partita.onAzioneGiocatore(EntraInPartita.builder().giocatore(g).build());
-        MonopolyApplicationTests.fakeTiro(partita, g, 7);
-        partita.continuaTurno();
-        assertInstanceOf(FineTurno.class, partita.getStato());
-    }
 }

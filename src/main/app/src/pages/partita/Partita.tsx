@@ -42,7 +42,6 @@ export default class Partita extends React.Component<Props, State> implements Ob
     }
 
     render() {
-        console.log(this.state.partita)
         if(!this.state.partita)
             return null;
 
