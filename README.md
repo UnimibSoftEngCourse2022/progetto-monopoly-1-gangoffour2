@@ -3,6 +3,16 @@
 ![Version](https://img.shields.io/badge/version-1.0.0-success)
 ![License](https://img.shields.io/github/license/UnimibSoftEngCourse2022/progetto-monopoly-1-gangoffour2)
 ![Stars](https://img.shields.io/github/stars/UnimibSoftEngCourse2022/progetto-monopoly-1-gangoffour2)
+[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=UnimibSoftEngCourse2022_progetto-monopoly-1-gangoffour2&metric=bugs)](https://sonarcloud.io/dashboard?id=UnimibSoftEngCourse2022_progetto-monopoly-1-gangoffour2)
+[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=UnimibSoftEngCourse2022_progetto-monopoly-1-gangoffour2&metric=code_smells)](https://sonarcloud.io/dashboard?id=UnimibSoftEngCourse2022_progetto-monopoly-1-gangoffour2)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=UnimibSoftEngCourse2022_progetto-monopoly-1-gangoffour2&metric=coverage)](https://sonarcloud.io/dashboard?id=UnimibSoftEngCourse2022_progetto-monopoly-1-gangoffour2)
+[![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=UnimibSoftEngCourse2022_progetto-monopoly-1-gangoffour2&metric=duplicated_lines_density)](https://sonarcloud.io/dashboard?id=UnimibSoftEngCourse2022_progetto-monopoly-1-gangoffour2)
+[![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=UnimibSoftEngCourse2022_progetto-monopoly-1-gangoffour2&metric=ncloc)](https://sonarcloud.io/dashboard?id=UnimibSoftEngCourse2022_progetto-monopoly-1-gangoffour2)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=UnimibSoftEngCourse2022_progetto-monopoly-1-gangoffour2&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=UnimibSoftEngCourse2022_progetto-monopoly-1-gangoffour2)
+[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=UnimibSoftEngCourse2022_progetto-monopoly-1-gangoffour2&metric=reliability_rating)](https://sonarcloud.io/dashboard?id=UnimibSoftEngCourse2022_progetto-monopoly-1-gangoffour2)
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=UnimibSoftEngCourse2022_progetto-monopoly-1-gangoffour2&metric=security_rating)](https://sonarcloud.io/dashboard?id=UnimibSoftEngCourse2022_progetto-monopoly-1-gangoffour2)
+[![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=UnimibSoftEngCourse2022_progetto-monopoly-1-gangoffour2&metric=sqale_index)](https://sonarcloud.io/dashboard?id=UnimibSoftEngCourse2022_progetto-monopoly-1-gangoffour2)
+[![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=UnimibSoftEngCourse2022_progetto-monopoly-1-gangoffour2&metric=vulnerabilities)](https://sonarcloud.io/dashboard?id=UnimibSoftEngCourse2022_progetto-monopoly-1-gangoffour2)
 
 ![Monopoly.jpg](Monopoly.jpg?raw=true)
 
